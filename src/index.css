@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-family: "Instrument Serif";
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1rem 3rem;
+
+  background: white;
+  border-bottom: 1px solid #e5e5e5;
+
+  z-index: 1000;
+}
+
+.navbar-logo img {
+  height: 40px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar-links a {
+  color: #222;
+  text-decoration: none;
+}
+
+.navbar-links a:hover {
+  color: #777;
+}
+
+.book-button {
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  background: #222;
+  color: white;
+  cursor: pointer;
+}
+
+.hero-section {
+  background:
+    linear-gradient(rgba(0.6, 0.6, 0.6, 0.3), rgba(0.6, 0.6, 0.6, 0.3)),
+    url('./assets/hero-bg.jpg') center / 75% auto no-repeat;
+  
+  background-size: cover;  
+  
+  min-height: 100vh;
+  display: flex;
+  align-items: center;   
+  justify-content: center; 
+  text-align: center;
+  color: #ffffff;              
+}
+
+.hero-content h1{
+  font-family: "Instrument Serif";
+  font-size: 72px;
+  max-width: 562px;
+  letter-spacing: -1%;
+  line-height: 75px;
+}
+
+.hero-highlight {
+  font-style: italic;
+}
