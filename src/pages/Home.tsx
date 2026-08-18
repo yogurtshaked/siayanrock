@@ -12,6 +12,11 @@ function Home(){
                     </h1>
                 </div>
             </div>
+
+            <div className="about-section">
+                <h2>About Us</h2>
+                <p>Welcome to our holiday home rental service! We specialize in providing the perfect getaway for your next vacation.</p>
+            </div>
         </section>
     )
 }
