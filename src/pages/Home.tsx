@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import "../index.css";
+import { ChevronDown } from '@/components/animate-ui/icons/chevron-down';
 
 
 function Home(){
@@ -10,12 +10,59 @@ function Home(){
                     <h1>
                         Discover Your Perfect <span className="hero-highlight">Holiday Home</span> With Us!
                     </h1>
+                    <div className="scroll-down">
+                        <div className="chevron-container">
+                            <ChevronDown
+                                animate
+                                animation="default-loop"
+                                loop
+                                loopDelay={400}
+                                size={26}
+                                strokeWidth={1}
+                            />
+                        </div>
+                        <p>SCROLL DOWN</p>
+                    </div>
                 </div>
             </div>
 
             <div className="about-section">
-                <h2>About Us</h2>
-                <p>Welcome to our holiday home rental service! We specialize in providing the perfect getaway for your next vacation.</p>
+                <div className="about-content">
+                    <div className="about-image">
+                        <img src="/src/assets/siayanrock-img.jpg" alt="About Siayanrock Hometel" />
+                    </div>
+                    <div className="about-text">
+                        <p>ABOUT US</p>
+                        <h2>A Place Built Around Comfort</h2>
+                        <p>Siayanrock Hometel is a cozy and welcoming place that offers guests a comfortable stay. 
+                            It provides a relaxing atmosphere where visitors can feel at home while enjoying their trip. 
+                            The hometel is ideal for travelers looking for convenience, comfort, and a peaceful environment.</p>
+                        <button className="learn-more">LEARN MORE →</button>
+                    </div>
+                </div>
+            </div>
+
+            <div className="offer-section">
+                <div className="offer-content">
+                    <div className="offer-text">
+                        <p>WHAT WE OFFER</p>
+                        <h2>Explore Batanes with us</h2>
+                        <p>Discover curated experiences designed by locals who know the islands best.</p>
+                    </div>
+
+                    <div className="offer-cards">
+                        <div className="offer-card">
+                            <h3>Accommodation</h3>
+                            <p>Relax in comfortable, well-appointed rooms designed to make your stay in Batanes memorable.</p>
+                            <button>View Details →</button>
+                        </div>
+                        <div className="offer-card">
+                            <h3>Tours Packages</h3>
+                            <p>Experience the beauty of Batanes with our guided tours led by knowledgeable local guides.</p>
+                            <button>View Details →</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     )

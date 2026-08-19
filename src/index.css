@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
+/* ====================== Global Styles ======================*/
+:root{
+  --color-h2: #597690;
+  --color-text: #6B5C46;
+  --color-button: #81A6C6;
+}
 
 * {
   margin: 0;
@@ -33,7 +41,9 @@ h1 {
   }
 }
 h2 {
-  font-size: 24px;
+  font-size: 54px;
+  font-style: italic;
+  color: var(--color-h2);
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
@@ -46,20 +56,32 @@ p {
   margin: 0;
 }
 a{
-  font-family: "Poppins";
+  font-family: "Montserrat";
 }
 
+/* ====================== Navbar ======================*/
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-
   padding: 0.8rem 3rem;
-  background: rgb(255, 255, 255, 60%);
-  backdrop-filter: blur(200px);
+
+  background: transparent;
+  border-bottom: 1px solid transparent;
+
+  z-index: 1000;
+
+  transition:
+    background 0.3s ease,
+    backdrop-filter 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid #E6DFC9;
-  z-index: 1000;
 }
 
 .navbar-content{
@@ -81,9 +103,13 @@ a{
 }
 
 .navbar-links a {
-  color: #222;
+  color: white;
   text-decoration: none;
   font-size: 14px;
+}
+
+.navbar-scrolled .navbar-links a {
+  color: #222;
 }
 
 .navbar-links a:hover {
@@ -91,14 +117,26 @@ a{
 }
 
 .book-button {
-  padding: 0.7rem 1.2rem;
+  padding: 0.3rem 0.8rem;
   border: none;
   border-radius: 6px;
-  background: #222;
+  background: rgba(255, 255, 255, 0.268);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid #E6DFC9;
   color: white;
   cursor: pointer;
+  font-size: 14px;
+  font-family: "Poppins";
 }
 
+.navbar-scrolled .book-button {
+  background: #222;
+  border: 1px solid #222;
+  color: white;
+}
+
+/* ====================== Hero Section ======================*/
 .hero-section {
   background:
     linear-gradient(rgba(0.6, 0.6, 0.6, 0.3), rgba(0.6, 0.6, 0.6, 0.3)),
@@ -111,7 +149,15 @@ a{
   align-items: center;   
   justify-content: center; 
   text-align: center;
-  color: #ffffff;              
+  color: #ffffff;       
+  position: relative;       
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-content h1{
@@ -126,15 +172,169 @@ a{
   font-style: italic;
 }
 
+.scroll-down {
+  position: absolute;
+  bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.scroll-down p {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 6%;
+}
+
+.chevron-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 38px;
+  height: 38px;
+
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+/* ====================== About Section ======================*/
 .about-section {
-  background: white;
-  
+  background: #FAF6EC;
   background-size: cover;  
-  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;   
   justify-content: center; 
   text-align: center;            
+}
+
+.about-content {
+  width: 90%;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.about-content p{
+  color: var(--color-text);
+  text-align: left;
+}
+
+.about-image{
+  width: 100%;
+  background: white;
+  padding: 1rem;
+}
+
+.about-image img{
+  width: 550px;
+  height: auto;
+}
+
+.about-text{
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.learn-more, .offer-cards button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 50px;
+  background: var(--color-button);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Poppins";
+  transition: background 0.3s ease;
+}
+
+.learn-more:hover, .offer-cards button:hover {
+  background: #597690;
+}
+
+/* ====================== About Section ======================*/
+.offer-section {
+  background: 
+    linear-gradient(rgba(0.6, 0.6, 0.6, 0.3), rgba(0.6, 0.6, 0.6, 0.3)),
+    url('./assets/offer-bg.jpg') center / 75% auto no-repeat;
+  background-size: cover;  
+  padding: 10rem 0;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   
+  justify-content: center; 
+  text-align: center;            
+}
+.offer-content {
+  width: 100%;
+  max-width: 1080px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.offer-text{
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.offer-text p{
+  font-size: 16px;
+  width: 300px;
+}
+
+.offer-content h2, .offer-content p, .offer-content button {
+  color: white;
+  text-align: left;
+}
+
+.offer-cards{
+  max-width: 560px;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.offer-card{
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(200px);
+  -webkit-backdrop-filter: blur(200px);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid white;
+  width: 100%;
+  font-size: 14px;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.offer-card h3{
+  font-family: "Instrument Serif";
+  color: white;
+  font-size: 32px;
+  text-align: left;
+}
+
+.offer-card button {
+  align-self: flex-end;
 }
