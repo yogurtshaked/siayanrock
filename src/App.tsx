@@ -1,5 +1,6 @@
 import Home from './pages/Home';
 import Navbar from './components/navbar';
+import Footer from './components/footer';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <section id="center">
         <Navbar />
         <Home />
+        <Footer />
       </section>
     </>
   );

@@ -64,6 +64,32 @@ function Home(){
                     </div>
                 </div>
             </div>
+
+            <div className="gallery-section">
+                <div className="gallery-content">
+                    <div className="gallery-text">
+                        <p>GALLERY</p>
+                        <h2>See Batanes through our lens.</h2>
+                    </div>
+                    <div className="gallery-grid">
+                        <img src="/src/assets/siayanrock-img.jpg" alt="Gallery Image 1" />
+                        <img src="/src/assets/gallery2.jpg" alt="Gallery Image 2" />
+                        <img src="/src/assets/gallery3.jpg" alt="Gallery Image 3" />
+                        <img src="/src/assets/gallery4.jpg" alt="Gallery Image 4" />
+                    </div>
+                    <button>View More →</button>
+                </div>
+            </div>
+
+            <div className="inquire-section">
+                <div className="inquire-content">
+                    <div className="inquire-text">
+                        <h2>Ready for your Batanes getaway?</h2>
+                        <p>Need more information? Send us your inquiry.</p>
+                    </div>
+                    <button>Send an Inquiry</button>
+                </div>
+            </div>
         </section>
     )
 }
