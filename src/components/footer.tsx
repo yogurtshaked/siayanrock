@@ -2,14 +2,17 @@ import '../index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 
 function Footer() {
     return (
         <footer className="footer-section">
             <div className="footer-content">
                 <div className="footer-logo">
-                    <img src="/src/assets/logo.png" alt="Logo" className="logo-image"/>
-                    <p className="footer-description">A cozy hometel on the edge of Batanes, built around comfort, quiet mornings, and open horizons.</p>
+                    <div className='footer-logo-text'>
+                        <img src="/src/assets/logo.png" alt="Logo" className="logo-image"/>
+                        <p className="footer-description">A cozy hometel on the edge of Batanes, built around comfort, quiet mornings, and open horizons.</p>
+                    </div>
                     <div className="footer-socials">
                         <a href="https://www.facebook.com/siayanrockhometel" target="_blank" rel="noopener noreferrer">
                             <FontAwesomeIcon icon={faFacebookF}/>
@@ -23,27 +26,46 @@ function Footer() {
                     </div>
                 </div>
                 <div className="footer-explore">
-                    <p>Explore</p>
-                    <a href="/">Home</a>
-                    <a href="/rooms">Accommodation</a>
-                    <a href="/about">Tours</a>
-                    <a href="/contact">Gallery</a>
-                    <a href="/contact">Inquire</a>
+                    <h3>EXPLORE</h3>
+                    <div className='footer-explore-links'>
+                        <a href="/">Home</a>
+                        <a href="/rooms">Accommodation</a>
+                        <a href="/about">Tours</a>
+                        <a href="/contact">Gallery</a>
+                    </div>
                 </div>
                 <div className="footer-company">
-                    <p>Company</p>
-                    <a href="/">Home</a>
-                    <a href="/rooms">Accommodation</a>
-                    <a href="/about">Tours</a>
-                    <a href="/contact">Gallery</a>
-                    <a href="/contact">Inquire</a>
+                    <h3>COMPANY</h3>
+                    <div className='footer-company-links'>
+                        <a href="/">About Us</a>
+                        <a href="/rooms">Reviews</a>
+                        <a href="/about">FAQs</a>
+                        <a href="/contact">Inquire</a>
+                    </div>
                 </div>
                 <div className="footer-contact">
-                    <p>Contact Us:</p>
-                    <p>Email: info@siayanrock.com</p>
-                    <p>Phone: +1 (123) 456-7890</p>
+                    <h3>REACH US</h3>
+                    <div className="footer-contact-content">
+                        <div className="footer-email">
+                            <FontAwesomeIcon icon={faEnvelope} style={{color: "#597690",}} />
+                            <div className="footer-email-text">
+                                <p>Email:</p>
+                                <p>siayanrockis.hometel@gmail.com</p>
+                            </div>
+                        </div>
+                        <div className="footer-phone">
+                            <FontAwesomeIcon icon={faPhone} style={{color: "#597690",}} />
+                            <div className="footer-phone-text">
+                                <p>Phone:</p>
+                                <p>+(63) 961 3945 607</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div className="footer-bottom">
+                    <p>© 2024 Siayanrock Hometel. All rights reserved.</p>
+                </div>
         </footer>
     );
 }

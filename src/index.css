@@ -3,6 +3,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Gontserrat';
+  src: url('./assets/fonts/Gontserrat-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Gontserrat-Medium';
+  src: url('./assets/fonts/Gontserrat-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Gontserrat-Light';
+  src: url('./assets/fonts/Gontserrat-Light.ttf');
+}
+
+
 /* ====================== Global Styles ======================*/
 :root{
   --color-h2: #597690;
@@ -52,11 +68,11 @@ h2 {
   }
 }
 p {
-  font-family: "Montserrat";
+  font-family: "Gontserrat";
   margin: 0;
 }
 a{
-  font-family: "Montserrat";
+  font-family: "Gontserrat";
 }
 
 /* ====================== Navbar ======================*/
@@ -203,7 +219,7 @@ a{
 
 /* ====================== About Section ======================*/
 .about-section {
-  background: #FAF6EC;
+  background: white;
   background-size: cover;  
   min-height: 100vh;
   padding: 120px 140px;
@@ -343,7 +359,7 @@ a{
 
 /* ====================== Gallery Section ======================*/
 .gallery-section {
-  background: #FAF6EC;
+  background: white;
   padding: 120px 140px;
   min-height: 100vh;
 
@@ -400,7 +416,7 @@ a{
 
 /* ====================== Inquire Section ======================*/
 .inquire-section{
-  background: #FAF6EC;
+  background: white;
   padding: 0.8rem;
   display: flex;
   flex-direction: column;
@@ -443,40 +459,48 @@ a{
 
 /* ====================== Footer Section ======================*/
 .footer-section{
-  background: white;
+  background: #FAF6EC;
   padding: 35px 140px;
   min-height: 100px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   text-align: center;
 }
 .footer-content {
   width: 100%;
-  max-width: 1080px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  gap: 40px;
 }
 
 .footer-content > div {
-  flex: 1;
+  flex: 0 0 auto;
 }
 
-.footer-content > div {
-  flex: 1;
-}
-.footer-content p{
-  font-size: 14px;
-  color: var(--color-text);
+.footer-logo-text p{
+  font-size: 12px;
+  letter-spacing: 1%;
+  line-height: 20px;
+  color: #6B6555;
   text-align: left;
+  width: 250px;
+}
+
+.footer-content h3{
+  font-family: "Gontserrat-Medium";
+  font-size: 14px;
+  color: #6B6555;
+  text-align: left;
+  letter-spacing: 5%;
 }
 
 .footer-content a{
-  font-size: 14px;
-  color: var(--color-text);
+  font-size: 13px;
+  color: #6B6555;
   text-decoration: none;
   text-align: left;
 }
@@ -485,8 +509,24 @@ a{
   text-decoration: underline;
 }
 
+.footer-logo{
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+}
+
+.footer-logo-text{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 
 .footer-logo img{
+  width: 40px;
   height: 40px;
 }
 
@@ -507,9 +547,7 @@ a{
   color: white;
 
   border-radius: 50%;
-
   text-decoration: none;
-
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
@@ -518,10 +556,55 @@ a{
   color: #597690;
 }
 
-.footer-content .footer-company, .footer-content .footer-explore{
+.footer-company, .footer-explore, .footer-contact{
+  width: 220px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  align-items: flex-start;
+  gap: 20px;
 }
 
+.footer-explore,
+.footer-company,
+.footer-contact {
+  flex: 1;
+}
 
+.footer-company-links, .footer-explore-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.footer-contact p{
+  font-size: 13px;
+  color: #6B6555;
+  text-align: left;
+}
+
+.footer-contact-content{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.footer-email, .footer-phone {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-bottom{
+  width: 100%;
+  padding: 0 140px;
+  margin-top: 30px;
+  border-top: 1px solid #E6DFC9;
+}
+.footer-bottom p{
+  font-size: 12px;
+  color: #6B6555;
+  text-align: center;
+  margin-top: 20px;
+}
