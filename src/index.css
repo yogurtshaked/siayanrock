@@ -21,9 +21,11 @@
 
 /* ====================== Global Styles ======================*/
 :root{
-  --color-h2: #597690;
+  --color-blue: #597690;
+  --color-light-blue: #81A6C6;
+  --color-dark-blue: #415567;
+
   --color-text: #6B5C46;
-  --color-button: #81A6C6;
 }
 
 * {
@@ -44,7 +46,7 @@ h1,
 h2 {
   font-family: "Instrument Serif";
   font-weight: 500;
-  color: var(--text-h);
+  color: white;
 }
 
 h1 {
@@ -59,7 +61,7 @@ h1 {
 h2 {
   font-size: 54px;
   font-style: italic;
-  color: var(--color-h2);
+  color: var(--color-blue);
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
@@ -67,12 +69,10 @@ h2 {
     font-size: 20px;
   }
 }
-p {
+
+p, a, button {
   font-family: "Gontserrat";
   margin: 0;
-}
-a{
-  font-family: "Gontserrat";
 }
 
 /* ====================== Navbar ======================*/
@@ -84,7 +84,6 @@ a{
 
   background: transparent;
   border-bottom: 1px solid transparent;
-
   z-index: 1000;
 
   transition:
@@ -100,13 +99,16 @@ a{
   border-bottom: 1px solid #E6DFC9;
 }
 
-.navbar-content{
+.navbar-content {
+  width: 100%;
   max-width: 1440px;
-  max-height: 65px;
+  margin: 0 auto;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  max-height: 65px;
 }
 
 .navbar-logo img {
@@ -125,11 +127,12 @@ a{
 }
 
 .navbar-scrolled .navbar-links a {
-  color: #222;
+  color: #6B6555;
+  transition: color 0.3s ease;
 }
 
 .navbar-links a:hover {
-  color: #777;
+  color: #54452F;
 }
 
 .book-button {
@@ -143,7 +146,6 @@ a{
   color: white;
   cursor: pointer;
   font-size: 14px;
-  font-family: "Montserrat";
 }
 
 .navbar-scrolled .book-button {
@@ -177,7 +179,6 @@ a{
 }
 
 .hero-content h1{
-  font-family: "Instrument Serif";
   font-size: 72px;
   max-width: 562px;
   letter-spacing: -1%;
@@ -217,22 +218,43 @@ a{
   border-radius: 50%;
 }
 
+
+/* ====================== Section Settings ======================*/
+.about-section, .offer-section, .gallery-section, .inquire-section, .footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   
+  justify-content: center;
+}
+
+.learn-more, .offer-cards button, .inquire-content button {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 50px;
+  background: var(--color-light-blue);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Gontserrat-Light";
+  transition: background 0.3s ease;
+}
+
+.learn-more:hover, .offer-cards button:hover, .inquire-content button:hover {
+  background: var(--color-blue);
+}
+
 /* ====================== About Section ======================*/
 .about-section {
   background: white;
   background-size: cover;  
   min-height: 100vh;
-  padding: 120px 140px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;   
-  justify-content: center; 
-  text-align: center;            
+  padding: 120px 140px; 
 }
 
 .about-content {
-  width: 90%;
-  max-width: 1080px;
+  width: 100%;
+  max-width: 1160px;
   display: flex;
   flex-direction: row;
   gap: 2rem;
@@ -263,45 +285,25 @@ a{
   gap: 0.8rem;
 }
 
-.learn-more, .offer-cards button, .inquire-content button {
-  padding: 0.4rem 0.8rem;
-  border: none;
-  border-radius: 50px;
-  background: var(--color-button);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  font-family: "Montserrat";
-  transition: background 0.3s ease;
-}
-
-.learn-more:hover, .offer-cards button:hover, .inquire-content button:hover {
-  background: #597690;
-}
-
 /* ====================== About Section ======================*/
 .offer-section {
   background: 
-    linear-gradient(rgba(0.6, 0.6, 0.6, 0.3), rgba(0.6, 0.6, 0.6, 0.3)),
+    linear-gradient(rgba(0.6, 0.6, 0.6, 0.4), rgba(0.6, 0.6, 0.6, 0.4)),
     url('./assets/offer-bg.jpg') center / 75% auto no-repeat;
   background-size: cover;  
-  padding: 10rem 0;
+  padding: 8rem 0;
   min-height: 65vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;   
-  justify-content: center; 
-  text-align: center;            
 }
 
 .offer-content {
   width: 100%;
-  max-width: 1080px;
+  max-width: 1160px;
+  margin: 0 auto;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: auto;
 }
 
 .offer-text{
@@ -315,6 +317,8 @@ a{
 
 .offer-text p{
   font-size: 16px;
+  letter-spacing: 5%;
+  line-height: 20px;
   width: 300px;
 }
 
@@ -324,6 +328,7 @@ a{
 }
 
 .offer-cards{
+  width: 100%;
   max-width: 560px;
   display: flex;
   flex-direction: row;
@@ -331,19 +336,18 @@ a{
 }
 
 .offer-card{
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(200px);
   -webkit-backdrop-filter: blur(200px);
-  padding: 0.6rem 1.2rem;
+  padding: 15px 22px;
   border-radius: 8px;
   border: 1px solid white;
   width: 100%;
-  font-size: 14px;
-  max-width: 250px;
+  max-width: 280px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.8rem;
+  gap: 15px;
 }
 
 .offer-card h3{
@@ -351,6 +355,13 @@ a{
   color: white;
   font-size: 32px;
   text-align: left;
+}
+
+.offer-card p{
+  width: 210px;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: "Gontserrat-Light";
 }
 
 .offer-card button {
@@ -362,12 +373,6 @@ a{
   background: white;
   padding: 120px 140px;
   min-height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
   text-align: center;
 }
 
@@ -379,9 +384,15 @@ a{
   gap: 1.6rem;
 }
 
+.gallery-text p{
+  font-size: 16px;
+  color: var(--color-text);
+}
+
 .gallery-grid {
   width: 100%;
-  max-width: 1080px;
+  max-width: 1160px;
+  margin: 0 auto;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -399,8 +410,8 @@ a{
   padding: 0.4rem 1.4rem;
   border: none;
   border-radius: 50px;
-  border: 1px solid var(--color-button);
-  color: var(--color-button);
+  border: 1px solid var(--color-light-blue);
+  color: var(--color-light-blue);
   cursor: pointer;
   font-size: 14px;
   font-family: "Montserrat";
@@ -409,7 +420,7 @@ a{
 }
 
 .gallery-content button:hover {
-  background: #597690;
+  background: var(--color-blue);
   color: white;
   border: 1px solid white;
 }
@@ -418,17 +429,12 @@ a{
 .inquire-section{
   background: white;
   padding: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 
   text-align: center;
 }
 
 .inquire-content{
   width: 100%;
-  max-width: 1480px;
   min-height: 300px;
 
   background: 
@@ -463,17 +469,17 @@ a{
   padding: 35px 140px;
   min-height: 100px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-
   text-align: center;
 }
+
 .footer-content {
   width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
   gap: 40px;
 }
 
@@ -482,7 +488,7 @@ a{
 }
 
 .footer-logo-text p{
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 1%;
   line-height: 20px;
   color: #6B6555;
@@ -503,6 +509,7 @@ a{
   color: #6B6555;
   text-decoration: none;
   text-align: left;
+  transition: text-decoration 0.3s ease;
 }
 
 .footer-content a:hover{
@@ -511,7 +518,7 @@ a{
 
 .footer-logo{
   width: 100%;
-  max-width: 320px;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -524,10 +531,9 @@ a{
   gap: 10px;
 }
 
-
 .footer-logo img{
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
 }
 
 .footer-socials{
@@ -543,21 +549,19 @@ a{
   align-items: center;
   justify-content: center;
 
-  background: #597690;
+  background: var(--color-blue);
   color: white;
 
-  border-radius: 50%;
+  border-radius: 50px;
   text-decoration: none;
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .footer-socials a:hover {
-  background: white;
-  color: #597690;
+  background: var(--color-dark-blue);
 }
 
 .footer-company, .footer-explore, .footer-contact{
-  width: 220px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -577,17 +581,17 @@ a{
   gap: 10px;
 }
 
-.footer-contact p{
-  font-size: 13px;
-  color: #6B6555;
-  text-align: left;
-}
-
 .footer-contact-content{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 30px;
+}
+
+.footer-contact p{
+  font-size: 13px;
+  color: #6B6555;
+  text-align: left;
 }
 
 .footer-email, .footer-phone {
@@ -598,10 +602,11 @@ a{
 
 .footer-bottom{
   width: 100%;
-  padding: 0 140px;
+  max-width: 1160px;
   margin-top: 30px;
   border-top: 1px solid #E6DFC9;
 }
+
 .footer-bottom p{
   font-size: 12px;
   color: #6B6555;

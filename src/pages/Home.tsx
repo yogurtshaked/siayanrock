@@ -32,12 +32,14 @@ function Home(){
                         <img src="/src/assets/siayanrock-img.jpg" alt="About Siayanrock Hometel" />
                     </div>
                     <div className="about-text">
-                        <p>ABOUT US</p>
-                        <h2>A Place Built Around Comfort</h2>
+                        <div className="about-title">
+                            <p>ABOUT US</p>
+                            <h2>A Place Built Around Comfort</h2>
+                        </div>
                         <p>Siayanrock Hometel is a cozy and welcoming place that offers guests a comfortable stay. 
                             It provides a relaxing atmosphere where visitors can feel at home while enjoying their trip. 
                             The hometel is ideal for travelers looking for convenience, comfort, and a peaceful environment.</p>
-                        <button className="learn-more">LEARN MORE →</button>
+                        <button className="learn-more">Learn More →</button>
                     </div>
                 </div>
             </div>
@@ -45,8 +47,10 @@ function Home(){
             <div className="offer-section">
                 <div className="offer-content">
                     <div className="offer-text">
-                        <p>WHAT WE OFFER</p>
-                        <h2>Explore Batanes with us</h2>
+                        <div className="offer-title">
+                            <p>WHAT WE OFFER</p>
+                            <h2>Explore Batanes with us</h2>
+                        </div>
                         <p>Discover curated experiences designed by locals who know the islands best.</p>
                     </div>
 
@@ -68,8 +72,10 @@ function Home(){
             <div className="gallery-section">
                 <div className="gallery-content">
                     <div className="gallery-text">
-                        <p>GALLERY</p>
-                        <h2>See Batanes through our lens.</h2>
+                        <div className="gallery-title">
+                            <p>GALLERY</p>
+                            <h2>See Batanes through our lens.</h2>
+                        </div>
                     </div>
                     <div className="gallery-grid">
                         <img src="/src/assets/siayanrock-img.jpg" alt="Gallery Image 1" />

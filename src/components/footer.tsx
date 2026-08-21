@@ -15,7 +15,7 @@ function Footer() {
                     </div>
                     <div className="footer-socials">
                         <a href="https://www.facebook.com/siayanrockhometel" target="_blank" rel="noopener noreferrer">
-                            <FontAwesomeIcon icon={faFacebookF}/>
+                            <FontAwesomeIcon icon={faFacebookF} />
                         </a>
                         <a href="https://www.instagram.com/siayanrockhometel" target="_blank" rel="noopener noreferrer">
                             <FontAwesomeIcon icon={faInstagram} />
