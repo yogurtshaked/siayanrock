@@ -619,12 +619,36 @@ p, a, button {
   margin-top: 20px;
 }
 
+/* ====================== Page Settings ======================*/
+.accommodation-content, .tours-content{
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.accommodation-text h2, .accommodation-text p, .tours-text h2, .tours-text p{
+  color: white;
+  font-weight: 200;
+  text-align: start;
+}
+
+.accommodation-text p, .tours-text p{
+  max-width: 550px;
+  font-size: 16px;
+  letter-spacing: 3%;
+}
+
+
 /* ====================== Accommodation Page ======================*/
 .accommodation-hero-section {
   background:
-    linear-gradient(rgba(0.6, 0.6, 0.6, 0.4), rgba(0.6, 0.6, 0.6, 0.4)),
-    url('./assets/accommodation-bg.jpg') center / 75% auto no-repeat;
-
+  linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(28, 28, 28, 0.7) 42%,
+    rgba(102, 102, 102, 0.7) 100%
+  ),
+  url('./assets/accommodation-bg.jpg') center / cover no-repeat;
   background-size: cover;
 
   padding: 120px 140px;
@@ -637,17 +661,6 @@ p, a, button {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-}
-
-.accommodation-content{
-  width: 100%;
-  max-width: 1160px;
-  margin: 0 auto;
-}
-
-.accommodation-text h2, .accommodation-text p{
-  color: white;
-  text-align: start;
 }
 
 .accommodation-rooms{
@@ -823,4 +836,23 @@ p, a, button {
 
 .book-room:hover{
   background-color: #384959;
+}
+
+
+/* ====================== Tours Page ======================*/
+.tours-hero-section {
+  background:linear-gradient(rgba(0.0, 0.0, 0.0, 0.5), rgba(0.0, 0.0, 0.0, 0.5)),     
+    url('./assets/tours-bg.jpg') center / 70% auto no-repeat;
+  background-size: cover;
+
+  padding: 120px 140px;
+  min-height: 80vh;
+
+  color: #ffffff;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }

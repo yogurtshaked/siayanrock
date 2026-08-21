@@ -61,7 +61,7 @@ function Home(){
                             <button>View Details →</button>
                         </div>
                         <div className="offer-card">
-                            <h3>Tours Packages</h3>
+                            <h3>Tour Packages</h3>
                             <p>Experience the beauty of Batanes with our guided tours led by knowledgeable local guides.</p>
                             <button>View Details →</button>
                         </div>
