@@ -33,10 +33,10 @@ function Home(){
                     </div>
                     <div className="about-text">
                         <div className="about-title">
-                            <p>ABOUT US</p>
+                            <p className="section-title">ABOUT US</p>
                             <h2>A Place Built Around Comfort</h2>
                         </div>
-                        <p>Siayanrock Hometel is a cozy and welcoming place that offers guests a comfortable stay. 
+                        <p className="section-description">Siayanrock Hometel is a cozy and welcoming place that offers guests a comfortable stay. 
                             It provides a relaxing atmosphere where visitors can feel at home while enjoying their trip. 
                             The hometel is ideal for travelers looking for convenience, comfort, and a peaceful environment.</p>
                         <button className="learn-more">Learn More →</button>
@@ -48,7 +48,7 @@ function Home(){
                 <div className="offer-content">
                     <div className="offer-text">
                         <div className="offer-title">
-                            <p>WHAT WE OFFER</p>
+                            <p className="section-title">WHAT WE OFFER</p>
                             <h2>Explore Batanes with us</h2>
                         </div>
                         <p>Discover curated experiences designed by locals who know the islands best.</p>
@@ -73,7 +73,7 @@ function Home(){
                 <div className="gallery-content">
                     <div className="gallery-text">
                         <div className="gallery-title">
-                            <p>GALLERY</p>
+                            <p className="section-title">GALLERY</p>
                             <h2>See Batanes through our lens.</h2>
                         </div>
                     </div>

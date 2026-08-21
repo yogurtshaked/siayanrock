@@ -26,6 +26,7 @@
   --color-dark-blue: #415567;
 
   --color-text: #6B5C46;
+  --color-section-title: #A4947D;
 }
 
 * {
@@ -96,7 +97,7 @@ p, a, button {
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid #E6DFC9;
+  border-bottom: 0.5px solid #E6DFC9;
 }
 
 .navbar-content {
@@ -227,6 +228,15 @@ p, a, button {
   justify-content: center;
 }
 
+.section-title{
+  font-size: 16px;
+  color: var(--color-section-title);
+}
+
+.section-description{
+  color: var(--color-text);
+}
+
 .learn-more, .offer-cards button, .inquire-content button {
   padding: 0.4rem 0.8rem;
   border: none;
@@ -261,7 +271,6 @@ p, a, button {
 }
 
 .about-content p{
-  color: var(--color-text);
   text-align: left;
 }
 
@@ -316,7 +325,6 @@ p, a, button {
 }
 
 .offer-text p{
-  font-size: 16px;
   letter-spacing: 5%;
   line-height: 20px;
   width: 300px;
@@ -382,11 +390,6 @@ p, a, button {
   justify-content: center;
   align-items: center;
   gap: 1.6rem;
-}
-
-.gallery-text p{
-  font-size: 16px;
-  color: var(--color-text);
 }
 
 .gallery-grid {
