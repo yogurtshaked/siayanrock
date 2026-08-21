@@ -26,7 +26,7 @@ function Home(){
                 </div>
             </div>
 
-            <div className="about-section">
+            <div className="about-section" id="section">
                 <div className="about-content">
                     <div className="about-image">
                         <img src="/src/assets/siayanrock-img.jpg" alt="About Siayanrock Hometel" />
@@ -44,7 +44,7 @@ function Home(){
                 </div>
             </div>
 
-            <div className="offer-section">
+            <div className="offer-section" id="section">
                 <div className="offer-content">
                     <div className="offer-text">
                         <div className="offer-title">
@@ -69,7 +69,7 @@ function Home(){
                 </div>
             </div>
 
-            <div className="gallery-section">
+            <div className="gallery-section" id="section">
                 <div className="gallery-content">
                     <div className="gallery-text">
                         <div className="gallery-title">
@@ -87,7 +87,7 @@ function Home(){
                 </div>
             </div>
 
-            <div className="inquire-section">
+            <div className="inquire-section" id="section">
                 <div className="inquire-content">
                     <div className="inquire-text">
                         <h2>Ready for your Batanes getaway?</h2>

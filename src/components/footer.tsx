@@ -6,7 +6,7 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 
 function Footer() {
     return (
-        <footer className="footer-section">
+        <footer className="footer-section" id="section">
             <div className="footer-content">
                 <div className="footer-logo">
                     <div className='footer-logo-text'>
