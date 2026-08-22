@@ -22,7 +22,7 @@ function Navbar() {
         <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
             <div className="navbar-content">
                 <div className="navbar-logo">
-                    <img src="/src/assets/logo.png" alt="Logo" className="logo-image"/>
+                    <img src="/src/assets/images/logo.png" alt="Logo" className="logo-image"/>
                 </div>
 
                 <div className="navbar-links">

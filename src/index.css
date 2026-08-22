@@ -177,7 +177,7 @@ p, a, button {
 .hero-section {
   background:
     linear-gradient(rgba(0.6, 0.6, 0.6, 0.3), rgba(0.6, 0.6, 0.6, 0.3)),
-    url('./assets/hero-bg.jpg') center / 75% auto no-repeat;
+    url('./assets/images/hero-bg.jpg') center / 75% auto no-repeat;
   
   background-size: cover;  
   
@@ -317,7 +317,7 @@ p, a, button {
 
 .about-text .section-description {
   max-width: 480px;
-  line-height: 30px;
+  line-height: 26px;
 }
 
 .learn-more{
@@ -329,7 +329,7 @@ p, a, button {
 .offer-section {
   background: 
     linear-gradient(rgba(0.6, 0.6, 0.6, 0.4), rgba(0.6, 0.6, 0.6, 0.4)),
-    url('./assets/offer-bg.jpg') center / 75% auto no-repeat;
+    url('./assets/images/offer-bg.jpg') center / 75% auto no-repeat;
   background-size: cover;  
   padding: 120px 140px; 
   min-height: 65vh;
@@ -430,17 +430,63 @@ p, a, button {
   width: 100%;
   max-width: 1160px;
   margin: 0 auto;
-
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
-.gallery-grid img {
+.gallery-item {
+  position: relative;  /* caption positioned inside */
   width: 100%;
   height: 350px;
-  object-fit: cover;
+  overflow: hidden;     /* clips the zoomed image */
   border-radius: 0px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0);
+  transform: scale(1);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+/* grey out every image EXCEPT the one being hovered */
+.gallery-grid:hover .gallery-item:not(:hover) img {
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+/* hovered image stays full color, zoom in */
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+/* Caption overlaid inside the image, bottom-anchored */
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 1.5rem 1rem 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+  text-align: center;
+
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none; /* so it never blocks the hover on the image itself */
+}
+
+.gallery-item:hover .gallery-caption {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .gallery-content button {
@@ -475,7 +521,7 @@ p, a, button {
 
   background: 
     linear-gradient(rgba(0.6, 0.6, 0.6, 0.4), rgba(0.6, 0.6, 0.6, 0.4)),
-    url('./assets/inquire-bg.jpg') center / 75% auto no-repeat;
+    url('./assets/images/inquire-bg.jpg') center / 75% auto no-repeat;
 
   background-position: center;
   background-size: cover;
@@ -575,6 +621,11 @@ p, a, button {
 .footer-socials{
   display: flex;
   gap: 1rem;
+}
+
+.footer-socials svg{
+  width: 15px;
+  height: 15px;
 }
 
 .footer-socials a {
@@ -704,7 +755,7 @@ p, a, button {
     rgba(28, 28, 28, 0.7) 42%,
     rgba(102, 102, 102, 0.7) 100%
   ),
-  url('./assets/accommodation-bg.jpg') center / cover no-repeat;
+  url('./assets/images/accommodation-bg.jpg') center / cover no-repeat;
   background-size: cover;
 
   padding: 120px 140px;
@@ -879,7 +930,7 @@ p, a, button {
 /* ====================== Tours Page ======================*/
 .tours-hero-section {
   background:linear-gradient(rgba(0.0, 0.0, 0.0, 0.5), rgba(0.0, 0.0, 0.0, 0.5)),     
-    url('./assets/tours-bg.jpg') center / 70% auto no-repeat;
+    url('./assets/images/tours-bg.jpg') center / 70% auto no-repeat;
   background-size: cover;
 
   padding: 120px 140px;
@@ -962,4 +1013,105 @@ p, a, button {
 .tour-card button svg {
   height: 16px;
   margin-left: 4px;
+}
+
+/* ====================== Gallery Page ======================*/
+.gallery-page{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.gallery-page-content{
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 160px 140px;
+
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.gallery-title{
+  text-align: center;
+}
+
+.gallery-title h3{
+  font-family: "Instrument Serif";
+  font-size: 40px;
+  font-style: italic;
+  color: #2E2E2A;
+}
+
+.gallery-title .section-description{
+  max-width: 580px;
+  font-size: 14px;
+}
+
+.filter-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 2rem 0;
+}
+
+.filter-pill {
+  padding: 0.4rem 1.4rem;
+  font-size: 14px;
+  border-radius: 50px;
+  border: 1px solid #6B6555;
+  background: transparent;
+  color: #6B6555;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.filter-pill:hover {
+  border-color: #6f8fa8;
+}
+
+.filter-pill.active {
+  background: #4a6a86; /* matches the blue "All" pill in your reference */
+  border-color: #4a6a86;
+  color: #fff;
+}
+
+.gallery-page-grid {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.gallery-page-item {
+  position: relative;  
+  width: 100%;
+  height: 250px;
+  overflow: hidden;    
+  border-radius: 10px;
+}
+
+.gallery-page-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0);
+  transform: scale(1);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.gallery-page-grid:hover .gallery-page-item:not(:hover) img {
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.gallery-page-item:hover img {
+  transform: scale(1.08);
 }

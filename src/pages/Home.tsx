@@ -29,7 +29,7 @@ function Home(){
             <div className="about-section" id="section">
                 <div className="about-content">
                     <div className="about-image">
-                        <img src="/src/assets/siayanrock-img.jpg" alt="About Siayanrock Hometel" />
+                        <img src="/src/assets/images/siayanrock-img.jpg" alt="About Siayanrock Hometel" />
                     </div>
                     <div className="about-text">
                         <div className="about-title">
@@ -78,11 +78,23 @@ function Home(){
                         </div>
                     </div>
                     <div className="gallery-grid">
-                        <img src="/src/assets/siayanrock-img.jpg" alt="Gallery Image 1" />
-                        <img src="/src/assets/gallery2.jpg" alt="Gallery Image 2" />
-                        <img src="/src/assets/gallery3.jpg" alt="Gallery Image 3" />
-                        <img src="/src/assets/gallery4.jpg" alt="Gallery Image 4" />
-                    </div>
+                        <div className="gallery-item">
+                            <img src="/src/assets/images/siayanrock-img.jpg" alt="Gallery Image 1" />
+                            <p className="gallery-caption">Our Hometel</p>
+                        </div>
+                        <div className="gallery-item">
+                            <img src="/src/assets/images/gallery2.jpg" alt="Gallery Image 2" />
+                            <p className="gallery-caption">Our Tours</p>
+                        </div>
+                        <div className="gallery-item">
+                            <img src="/src/assets/images/gallery3.jpg" alt="Gallery Image 3" />
+                            <p className="gallery-caption">Our Private Viewdeck</p>
+                        </div>
+                        <div className="gallery-item">
+                            <img src="/src/assets/images/gallery4.jpg" alt="Gallery Image 4" />
+                            <p className="gallery-caption">Our Guests</p>
+                        </div>
+                        </div>
                     <button>View More →</button>
                 </div>
             </div>

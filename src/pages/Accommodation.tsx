@@ -27,7 +27,7 @@ function Accommodation(){
                         
                         <div className='room-card'>
                             <div className='room-img'>
-                                <img src="/src/assets/room 2.jpg" alt="About Siayanrock Hometel" />
+                                <img src="/src/assets/images/room 2.jpg" alt="About Siayanrock Hometel" />
                             </div>
                             <div className='room-contents'>
                                 <div>
@@ -85,7 +85,7 @@ function Accommodation(){
 
                         <div className='room-card'>
                             <div className='room-img'>
-                                <img src="/src/assets/room 2.jpg" alt="About Siayanrock Hometel" />
+                                <img src="/src/assets/images/room 2.jpg" alt="About Siayanrock Hometel" />
                             </div>
                             <div className='room-contents'>
                                 <div>
@@ -143,7 +143,7 @@ function Accommodation(){
 
                         <div className='room-card'>
                             <div className='room-img'>
-                                <img src="/src/assets/room 2.jpg" alt="About Siayanrock Hometel" />
+                                <img src="/src/assets/images/room 2.jpg" alt="About Siayanrock Hometel" />
                             </div>
                             <div className='room-contents'>
                                 <div>
