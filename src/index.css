@@ -25,7 +25,7 @@
   --color-light-blue: #81A6C6;
   --color-dark-blue: #415567;
 
-  --color-text: #6B5C46;
+  --color-text: #54452F;
   --color-section-title: #A4947D;
 }
 
@@ -122,18 +122,36 @@ p, a, button {
 }
 
 .navbar-links a {
+  position: relative;
   color: white;
   text-decoration: none;
   font-size: 14px;
-}
-
-.navbar-scrolled .navbar-links a {
-  color: #6B6555;
   transition: color 0.3s ease;
 }
 
-.navbar-links a:hover {
-  color: #54452F;
+/* Scrolled navbar */
+.navbar-scrolled .navbar-links a {
+  color: var(--color-text);
+}
+
+/* Underline */
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+}
+
+.navbar-links a.active::after {
+  width: 100%;
 }
 
 .book-button {
@@ -222,7 +240,6 @@ p, a, button {
 
 /* ====================== Section Settings ======================*/
 #section {
-
   display: flex;
   flex-direction: column;
   align-items: center;   
@@ -232,6 +249,8 @@ p, a, button {
 .section-title{
   font-size: 16px;
   color: var(--color-section-title);
+  font-weight: 500;
+  letter-spacing: 8%;
 }
 
 .section-description{
@@ -258,41 +277,52 @@ p, a, button {
 /* ====================== About Section ======================*/
 .about-section {
   background: white;
-  background-size: cover;  
   min-height: 100vh;
+  padding: 100px 0;
 }
 
 .about-content {
   width: 100%;
   max-width: 1160px;
+  margin: 0 auto;
+
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 2rem;
 }
 
-.about-content p{
-  text-align: left;
-  letter-spacing: 3%;
-}
-
-.about-image{
-  width: 100%;
-  background: white;
-  padding: 1rem;
-}
-
-.about-image img{
+.about-image {
   width: 550px;
-  height: auto;
+  flex-shrink: 0;
+  padding: 0;
 }
 
-.about-text{
+.about-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.about-text {
+  flex: 1;
   max-width: 560px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 0.8rem;
+}
+
+.about-text .section-description {
+  max-width: 480px;
+  line-height: 30px;
+}
+
+.learn-more{
+  box-shadow: none;
+  padding: 0.4rem 1.6rem;
 }
 
 /* ====================== About Section ======================*/
@@ -377,6 +407,7 @@ p, a, button {
 
 .offer-card button {
   align-self: flex-end;
+  letter-spacing: 3%;
 }
 
 /* ====================== Gallery Section ======================*/
@@ -639,6 +670,31 @@ p, a, button {
 }
 
 
+.accommodation-rooms, .tours-packages{
+  padding: 80px 160px;
+
+  background: #FAF6EC;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.accommodation-rooms-title, .tours-packages-title{
+  text-align: center;
+}
+
+.accommodation-rooms-title h3, .tours-packages-title h3{
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-size: 40px;
+  text-align: center;
+  color: #2E2E2A;
+}
+
+
 /* ====================== Accommodation Page ======================*/
 .accommodation-hero-section {
   background:
@@ -663,28 +719,9 @@ p, a, button {
   justify-content: center;
 }
 
-.accommodation-rooms{
-  padding: 80px 160px;
-
-  background: #FAF6EC;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-}
-
-.accommodation-rooms-title{
-  text-align: center;
-}
-
-.accommodation-rooms-title h3{
-  font-family: "Instrument Serif";
-  font-style: italic;
-  font-size: 40px;
-  text-align: center;
-  color: #2E2E2A;
+.accommodation-rooms, .tours-packages{
+  padding: 140px 160px;
+  min-height: 100vh;
 }
 
 .accommodation-room-cards{
@@ -855,4 +892,74 @@ p, a, button {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+}
+
+.tours-packages{
+  padding: 80px 160px 120px 160px;
+  min-height: 100vh;
+}
+
+.tours-cards{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.tour-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.10);
+  padding: 25px 35px;
+  gap: 10px;
+}
+
+.tour-card p{
+  color: #6B5C46;
+  font-size: 14px;
+  text-align: center;
+}
+
+.tour-card-description{
+  padding: 12px 0;
+  max-width: 290px;
+  font-size: 16px;
+}
+
+.tour-card h3{
+  font-family: "Instrument Serif";
+  font-size: 32px;
+  color: #415567;
+  text-align: center;
+}
+
+.duration-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.duration-item svg{
+  color: #6B5C46;
+}
+
+.tour-card button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-blue);
+  font-size: 14px;
+  padding: 6px 12px;
+  border: solid 1px var(--color-blue);
+  border-radius: 50px;
+}
+
+.tour-card button svg {
+  height: 16px;
+  margin-left: 4px;
 }

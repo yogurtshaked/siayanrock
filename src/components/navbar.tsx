@@ -1,5 +1,5 @@
 import "../index.css";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from "react";
 
 
@@ -26,11 +26,11 @@ function Navbar() {
                 </div>
 
                 <div className="navbar-links">
-                    <Link to="/">Home</Link>
-                    <Link to="/accommodation">Accommodation</Link>
-                    <Link to="/tours">Tours</Link>
-                    <Link to="/gallery">Gallery</Link>
-                    <Link to="/inquire">Inquire</Link>
+                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/accommodation">Accommodation</NavLink>
+                    <NavLink to="/tours">Tours</NavLink>
+                    <NavLink to="/gallery">Gallery</NavLink>
+                    <NavLink to="/inquire">Inquire</NavLink>
                 </div>
 
                 <button className="book-button">
