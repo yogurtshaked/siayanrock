@@ -10,7 +10,7 @@ function Footer() {
             <div className="footer-content">
                 <div className="footer-logo">
                     <div className='footer-logo-text'>
-                        <img src="/src/assets/logo.png" alt="Logo" className="logo-image"/>
+                        <img src="/src/assets/images/logo.png" alt="Logo" className="logo-image"/>
                         <p className="footer-description">A cozy hometel on the edge of Batanes, built around comfort, quiet mornings, and open horizons.</p>
                     </div>
                     <div className="footer-socials">

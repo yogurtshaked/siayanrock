@@ -1,4 +1,3 @@
-import { section } from 'motion/react-client';
 import '../index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed } from '@fortawesome/free-solid-svg-icons/faBed';

@@ -1,7 +1,6 @@
-import { section } from 'motion/react-client';
 import '../index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faClock } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { MoveUpRight } from 'lucide-react';
 
 function Tours(){

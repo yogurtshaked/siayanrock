@@ -1,10 +1,14 @@
 import "../index.css";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
 
 
 function Navbar() {
     const [scrolled, setScrolled] = useState(false);
+    const location = useLocation();
+    const isGallery = location.pathname === "/gallery";
+    const isInquire = location.pathname === "/inquire";
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -19,7 +23,11 @@ function Navbar() {
     }, []);
 
     return (
-        <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
+        <nav className={`navbar 
+            ${scrolled ? "navbar-scrolled" : ""} 
+            ${isGallery ? "navbar-gallery" : ""}
+            ${isInquire ? "navbar-inquire" : ""}`}>
+                
             <div className="navbar-content">
                 <div className="navbar-logo">
                     <img src="/src/assets/images/logo.png" alt="Logo" className="logo-image"/>

@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Accommodation from './pages/Accommodation';
 import Tours from './pages/Tours';
 import Gallery from './pages/Gallery';
+import Inquire from './pages/Inquire';
 
 
 import Navbar from './components/navbar';
@@ -21,6 +22,7 @@ function App() {
           <Route path="/accommodation" element={<Accommodation />} />
           <Route path="/tours" element={<Tours />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/inquire" element={<Inquire />} />
 
         </Routes>
 
