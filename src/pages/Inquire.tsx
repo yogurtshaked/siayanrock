@@ -80,7 +80,7 @@ function Inquire(){
                             </form>
                         </div>
                     
-                        <div className="side-col">
+                        {/*<div className="side-col">
                             <div className="info-card">
                                 <h3 className="serif">Reach us directly</h3>
                                 <div className="info-row">
@@ -101,7 +101,7 @@ function Inquire(){
                                 </div>
                             </div>
                     
-                            <div className="map-card">
+                             <div className="map-card">
                                 <MapContainer
                                     center={position}
                                     zoom={13}
@@ -123,8 +123,8 @@ function Inquire(){
                                     </Marker>
 
                                 </MapContainer>
-                            </div>
-                        </div>
+                            </div> 
+                        </div>*/}
                     </div>
                 </div>
             </div>

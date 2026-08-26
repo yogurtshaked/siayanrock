@@ -17,7 +17,7 @@ function Accommodation(){
 
             <div className='accommodation-rooms'>
                 <div className='accommodation-rooms-title'>
-                    <p>OUR ROOMS</p>
+                    <p className="section-title">OUR ROOMS</p>
                     <h3>Find your perfect room</h3>
                 </div>
                 

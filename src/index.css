@@ -27,6 +27,7 @@
 
   --color-text: #54452F;
   --color-section-title: #A4947D;
+  --color-background: #FAF6EC;
 }
 
 * {
@@ -63,7 +64,7 @@ h1 {
 h2 {
   font-size: 54px;
   font-style: italic;
-  color: var(--color-blue);
+  color: #2E2E2A;
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
@@ -127,9 +128,21 @@ p, a, button {
   color: white;
   text-decoration: none;
   font-size: 14px;
-  transition: color 0.3s ease;
+  font-weight: 400;
+  opacity: 0.6;
+  transition: opacity 0.3s ease, font-weight 0.3s ease;
 }
 
+/* Active link */
+.navbar-links a.active {
+  font-weight: 500;
+  opacity: 1;
+}
+
+/* Hover */
+.navbar-links a:hover {
+  opacity: 1;
+}
 /* Scrolled navbar */
 .navbar-scrolled .navbar-links a {
   color: var(--color-text);
@@ -140,25 +153,7 @@ p, a, button {
   color: var(--color-text);
 }
 
-/* Underline */
-.navbar-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0;
-  height: 1px;
-  background: currentColor;
-  transition: width 0.3s ease;
-}
 
-.navbar-links a:hover::after {
-  width: 100%;
-}
-
-.navbar-links a.active::after {
-  width: 100%;
-}
 
 .book-button {
   padding: 0.3rem 0.8rem;
@@ -180,8 +175,6 @@ p, a, button {
   border: 1px solid #222;
   color: white;
 }
-
-
 
 
 /* ====================== Hero Section ======================*/
@@ -558,10 +551,10 @@ p, a, button {
 
 /* ====================== Footer Section ======================*/
 .footer-section{
-  background: #FAF6EC;
+  background: var(--color-background);
   padding: 35px 140px;
   min-height: 100px;
-
+  border-top: 1px solid #E6DFC9;
   text-align: center;
 }
 
@@ -734,8 +727,7 @@ p, a, button {
 
 .accommodation-rooms, .tours-packages{
   padding: 80px 160px;
-
-  background: #FAF6EC;
+  background: var(--color-background);
 
   display: flex;
   flex-direction: column;
@@ -1146,23 +1138,22 @@ p, a, button {
 }
 
 /* ====================== Inquire Page ======================*/
-.inquire-page-content{
+
+.inquire-page-content {
   display: flex;
   flex-direction: column;
   gap: 4rem;
 }
-.inquire-grid{
-  display: grid; 
-  grid-template-columns: 1.3fr 1fr; 
-  gap: 32px; 
-  align-items: start;
+.inquire-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 80%;
 }
-
-.inquire-card{
-  background: #FAF6EC; 
-  border-radius: 16px; 
+.inquire-card {
+  /*background: var(--color-background); 
+  border: 1px solid #E6DFC9;*/
+  border-radius: 5px; 
   padding: 40px 44px;
-  box-shadow: 0 10px 30px rgba(46,46,42,.06);
 }
 
 form{
@@ -1188,8 +1179,7 @@ form{
   color: #6B6555;
 }
 .input-field input, .input-field select, .input-field textarea{
-  background: white; 
-  border: 1px solid #E6DFC9;
+  background: #f4f4f4; 
   border-radius: 6px; 
   padding: 12px 14px; 
   color: var(--text);
@@ -1212,35 +1202,35 @@ form{
 }
   
 .submit-btn{
-  grid-column:1 / -1; 
-  margin-top:6px; 
-  justify-self:flex-start;
-  background:var(--blue-deep); 
-  border:none; 
-  color:#fff;
-  padding:14px 34px; 
-  border-radius:100px; 
-  font-size:14px; 
-  font-weight:500; 
-  cursor:pointer; 
-  transition:background .2s;
+  grid-column: 1 / -1; 
+  margin-top: 6px; 
+  justify-self: flex-end;
+  background: black; 
+  border: none; 
+  color: #fff;
+  padding: 8px 22px; 
+  border-radius: 5px; 
+  font-size: 14px; 
+  font-weight: 500; 
+  cursor: pointer; 
+  transition: background .2s;
 }
 
 .submit-btn:hover{
-  background:var(--blue);
+  background: rgb(36, 36, 36);
 }
 
 .side-col{
-  display:flex; 
-  flex-direction:column; 
-  gap:20px;
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px;
 }
   
 .info-card{
-    background: #FAF6EC; 
-    border-radius:16px; 
-    padding:30px 32px;
-    box-shadow:0 10px 30px rgba(46,46,42,.06);
+  /*background: var(--color-background); 
+  border: 1px solid #E6DFC9;*/
+  border-radius: 5px; 
+  padding:30px 32px;
 }
   
 .info-card h3{

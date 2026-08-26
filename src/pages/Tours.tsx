@@ -17,7 +17,7 @@ function Tours(){
 
             <div className='tours-packages'>
                 <div className='tours-packages-title'>
-                    <p>OUR TOURS</p>
+                    <p className="section-title">OUR TOURS</p>
                     <h3>Curated Batanes itineraries</h3>
                 </div>
 
