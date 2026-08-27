@@ -7,6 +7,10 @@ import "leaflet/dist/leaflet.css";
 function Inquire(){
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [guests, setGuests] = useState("");
+    const [checkin, setCheckin] = useState("");
+    const [checkout, setCheckout] = useState("");
     const position: LatLngExpression = [
         20.37135722099695,
         121.9147227008337
@@ -44,24 +48,40 @@ function Inquire(){
                                 </div>
                                 <div className="input-field">
                                     <label>Phone number</label>
-                                    <input type="tel" placeholder="+63 9XX XXX XXXX"/>
+                                    <input id="phone"
+                                        type="tel" 
+                                        value={phone}
+                                        onChange={(e) => setPhone(e.target.value)}  
+                                        placeholder="+63 9XX XXX XXXX"/>
                                 </div>
                                 <div className="input-field">
                                     <label>Guests</label>
-                                    <select>
-                                        <option>1 guest</option>
-                                        <option>2 guests</option>
-                                        <option>3–4 guests</option>
-                                        <option>5+ guests</option>
+                                    <select
+                                        value={guests}
+                                        onChange={(e) => setGuests(e.target.value)}>
+                                        <option value="" disabled>
+                                            Select guests
+                                        </option>
+                                        <option value="1">1 guest</option>
+                                        <option value="2">2 guests</option>
+                                        <option value="3-4">3–4 guests</option>
+                                        <option value="5+">5+ guests</option>
                                     </select>
                                 </div>
+                                
                                 <div className="input-field">
                                     <label>Check-in</label>
-                                    <input type="date"/>
+                                    <input type="date"
+                                        value={checkin}
+                                        onChange={(e) => setCheckin(e.target.value)}>
+                                    </input>
                                 </div>
                                 <div className="input-field">
                                     <label>Check-out</label>
-                                    <input type="date"/>
+                                    <input type="date"
+                                        value={checkout}
+                                        onChange={(e) => setCheckout(e.target.value)}>      
+                                    </input>
                                 </div>
                                 <div className="input-field full">
                                     <label>Interested in</label>
@@ -69,7 +89,7 @@ function Inquire(){
                                         <option>Accommodation only</option>
                                         <option>Accommodation + tour package</option>
                                         <option>Tour package only</option>
-                                        <option>Not sure yet</option>
+                                        <option>Others</option>
                                     </select>
                                 </div>
                                 <div className="input-field full">

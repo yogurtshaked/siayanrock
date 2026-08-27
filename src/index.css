@@ -587,7 +587,7 @@ p, a, button {
   width: 100%;
   height: 350px;
   overflow: hidden;     /* clips the zoomed image */
-  border-radius: 0px;
+  border-radius: 6px;
 }
 
 .gallery-item img {
@@ -668,9 +668,13 @@ p, a, button {
 
 .inquire-content h2{
   font-family: "Instrument Serif";
-  font-size: 48px;
+  font-size: 40px;
   text-align: center;
   color: white;
+}
+
+.inquire-content p{
+  font-size: 14px;
 }
 
 /* ====================== Footer Section ======================*/
@@ -950,7 +954,7 @@ p, a, button {
 .room-contents h3{
   font-family: "Instrument Serif";
   font-size: 36px;
-  color: #415567;
+  color: #2E2E2A;
 }
 .room-pax {
   display: flex;
@@ -1031,26 +1035,26 @@ p, a, button {
 
 .view-details{
   background-color: white;
-  border: 1px solid #597690;
-  color:#597690;
-  transition: background-color 0.8s ease;
+  border: 1px solid #2E2E2A;
+  color:#2E2E2A;
+  transition: border 0.5s ease, color 0.5s ease;
 }
 
 .book-room{
-  background-color: #597690;
-  border: 1px solid #597690;
+  background-color: #2E2E2A;
+  border: 1px solid #2E2E2A;
   color: white;
-  transition: background-color 0.8s ease;
+  transition: background-color 0.5s ease;
 }
 
 .view-details:hover{
-  background-color: #e8e8e8;
-  border: 1px solid #384959;
-  color:#384959;
+  border: 1px solid #c29d40;
+  color: #c29d40;
 }
 
 .book-room:hover{
-  background-color: #384959;
+  background-color: #c29d40;
+  border: 1px solid #c29d40;
 }
 
 
@@ -1146,7 +1150,7 @@ p, a, button {
 .gallery-page, .inquire-page{
   display: flex;
   flex-direction: column;
-  padding: 160px 140px;
+  padding: 140px 140px;
 }
 
 .gallery-page-content, .inquire-page-content{
@@ -1315,6 +1319,7 @@ form{
 .input-field input::placeholder, .input-field textarea::placeholder{
   color: #A6A090;
 }
+
   
 .input-field input:focus, .input-field select:focus, .input-field textarea:focus{
   border-color: var(--color-blue);
