@@ -89,7 +89,9 @@ function Home(){
                             <p className="section-title">GALLERY</p>
                             <h2>See Batanes through our lens.</h2>
                         </div>
+                        <button>View More →</button>
                     </div>
+
                     <div className="gallery-grid">
                         <div className="gallery-item">
                             <img src="/src/assets/images/siayanrock-img.jpg" alt="Gallery Image 1" />
@@ -107,8 +109,8 @@ function Home(){
                             <img src="/src/assets/images/gallery4.jpg" alt="Gallery Image 4" />
                             <p className="gallery-caption">Our Guests</p>
                         </div>
-                        </div>
-                    <button>View More →</button>
+                    </div>
+
                 </div>
             </div>
 

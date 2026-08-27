@@ -385,7 +385,7 @@ p, a, button {
 .offer-text p{
   letter-spacing: 3%;
   line-height: 20px;
-  width: 350px;
+  width: 600px;
 }
 
 .offer-content h2, .offer-text .section-description, .offer-content button, .offer-card p {
@@ -406,9 +406,10 @@ p, a, button {
 }
 
 .offer-card {
-  flex: 1;              /* each card takes equal available space */
+  flex: 1;              
   width: auto;
-  max-width: none;      /* remove the 280px limit */
+  max-width: none;
+  height: 350px;
 
   padding: 15px 22px;
   border-radius: 8px;
@@ -417,6 +418,7 @@ p, a, button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-end;
   gap: 15px;
 
   background-size: cover;
@@ -528,12 +530,47 @@ p, a, button {
   text-align: center;
 }
 
-.gallery-content{
+.gallery-content {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.gallery-text {
+  width: 100%;
+  max-width: none;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  gap: 1.6rem;
+  align-items: flex-end;
+  gap: 0.8rem;
+}
+
+.gallery-text p, .gallery-text h2 {
+  text-align: left;
+}
+
+.gallery-content button {
+  margin-left: auto;
+  padding: 0.4rem 1.4rem;
+  border: none;
+  border-radius: 50px;
+  background: #2B2B28;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.gallery-content button:hover {
+  background: #E8BC4E;
+  color: white;
 }
 
 .gallery-grid {
@@ -597,25 +634,6 @@ p, a, button {
 .gallery-item:hover .gallery-caption {
   opacity: 1;
   transform: translateY(0);
-}
-
-.gallery-content button {
-  padding: 0.4rem 1.4rem;
-  border: none;
-  border-radius: 50px;
-  border: 1px solid #2B2B28;
-  color: #2B2B28;
-  cursor: pointer;
-  font-size: 14px;
-  font-family: "Montserrat";
-  font-weight: 500;
-  transition: background 0.3s ease;
-}
-
-.gallery-content button:hover {
-  background: #E8BC4E;
-  color: white;
-  border: 1px solid white;
 }
 
 /* ====================== Inquire Section ======================*/
