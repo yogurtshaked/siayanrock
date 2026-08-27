@@ -47,14 +47,14 @@ function Footer() {
                     <h3>REACH US</h3>
                     <div className="footer-contact-content">
                         <div className="footer-email">
-                            <FontAwesomeIcon icon={faEnvelope} style={{color: "#597690",}} />
+                            <FontAwesomeIcon icon={faEnvelope} style={{color: "var(--color-text)",}} />
                             <div className="footer-email-text">
                                 <p>Email:</p>
                                 <p>siayanrockis.hometel@gmail.com</p>
                             </div>
                         </div>
                         <div className="footer-phone">
-                            <FontAwesomeIcon icon={faPhone} style={{color: "#597690",}} />
+                            <FontAwesomeIcon icon={faPhone} style={{color: "var(--color-text)",}} />
                             <div className="footer-phone-text">
                                 <p>Phone:</p>
                                 <p>+(63) 961 3945 607</p>

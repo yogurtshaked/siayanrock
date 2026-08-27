@@ -26,7 +26,7 @@
   --color-dark-blue: #415567;
 
   --color-text: #54452F;
-  --color-section-title: #A4947D;
+  --color-section-title: #E8BC4E;
   --color-background: #FAF6EC;
 }
 
@@ -37,7 +37,7 @@
 }
 
 body {
-  font-family: "Geist", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
 }
 
@@ -74,7 +74,7 @@ h2 {
 }
 
 p, a, button {
-  font-family: "Geist";
+  font-family: "Poppins";
   margin: 0;
 }
 
@@ -96,9 +96,9 @@ p, a, button {
 }
 
 .navbar-scrolled {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 1);
+  /*backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);*/
   border-bottom: 0.5px solid #E6DFC9;
 }
 
@@ -251,44 +251,66 @@ p, a, button {
 }
 
 .section-title{
-  font-size: 16px;
-  color: var(--color-section-title);
+  font-size: 14px;
+  color: #E8BC4E;
   font-weight: 500;
   letter-spacing: 8%;
 }
 
 .section-description{
   color: var(--color-text);
+  font-size: 14px;
 }
 
-.learn-more, .offer-cards button, .inquire-content button {
-  padding: 0.4rem 0.8rem;
+.learn-more, .offer-card-btn, .inquire-content button {
+  padding: 0.4rem 0.9rem;
   border: none;
   border-radius: 50px;
-  background: var(--color-light-blue);
+  background: black;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
   color: white;
   cursor: pointer;
   font-size: 14px;
-  font-family: "Gontserrat-Light";
   transition: background 0.3s ease;
 }
 
 .learn-more:hover, .offer-cards button:hover, .inquire-content button:hover {
-  background: var(--color-blue);
+  background: #c29d40;
 }
 
 /* ====================== About Section ======================*/
 .about-section {
-  background: white;
+  background-color: #F7F2E8;
+
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(194, 153, 82, 0.1) 0,
+      rgba(194, 153, 82, 0.1) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(194, 153, 82, 0.1) 0,
+      rgba(194, 153, 82, 0.1) 1px,
+      transparent 1px,
+      transparent 20px
+    );
+
+  background-size: 40px 40px;
   min-height: 100vh;
   padding: 100px 0;
 }
 
 .about-content {
-  width: 100%;
+  width: fit-content;
   max-width: 1160px;
   margin: 0 auto;
+  padding: 20px;
+
+  background: white;
+  border-radius: 5px;
 
   display: flex;
   flex-direction: row;
@@ -297,7 +319,7 @@ p, a, button {
 }
 
 .about-image {
-  width: 550px;
+  width: 480px;
   flex-shrink: 0;
   padding: 0;
 }
@@ -331,9 +353,10 @@ p, a, button {
 
 /* ====================== About Section ======================*/
 .offer-section {
-  background: 
+  background: white;
+  /*background: 
     linear-gradient(rgba(0.6, 0.6, 0.6, 0.4), rgba(0.6, 0.6, 0.6, 0.4)),
-    url('./assets/images/offer-bg.jpg') center / 75% auto no-repeat;
+    url('./assets/images/offer-bg.jpg') center / 75% auto no-repeat;*/
   background-size: cover;  
   padding: 120px 140px; 
   min-height: 65vh;
@@ -345,9 +368,9 @@ p, a, button {
   margin: 0 auto;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  gap: auto;
+  gap: 30px;
 }
 
 .offer-text{
@@ -365,28 +388,57 @@ p, a, button {
   width: 350px;
 }
 
-.offer-content h2, .offer-content p, .offer-content button {
-  color: white;
+.offer-content h2, .offer-text .section-description, .offer-content button, .offer-card p {
+  /*color: white;*/
   text-align: left;
+}
+
+.offer-card h3, .offer-card p{
+  color: white;
 }
 
 .offer-cards{
   width: 100%;
-  max-width: 560px;
+  max-width: 1160px;
   display: flex;
   flex-direction: row;
   gap: 2rem;
 }
 
-.offer-card{
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(200px);
-  -webkit-backdrop-filter: blur(200px);
+.offer-card {
+  flex: 1;              /* each card takes equal available space */
+  width: auto;
+  max-width: none;      /* remove the 280px limit */
+
   padding: 15px 22px;
   border-radius: 8px;
   border: 1px solid white;
-  width: 100%;
-  max-width: 280px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.accommodation-card {
+  background-image: url("assets/images/gallery/hometel-1.jpeg");
+}
+
+.tourpack-card {
+  background-image: url("assets/images/gallery/tours-2.jpg");
+}
+
+.offer-card-content {
+  width: fit-content;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 6px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -395,23 +447,77 @@ p, a, button {
 
 .offer-card h3{
   font-family: "Instrument Serif";
-  color: white;
   font-size: 32px;
   text-align: left;
 }
 
 .offer-card p{
   width: 210px;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 20px;
   letter-spacing: 3%;
-  font-family: "Geist";
-  font-weight: 200;
+  font-weight: 250;
 }
 
 .offer-card button {
   align-self: flex-end;
-  letter-spacing: 3%;
+}
+
+.offer-card-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50px;
+  background: #E8BC4E;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  color: white;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.3s ease, padding 0.35s ease;
+}
+
+.offer-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 16px;
+  transition: transform 0.35s ease;
+}
+
+/* Hidden text */
+.offer-btn-text {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  padding-left: 0;
+  transition:
+    max-width 0.65s ease,
+    opacity 0.25s ease,
+    padding-left 0.35s ease;
+}
+
+/* Hover */
+.offer-card-btn:hover {
+  background: #c29d40;
+}
+
+.offer-card-btn:hover .offer-btn-text {
+  max-width: 160px;
+  opacity: 1;
+  padding-left: 1rem;
+}
+
+.offer-card-btn:hover .offer-btn-icon {
+  transform: rotate(-45deg);
 }
 
 /* ====================== Gallery Section ======================*/
@@ -497,8 +603,8 @@ p, a, button {
   padding: 0.4rem 1.4rem;
   border: none;
   border-radius: 50px;
-  border: 1px solid var(--color-light-blue);
-  color: var(--color-light-blue);
+  border: 1px solid #2B2B28;
+  color: #2B2B28;
   cursor: pointer;
   font-size: 14px;
   font-family: "Montserrat";
@@ -507,7 +613,7 @@ p, a, button {
 }
 
 .gallery-content button:hover {
-  background: var(--color-blue);
+  background: #E8BC4E;
   color: white;
   border: 1px solid white;
 }
@@ -583,8 +689,8 @@ p, a, button {
 }
 
 .footer-content h3{
-  font-family: "Gontserrat-Medium";
   font-size: 14px;
+  font-weight: 500;
   color: #6B6555;
   text-align: left;
   letter-spacing: 5%;
@@ -640,7 +746,7 @@ p, a, button {
   align-items: center;
   justify-content: center;
 
-  background: var(--color-blue);
+  background: var(--color-text);
   color: white;
 
   border-radius: 50px;

@@ -34,11 +34,11 @@ function Home(){
                     <div className="about-text">
                         <div className="about-title">
                             <p className="section-title">ABOUT US</p>
-                            <h2>A Place Built Around Comfort</h2>
-                        </div>
-                        <p className="section-description">Siayanrock Hometel is a cozy and welcoming place that offers guests a comfortable stay. 
+                            <h2>Siayanrock Is. Hometel</h2>
+                            <p className="section-description">Siayanrock Hometel is a welcoming place that offers guests a comfortable stay. 
                             It provides a relaxing atmosphere where visitors can feel at home while enjoying their trip. 
                             The hometel is ideal for travelers looking for convenience, comfort, and a peaceful environment.</p>
+                        </div>
                         <button className="learn-more">Learn More →</button>
                     </div>
                 </div>
@@ -50,22 +50,35 @@ function Home(){
                         <div className="offer-title">
                             <p className="section-title">WHAT WE OFFER</p>
                             <h2>Explore Batanes with us</h2>
+                            <p className="section-description">Discover curated experiences designed by locals who know the islands best.</p>
                         </div>
-                        <p>Discover curated experiences designed by locals who know the islands best.</p>
                     </div>
 
                     <div className="offer-cards">
-                        <div className="offer-card">
-                            <h3>Accommodation</h3>
-                            <p>Relax in comfortable, well-appointed rooms designed to make your stay in Batanes memorable.</p>
-                            <button>View Details →</button>
+                        <div className="offer-card accommodation-card">
+                            <div className="offer-card-content">
+                                <h3>Accommodation</h3>
+                                <p>Relax in comfortable, well-appointed rooms designed to make your stay
+                                    in Batanes memorable.</p>
+                                <button className="offer-card-btn">
+                                    <span className="offer-btn-text">View Details</span>
+                                    <span className="offer-btn-icon">→</span>
+                                </button>
+                            </div>
                         </div>
-                        <div className="offer-card">
-                            <h3>Tour Packages</h3>
-                            <p>Experience the beauty of Batanes with our guided tours led by knowledgeable local guides.</p>
-                            <button>View Details →</button>
+
+                        <div className="offer-card tourpack-card">
+                            <div className="offer-card-content">
+                                <h3>Tour Packages</h3>
+                                <p>Experience the beauty of Batanes with our guided tours led by
+                                    knowledgeable local guides.</p>
+                                <button className="offer-card-btn">
+                                    <span className="offer-btn-text">View Details</span>
+                                    <span className="offer-btn-icon">→</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                        </div>
                 </div>
             </div>
 
