@@ -100,51 +100,6 @@ function Inquire(){
                             </form>
                         </div>
                     
-                        {/*<div className="side-col">
-                            <div className="info-card">
-                                <h3 className="serif">Reach us directly</h3>
-                                <div className="info-row">
-                                <div className="icon">☎</div>
-                                <div className="txt"><span>Phone</span>+63 961 394 5607</div>
-                                </div>
-                                <div className="info-row">
-                                <div className="icon">✉</div>
-                                <div className="txt"><span>Email</span>siayanrockis.hometel@gmail.com</div>
-                                </div>
-                                <div className="info-row">
-                                <div className="icon">📍</div>
-                                <div className="txt"><span>Address</span>Nat. road, Brgy. Tuhel, Ivana, Batanes</div>
-                                </div>
-                                <div className="info-row">
-                                <div className="icon">⏱</div>
-                                <div className="txt"><span>Response time</span>Usually within 24 hours</div>
-                                </div>
-                            </div>
-                    
-                             <div className="map-card">
-                                <MapContainer
-                                    center={position}
-                                    zoom={13}
-                                    scrollWheelZoom={false}
-                                >
-                                    <TileLayer
-                                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                    />
-
-                                    <Marker position={position}>
-                                        <Popup>
-                                            <strong>Siayanrock Hometel</strong>
-                                            <br />
-                                            Nat. Road, Brgy. Tuhel
-                                            <br />
-                                            Ivana, Batanes
-                                        </Popup>
-                                    </Marker>
-
-                                </MapContainer>
-                            </div> 
-                        </div>*/}
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../index.css';
 
 const FILTERS = ["All", "Hometel", "Tours", "Guests"];
@@ -24,6 +24,7 @@ const galleryImages = [
 function Gallery(){
     const [activeFilter, setActiveFilter] = useState("All");
     const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
+    const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
     const filteredImages =
         activeFilter === "All"
@@ -42,6 +43,38 @@ function Gallery(){
         setVisibleCount(prev => prev + LOAD_MORE_COUNT);
     }
 
+    function openLightbox(index: number) {
+        setLightboxIndex(index);
+    }
+
+    function closeLightbox() {
+        setLightboxIndex(null);
+    }
+
+    function showPrev() {
+        if (lightboxIndex === null) return;
+        setLightboxIndex((lightboxIndex - 1 + visibleImages.length) % visibleImages.length);
+    }
+
+    function showNext() {
+        if (lightboxIndex === null) return;
+        setLightboxIndex((lightboxIndex + 1) % visibleImages.length);
+    }
+
+    // Keyboard support: Escape to close, arrow keys to navigate
+    useEffect(() => {
+        if (lightboxIndex === null) return;
+
+        function handleKeyDown(e: KeyboardEvent) {
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowLeft") showPrev();
+            if (e.key === "ArrowRight") showNext();
+        }
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [lightboxIndex, visibleImages.length]);
+
     return(
         <section>
             <div className='gallery-page'>
@@ -57,8 +90,7 @@ function Gallery(){
                         <button
                             key={filter}
                             className={`filter-pill ${activeFilter === filter ? "active" : ""}`}
-                            onClick={() => handleFilterChange(filter)}
-                        >
+                            onClick={() => handleFilterChange(filter)}>
                             {filter}
                         </button>
                         ))}
@@ -66,7 +98,10 @@ function Gallery(){
 
                     <div className="gallery-page-grid">
                         {visibleImages.map((img, i) => (
-                        <div className="gallery-page-item" key={i}>
+                        <div
+                            className="gallery-page-item"
+                            key={i}
+                            onClick={() => openLightbox(i)}>
                             <img src={img.src} alt={img.category} />
                         </div>
                         ))}
@@ -75,12 +110,43 @@ function Gallery(){
                     {hasMore && (
                         <div className="load-more-wrapper">
                             <button className="load-more-btn" onClick={handleLoadMore}>
-                                Load More
+                                Load more
                             </button>
                         </div>
                     )}
                 </div>
             </div>
+
+            {lightboxIndex !== null && (
+                <div className="lightbox-overlay" onClick={closeLightbox}>
+                    <button
+                        className="lightbox-close"
+                        onClick={closeLightbox}
+                        aria-label="Close">
+                        ✕
+                    </button>
+
+                    <button
+                        className="lightbox-nav lightbox-prev"
+                        onClick={(e) => { e.stopPropagation(); showPrev(); }}
+                        aria-label="Previous image">
+                        ‹
+                    </button>
+
+                    <img
+                        src={visibleImages[lightboxIndex].src}
+                        alt={visibleImages[lightboxIndex].category}
+                        className="lightbox-image"
+                        onClick={(e) => e.stopPropagation()}/>
+
+                    <button
+                        className="lightbox-nav lightbox-next"
+                        onClick={(e) => { e.stopPropagation(); showNext(); }}
+                        aria-label="Next image">
+                        ›
+                    </button>
+                </div>
+            )}
         </section>
     );
 }

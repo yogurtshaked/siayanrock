@@ -1,4 +1,5 @@
 import '../index.css';
+import { NavLink, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
@@ -28,10 +29,10 @@ function Footer() {
                 <div className="footer-explore">
                     <h3>EXPLORE</h3>
                     <div className='footer-explore-links'>
-                        <a href="/">Home</a>
-                        <a href="/rooms">Accommodation</a>
-                        <a href="/about">Tours</a>
-                        <a href="/contact">Gallery</a>
+                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/accommodation">Accommodation</NavLink>
+                        <NavLink to="/tours">Tours</NavLink>
+                        <NavLink to="/gallery">Gallery</NavLink>
                     </div>
                 </div>
                 <div className="footer-company">

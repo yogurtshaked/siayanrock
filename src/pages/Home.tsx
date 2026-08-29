@@ -1,15 +1,87 @@
 import "../index.css";
+import React, { useRef, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { ChevronDown } from '@/components/animate-ui/icons/chevron-down';
-
+import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
+import { Users } from '@/components/animate-ui/icons/users';
+import { CalendarDaysIcon } from '@/components/ui/calendar-days';
 
 function Home(){
+    const [checkIn, setCheckIn] = useState<Date | null>(null);
+    const [checkOut, setCheckOut] = useState<Date | null>(null);
+    const [guests, setGuests] = useState<string>("");
+
+    const checkInRef = useRef<DatePicker>(null);
+    const checkOutRef = useRef<DatePicker>(null);
+
     return(
         <section>
             <div className="hero-section">
                 <div className="hero-content">
-                    <h1>
-                        Discover Your Perfect <span className="hero-highlight">Holiday Home</span> With Us!
-                    </h1>
+                    <h1>Discover Your Perfect <span className="hero-highlight">Holiday Home</span> With Us!</h1>
+                    
+                    <div className="hero-search-bar">
+                        <div className="date-field">
+                            <button
+                                type="button"
+                                className="date-field-trigger"
+                                onClick={() => checkInRef.current?.setFocus()}
+                            >
+                                <CalendarDaysIcon size={18} />
+                                <span>{checkIn ? checkIn.toLocaleDateString() : "Check-In"}</span>
+                            </button>
+                            <DatePicker
+                                ref={checkInRef}
+                                selected={checkIn}
+                                onChange={(date: Date | null) => setCheckIn(date)}
+                                selectsStart
+                                startDate={checkIn}
+                                endDate={checkOut}
+                                minDate={new Date()}
+                                customInput={<HiddenInput />}
+                            />
+                        </div>
+
+                        <div className="date-field">
+                            <button
+                                type="button"
+                                className="date-field-trigger"
+                                onClick={() => checkOutRef.current?.setFocus()}>
+                                <CalendarDaysIcon size={18} />
+                                <span>{checkOut ? checkOut.toLocaleDateString() : "Check-Out"}</span>
+                            </button>
+                            <DatePicker
+                                ref={checkOutRef}
+                                selected={checkOut}
+                                onChange={(date: Date | null) => setCheckOut(date)}
+                                selectsEnd
+                                startDate={checkIn}
+                                endDate={checkOut}
+                                minDate={checkIn || new Date()}
+                                customInput={<HiddenInput />}
+                            />
+                        </div>
+
+                        <div className="date-field">
+                            <div className="date-field-trigger guests-select-wrapper">
+                                <Users size={18} />
+                                <select
+                                    className={`guests-select ${guests === "" ? "placeholder-selected" : ""}`}
+                                    value={guests}
+                                    onChange={(e) => setGuests(e.target.value)}
+                                >
+                                    <option value="" disabled hidden>Guests</option>
+                                    <option value="1">1 guest</option>
+                                    <option value="2">2 guests</option>
+                                    <option value="3">3 guests</option>
+                                    <option value="4">4 guests</option>
+                                    <option value="5+">5+ guests</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="scroll-down">
                         <div className="chevron-container">
                             <ChevronDown
@@ -18,8 +90,7 @@ function Home(){
                                 loop
                                 loopDelay={400}
                                 size={26}
-                                strokeWidth={1}
-                            />
+                                strokeWidth={1}/>
                         </div>
                         <p>SCROLL DOWN</p>
                     </div>
@@ -39,7 +110,7 @@ function Home(){
                             It provides a relaxing atmosphere where visitors can feel at home while enjoying their trip. 
                             The hometel is ideal for travelers looking for convenience, comfort, and a peaceful environment.</p>
                         </div>
-                        <button className="learn-more">Learn More →</button>
+                        <button className="learn-more landing-page-btn">Learn More&nbsp; <ArrowRight animateOnHover size={16} /></button>
                     </div>
                 </div>
             </div>
@@ -60,9 +131,9 @@ function Home(){
                                 <h3>Accommodation</h3>
                                 <p>Relax in comfortable, well-appointed rooms designed to make your stay
                                     in Batanes memorable.</p>
-                                <button className="offer-card-btn">
+                                <button className="offer-card-btn landing-page-btn">
                                     <span className="offer-btn-text">View Details</span>
-                                    <span className="offer-btn-icon">→</span>
+                                    <span className="offer-btn-icon"><ArrowRight animateOnHover size={16} /></span>
                                 </button>
                             </div>
                         </div>
@@ -72,9 +143,9 @@ function Home(){
                                 <h3>Tour Packages</h3>
                                 <p>Experience the beauty of Batanes with our guided tours led by
                                     knowledgeable local guides.</p>
-                                <button className="offer-card-btn">
+                                <button className="offer-card-btn landing-page-btn">
                                     <span className="offer-btn-text">View Details</span>
-                                    <span className="offer-btn-icon">→</span>
+                                    <span className="offer-btn-icon"><ArrowRight animateOnHover size={16} /></span>
                                 </button>
                             </div>
                         </div>
@@ -89,7 +160,7 @@ function Home(){
                             <p className="section-title">GALLERY</p>
                             <h2>See Batanes through our lens.</h2>
                         </div>
-                        <button>View More →</button>
+                        <button className="landing-page-btn">View More&nbsp; <ArrowRight animateOnHover size={16} /></button>
                     </div>
 
                     <div className="gallery-grid">
@@ -120,11 +191,23 @@ function Home(){
                         <h2>Ready for your Batanes getaway?</h2>
                         <p>Need more information? Send us your inquiry.</p>
                     </div>
-                    <button>Send an Inquiry</button>
+                    <button className="landing-page-btn">Send an Inquiry</button>
                 </div>
             </div>
         </section>
     )
 }
+
+const HiddenInput = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
+    (props, ref) => (
+        <input
+            {...props}
+            ref={ref}
+            style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+        />
+    )
+);
+
+HiddenInput.displayName = "HiddenInput"; 
 
 export default Home
