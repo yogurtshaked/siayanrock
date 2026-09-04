@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.8.0",
     "@fortawesome/free-brands-svg-icons": "^7.3.1",
     "@fortawesome/free-solid-svg-icons": "^7.3.1",
     "@fortawesome/react-fontawesome": "^3.5.0",
+    "@supabase/supabase-js": "^2.112.4",
+    "@svar-ui/react-core": "^2.6.0",
     "@tailwindcss/vite": "^4.3.3",
     "@untitledui/icons": "^0.0.22",
     "leaflet": "^1.9.4",

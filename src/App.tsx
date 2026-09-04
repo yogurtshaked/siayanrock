@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Accommodation from './pages/Accommodation';
+import RoomDetails from './pages/RoomDetails';
 import Tours from './pages/Tours';
 import Gallery from './pages/Gallery';
 import Inquire from './pages/Inquire';
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/accommodation" element={<Accommodation />} />
+          <Route path="/rooms/:roomId" element={<RoomDetails />} />
           <Route path="/tours" element={<Tours />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/inquire" element={<Inquire />} />

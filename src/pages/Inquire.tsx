@@ -1,7 +1,5 @@
 import { useState } from "react";
 import "../index.css";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import type { LatLngExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 function Inquire(){
@@ -11,10 +9,6 @@ function Inquire(){
     const [guests, setGuests] = useState("");
     const [checkin, setCheckin] = useState("");
     const [checkout, setCheckout] = useState("");
-    const position: LatLngExpression = [
-        20.37135722099695,
-        121.9147227008337
-    ];
 
     return(
         <section>
@@ -59,9 +53,7 @@ function Inquire(){
                                     <select
                                         value={guests}
                                         onChange={(e) => setGuests(e.target.value)}>
-                                        <option value="" disabled>
-                                            Select guests
-                                        </option>
+                                        <option value="" disabled>Select guests</option>
                                         <option value="1">1 guest</option>
                                         <option value="2">2 guests</option>
                                         <option value="3-4">3–4 guests</option>

@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
 @import "tailwindcss";
 
 @font-face {
@@ -21,13 +23,16 @@
 
 /* ====================== Global Styles ======================*/
 :root{
-  --color-blue: #597690;
-  --color-light-blue: #81A6C6;
-  --color-dark-blue: #415567;
+  --color-yellow: #E8BC4E;
+  --color-light-yellow: #FAF6EC;
+  --color-dark-yellow: #C29D40;
 
   --color-text: #54452F;
-  --color-section-title: #E8BC4E;
-  --color-background: #FAF6EC;
+  --color-section-title: #080708;
+
+  --color-background: #F7F2E8;
+  --color-description: #4d4d4d;
+
 }
 
 * {
@@ -62,7 +67,7 @@ h1 {
   }
 }
 h2 {
-  font-size: 54px;
+  font-size: 50px;
   font-style: italic;
   color: #2E2E2A;
   line-height: 118%;
@@ -74,7 +79,8 @@ h2 {
 }
 
 p, a, button {
-  font-family: "Poppins";
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
   margin: 0;
 }
 
@@ -133,17 +139,15 @@ p, a, button {
   transition: opacity 0.3s ease, font-weight 0.3s ease;
 }
 
-/* Active link */
 .navbar-links a.active {
   font-weight: 500;
   opacity: 1;
 }
 
-/* Hover */
 .navbar-links a:hover {
   opacity: 1;
 }
-/* Scrolled navbar */
+
 .navbar-scrolled .navbar-links a {
   color: var(--color-text);
 }
@@ -152,8 +156,6 @@ p, a, button {
 .navbar-inquire .navbar-links a {
   color: var(--color-text);
 }
-
-
 
 .book-button {
   padding: 0.3rem 0.8rem;
@@ -176,15 +178,12 @@ p, a, button {
   color: white;
 }
 
-
 /* ====================== Hero Section ======================*/
 .hero-section {
   background:
     linear-gradient(rgba(0.6, 0.6, 0.6, 0.3), rgba(0.6, 0.6, 0.6, 0.3)),
-    url('./assets/images/hero-bg.jpg') center / 75% auto no-repeat;
-  
+    url('./images/hero-bg.jpg') center / 75% auto no-repeat;
   background-size: cover;  
-  
   min-height: 100vh;
   display: flex;
   align-items: center;   
@@ -214,45 +213,108 @@ p, a, button {
 
 .hero-search-bar {
   display: flex;
-  gap: 1rem;
-  background: white;
-  padding: 0.6rem 1rem;
-  border-radius: 50px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  align-items: flex-end;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(28px);
+  padding: 18px 24px;
+  border-radius: 6px;
+  /*border: 1px solid rgba(255, 255, 255, 0.25);*/
 }
 
-.date-field {
+.date-range{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.date-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
-.date-field-trigger {
+.date-card-label {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 6px;
   background: transparent;
   border: none;
-  font-size: 0.9rem;
-  color: #3f3f3f;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 300;
+  color: #fff;
   cursor: pointer;
-  padding: 0.4rem 0.8rem;
 }
 
-/* react-datepicker's popup calendar — override default look to match your site */
-.react-datepicker {
-  font-family: inherit;
-  border: 1px solid #d8cfc0;
-  border-radius: 8px;
+.date-card-value {
+  padding: 0.4rem 0.9rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  color: #2a2320;
+  width: 130px;
+  cursor: pointer;
 }
 
-.react-datepicker__header {
-  background: #f4f4f4;
-  border-bottom: 1px solid #d8cfc0;
+.date-card-value:focus {
+  outline: none;
 }
 
-.react-datepicker__day--selected,
-.react-datepicker__day--in-selecting-range,
-.react-datepicker__day--in-range {
-  background: #4a6a86;
+.date-card-value::placeholder {
+  color: #9c9399;
+}
+
+.date-arrow {
+  display: flex;
+  margin-top: 30px;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.guests-label {
+  cursor: default;
+}
+
+.guests-select {
+  padding: 0.4rem 0.9rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  color: #2a2320;
+  cursor: pointer;
+  appearance: none;
+}
+
+.guests-select:focus {
+  outline: none;
+}
+
+.search-button-container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.search-btn {
+  background: var(--color-yellow);
+  height: 32px;
+  border-radius: 5px;
+  padding: 6px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.5s ease;
+}
+
+.search-btn:hover {
+  background: var(--color-dark-yellow);
 }
 
 .scroll-down {
@@ -276,14 +338,11 @@ p, a, button {
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 38px;
   height: 38px;
-
   border: 1px solid white;
   border-radius: 50%;
 }
-
 
 /* ====================== Section Settings ======================*/
 #section {
@@ -294,14 +353,23 @@ p, a, button {
 }
 
 .section-title{
-  font-size: 14px;
-  color: #E8BC4E;
+  margin-bottom: 8px;
+  width: fit-content;
+  font-family: "Manrope", sans-serif;
+  text-transform: uppercase;
+  font-size: 11px;
+  border: 1px solid #2E2E2A;
+  border-radius: 50px;
+  padding: 1px 7px;
+  color: #2E2E2A;
   font-weight: 500;
   letter-spacing: 8%;
+
+  text-align: center;
 }
 
 .section-description{
-  color: var(--color-text);
+  color: var(--color-description);
   font-size: 14px;
 }
 
@@ -311,8 +379,7 @@ p, a, button {
   align-items: center;
   padding: 0.4rem 0.9rem;
   border: none;
-  border-radius: 50px;
-  background: black;
+  background: var(--color-yellow);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
   color: white;
   cursor: pointer;
@@ -321,14 +388,18 @@ p, a, button {
 }
 
 .landing-page-btn:hover {
-  background: #c29d40;
+  background: var(--color-dark-yellow);
 }
 
 /* ====================== About Section ======================*/
 .about-section {
   background-color: #F7F2E8;
+  background-image: url('/images/sand.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-  background-image:
+  /*background-image:
     repeating-linear-gradient(
       45deg,
       rgba(194, 153, 82, 0.1) 0,
@@ -342,7 +413,7 @@ p, a, button {
       rgba(194, 153, 82, 0.1) 1px,
       transparent 1px,
       transparent 20px
-    );
+    );*/
 
   background-size: 40px 40px;
   min-height: 100vh;
@@ -351,7 +422,7 @@ p, a, button {
 
 .about-content {
   width: fit-content;
-  max-width: 1160px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
 
@@ -361,7 +432,7 @@ p, a, button {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 2rem;
+  gap: 30px;
 }
 
 .about-image {
@@ -377,6 +448,7 @@ p, a, button {
 }
 
 .about-text {
+  padding: 0 30px 0 0;
   flex: 1;
   max-width: 560px;
 
@@ -384,11 +456,11 @@ p, a, button {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 0.8rem;
+  gap: 20px;
 }
 
 .about-text .section-description {
-  max-width: 480px;
+  max-width: 390px;
   line-height: 26px;
 }
 
@@ -399,11 +471,8 @@ p, a, button {
 /* ====================== About Section ======================*/
 .offer-section {
   background: white;
-  /*background: 
-    linear-gradient(rgba(0.6, 0.6, 0.6, 0.4), rgba(0.6, 0.6, 0.6, 0.4)),
-    url('./assets/images/offer-bg.jpg') center / 75% auto no-repeat;*/
   background-size: cover;  
-  padding: 80px 140px; 
+  padding: 100px 140px 100px 140px; 
   min-height: 65vh;
 }
 
@@ -419,7 +488,7 @@ p, a, button {
 }
 
 .offer-text{
-  max-width: 520px;
+  max-width: 580px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -430,7 +499,6 @@ p, a, button {
 .offer-text p{
   letter-spacing: 3%;
   line-height: 20px;
-  width: 600px;
 }
 
 .offer-content h2, .offer-text .section-description, .offer-content button, .offer-card p {
@@ -481,6 +549,7 @@ p, a, button {
 
 .offer-card-content {
   width: fit-content;
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(10px);
   padding: 20px;
@@ -517,7 +586,7 @@ p, a, button {
   padding: 0;
   border: none;
   border-radius: 50px;
-  background: #E8BC4E;
+  background: var(--color-yellow);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
   color: white;
   cursor: pointer;
@@ -554,7 +623,7 @@ p, a, button {
 
 /* Hover */
 .offer-card-btn:hover {
-  background: #c29d40;
+  background: var(--color-dark-yellow);
 }
 
 .offer-card-btn:hover .offer-btn-text {
@@ -569,8 +638,8 @@ p, a, button {
 
 /* ====================== Gallery Section ======================*/
 .gallery-section {
-  background: white;
-  padding: 120px 140px;
+  background: var(--color-background);
+  padding:  100px 140px 100px 140px;;
   min-height: 100vh;
   text-align: center;
 }
@@ -596,96 +665,128 @@ p, a, button {
   gap: 0.8rem;
 }
 
-.gallery-text p, .gallery-text h2 {
+
+.gallery-section-title p, .gallery-text h2 {
   text-align: left;
+
+}
+
+.gallery-text .section-description{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  width: 350px;
 }
 
 .gallery-content button {
   margin-left: auto;
 }
-
 .gallery-grid {
-  width: 100%;
-  max-width: 1160px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+    display: flex;
+    gap: 14px;
+    width: 100%;
 }
-
 .gallery-item {
-  position: relative;  
-  width: 100%;
+    flex: 1;
+    min-width: 0;
+
+    cursor: pointer;
+}
+.gallery-media {
+  position: relative;
   height: 350px;
-  overflow: hidden;     
+  overflow: hidden;
   border-radius: 6px;
+
+  box-shadow: 0 8px 22px rgb(46 46 42 / 8%);
 }
 
-.gallery-item img {
+.gallery-media img {
+  display: block;
+  
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  filter: grayscale(0);
-  transform: scale(1);
-  transition: filter 0.4s ease, transform 0.4s ease;
+  filter: grayscale(25%) brightness(0.92);
+  transition: filter 550ms ease, transform 550ms ease;
 }
 
-/* grey out every image EXCEPT the one being hovered */
-.gallery-grid:hover .gallery-item:not(:hover) img {
-  filter: grayscale(1);
-  opacity: 0.7;
-}
-
-/* hovered image stays full color, zoom in */
-.gallery-item:hover img {
-  transform: scale(1.08);
-}
-
-/* Caption overlaid inside the image, bottom-anchored */
-.gallery-caption {
+.gallery-wash {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  margin: 0;
-  padding: 1.5rem 1rem 1rem;
-  font-size: 0.9rem;
-  color: #fff;
-  text-align: center;
+  inset: 0;
+  background: rgb(60 52 30 / 28%);
+  pointer-events: none;
+  transition: opacity 450ms ease;
+}
 
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-
+.gallery-item:hover .gallery-wash {
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none; /* so it never blocks the hover on the image itself */
 }
 
-.gallery-item:hover .gallery-caption {
-  opacity: 1;
-  transform: translateY(0);
+.gallery-caption-wrap {
+  padding: 14px 2px 0;
+  color: #2e2e2a;
 }
 
+.gallery-tag {
+  text-align: left;
+  color: #8b7355;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.gallery-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.gallery-caption {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.gallery-arrow {
+  display: inline-flex;
+  transform: rotate(-45deg) !important;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #8b7355;
+  border-radius: 50%;
+  color: #8b7355;
+  transition: background 250ms ease, color 250ms ease, transform 250ms ease;
+}
+
+.gallery-item:hover .gallery-arrow {
+  background: var(--color-yellow);
+  border-color: var(--color-yellow);
+  color: #2e2e2a;
+  transform: translateX(4px);
+}
 /* ====================== Inquire Section ======================*/
 .inquire-section{
-  background: white;
+  background: 
+    linear-gradient(rgba(0.6, 0.6, 0.6, 0.2), rgba(0.6, 0.6, 0.6, 0.2)),
+    url('./images/inquire-cover.jpg') center / 75% auto no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 0.8rem;
+  min-height: 360px;
   text-align: center;
 }
 
 .inquire-content{
-  width: 100%;
-  min-height: 300px;
-
-  background: 
-    linear-gradient(rgba(0.6, 0.6, 0.6, 0.4), rgba(0.6, 0.6, 0.6, 0.4)),
-    url('./assets/images/inquire-bg.jpg') center / 75% auto no-repeat;
-
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 5px;
+  width: fit-content;
+  padding: 22px 60px;
 
   display: flex;
   flex-direction: column;
@@ -694,24 +795,46 @@ p, a, button {
 
   color: white;
 
-  gap: 1.6rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 6px;
+  gap: 18px;
+}
+
+.inquire-text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .inquire-content h2{
   font-family: "Instrument Serif";
-  font-size: 40px;
+  font-size: 36px;
+  font-style:normal;
   text-align: center;
   color: white;
+  width: 260px;
 }
 
 .inquire-content p{
   font-size: 14px;
+  font-weight: 300;
+  width: 320px;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 2%;
+}
+
+.inquire-content button{
+  background: white ;
+  color: #2e2e2a;
 }
 
 /* ====================== Footer Section ======================*/
 .footer-section{
   background: var(--color-background);
-  padding: 35px 140px;
+  padding: 30px 140px;
   min-height: 100px;
   border-top: 1px solid #E6DFC9;
   text-align: center;
@@ -733,7 +856,7 @@ p, a, button {
 }
 
 .footer-logo-text p{
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 1%;
   line-height: 20px;
   color: #6B6555;
@@ -742,7 +865,7 @@ p, a, button {
 }
 
 .footer-content h3{
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: #6B6555;
   text-align: left;
@@ -750,7 +873,7 @@ p, a, button {
 }
 
 .footer-content a{
-  font-size: 13px;
+  font-size: 12px;
   color: #6B6555;
   text-decoration: none;
   text-align: left;
@@ -767,7 +890,7 @@ p, a, button {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 25px;
+  gap: 20px;
 }
 
 .footer-logo-text{
@@ -839,7 +962,7 @@ p, a, button {
 }
 
 .footer-contact p{
-  font-size: 13px;
+  font-size: 12px;
   color: #6B6555;
   text-align: left;
 }
@@ -853,15 +976,15 @@ p, a, button {
 .footer-bottom{
   width: 100%;
   max-width: 1160px;
-  margin-top: 30px;
+  margin-top: 20px;
   border-top: 1px solid #E6DFC9;
 }
 
 .footer-bottom p{
-  font-size: 12px;
+  font-size: 11px;
   color: #6B6555;
   text-align: center;
-  margin-top: 20px;
+  margin-top:15px;
 }
 
 /* ====================== Page Settings ======================*/
@@ -892,11 +1015,14 @@ p, a, button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 60px;
 }
 
 .accommodation-rooms-title, .tours-packages-title{
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .accommodation-rooms-title h3, .tours-packages-title h3{
@@ -917,7 +1043,7 @@ p, a, button {
     rgba(28, 28, 28, 0.7) 42%,
     rgba(102, 102, 102, 0.7) 100%
   ),
-  url('./assets/images/accommodation-bg.jpg') center / cover no-repeat;
+  url('./images/accommodation-bg.jpg') center / cover no-repeat;
   background-size: cover;
 
   padding: 120px 140px;
@@ -933,14 +1059,14 @@ p, a, button {
 }
 
 .accommodation-rooms, .tours-packages{
-  padding: 140px 160px;
+  padding: 140px 180px;
   min-height: 100vh;
 }
 
-.accommodation-room-cards{
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
+.accommodation-room-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
 .room-card{
@@ -948,31 +1074,36 @@ p, a, button {
 
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid #E6DFC9;
 
   display: flex;
-  flex-direction: row;
-  gap: 15px;
+  flex-direction: column;
+  gap: 0px;
 
   overflow: hidden;
 }
 
-.room-contents{
-  padding: 25px 40px 25px 20px;
+.room-contents {
+  padding: 10px 30px 10px 30px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+
+  flex: 1;
 }
 
+
 .room-img {
+  padding: 12px;
   width: 100%;
-  max-width: 500px;
-  align-self: stretch;
+  max-width: none;
+  height: 280px;
 }
 
 .room-img img {
   width: 100%;
   height: 100%;
+  border-radius: 6px;
   object-fit: cover;
   display: block;
 }
@@ -984,7 +1115,7 @@ p, a, button {
 
 .room-contents h3{
   font-family: "Instrument Serif";
-  font-size: 36px;
+  font-size: 32px;
   color: #2E2E2A;
 }
 .room-pax {
@@ -1009,7 +1140,7 @@ p, a, button {
   color: #6B5C46;
 }
 
-.room-amenities {
+.room-checklist {
   display: grid;
   grid-template-columns: max-content max-content;
   grid-template-rows: repeat(3, auto);
@@ -1029,18 +1160,19 @@ p, a, button {
 .amenity p {
   font-size: 14px;
   font-weight: 500;
-  color: #2E2E2A;
+  color: #5f5e5e;
   margin: 0;
 }
 
-.room-price{
+.room-price {
+  margin-top: left;
+
   padding: 12px 0;
   display: flex;
   flex-direction: row;
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
 }
-
 .room-price p{
   font-size: 16px;
   color: #2E2E2A;
@@ -1092,7 +1224,7 @@ p, a, button {
 /* ====================== Tours Page ======================*/
 .tours-hero-section {
   background:linear-gradient(rgba(0.0, 0.0, 0.0, 0.5), rgba(0.0, 0.0, 0.0, 0.5)),     
-    url('./assets/images/tours-bg.jpg') center / 70% auto no-repeat;
+    url('./images/tours-bg.jpg') center / 70% auto no-repeat;
   background-size: cover;
 
   padding: 120px 140px;
@@ -1199,6 +1331,10 @@ p, a, button {
 
 .gallery-title, .inquire-title{
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .gallery-title h3, .inquire-title h3{
@@ -1216,30 +1352,44 @@ p, a, button {
 /* ====================== Gallery Page ======================*/
 .filter-nav {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  padding: 2rem 0;
+  gap: 0;
+  padding: 6px;
+  width: fit-content;
+  margin: 2rem auto;
+  background: #f1f1f1;
+  border-radius: 50px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.05),
 }
 
 .filter-pill {
-  padding: 0.3rem 1.2rem;
+  padding: 0.4rem 1.4rem;
   font-size: 14px;
+  font-weight: 500;
+  border: none;
   border-radius: 50px;
-  border: 1px solid transparent;
-  background: #f4f4f4;
+  background: transparent;
   color: #6B6555;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .filter-pill:hover {
-  border-color: #2E2E2A;
+  color: #2E2E2A;
 }
 
+/* Selected pill */
 .filter-pill.active {
-  background: #2E2E2A; /* matches the blue "All" pill in your reference */
-  border-color: #2E2E2A;
-  color: #fff;
+  background: #ffffff;
+  color: #2E2E2A;
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .gallery-page-grid {
@@ -1446,4 +1596,17 @@ form{
 
 .submit-btn:hover{
   background: rgb(36, 36, 36);
+}
+
+/* ====================== Room Details ======================*/
+.room-details-section{
+  background: var(--color-background);
+  padding: 140px 140px;
+  min-height: 100vh;
+}
+.back-btn{
+  border: 1px solid #2E2E2A;
+  border-radius: 50px;
+  padding: 4px 12px;
+  font-size: 14px;
 }
