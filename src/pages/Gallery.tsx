@@ -79,7 +79,7 @@ function Gallery(){
         <section>
             <div className='gallery-page'>
                 <div className='gallery-page-content'>
-                    <div className='gallery-title'>
+                    <div className='gallery-title page-title'>
                         <p className="section-title">GALLERY</p>
                         <h3>Moments worth the flight</h3>
                         <p className='section-description'>Browse by category or scroll through everything — from the hometel itself to the roads, hills, and sunsets just outside the door.</p>

@@ -19,7 +19,7 @@ function Accommodation(){
         num_beds: number;
         room_size_sqm: number;
         room_price: number;
-        extra_guest_fee: number;
+        extra_guests_fee: number;
         description: string;
         amenities: string[];
         is_active: boolean;
@@ -73,16 +73,16 @@ function Accommodation(){
     return(
         <section>
             <div className='accommodation-hero-section'>
-                <div className='accommodation-content'>
-                    <div className='accommodation-text'>
+                <div className='accommodation-content page-content'>
+                    <div className='accommodation-text page-header'>
                         <h2>Siayanrock Is. Hometel</h2>
                         <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
                     </div>
                 </div>
             </div>
 
-            <div className='accommodation-rooms'>
-                <div className='accommodation-rooms-title'>
+            <div className='accommodation-rooms page-body'>
+                <div className='accommodation-rooms-title page-title'>
                     <p className="section-title">OUR ROOMS</p>
                     <h3>Find your perfect room</h3>
                 </div>
@@ -106,8 +106,8 @@ function Accommodation(){
                                         <div className='room-header'>
                                             <h3>{room.room_name} Room</h3>
 
-                                            <div className="room-pax">
-                                                <div className="pax-item">
+                                            <div className="room-items">
+                                                <div className="room-item">
                                                     <FontAwesomeIcon icon={faBed} />
                                                     <p>
                                                         {room.num_beds}{' '}
@@ -115,7 +115,7 @@ function Accommodation(){
                                                     </p>
                                                 </div>
 
-                                                <div className="pax-item">
+                                                <div className="room-item">
                                                     <FontAwesomeIcon icon={faUserGroup} />
                                                     <p>{room.max_guests} people</p>
                                                 </div>

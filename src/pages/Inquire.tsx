@@ -14,7 +14,7 @@ function Inquire(){
         <section>
             <div className='inquire-page'>
                 <div className='inquire-page-content'>
-                    <div className='inquire-title'>
+                    <div className='inquire-title page-title'>
                         <p className="section-title">INQUIRE</p>
                         <h3>Tell us about your trip</h3>
                         <p className='section-description'>Share a few details below and our team will follow up with availability, pricing, and a tailored recommendation.</p>

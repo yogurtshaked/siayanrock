@@ -7,16 +7,16 @@ function Tours(){
     return(
         <section>
             <div className='tours-hero-section'>
-                <div className='tours-content'>
-                    <div className='tours-text'>
+                <div className='tours-content page-content'>
+                    <div className='tours-text page-header'>
                         <h2>Mavien Point Travel & Tour</h2>
                         <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
                     </div>
                 </div>
             </div>
 
-            <div className='tours-packages'>
-                <div className='tours-packages-title'>
+            <div className='tours-packages page-body'>
+                <div className='tours-packages-title page-title'>
                     <p className="section-title">OUR TOURS</p>
                     <h3>Curated Batanes itineraries</h3>
                 </div>
