@@ -1,6 +1,7 @@
 import "../index.css";
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 
 function Navbar() {
@@ -8,7 +9,10 @@ function Navbar() {
     const location = useLocation();
     const isGallery = location.pathname === "/gallery";
     const isInquire = location.pathname === "/inquire";
+    const isRoomDetails = location.pathname.startsWith("/rooms/");
+    const isBookRoom = location.pathname.startsWith("/book")
 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,7 +30,9 @@ function Navbar() {
         <nav className={`navbar 
             ${scrolled ? "navbar-scrolled" : ""} 
             ${isGallery ? "navbar-gallery" : ""}
-            ${isInquire ? "navbar-inquire" : ""}`}>
+            ${isInquire ? "navbar-inquire" : ""}
+            ${isBookRoom ? "navbar-inquire" : ""}
+            ${isRoomDetails ? "navbar-inquire" : ""}`}>
                 
             <div className="navbar-content">
                 <div className="navbar-logo">
@@ -41,7 +47,7 @@ function Navbar() {
                     <NavLink to="/inquire">Inquire</NavLink>
                 </div>
 
-                <button className="book-button">
+                <button className="book-button" onClick={() => navigate("/book")}>
                     Book Now
                 </button>
             </div>

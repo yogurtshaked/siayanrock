@@ -211,11 +211,11 @@ function Home(){
             <div className="gallery-section" id="section">
                 <div className="gallery-content">
                     <div className="gallery-text">
-                        <div className="gallery-section-title">
                             <p className="section-title">Gallery</p>
                             <h2>See Batanes through our lens.</h2>
-                        </div>
-                        <p className="section-description">Discover curated experiences designed by locals who know the islands best</p>
+                            <p className="section-description">Discover curated experiences designed by locals who know the islands best</p>
+                    
+                    
                         {/*<button className="landing-page-btn">View More&nbsp; <ArrowRight animateOnHover size={16} /></button>*/}
                     </div>
 
@@ -224,6 +224,9 @@ function Home(){
                         <motion.article
                             key={index}
                             className="gallery-item"
+                            
+                            
+                            /*
                             initial={{ flex: 1 }}
                             animate={{
                                 flex:
@@ -233,6 +236,7 @@ function Home(){
                                             ? 1
                                             : 0.6,
                             }}
+                            */
                                         
                             transition={{
                                 duration: 0.5,
@@ -267,7 +271,7 @@ function Home(){
                                 />
 
                                 <div className="gallery-wash" />
-                            </div>
+                            
 
                             <div className="gallery-caption-wrap">
                                 <p className="gallery-tag">
@@ -279,9 +283,12 @@ function Home(){
                                         {image.caption}
                                     </p>
 
-                                
+                                    <span className="gallery-arrow">
+                                        <ArrowRight size={16}/>
+                                    </span>
                                 </div>
                             </div>
+                        </div>
                         </motion.article>
                     ))}
                 </div>

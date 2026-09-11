@@ -101,7 +101,7 @@ p, a, button {
     border-color 0.3s ease;
 }
 
-.navbar-scrolled {
+.navbar-scrolled, .navbar-gallery, .navbar-inquire {
   background: rgba(255, 255, 255, 1);
   /*backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);*/
@@ -357,12 +357,9 @@ p, a, button {
   width: fit-content;
   font-family: "Manrope", sans-serif;
   text-transform: uppercase;
-  font-size: 11px;
-  border: 1px solid #2E2E2A;
-  border-radius: 50px;
-  padding: 1px 7px;
-  color: #2E2E2A;
-  font-weight: 500;
+  font-size: 13px;
+  color: var(--color-yellow);
+  font-weight: 600;
   letter-spacing: 8%;
 
   text-align: center;
@@ -472,7 +469,7 @@ p, a, button {
 .offer-section {
   background: white;
   background-size: cover;  
-  padding: 100px 140px 100px 140px; 
+  padding: 140px; 
   min-height: 65vh;
 }
 
@@ -638,8 +635,8 @@ p, a, button {
 
 /* ====================== Gallery Section ======================*/
 .gallery-section {
-  background: var(--color-background);
-  padding:  100px 140px 100px 140px;;
+  background: #222411;
+  padding: 140px;
   min-height: 100vh;
   text-align: center;
 }
@@ -648,73 +645,73 @@ p, a, button {
   width: 100%;
   max-width: 1160px;
   margin: 0 auto;
-
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: 30px;
 }
 
 .gallery-text {
-  width: 100%;
-  max-width: none;
+  max-width: 680px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
-  gap: 0.8rem;
-}
-
-
-.gallery-text {
-  text-align: left;
-}
-
-.gallery-text .section-description{
-  display: flex;
   align-items: center;
-  justify-content: center;
-  margin-left: auto;
-  width: 350px;
 }
 
-.gallery-content button {
-  margin-left: auto;
+.gallery-text .section-description, .gallery-text h2{
+  color: white;
 }
+
+.gallery-text p{
+  letter-spacing: 3%;
+  line-height: 20px;
+}
+
 .gallery-grid {
-    display: flex;
-    gap: 14px;
-    width: 100%;
+  display: flex;
+  gap: 14px;
+  width: 100%;
 }
-.gallery-item {
-    flex: 1;
-    min-width: 0;
 
-    cursor: pointer;
+.gallery-item {
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
 }
+
+/* =========================
+   IMAGE
+========================= */
+
 .gallery-media {
   position: relative;
   height: 350px;
   overflow: hidden;
   border-radius: 6px;
-
   box-shadow: 0 8px 22px rgb(46 46 42 / 8%);
 }
 
 .gallery-media img {
   display: block;
-  
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(25%) brightness(0.92);
-  transition: filter 550ms ease, transform 550ms ease;
+
+  transition:
+    filter 500ms ease,
+    opacity 500ms ease;
 }
+
+/* =========================
+   IMAGE WASH
+========================= */
 
 .gallery-wash {
   position: absolute;
   inset: 0;
-  background: rgb(60 52 30 / 28%);
+  background: rgb(60 52 30 / 18%);
   pointer-events: none;
   transition: opacity 450ms ease;
 }
@@ -723,18 +720,58 @@ p, a, button {
   opacity: 0;
 }
 
+/* =========================
+   GLASS CAPTION
+========================= */
+
 .gallery-caption-wrap {
-  padding: 14px 2px 0;
-  color: #2e2e2a;
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+
+  padding: 14px 16px;
+
+  border-radius: 5px;
+
+  background: rgb(255 255 255 / 18%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /*
+  box-shadow:
+    0 8px 30px rgb(0 0 0 / 12%),
+    inset 0 1px 0 rgb(255 255 255 / 25%);*/
+
+  color: white;
+
+  z-index: 2;
+
+  transition:
+    background 300ms ease,
+    transform 300ms ease;
 }
+
+.gallery-item:hover .gallery-caption-wrap {
+  background: rgb(255 255 255 / 24%);
+}
+
+/* =========================
+   TAG
+========================= */
 
 .gallery-tag {
   text-align: left;
-  color: #8b7355;
-  font-size: 12px;
+  color: rgb(230, 205, 130);
+  font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+
+/* =========================
+   NAME + ARROW
+========================= */
 
 .gallery-name-row {
   display: flex;
@@ -744,24 +781,42 @@ p, a, button {
 }
 
 .gallery-caption {
+  font-family: 'Instrument Serif', sans-serif;
   margin: 0;
-  font-size: 18px;
+  justify-content: flex-start;
+
+  color: white;
+
+  font-size: 22px;
   line-height: 1.25;
 }
 
+/* =========================
+   ARROW
+========================= */
+
 .gallery-arrow {
   display: inline-flex;
-  transform: rotate(-45deg) !important;
+
   width: 32px;
   height: 32px;
+
   flex: 0 0 32px;
+
   align-items: center;
   justify-content: center;
 
-  border: 1px solid #8b7355;
+  border: 1px solid rgb(255 255 255 / 65%);
   border-radius: 50%;
-  color: #8b7355;
-  transition: background 250ms ease, color 250ms ease, transform 250ms ease;
+
+  color: white;
+
+  font-size: 18px;
+
+  transition:
+    background 250ms ease,
+    color 250ms ease,
+    transform 250ms ease;
 }
 
 .gallery-item:hover .gallery-arrow {
@@ -770,6 +825,7 @@ p, a, button {
   color: #2e2e2a;
   transform: translateX(4px);
 }
+
 /* ====================== Inquire Section ======================*/
 .inquire-section{
   background: 
@@ -779,7 +835,7 @@ p, a, button {
   background-size: cover;
   background-repeat: no-repeat;
   padding: 0.8rem;
-  min-height: 360px;
+  min-height: 420px;
   text-align: center;
 }
 
@@ -833,7 +889,7 @@ p, a, button {
 /* ====================== Footer Section ======================*/
 .footer-section{
   background: var(--color-background);
-  padding: 30px 140px;
+  padding: 40px 140px;
   min-height: 100px;
   border-top: 1px solid #E6DFC9;
   text-align: center;
@@ -1007,7 +1063,7 @@ p, a, button {
 
 .page-body{
   padding: 80px 160px;
-  background: var(--color-background);
+  background: white;
 
   display: flex;
   flex-direction: column;
@@ -1064,19 +1120,18 @@ p, a, button {
 .accommodation-room-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 30px;
 }
 
 .room-card{
   width: 100%;
 
-  background-color: white;
-  border-radius: 10px;
-  border: 1px solid #E6DFC9;
+  background-color: #f0efef;
+  border-radius: 5px;
 
   display: flex;
   flex-direction: column;
-  gap: 0px;
+  gap: 2px;
 
   overflow: hidden;
 }
@@ -1085,11 +1140,10 @@ p, a, button {
   padding: 10px 30px 10px 30px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 28px;
 
   flex: 1;
 }
-
 
 .room-img {
   padding: 12px;
@@ -1101,20 +1155,20 @@ p, a, button {
 .room-img img {
   width: 100%;
   height: 100%;
-  border-radius: 6px;
+  border-radius: 4px;
   object-fit: cover;
   display: block;
 }
 
 .room-contents p{
-  color: #6B5C46;
+  color: #474027;
   font-size: 14px;
 }
 
 .room-contents h3{
   font-family: "Instrument Serif";
-  font-size: 32px;
-  color: #2E2E2A;
+  font-size: 30px;
+  color: #201B0D;
 }
 .room-items {
   display: flex;
@@ -1129,13 +1183,14 @@ p, a, button {
 }
 
 .room-item svg{
-  color: #6B5C46;
+  color: #746228;
+  font-size: 12px;
 }
 
 .room-item p {
   margin: 0;
   font-size: 14px;
-  color: #6B5C46;
+  color: #746228;
 }
 
 .room-checklist {
@@ -1152,13 +1207,14 @@ p, a, button {
 }
 
 .amenity svg {
-  font-size: 14px;
+  font-size: 12px;
+  color: #474027;
 }
 
 .amenity p {
   font-size: 14px;
   font-weight: 500;
-  color: #5f5e5e;
+  color: #474027;
   margin: 0;
 }
 
@@ -1172,13 +1228,13 @@ p, a, button {
   justify-content: space-between;
 }
 .room-price p{
-  font-size: 16px;
+  font-size: 14px;
   color: #2E2E2A;
 }
 
 .room-price .price-highlight{
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .room-buttons{
@@ -1189,21 +1245,20 @@ p, a, button {
 
 .room-buttons button{
   padding: 6px 14px;
-  border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
 }
 
 .view-details{
-  background-color: white;
-  border: 1px solid #2E2E2A;
-  color:#2E2E2A;
+  background-color: transparent;
+  border: 1px solid #746228;
+  color:#746228;
   transition: border 0.5s ease, color 0.5s ease;
 }
 
 .book-room{
-  background-color: #2E2E2A;
-  border: 1px solid #2E2E2A;
+  background-color: #746228;
+  border: 1px solid #746228;
   color: white;
   transition: background-color 0.5s ease;
 }
@@ -1252,9 +1307,8 @@ p, a, button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.10);
+  background: #EEECE8;
+  border-radius: 5px;
   padding: 25px 35px;
   gap: 10px;
 }
@@ -1273,7 +1327,7 @@ p, a, button {
 
 .tour-card h3{
   font-family: "Instrument Serif";
-  font-size: 32px;
+  font-size: 30px;
   color: #415567;
   text-align: center;
 }
@@ -1308,13 +1362,13 @@ p, a, button {
 }
 
 /* ====================== Gallery & Inquire Settings ======================*/
-.gallery-page, .inquire-page{
+.gallery-page, .inquire-page, .bookroom-page{
   display: flex;
   flex-direction: column;
   padding: 140px 140px;
 }
 
-.gallery-page-content, .inquire-page-content{
+.gallery-page-content, .inquire-page-content, .bookroom-page-content{
   width: 100%;
   max-width: 1160px;
   margin: 0 auto;
@@ -1328,8 +1382,8 @@ p, a, button {
 }
 
 
-.gallery-title .section-description, .inquire-title .section-description{
-  max-width: 580px;
+.gallery-title .section-description, .inquire-title .section-description, .bookroom-page .section-description{
+  max-width: 540px;
   font-size: 14px;
 }
 
@@ -1343,7 +1397,7 @@ p, a, button {
   width: fit-content;
   margin: 2rem auto;
   background: #f1f1f1;
-  border-radius: 50px;
+  border-radius: 5px;
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.05),
 }
@@ -1353,7 +1407,7 @@ p, a, button {
   font-size: 14px;
   font-weight: 500;
   border: none;
-  border-radius: 50px;
+  border-radius: 4px;
   background: transparent;
   color: #6B6555;
   cursor: pointer;
@@ -1480,7 +1534,7 @@ p, a, button {
   font-size: 32px;
   width: 48px;
   height: 48px;
-  border-radius: 50%;
+  border-radius: 50px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1600,23 +1654,47 @@ form{
   max-width: 1160px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 15px;
 }
 
-.back-btn {
-  align-self: flex-start;
-
-  border-radius: 4px;
-  background: black;
-  color: white;
-  padding: 4px 12px;
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 14px;
+  color: #777;
+}
+
+.breadcrumb-link {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: #777;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+  color: #222;
+}
+
+.breadcrumb-separator {
+  color: #aaa;
+  font-size: 18px;
+}
+
+.breadcrumb-current {
+  color: #222;
+  font-weight: 500;
 }
 
 .room-details-images {
   width: 100%;
   max-width: 1160px;
-  height: 360px; 
+  height: 380px; 
+
+  margin-bottom: 30px;
 
   display: grid;
   grid-template-columns: 2fr 1.5fr;
@@ -1649,27 +1727,44 @@ form{
 
 .room-info-book{
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 1.15fr;
   gap: 20px;
 }
 
 .room-information{
+  max-width: 680px;
   display: flex;
   flex-direction: column;
   gap:30px;
+}
+
+.room-details-title::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  margin-top: 16px;
 }
 
 .room-name{
   font-size: 42px;
 }
 
+
 .room-details-header h2{
   font-family: "Manrope", sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: 22px;
+  font-size: 20px;
   color: #2E2E2A;
+  margin-bottom: 15px;
 }
+
+.room-details-header p{
+  font-size: 14px;
+}
+
 
 .room-amenities-list {
   display: grid;
@@ -1688,11 +1783,10 @@ form{
 }
 
 .room-amenity svg{
-  border: 1px solid #2E2E2A;
   background-color: var(--color-yellow);
   border-radius: 50px;
-  width: 18px;
-  height: 18px;
+  width: 28px;
+  height: 28px;
   padding: 6px;
 }
 
@@ -1714,9 +1808,29 @@ form{
   font-weight: 800;
 }
 
+.pricing-rate {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.pricing-guests {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  background: #f3f3f3;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.pricing-unit{
+  font-size: 14px;
+}
+
 .booking-form{
-  padding: 20px;
-  border: 1px solid #2E2E2A;
+  padding: 25px;
+  border: 1px solid #2e2e2a36;
+  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1733,14 +1847,15 @@ form{
   min-width: 0;
   padding: 14px;
   border: 1px solid #2E2E2A;
+  background-color: white;
 }
 
 .booking-input-field label {
   display: block;
   margin-bottom: 6px;
   color: #6b6555;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -1752,8 +1867,8 @@ form{
   outline: none;
   background: transparent;
   color: #2e2e2a;
-  font: inherit;
   font-weight: 600;
+  font-size: 14px;
 }
 
 .booking-price-summary {
@@ -1801,6 +1916,391 @@ form{
 }
 
 .book-room-btn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   background: #080708;
   color: white;
 }
+
+.contact-btn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #080708;
+  color: #080708;
+}
+
+/*========================== Book Room ============================= */
+.bookroom-page{
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: white;
+  padding: 140px 160px;
+
+  gap: 30px;
+}
+
+.bookroom-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #ffffff;
+    padding: 100px 20px 60px;
+}
+
+.bookroom-container {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.booking-progress {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.booking-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+    color: #999;
+}
+
+.booking-step.active {
+    color: #222;
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #d4d4d4;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+  color: #888;
+  background: #fff;
+
+  margin-bottom: 6px;
+}
+
+.booking-step.active .step-number {
+  background: #222411;
+  border-color: #222411;
+  color: #fff;
+}
+
+.booking-step span {
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.step-line {
+  width: 64px;
+  height: 1px;
+  background: #d8d8d8;
+  margin-top: 13px;
+}
+
+
+/* =========================
+   STAY SUMMARY
+========================= */
+
+.stay-summary {
+  display: flex;
+  align-items: center;
+
+  min-height: 58px;
+  border: 1px solid #dedede;
+  border-radius: 10px;
+
+  padding: 10px 18px;
+  margin-bottom: 26px;
+}
+
+.stay-summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  min-width: 100px;
+}
+
+.stay-summary-item span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 0.4px;
+}
+
+.stay-summary-item strong {
+    font-size: 13px;
+    font-weight: 500;
+    color: #222;
+}
+
+.modify-button {
+  margin-left: auto;
+
+  border: none;
+  background: none;
+
+  color: #1555a5;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   SELECTED ROOM
+========================= */
+
+.selected-room-section {
+  width: 100%;
+}
+
+.selected-room-heading {
+  margin-bottom: 12px;
+}
+
+.selected-room-heading h2 {
+    margin: 0 0 4px;
+    font-size: 24px;
+    color: #222;
+}
+
+.selected-room-heading p {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+}
+
+
+/* =========================
+   ROOM CARD
+========================= */
+
+.selected-room-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+
+    min-height: 102px;
+
+    border: 1px solid #ddd;
+    border-radius: 12px;
+
+    overflow: hidden;
+    background: #fff;
+
+    margin-bottom: 14px;
+}
+
+.selected-room-image {
+    background-color: #d9ccb0;
+    background-size: cover;
+    background-position: center;
+}
+
+.selected-room-info {
+    position: relative;
+    padding: 15px 18px;
+}
+
+.selected-room-info h3 {
+    margin: 0 0 5px;
+
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+}
+
+.room-meta {
+    margin: 0;
+
+    font-size: 12px;
+    color: #555;
+}
+
+.room-price-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 14px;
+
+    font-size: 12px;
+    color: #555;
+}
+
+.room-price-line strong {
+    color: #222;
+    font-size: 14px;
+}
+
+.remove-room {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+
+    border: none;
+    background: none;
+
+    color: #a52525;
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.remove-room:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   ADD ROOM
+========================= */
+
+.add-room-button {
+    width: 100%;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+
+    background: #fff;
+
+    color: #1555a5;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.add-room-button:hover {
+    background: #fafafa;
+    border-color: #aaa;
+}
+
+
+/* =========================
+   NO ROOM
+========================= */
+
+.no-room-selected {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+
+    padding: 25px;
+    text-align: center;
+
+    margin-bottom: 14px;
+}
+
+.no-room-selected p {
+    margin: 0 0 12px;
+    color: #666;
+    font-size: 14px;
+}
+
+.no-room-selected button {
+    border: none;
+    background: none;
+
+    color: #1555a5;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   FOOTER / TOTAL
+========================= */
+
+.booking-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 28px;
+    padding-top: 16px;
+
+    border-top: 1px solid #ddd;
+}
+
+.booking-total p {
+    margin: 0 0 3px;
+
+    font-size: 12px;
+    color: #666;
+}
+
+.booking-total strong {
+    display: block;
+
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+}
+
+.continue-button {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 6px 16px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #222411;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.continue-button:hover {
+    background: #141509;
+}
+
+.continue-button:disabled {
+    background: #c8c8c8;
+    cursor: not-allowed;
+}
+

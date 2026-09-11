@@ -53,7 +53,7 @@ function Tours(){
                     </div> 
 
                     <div className='tour-card'>
-                        <h3>Tour Package 1</h3>
+                        <h3>Tour Package 3</h3>
                         <div className="duration-item">
                             <FontAwesomeIcon icon={faClock} />
                             <p>2 Days | 3 Nights</p>

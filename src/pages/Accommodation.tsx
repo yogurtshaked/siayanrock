@@ -5,7 +5,7 @@ import { supabase } from '../lib/supabaseClient';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed } from '@fortawesome/free-solid-svg-icons/faBed';
 import { faCheck, faUserGroup } from '@fortawesome/free-solid-svg-icons';
-
+import { Bed, Users } from "lucide-react";
 
 function Accommodation(){
     interface Room {
@@ -66,6 +66,7 @@ function Accommodation(){
 
     function handleBookRoom(room: Room) {
         // navigate to booking flow with this room pre-selected
+        navigate(`/book/${room.id}`);
         console.log("Book room:", room);
     }
 
@@ -108,7 +109,7 @@ function Accommodation(){
 
                                             <div className="room-items">
                                                 <div className="room-item">
-                                                    <FontAwesomeIcon icon={faBed} />
+                                                    <Bed size={16}  />
                                                     <p>
                                                         {room.num_beds}{' '}
                                                         {room.num_beds === 1 ? 'bed' : 'beds'}
@@ -116,7 +117,7 @@ function Accommodation(){
                                                 </div>
 
                                                 <div className="room-item">
-                                                    <FontAwesomeIcon icon={faUserGroup} />
+                                                    <Users size={16} />
                                                     <p>{room.max_guests} people</p>
                                                 </div>
                                             </div>

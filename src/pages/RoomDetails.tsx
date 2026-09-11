@@ -1,44 +1,35 @@
 import { useEffect, useMemo, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { supabase } from "../lib/supabaseClient"
+import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core"
-import {
-  faBath,
-  faBed,
-  faCheck,
-  faDoorOpen,
-  faShower,
-  faSnowflake,
-  faTv,
-  faUserGroup,
-  faWifi,
-} from "@fortawesome/free-solid-svg-icons"
+import { Bath, Bed, Check, DoorOpen, ShowerHead, Snowflake, Tv, Users, Wifi, Phone, SquareDashed, ChevronRight  } from "lucide-react"
 
 type Room = {
-  id: number
-  room_number: string
-  room_name: string
-  room_type: string
-  images: string[]
-  max_guests: number
-  base_guests: number
-  num_beds: number
-  room_size_sqm: number
-  room_price: number
-  extra_guests_fee: number
-  description: string
-  amenities: string[]
-  is_active: boolean
+    id: number
+    room_number: string
+    room_name: string
+    room_type: string
+    images: string[]
+    max_guests: number
+    base_guests: number
+    num_beds: number
+    room_size_sqm: number
+    room_price: number
+    extra_guests_fee: number
+    description: string
+    amenities: string[]
+    is_active: boolean
 }
 
-const amenityIcons: Record<string, IconDefinition> = {
-  wifi: faWifi,
-  "air conditioning": faSnowflake,
-  balcony: faDoorOpen,
-  "flat-screen tv": faTv,
-  "hot and cold shower": faShower,
-  towels: faBath,
+const amenityIcons: Record<string, React.ElementType> = { 
+    wifi: Wifi, 
+    "air conditioning": Snowflake, 
+    balcony: DoorOpen, 
+    "flat-screen tv": Tv, 
+    "hot and cold shower": ShowerHead, 
+    towels: Bath, 
 }
 
 function RoomDetails() {
@@ -130,7 +121,13 @@ function RoomDetails() {
             <div className="room-details-page">                
                 <div className="room-details-content">
 
-                    <button className="back-btn" onClick={() => navigate(-1)}>← &nbsp;Back</button> 
+                    <nav className="breadcrumb" aria-label="Breadcrumb"> 
+                        <button type="button" className="breadcrumb-link" onClick={() => navigate("/")} > Home </button> 
+                        <span className="breadcrumb-separator"><ChevronRight className="breadcrumb-chevron" size={16} strokeWidth={1.5} /></span> 
+                        <button type="button" className="breadcrumb-link" onClick={() => navigate("/accommodation")} > Accommodation </button> 
+                        <span className="breadcrumb-separator"><ChevronRight className="breadcrumb-chevron" size={16} strokeWidth={1.5} /></span> 
+                        <span className="breadcrumb-current"> {room.room_name} Room</span> 
+                    </nav>
 
 
                     <div className="room-details-images">
@@ -150,21 +147,21 @@ function RoomDetails() {
                                 <div className="room-items">
                                     
                                     <div className="room-item">
-                                        <FontAwesomeIcon icon={faBed} />
+                                        <Bed size={20} strokeWidth={1.5} />
                                         <p>
                                             {room.num_beds}{' '}
                                             {room.num_beds === 1 ? 'bed' : 'beds'}
                                         </p>
                                     </div>
                                     <div className="room-item">
-                                        <FontAwesomeIcon icon={faUserGroup} />
+                                        <Users size={20} strokeWidth={1.5} />
                                         <p>
                                             {room.max_guests}{' '}
                                             {room.max_guests === 1 ? 'guest' : 'guests'}
                                         </p>
                                     </div>
                                     <div className="room-item">
-                                        <FontAwesomeIcon icon={faBed} />
+                                        <SquareDashed size={20} strokeWidth={1.5} />
                                         <p>
                                             {room.room_size_sqm}{' '}
                                             {room.room_size_sqm === 1 ? 'sqm' : 'sqm'}
@@ -182,13 +179,14 @@ function RoomDetails() {
                                 <h2>Amenities</h2>
                                 <div className="room-amenities-list">
                                 {room.amenities?.map((amenity) => {
-                                    const icon = amenityIcons[amenity.toLowerCase()] ?? faCheck
+                                    const Icon = amenityIcons[amenity.toLowerCase()] ?? Check
 
                                     return (
-                                    <div className="room-amenity" key={amenity}>
-                                        <FontAwesomeIcon icon={icon} />
-                                        <p>{amenity}</p>
-                                    </div>
+                                        <div className="room-amenity" key={amenity}>
+                                            
+                                            <Icon size={20} strokeWidth={1.5} />
+                                            <p>{amenity}</p>
+                                        </div>
                                     )
                                 })}
                                 </div>
@@ -199,11 +197,16 @@ function RoomDetails() {
                         
                         <div>
                             <p>Room Pricing</p>
-                            <p>
-                                <span className="price-highlight">
-                                    ₱{room.room_price}
-                                </span>
-                                /night per 2 pax
+                            <p className="pricing-rate"> 
+                                <span className="price-highlight"> 
+                                    ₱{room.room_price} 
+                                </span> 
+                                <span className="pricing-unit"> 
+                                    /night 
+                                </span> 
+                                <span className="pricing-guests"> 
+                                    per 2 pax 
+                                </span> 
                             </p>
                         </div>
 
@@ -290,8 +293,8 @@ function RoomDetails() {
 
 
                             <div className="booking-form-btn">
-                                <button className="book-room-btn" onClick={handleBookRoom}>Book This Room →</button>
-                                <button className="contact-btn" onClick={handleBookRoom}>Contact Reception</button>
+                                <button className="book-room-btn" onClick={handleBookRoom}>Book This Room&nbsp; <ArrowRight size={16}/></button>
+                                <button className="contact-btn" onClick={handleBookRoom}><Phone size={14}/>&nbsp; Contact Reception</button>
                             </div>
 
                         </div>
