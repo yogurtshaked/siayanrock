@@ -65,10 +65,13 @@ function Accommodation(){
     }
 
     function handleBookRoom(room: Room) {
-        // navigate to booking flow with this room pre-selected
-        navigate(`/book/${room.id}`);
-        console.log("Book room:", room);
-    }
+    navigate(`/book/${room.id}`, {
+        state: {
+            from: "room",
+            roomName: room.room_name,
+        },
+    })
+}
 
 
     return(

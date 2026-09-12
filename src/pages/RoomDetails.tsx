@@ -110,8 +110,16 @@ function RoomDetails() {
         }).format(amount)
 
         function handleBookRoom() {
-        navigate(`/book/${roomId}`)
-    }
+            navigate(`/book/${roomId}`, {
+                state: {
+                    from: "room",                  // ← tells BookRoom where user came from
+                    roomName: room?.room_name,      // ← "Vuhus", "Marlboro", etc.
+                    checkIn,
+                    checkOut,
+                    guestCount,
+                },
+            })
+        }
 
     if (loading) return <p>Loading room details...</p>
     if (!room) return <p>Room not found.</p>
@@ -119,17 +127,39 @@ function RoomDetails() {
     return (
         <section>
             <div className="room-details-page">                
+                <div className="room-nav">
+                    <nav className="breadcrumb" aria-label="Breadcrumb">
+    <button
+        type="button"
+        className="breadcrumb-link"
+        onClick={() => navigate("/")}
+    >
+        Home
+    </button>
+ 
+    <span className="breadcrumb-separator">
+        <ChevronRight size={14} strokeWidth={1.5} />
+    </span>
+ 
+    <button
+        type="button"
+        className="breadcrumb-link"
+        onClick={() => navigate("/accommodation")}
+    >
+        Accommodation
+    </button>
+ 
+    <span className="breadcrumb-separator">
+        <ChevronRight size={14} strokeWidth={1.5} />
+    </span>
+ 
+    <span className="breadcrumb-current" aria-current="page">
+        {room.room_name} Room
+    </span>
+</nav>
+                </div>
+
                 <div className="room-details-content">
-
-                    <nav className="breadcrumb" aria-label="Breadcrumb"> 
-                        <button type="button" className="breadcrumb-link" onClick={() => navigate("/")} > Home </button> 
-                        <span className="breadcrumb-separator"><ChevronRight className="breadcrumb-chevron" size={16} strokeWidth={1.5} /></span> 
-                        <button type="button" className="breadcrumb-link" onClick={() => navigate("/accommodation")} > Accommodation </button> 
-                        <span className="breadcrumb-separator"><ChevronRight className="breadcrumb-chevron" size={16} strokeWidth={1.5} /></span> 
-                        <span className="breadcrumb-current"> {room.room_name} Room</span> 
-                    </nav>
-
-
                     <div className="room-details-images">
                         {room.images?.map((image, index) => (
                             <img
