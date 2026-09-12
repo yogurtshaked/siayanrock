@@ -31,11 +31,12 @@ interface Room {
 function BookRoom() {
     const [isModifying, setIsModifying] = useState(false)
     const location = useLocation()
-    const { roomId } = useParams<{ roomId?: string }>()
+    const { roomId: roomIdParam } = useParams<{ roomId?: string }>()
+    const roomId = roomIdParam ?? (location.state?.roomId as string | undefined)
     const navigate = useNavigate()
 
     const cameFromRoom = location.state?.from === "room"
-const roomName     = location.state?.roomName as string | undefined
+    const roomName     = location.state?.roomName as string | undefined
 
     const bookingState = location.state as {
         checkIn?: string
@@ -175,70 +176,70 @@ const roomName     = location.state?.roomName as string | undefined
 
     return (
         <section className="bookroom-page">
-            <div className="bookroom-hero-section">
-<nav className="breadcrumb" aria-label="Breadcrumb">
- 
-    {/* Home — always present */}
-    <button
-        type="button"
-        className="breadcrumb-link"
-        onClick={() => navigate("/")}
-    >
-        Home
-    </button>
- 
-    {cameFromRoom ? (
-        <>
-            {/* Home › Accommodation › [Room Name] › Booking */}
-            <span className="breadcrumb-separator">
-                <ChevronRight size={14} strokeWidth={1.5} />
-            </span>
- 
-            <button
-                type="button"
-                className="breadcrumb-link"
-                onClick={() => navigate("/accommodation")}
-            >
-                Accommodation
-            </button>
- 
-            <span className="breadcrumb-separator">
-                <ChevronRight size={14} strokeWidth={1.5} />
-            </span>
- 
-            <button
-                type="button"
-                className="breadcrumb-link"
-                onClick={() =>
-                    navigate(`/accommodation/${roomId}`, {
-                        state: {
-                            // preserve dates + guests so the
-                            // room details page still shows them
-                            checkIn,
-                            checkOut,
-                            guestCount,
-                        },
-                    })
-                }
-            >
-                {roomName ?? "Room"}
-            </button>
-        </>
-    ) : (
-        // Home › Booking  (came from navbar)
-        // No middle crumbs — direct path
-        null
-    )}
- 
-    <span className="breadcrumb-separator">
-        <ChevronRight size={14} strokeWidth={1.5} />
-    </span>
- 
-    <span className="breadcrumb-current" aria-current="page">
-        Booking
-    </span>
-</nav>
-{/*<div className='bookroom-title page-title'>
+                <div className="room-nav">
+                <nav className="breadcrumb" aria-label="Breadcrumb">
+                
+                    {/* Home — always present */}
+                    <button
+                        type="button"
+                        className="breadcrumb-link"
+                        onClick={() => navigate("/")}
+                    >
+                        Home
+                    </button>
+                
+                    {cameFromRoom ? (
+                        <>
+                            {/* Home › Accommodation › [Room Name] › Booking */}
+                            <span className="breadcrumb-separator">
+                                <ChevronRight size={14} strokeWidth={1.5} />
+                            </span>
+                
+                            <button
+                                type="button"
+                                className="breadcrumb-link"
+                                onClick={() => navigate("/accommodation")}
+                            >
+                                Accommodation
+                            </button>
+                
+                            <span className="breadcrumb-separator">
+                                <ChevronRight size={14} strokeWidth={1.5} />
+                            </span>
+                
+                            <button
+                                type="button"
+                                className="breadcrumb-link"
+                                onClick={() =>
+                                    navigate(`/rooms/${roomId}`, {
+                                        state: {
+                                            // preserve dates + guests so the
+                                            // room details page still shows them
+                                            checkIn,
+                                            checkOut,
+                                            guestCount,
+                                        },
+                                    })
+                                }
+                            >
+                                {room?.room_name} Room
+                            </button>
+                        </>
+                    ) : (
+                        // Home › Booking  (came from navbar)
+                        // No middle crumbs — direct path
+                        null
+                    )}
+                
+                    <span className="breadcrumb-separator">
+                        <ChevronRight size={14} strokeWidth={1.5} />
+                    </span>
+                
+                    <span className="breadcrumb-current" aria-current="page">
+                        Booking
+                    </span>
+                </nav>
+                {/*<div className='bookroom-title page-title'>
                     <p className="section-title">Siayanrock Is. Hometel</p>
                     <h3>Book Your Stay</h3>
                     <p className='section-description'>Browse by category or scroll through everything — from the hometel itself to the roads, hills, and sunsets just outside the door.</p>

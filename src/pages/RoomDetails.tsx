@@ -129,34 +129,34 @@ function RoomDetails() {
             <div className="room-details-page">                
                 <div className="room-nav">
                     <nav className="breadcrumb" aria-label="Breadcrumb">
-    <button
-        type="button"
-        className="breadcrumb-link"
-        onClick={() => navigate("/")}
-    >
-        Home
-    </button>
- 
-    <span className="breadcrumb-separator">
-        <ChevronRight size={14} strokeWidth={1.5} />
-    </span>
- 
-    <button
-        type="button"
-        className="breadcrumb-link"
-        onClick={() => navigate("/accommodation")}
-    >
-        Accommodation
-    </button>
- 
-    <span className="breadcrumb-separator">
-        <ChevronRight size={14} strokeWidth={1.5} />
-    </span>
- 
-    <span className="breadcrumb-current" aria-current="page">
-        {room.room_name} Room
-    </span>
-</nav>
+                        <button
+                            type="button"
+                            className="breadcrumb-link"
+                            onClick={() => navigate("/")}
+                        >
+                            Home
+                        </button>
+                    
+                        <span className="breadcrumb-separator">
+                            <ChevronRight size={14} strokeWidth={1.5} />
+                        </span>
+                    
+                        <button
+                            type="button"
+                            className="breadcrumb-link"
+                            onClick={() => navigate("/accommodation")}
+                        >
+                            Accommodation
+                        </button>
+                    
+                        <span className="breadcrumb-separator">
+                            <ChevronRight size={14} strokeWidth={1.5} />
+                        </span>
+                    
+                        <span className="breadcrumb-current" aria-current="page">
+                            {room.room_name} Room
+                        </span>
+                    </nav>
                 </div>
 
                 <div className="room-details-content">

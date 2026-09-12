@@ -65,13 +65,14 @@ function Accommodation(){
     }
 
     function handleBookRoom(room: Room) {
-    navigate(`/book/${room.id}`, {
-        state: {
-            from: "room",
-            roomName: room.room_name,
-        },
-    })
-}
+        navigate(`/book/${room.id}`, {
+            state: {
+                from: "room",
+                roomName: room.room_name,
+                roomId: room.id,        // ← add this
+            },
+        })
+    }
 
 
     return(
