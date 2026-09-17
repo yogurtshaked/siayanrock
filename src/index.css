@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
 
 @font-face {
@@ -32,7 +33,6 @@
 
   --color-background: #F7F2E8;
   --color-description: #4d4d4d;
-
 }
 
 * {
@@ -42,7 +42,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "DM Sans", sans-serif;
   margin: 0;
 }
 
@@ -79,7 +79,7 @@ h2 {
 }
 
 p, a, button {
-  font-family: "Manrope", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 500;
   margin: 0;
 }
@@ -355,7 +355,7 @@ p, a, button {
 .section-title{
   margin-bottom: 8px;
   width: fit-content;
-  font-family: "Manrope", sans-serif;
+  font-family: "DM Sans", sans-serif;
   text-transform: uppercase;
   font-size: 13px;
   color: var(--color-yellow);
@@ -1636,24 +1636,23 @@ form{
   background: rgb(36, 36, 36);
 }
 
-
-
-/* ====================== Room Details ======================*/
+/* ====================== Breadcrumb Navigation ======================*/
 .room-nav{
   background:#222411;
   background-size: cover;
 
-  padding: 65px 160px 0 160px;
-  min-height: 20vh;
+  padding: 65px 180px 0 180px;
+  min-height: 18vh;
 
   color: #ffffff;
   position: relative;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
+
 .breadcrumb {
   display: flex;
   align-items: center;
@@ -1685,41 +1684,42 @@ form{
   color: white;
   font-weight: 500;
 }
+
+/* ====================== Room Details ======================*/
 .room-details-content {
+  margin: 0 auto;
+  padding: 80px 180px;
     
-    margin: 0 auto;
-    padding: 80px 160px;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 15px;
-    
-    background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 15px;
+  
+  background: white;
 }
 
 .room-details-images {
-    width: 100%;
-    height: 380px;
-    margin-bottom: 30px;
+  width: 100%;
+  height: 380px;
+  margin-bottom: 30px;
 
-    display: grid;
-    grid-template-columns: 2fr 1.5fr;
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-        "main top-right"
-        "main bottom-right";
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "main top-right"
+    "main bottom-right";
 
-    gap: 10px;
-    overflow: hidden;
+  gap: 10px;
+  overflow: hidden;
 }
 
 .room-details-images > img {
-    width: 100%;
-    height: 100%;
-    min-height: 0;
-    object-fit: cover;
-    border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  border-radius: 5px;
 }
 .room-details-images img:nth-of-type(1) {
   grid-area: main;
@@ -1757,9 +1757,8 @@ form{
   font-size: 42px;
 }
 
-
 .room-details-header h2{
-  font-family: "Manrope", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 20px;
@@ -1770,7 +1769,6 @@ form{
 .room-details-header p{
   font-size: 14px;
 }
-
 
 .room-amenities-list {
   display: grid;
@@ -1940,44 +1938,23 @@ form{
 }
 
 /*========================== Book Room ============================= */
-
-.bookroom-hero-section {
-    background:
-    linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(28, 28, 28, 0.7) 42%,
-      rgba(102, 102, 102, 0.7) 100%
-    ),
-    url('./images/accommodation-bg.jpg') center / cover no-repeat;
-    background-size: cover;
-
-    padding: 120px 140px;
-    min-height: 40vh;
-
-    color: #ffffff;
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 .bookroom-title p, .bookroom-title h3{
   color: white;
 }
+
 .bookroom-container {
   width: 100%;
-  max-width: 720px;
+  padding: 0 180px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 30px;
 }
 
 .bookroom-page-content{
-  padding: 80px;
+  background-color: #FAF9F7;
+  padding: 80px 0;
 }
+
 /* =========================
    PROGRESS
 ========================= */
@@ -1985,7 +1962,9 @@ form{
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin: 30px 0 30px 0;
+  padding: 40px;
+  background: white;
+  border: 1px solid #d5d5d5;
 }
 
 .booking-step {
@@ -2031,7 +2010,7 @@ form{
 
 .step-line {
   width: 124px;
-  height: 1px;
+  height: 0.5px;
   background: #d8d8d8;
   margin-top: 13px;
 }
@@ -2041,6 +2020,7 @@ form{
    STAY SUMMARY
 ========================= */
 .stay-summary {
+  background-color: white;
     display: flex;
     align-items: center;
     gap: 32px;
@@ -2150,6 +2130,21 @@ form{
 
 .save-modify-button:hover {
     color: #24483e;
+}
+/* ================================
+   Booking main layout
+================================ */
+
+.booking-main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 32px;
+  align-items: start;
+}
+.booking-left-column{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 /* =========================
    SELECTED ROOM
@@ -2320,6 +2315,99 @@ form{
     cursor: pointer;
 }
 
+/* ================================
+   Price breakdown
+================================ */
+
+.price-breakdown-card {
+    background: #fff;
+    border: 1px solid #ddd9d3;
+    border-radius: 12px;
+    padding: 22px 20px;
+
+    /* Keeps it visible while scrolling through rooms */
+    position: sticky;
+    top: 24px;
+}
+
+.price-breakdown-header {
+    margin: 0 0 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #161616;
+}
+
+.price-breakdown-rooms {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.price-breakdown-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+
+    font-size: 13px;
+    line-height: 1.4;
+    color: #716d69;
+}
+
+.price-breakdown-row span:last-child {
+    color: #3f3b38;
+    white-space: nowrap;
+}
+
+.price-breakdown-subtotal {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-top: 15px;
+    padding-top: 14px;
+
+    font-size: 13px;
+    color: #3f3b38;
+}
+
+.price-breakdown-subtotal strong {
+    font-weight: 500;
+    color: #292624;
+}
+
+.price-breakdown-divider {
+    height: 1px;
+    background: #ddd9d3;
+    margin: 12px 0 14px;
+}
+
+.price-breakdown-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.price-breakdown-total span {
+    font-size: 15px;
+    font-weight: 600;
+    color: #171515;
+}
+
+.price-breakdown-total strong {
+    font-size: 15px;
+    font-weight: 700;
+    color: #171515;
+}
+
+.price-breakdown-note {
+    margin: 12px 0 0;
+
+    font-size: 11px;
+    line-height: 1.5;
+    color: #77726d;
+}
 
 /* =========================
    FOOTER / TOTAL

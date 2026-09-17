@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBed } from '@fortawesome/free-solid-svg-icons/faBed';
-import { faCheck, faUserGroup } from '@fortawesome/free-solid-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Bed, Users } from "lucide-react";
 
 function Accommodation(){
@@ -57,7 +56,6 @@ function Accommodation(){
         }
     }
 
-    
 
     function handleViewDetails(room: Room) {
         // navigate to a room details page, e.g. using react-router

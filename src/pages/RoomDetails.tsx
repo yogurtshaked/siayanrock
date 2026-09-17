@@ -2,8 +2,6 @@ import { useEffect, useMemo, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { supabase } from "../lib/supabaseClient"
 import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import type { IconDefinition } from "@fortawesome/fontawesome-svg-core"
 import { Bath, Bed, Check, DoorOpen, ShowerHead, Snowflake, Tv, Users, Wifi, Phone, SquareDashed, ChevronRight  } from "lucide-react"
 
 type Room = {

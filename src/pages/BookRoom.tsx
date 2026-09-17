@@ -7,7 +7,6 @@ import {
     Check,
     Plus,
     Users,
-    X,
     ChevronRight,
 } from "lucide-react"
 
@@ -36,7 +35,6 @@ function BookRoom() {
     const navigate = useNavigate()
 
     const cameFromRoom = location.state?.from === "room"
-    const roomName     = location.state?.roomName as string | undefined
 
     const bookingState = location.state as {
         checkIn?: string
@@ -103,7 +101,6 @@ function BookRoom() {
             )
         )
     }
-
     const nights = calculateNights()
 
     const total = rooms.reduce((sum, room) => {
@@ -179,12 +176,10 @@ function BookRoom() {
                 <div className="room-nav">
                 <nav className="breadcrumb" aria-label="Breadcrumb">
                 
-                    {/* Home — always present */}
                     <button
                         type="button"
                         className="breadcrumb-link"
-                        onClick={() => navigate("/")}
-                    >
+                        onClick={() => navigate("/")} >
                         Home
                     </button>
                 
@@ -198,8 +193,7 @@ function BookRoom() {
                             <button
                                 type="button"
                                 className="breadcrumb-link"
-                                onClick={() => navigate("/accommodation")}
-                            >
+                                onClick={() => navigate("/accommodation")}>
                                 Accommodation
                             </button>
                 
@@ -213,8 +207,6 @@ function BookRoom() {
                                 onClick={() =>
                                     navigate(`/rooms/${roomId}`, {
                                         state: {
-                                            // preserve dates + guests so the
-                                            // room details page still shows them
                                             checkIn,
                                             checkOut,
                                             guestCount,
@@ -245,252 +237,293 @@ function BookRoom() {
                     <p className='section-description'>Browse by category or scroll through everything — from the hometel itself to the roads, hills, and sunsets just outside the door.</p>
                 </div>*/}
             </div>
+
+            <div className="booking-progress">
+                <div className="booking-step active">
+                    <div className="step-number">1</div>
+                    <span>Rooms</span>
+                </div>
+
+                <div className="step-line" />
+
+                <div className="booking-step">
+                    <div className="step-number">2</div>
+                    <span>Your details</span>
+                </div>
+
+                <div className="step-line" />
+
+                <div className="booking-step">
+                    <div className="step-number">3</div>
+                    <span>Confirmation</span>
+                </div>
+            </div>
+
             <div className="bookroom-page-content">
-                
                 <div className="bookroom-container">
-                    <div className="booking-progress">
-                        <div className="booking-step active">
-                            <div className="step-number">1</div>
-                            <span>Rooms</span>
-                        </div>
 
-                        <div className="step-line" />
-                        
-                        <div className="booking-step">
-                            <div className="step-number">2</div>
-                            <span>Your details</span>
-                        </div>
+                    {/* ========================== Stay summary ==========================*/}
+                    <div className="booking-main-grid">
+                        {/* LEFT COLUMN */}
+                        <div className="booking-left-column">
+                            
+                            <div className={`stay-summary ${isModifying ? "stay-summary-editing" : ""}`}>
+                                {isModifying ? (
+                                    <>
+                                        <div className="stay-summary-edit">
+                                            <div className="stay-summary-edit-field">
+                                                <label htmlFor="summary-check-in">
+                                                    <CalendarDays size={15} />
+                                                    CHECK IN
+                                                </label>
 
-                        <div className="step-line" />
+                                                <input
+                                                    id="summary-check-in"
+                                                    type="date"
+                                                    value={checkIn}
+                                                    onChange={(event) => {
+                                                        setCheckIn(event.target.value)
 
-                        <div className="booking-step">
-                            <div className="step-number">3</div>
-                            <span>Confirmation</span>
-                        </div>
-                    </div>
+                                                        if (
+                                                            checkOut &&
+                                                            event.target.value >= checkOut
+                                                        ) {
+                                                            setCheckOut("")
+                                                        }
+                                                    }}
+                                                />
+                                            </div>
 
-                    {/* Stay summary */}
-                   {/* Stay summary */}
-                    <div className={`stay-summary ${isModifying ? "stay-summary-editing" : ""}`}>
+                                            <div className="stay-summary-edit-field">
+                                                <label htmlFor="summary-check-out">
+                                                    <CalendarDays size={15} />
+                                                    CHECK OUT
+                                                </label>
 
-                        {isModifying ? (
-                            <>
-                                <div className="stay-summary-edit">
-                                    <div className="stay-summary-edit-field">
-                                        <label htmlFor="summary-check-in">
-                                            <CalendarDays size={15} />
-                                            CHECK IN
-                                        </label>
+                                                <input
+                                                    id="summary-check-out"
+                                                    type="date"
+                                                    value={checkOut}
+                                                    onChange={(event) =>
+                                                        setCheckOut(event.target.value)
+                                                    }
+                                                />
+                                            </div>
 
-                                        <input
-                                            id="summary-check-in"
-                                            type="date"
-                                            value={checkIn}
-                                            onChange={(event) => {
-                                                setCheckIn(event.target.value)
+                                            <div className="stay-summary-edit-field">
+                                                <label htmlFor="summary-guests">
+                                                    <Users size={15} />
+                                                    GUESTS
+                                                </label>
 
-                                                // Clear checkout if it is now invalid
-                                                if (
-                                                    checkOut &&
-                                                    event.target.value >= checkOut
-                                                ) {
-                                                    setCheckOut("")
-                                                }
-                                            }}
-                                        />
-                                    </div>
+                                                <select
+                                                    id="summary-guests"
+                                                    value={guestCount}
+                                                    onChange={(event) =>
+                                                        setGuestCount(
+                                                            Number(event.target.value)
+                                                        )
+                                                    }>
+                                                    {Array.from(
+                                                        {
+                                                            length:
+                                                                room?.max_guests || 10,
+                                                        },
+                                                        (_, index) => {
+                                                            const count = index + 1
 
-                                    <div className="stay-summary-edit-field">
-                                        <label htmlFor="summary-check-out">
-                                            <CalendarDays size={15} />
-                                            CHECK OUT
-                                        </label>
+                                                            return (
+                                                                <option
+                                                                    key={count}
+                                                                    value={count}>
+                                                                    {count}{" "}
+                                                                    {count === 1
+                                                                        ? "guest"
+                                                                        : "guests"}
+                                                                </option>
+                                                            )
+                                                        }
+                                                    )}
+                                                </select>
+                                            </div>
+                                        </div>
 
-                                        <input
-                                            id="summary-check-out"
-                                            type="date"
-                                            value={checkOut}
-                                            onChange={(event) =>
-                                                setCheckOut(event.target.value)
-                                            }
-                                        />
-                                    </div>
+                                        <button
+                                            className="modify-button save-modify-button"
+                                            type="button"
+                                            onClick={() => setIsModifying(false)}>
+                                            <Check size={15} />
+                                            Done
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="stay-summary-item">
+                                            <CalendarDays
+                                                size={16}
+                                                strokeWidth={1.7}/>
 
-                                    <div className="stay-summary-edit-field">
-                                        <label htmlFor="summary-guests">
-                                            <Users size={15} />
-                                            GUESTS
-                                        </label>
+                                            <div>
+                                                <span>CHECK IN</span>
+                                                <strong>{formatDate(checkIn)}</strong>
+                                            </div>
+                                        </div>
 
-                                        <select
-                                            id="summary-guests"
-                                            value={guestCount}
-                                            onChange={(event) =>
-                                                setGuestCount(Number(event.target.value))
-                                            }
-                                        >
-                                            {Array.from(
-                                                { length: room?.max_guests || 10 },
-                                                (_, index) => {
-                                                    const count = index + 1
+                                        <div className="stay-summary-item">
+                                            <CalendarDays
+                                                size={16}
+                                                strokeWidth={1.7}/>
 
-                                                    return (
-                                                        <option
-                                                            key={count}
-                                                            value={count}
-                                                        >
-                                                            {count}{" "}
-                                                            {count === 1
-                                                                ? "guest"
-                                                                : "guests"}
-                                                        </option>
-                                                    )
-                                                }
-                                            )}
-                                        </select>
-                                    </div>
+                                            <div>
+                                                <span>CHECK OUT</span>
+                                                <strong>{formatDate(checkOut)}</strong>
+                                            </div>
+                                        </div>
+
+                                        <div className="stay-summary-item">
+                                            <Users
+                                                size={16}
+                                                strokeWidth={1.7}/>
+
+                                            <div>
+                                                <span>GUESTS</span>
+                                                <strong>
+                                                    {guestCount}{" "}
+                                                    {guestCount === 1
+                                                        ? "guest"
+                                                        : "guests"}
+                                                </strong>
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            className="modify-button"
+                                            type="button"
+                                            onClick={() => setIsModifying(true)}>
+                                            Modify
+                                        </button>
+                                    </>
+                                )}
+                            </div>
+
+
+                            {/* Selected rooms */}
+                            <div className="selected-room-section">
+                                <div className="selected-room-heading">
+                                    <h2>Selected room</h2>
+                                    <p>Add more rooms below if your group needs extra space.</p>
                                 </div>
 
-                                <button
-                                    className="modify-button save-modify-button"
-                                    type="button"
-                                    onClick={() => setIsModifying(false)}
-                                >
-                                    <Check size={15} />
-                                    Done
-                                </button>
-                            </>
-                        ) : (
-                            <>
-                                <div className="stay-summary-item">
-                                    <CalendarDays size={16} strokeWidth={1.7} />
+                                {rooms.length > 0 ? (
+                                    rooms.map((selectedRoom) => (
+                                        <div
+                                            className="selected-room-card"
+                                            key={selectedRoom.id}>
+                                            <div
+                                                className="selected-room-image"
+                                                style={{
+                                                    backgroundImage: `url(${selectedRoom.images?.[0]})`,
+                                                }}/>
 
-                                    <div>
-                                        <span>CHECK IN</span>
-                                        <strong>
-                                            {formatDate(checkIn)}
-                                        </strong>
-                                    </div>
-                                </div>
+                                            <div className="selected-room-info">
+                                                <button
+                                                    type="button"
+                                                    className="remove-room"
+                                                    onClick={handleRemoveRoom}>
+                                                    Remove
+                                                </button>
 
-                                <div className="stay-summary-item">
-                                    <CalendarDays size={16} strokeWidth={1.7} />
+                                                <h3>{selectedRoom.room_name} Room</h3>
 
-                                    <div>
-                                        <span>CHECK OUT</span>
-                                        <strong>
-                                            {formatDate(checkOut)}
-                                        </strong>
-                                    </div>
-                                </div>
+                                                <p className="room-meta">
+                                                    {selectedRoom.num_beds}{" "}
+                                                    {selectedRoom.num_beds === 1
+                                                        ? "bed"
+                                                        : "beds"}{" "}
+                                                    ·{" "}
+                                                    {selectedRoom.max_guests} guests
+                                                    {" · "}
+                                                    {selectedRoom.room_size_sqm} sqm
+                                                </p>
 
-                                <div className="stay-summary-item">
-                                    <Users size={16} strokeWidth={1.7} />
+                                                <div className="room-price-line">
+                                                    <span>
+                                                        {peso(
+                                                            selectedRoom.room_price
+                                                        )}{" "}
+                                                        × {nights}{" "}
+                                                        {nights === 1
+                                                            ? "night"
+                                                            : "nights"}
+                                                    </span>
 
-                                    <div>
-                                        <span>GUESTS</span>
-                                        <strong>
-                                            {guestCount}{" "}
-                                            {guestCount === 1
-                                                ? "guest"
-                                                : "guests"}
-                                        </strong>
-                                    </div>
-                                </div>
+                                                    <strong>{peso(selectedRoom.room_price *nights)}</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="no-room-selected">
+                                        <p>No room selected yet.</p>
 
-                                <button
-                                    className="modify-button"
-                                    type="button"
-                                    onClick={() => setIsModifying(true)}
-                                >
-                                    Modify
-                                </button>
-                            </>
-                        )}
-                    </div>
-
-                    <div className="selected-room-section">
-                        <div className="selected-room-heading">
-                            <h2>Selected room</h2>
-                            <p>Add more rooms below if your group needs extra space.</p>
-                        </div>
-
-                        {rooms.length > 0 ? (
-                            rooms.map((selectedRoom) => (
-                                <div className="selected-room-card"key={selectedRoom.id}>
-                                    <div className="selected-room-image"
-                                        style={{
-                                            backgroundImage: `url(${selectedRoom.images?.[0]
-                                            })`,
-                                        }}
-                                    />
-
-                                    <div className="selected-room-info">
                                         <button
                                             type="button"
-                                            className="remove-room"
-                                            onClick={handleRemoveRoom}>
-                                            Remove
+                                            onClick={handleAddRoom}>
+                                            Browse rooms
                                         </button>
-
-                                        <h3>
-                                            {selectedRoom.room_name} Room
-                                        </h3>
-
-                                        <p className="room-meta">
-                                            {selectedRoom.num_beds}{" "}
-                                            {selectedRoom.num_beds === 1
-                                                ? "bed"
-                                                : "beds"}{" "}
-                                            ·{" "}
-                                            {selectedRoom.max_guests} guests
-                                            {" · "}
-                                            {selectedRoom.room_size_sqm} sqm
-                                        </p>
-
-                                        <div className="room-price-line">
-                                            <span>
-                                                {peso(
-                                                    selectedRoom.room_price
-                                                )}{" "}
-                                                × {nights}{" "}
-                                                {nights === 1
-                                                    ? "night"
-                                                    : "nights"}
-                                            </span>
-                                            <strong>
-                                                {peso(
-                                                    selectedRoom.room_price *
-                                                        nights
-                                                )}
-                                            </strong>
-                                        </div>
                                     </div>
-                                </div>
-                            ))
-                        ) : (
-                            <div className="no-room-selected">
-                                <p>No room selected yet.</p>
+                                )}
 
                                 <button
                                     type="button"
+                                    className="add-room-button"
                                     onClick={handleAddRoom}>
-                                    Browse rooms
+                                    <Plus size={18} strokeWidth={1.8} />
+                                    Add another room
                                 </button>
                             </div>
-                        )}
+                        </div>
 
-                        {/* Add another room */}
-                        <button
-                            type="button"
-                            className="add-room-button"
-                            onClick={handleAddRoom}>
-                            <Plus size={18} strokeWidth={1.8} />
-                            Add another room
-                        </button>
+
+                        {/* RIGHT COLUMN */}
+                        <aside className="price-breakdown-card">
+                            <h3 className="price-breakdown-header">Price breakdown</h3>
+
+                            {rooms.map((selectedRoom) => (
+                                <div
+                                    className="price-breakdown-row"
+                                    key={selectedRoom.id}>
+                                    <span>{selectedRoom.room_name} Room</span>
+
+                                    <span>
+                                        {peso(selectedRoom.room_price)} × {nights}{" "}
+                                        {nights === 1 ? "night" : "nights"}
+                                    </span>
+                                </div>
+                            ))}
+
+                            <div className="price-breakdown-divider" />
+
+                            <div className="price-breakdown-row">
+                                <span>Taxes and fees (12%)</span>
+                                <span>{peso(total * 0.12)}</span>
+                            </div>
+
+                            <div className="price-breakdown-divider" />
+
+                            <div className="price-breakdown-total">
+                                <span>Total</span>
+                                <strong>{peso(total * 1.12)}</strong>
+                            </div>
+
+                            <p className="price-breakdown-note">
+                                Prices shown in Philippine Peso (PHP). Tax is
+                                included in the final total.
+                            </p>
+                        </aside>
                     </div>
 
-                    {/* Bottom summary */}
+                    {/* CONTINUE BUTTON — BOTTOM */}
                     <div className="booking-footer">
                         <div className="booking-total">
                             <p>
@@ -503,7 +536,8 @@ function BookRoom() {
                                     ? "night"
                                     : "nights"}
                             </p>
-                            <strong>{peso(total)} total</strong>
+
+                            <strong>{peso(total * 1.12)} total</strong>
                         </div>
 
                         <button
@@ -512,13 +546,12 @@ function BookRoom() {
                             disabled={rooms.length === 0}
                             onClick={handleContinue}>
                             Continue
-                            <ArrowRight
-                                size={16}
-                                strokeWidth={2}
-                            />
+                            <ArrowRight size={16} strokeWidth={2}/>
                         </button>
+
                     </div>
                 </div>
+
             </div>
         </section>
     )
