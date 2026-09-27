@@ -5,6 +5,7 @@ import { supabase } from '../lib/supabaseClient';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Bed, Users } from "lucide-react";
+import ReserveModal from '../components/ReserveModal';
 
 function Accommodation(){
     interface Room {
@@ -35,6 +36,7 @@ function Accommodation(){
 
     const navigate = useNavigate();
     const [rooms, setRooms] = useState<Room[]>([]);
+    const [reservingRoom, setReservingRoom] = useState<Room | null>(null)
 
     useEffect(() => {
         getRoomInfo()
@@ -63,13 +65,7 @@ function Accommodation(){
     }
 
     function handleBookRoom(room: Room) {
-        navigate(`/book/${room.id}`, {
-            state: {
-                from: "room",
-                roomName: room.room_name,
-                roomId: room.id,        // ← add this
-            },
-        })
+        setReservingRoom(room);
     }
 
 
@@ -155,7 +151,7 @@ function Accommodation(){
                                                 <button
                                                     className='book-room'
                                                     onClick={() => handleBookRoom(room)}>
-                                                    Book Room
+                                                    Reserve Room
                                                 </button>
                                             </div>
                                         </div>
@@ -169,6 +165,13 @@ function Accommodation(){
 
                     </div>
                 </div>
+                <ReserveModal
+                    open={reservingRoom !== null}
+                    onClose={() => setReservingRoom(null)}
+                    roomName={reservingRoom?.room_name}
+                    roomThumbnail={reservingRoom?.images?.[0]}
+                    guestCount={reservingRoom?.base_guests ?? 2}
+                />
         </section>
     );
 }

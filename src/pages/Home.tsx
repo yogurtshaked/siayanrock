@@ -1,4 +1,6 @@
 import "../index.css";
+import { useNavigate } from "react-router-dom";
+
 import { motion } from "framer-motion";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
@@ -11,6 +13,7 @@ import { CalendarDaysIcon } from '@/components/ui/calendar-days';
 
 
 function Home(){
+    const navigate = useNavigate();
     const [hoveredGalleryIndex, setHoveredGalleryIndex] =
     useState<number | null>(null);
 
@@ -23,21 +26,21 @@ function Home(){
                 "HOMETEL",
         },
         {
-            src: "/images/gallery2.jpg",
+            src: "/images/gallery/nakurang-1.jpg",
+            alt: "Nakurang Viewdeck",
+            caption: "Nakurang Viewdeck",
+            description:
+                "PRIVATE VIEWDECK",
+        },
+        {
+            src: "/images/gallery/tours-1.jpg",
             alt: "Mavien Point Travel & Tours",
             caption: "Malboro Hills",
             description:
                 "TOURS",
         },
         {
-            src: "/images/gallery3.jpg",
-            alt: "Mavien Viewdeck",
-            caption: "Mavien Viewdeck",
-            description:
-                "PRIVATE VIEWDECK",
-        },
-        {
-            src: "/images/gallery4.jpg",
+            src: "/images/gallery/guests-1.jpg",
             alt: "Our Guests",
             caption: "Our Guests",
             description:
@@ -186,9 +189,11 @@ function Home(){
                                 <h3>Accommodation</h3>
                                 <p>Relax in comfortable, well-appointed rooms designed to make your stay
                                     in Batanes memorable.</p>
-                                <button className="offer-card-btn landing-page-btn">
+                                <button className="offer-card-btn landing-page-btn" onClick={() => navigate("/accommodation")}>
                                     <span className="offer-btn-text">View Details</span>
-                                    <span className="offer-btn-icon"><ArrowRight animateOnHover size={16} /></span>
+                                    <span className="offer-btn-icon">
+                                        <ArrowRight animateOnHover size={16} />
+                                    </span>
                                 </button>
                             </div>
                         </div>
@@ -198,7 +203,7 @@ function Home(){
                                 <h3>Tour Packages</h3>
                                 <p>Experience the beauty of Batanes with our guided tours led by
                                     knowledgeable local guides.</p>
-                                <button className="offer-card-btn landing-page-btn">
+                                <button className="offer-card-btn landing-page-btn" onClick={() => navigate("/tours")}>
                                     <span className="offer-btn-text">View Details</span>
                                     <span className="offer-btn-icon"><ArrowRight animateOnHover size={16} /></span>
                                 </button>
@@ -210,91 +215,77 @@ function Home(){
 
             <div className="gallery-section" id="section">
                 <div className="gallery-content">
+
                     <div className="gallery-text">
-                            <p className="section-title">Gallery</p>
-                            <h2>See Batanes through our lens.</h2>
-                            <p className="section-description">Discover curated experiences designed by locals who know the islands best</p>
-                    
-                    
-                        {/*<button className="landing-page-btn">View More&nbsp; <ArrowRight animateOnHover size={16} /></button>*/}
+                        <p className="section-title">Gallery</p>
+
+                        <h2>See Batanes through our lens.</h2>
+
+                        <p className="section-description">
+                            Discover curated experiences designed by locals who know the islands best
+                        </p>
                     </div>
 
                     <div className="gallery-grid">
-                    {galleryImages.map((image, index) => (
-                        <motion.article
-                            key={index}
-                            className="gallery-item"
-                            
-                            
-                            /*
-                            initial={{ flex: 1 }}
-                            animate={{
-                                flex:
-                                    hoveredGalleryIndex === null
-                                        ? 1
-                                        : hoveredGalleryIndex === index
-                                            ? 1
-                                            : 0.6,
-                            }}
-                            */
-                                        
-                            transition={{
-                                duration: 0.5,
-                                ease: "easeInOut",
-                            }}
+                        {galleryImages.map((image, index) => (
+                            <motion.article
+                                key={index}
+                                className="gallery-item"
 
-                            onMouseEnter={() =>
-                                setHoveredGalleryIndex(index)
-                            }
+                                transition={{
+                                    duration: 0.5,
+                                    ease: "easeInOut",
+                                }}
 
-                            onMouseLeave={() =>
-                                setHoveredGalleryIndex(null)
-                            }
-                        >
-                            <div className="gallery-media">
-                                <img
-                                    src={image.src}
-                                    alt={image.alt}
-                                    style={{
-                                        filter:
-                                            hoveredGalleryIndex !== null &&
-                                            hoveredGalleryIndex !== index
-                                                ? "grayscale(1)"
-                                                : "grayscale(0)",
+                                onMouseEnter={() =>
+                                    setHoveredGalleryIndex(index)
+                                }
 
-                                        opacity:
-                                            hoveredGalleryIndex !== null &&
-                                            hoveredGalleryIndex !== index
-                                                ? 0.7
-                                                : 1,
-                                    }}
-                                />
+                                onMouseLeave={() =>
+                                    setHoveredGalleryIndex(null)
+                                }
+                            >
+                                <div className="gallery-media">
 
-                                <div className="gallery-wash" />
-                            
+                                    <img
+                                        src={image.src}
+                                        alt={image.alt}
+                                        style={{
+                                            filter:
+                                                hoveredGalleryIndex !== null &&
+                                                hoveredGalleryIndex !== index
+                                                    ? "grayscale(1)"
+                                                    : "grayscale(0)",
 
-                            <div className="gallery-caption-wrap">
-                                <p className="gallery-tag">
-                                    {image.description}
-                                </p>
+                                            opacity:
+                                                hoveredGalleryIndex !== null &&
+                                                hoveredGalleryIndex !== index
+                                                    ? 0.7
+                                                    : 1,
+                                        }}
+                                    />
 
-                                <div className="gallery-name-row">
-                                    <p className="gallery-caption">
-                                        {image.caption}
-                                    </p>
+                                    {/* Dark gradient from bottom to top */}
+                                    <div className="gallery-wash" />
 
-                                    <span className="gallery-arrow">
-                                        <ArrowRight size={16}/>
-                                    </span>
+                                    <div className="gallery-caption-wrap">
+                                        <p className="gallery-tag">
+                                            {image.description}
+                                        </p>
+
+                                        <p className="gallery-caption">
+                                            {image.caption}
+                                        </p>
+                                    </div>
+
                                 </div>
-                            </div>
-                        </div>
-                        </motion.article>
-                    ))}
-                </div>
+                            </motion.article>
+                        ))}
+                    </div>
 
                 </div>
             </div>
+
 
             <div className="inquire-section" id="section">
                 <div className="inquire-content">

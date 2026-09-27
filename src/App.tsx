@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
+import ScrollToTop from './lib/ScrollToTop';
 import Home from './pages/Home';
 import Accommodation from './pages/Accommodation';
 import RoomDetails from './pages/RoomDetails';
-import BookRoom from './pages/BookRoom';
+
 import Tours from './pages/Tours';
 import Gallery from './pages/Gallery';
 import Inquire from './pages/Inquire';
@@ -22,6 +23,7 @@ function AppLayout() {
 
   return (
     <section id="center">
+      <ScrollToTop />
 
       <Navbar />
 
@@ -29,9 +31,6 @@ function AppLayout() {
         <Route path="/" element={<Home />} />
         <Route path="/accommodation" element={<Accommodation />} />
         <Route path="/rooms/:roomId" element={<RoomDetails />} />
-
-        <Route path="/book" element={<BookRoom />} />
-        <Route path="/book/:roomId" element={<BookRoom />} />
 
         <Route path="/tours" element={<Tours />} />
         <Route path="/gallery" element={<Gallery />} />

@@ -47,9 +47,9 @@ function Navbar() {
                     <NavLink to="/inquire">Inquire</NavLink>
                 </div>
 
-                <button className="book-button" onClick={() => navigate("/book")}>
+                {/*<button className="book-button" onClick={() => navigate("/book")}>
                     Book Now
-                </button>
+                </button>*/}
             </div>
         </nav>
     );

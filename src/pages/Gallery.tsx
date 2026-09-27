@@ -1,24 +1,28 @@
 import { useState, useEffect } from "react";
 import '../index.css';
 
-const FILTERS = ["All", "Hometel", "Tours", "Guests"];
+const FILTERS = ["All", "Hometel",  "Nakurang", "Tours", "Guests"];
 const INITIAL_COUNT = 9;
 const LOAD_MORE_COUNT = 6;
 
 const galleryImages = [
-    { src: "/src/assets/images/gallery/hometel-1.jpeg", category: "Hometel" },
-    { src: "/src/assets/images/gallery/hometel-2.jpeg", category: "Hometel" },
-    { src: "/src/assets/images/gallery/hometel-3.jpeg", category: "Hometel" },
-    { src: "/src/assets/images/gallery/hometel-4.jpeg", category: "Hometel" },
-    { src: "/src/assets/images/gallery/hometel-5.jpeg", category: "Hometel" },
-    { src: "/src/assets/images/gallery/tours-1.jpg", category: "Tours" },
-    { src: "/src/assets/images/gallery/tours-2.jpg", category: "Tours" },
-    { src: "/src/assets/images/gallery/tours-3.jpg", category: "Tours" },
-    { src: "/src/assets/images/gallery/tours-4.jpg", category: "Tours" },
-    { src: "/src/assets/images/gallery/guests-1.jpg", category: "Guests" },
-    { src: "/src/assets/images/gallery/guests-2.jpg", category: "Guests" },
-    { src: "/src/assets/images/gallery/guests-3.jpg", category: "Guests" },
-    // ...more
+    { src: "images/gallery/hometel-1.JPG", category: "Hometel" },
+    { src: "images/gallery/hometel-2.JPG", category: "Hometel" },
+    { src: "images/gallery/hometel-3.JPG", category: "Hometel" },
+    { src: "images/gallery/hometel-4.JPG", category: "Hometel" },
+    { src: "images/gallery/hometel-5.JPG", category: "Hometel" },
+    { src: "images/gallery/hometel-6.JPG", category: "Hometel" },
+    { src: "images/gallery/hometel-7.JPG", category: "Hometel" },
+    { src: "images/gallery/tours-1.jpg", category: "Tours" },
+    { src: "images/gallery/tours-2.jpg", category: "Tours" },
+    { src: "images/gallery/tours-3.JPG", category: "Tours" },
+    { src: "images/gallery/tours-4.JPG", category: "Tours" },
+    { src: "images/gallery/tours-5.JPG", category: "Tours" },
+    { src: "images/gallery/nakurang-1.jpg", category: "Nakurang" },
+    { src: "images/gallery/nakurang-2.jpg", category: "Nakurang" },
+    { src: "images/gallery/guests-1.jpg", category: "Guests" },
+    { src: "images/gallery/guests-2.jpg", category: "Guests" },
+    { src: "images/gallery/guests-3.jpg", category: "Guests" },
 ];
 
 function Gallery(){

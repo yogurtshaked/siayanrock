@@ -91,11 +91,42 @@ function Inquire(){
                                 <button type="submit" className="submit-btn">Send inquiry</button>
                             </form>
                         </div>
-                    
                     </div>
                 </div>
             </div>
-        </section>
+                
+                    <div className="location-section">
+                        <div className="location-content">
+
+                            <div className="location-info">
+                                <p className="section-title">LOCATION</p>
+
+                                <h2>This is where we are Located</h2>
+
+                                <p className="section-description">
+                                    National Road, Brgy. Tuhel, Ivana, Batanes
+                                </p>
+                            </div>
+
+                            <div className="location-map">
+                                <iframe
+                                    src="https://www.google.com/maps?q=Siayanrock+Hometel,+Ivana,+Batanes&output=embed"
+                                    width="100%"
+                                    height="450"
+                                    style={{ border: 0 }}
+                                    allowFullScreen
+                                    loading="lazy"
+                                    title="Siayanrock Hometel Location"
+                                ></iframe>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </section>
+                
+            
+
     );
 }
 
