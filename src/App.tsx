@@ -1,6 +1,8 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet, useLocation } from 'react-router-dom';
 
 import ScrollToTop from './lib/ScrollToTop';
+import { supabase } from './lib/supabaseClient';
+
 import Home from './pages/Home';
 import Accommodation from './pages/Accommodation';
 import RoomDetails from './pages/RoomDetails';
@@ -11,9 +13,11 @@ import Inquire from './pages/Inquire';
 
 import Navbar from './components/navbar';
 import Footer from './components/footer';
+import { useLenis } from './lib/useLenis';
 
 
 function AppLayout() {
+  useLenis();
   const location = useLocation();
 
   // Hide footer on RoomDetails and BookRoom
@@ -27,15 +31,7 @@ function AppLayout() {
 
       <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/accommodation" element={<Accommodation />} />
-        <Route path="/rooms/:roomId" element={<RoomDetails />} />
-
-        <Route path="/tours" element={<Tours />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/inquire" element={<Inquire />} />
-      </Routes>
+      <Outlet />
 
       {!hideFooter && <Footer />}
 
@@ -44,12 +40,36 @@ function AppLayout() {
 }
 
 
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      { path: "/", element: <Home /> },
+      {
+        path: "/accommodation",
+        element: <Accommodation />,
+        loader: async () => {
+          const { data, error } = await supabase
+            .from('rooms')
+            .select('*')
+            .eq('is_active', true)
+            .order('room_number');
+          if (error) throw error;
+          return data;
+        },
+      },
+      { path: "/rooms/:roomId", element: <RoomDetails /> },
+
+      { path: "/tours", element: <Tours /> },
+      { path: "/gallery", element: <Gallery /> },
+      { path: "/inquire", element: <Inquire /> },
+    ],
+  },
+]);
+
+
 function App() {
-  return (
-    <BrowserRouter>
-      <AppLayout />
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

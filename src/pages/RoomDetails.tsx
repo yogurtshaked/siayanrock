@@ -258,10 +258,13 @@ function RoomDetails() {
 
                                         return (
                                             <div className="room-amenity" key={amenity}>
+                                                <div className="room-amenity-icon">
+                                                    <Icon size={20} strokeWidth={1.5} />
+                                                </div>
 
-                                                <Icon size={20} strokeWidth={1.5} />
                                                 <p>{amenity}</p>
                                             </div>
+
                                         )
                                     })}
                                 </div>

@@ -1,7 +1,6 @@
 import "../index.css";
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"
 
 
 function Navbar() {
@@ -12,7 +11,6 @@ function Navbar() {
     const isRoomDetails = location.pathname.startsWith("/rooms/");
     const isBookRoom = location.pathname.startsWith("/book")
 
-    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {

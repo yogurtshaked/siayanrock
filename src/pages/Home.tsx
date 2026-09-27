@@ -294,7 +294,7 @@ function Home(){
                         <h2>Ready for your Batanes getaway?</h2>
                         <p>Need more information about our accommodations or tours?</p>
                     </div>
-                    <button className="landing-page-btn">Inquire Now&nbsp; <ArrowRight size={16} /></button>
+                    <button className="landing-page-btn" onClick={() => navigate("/inquire")}>Inquire Now&nbsp; <ArrowRight size={16} /></button>
                 </div>
             </div>
         </section>

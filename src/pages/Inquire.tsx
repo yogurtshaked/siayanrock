@@ -101,7 +101,7 @@ function Inquire(){
                             <div className="location-info">
                                 <p className="section-title">LOCATION</p>
 
-                                <h2>This is where we are Located</h2>
+                                <h2>This is where your stay begins.</h2>
 
                                 <p className="section-description">
                                     National Road, Brgy. Tuhel, Ivana, Batanes
