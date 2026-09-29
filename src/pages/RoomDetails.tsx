@@ -4,6 +4,12 @@ import { supabase } from "../lib/supabaseClient"
 import { Bath, Bed, Check, DoorOpen, ShowerHead, Snowflake, Tv, Users, SquareDashed, ChevronRight, Wifi } from "lucide-react"
 import ReserveModal from "@/components/ReserveModal"
 
+const BUCKET = "gallery"
+
+function roomImageUrl(path: string): string {
+    return supabase.storage.from(BUCKET).getPublicUrl(path).data.publicUrl
+}
+
 type Room = {
     id: number
     room_number: string
@@ -41,6 +47,12 @@ function RoomDetails() {
     const [guestCount, setGuestCount] = useState(2)
     const [isReserveModalOpen, setReserveModalOpen] = useState(false)
     const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+
+    // resolved public URLs for this room's images, derived once room loads
+    const imageUrls = useMemo(
+        () => (room?.images ?? []).map(roomImageUrl),
+        [room?.images]
+    )
 
     const pricing = useMemo(() => {
         const nightlyRate = Number(room?.room_price) || 0
@@ -124,7 +136,7 @@ function RoomDetails() {
         return () => {
             window.removeEventListener("keydown", handleKeyDown)
         }
-    }, [lightboxIndex, room?.images?.length])
+    }, [lightboxIndex, imageUrls.length])
 
 
     function openLightbox(index: number) {
@@ -136,18 +148,18 @@ function RoomDetails() {
     }
 
     function showPrev() {
-        if (lightboxIndex === null || !room?.images?.length) return
+        if (lightboxIndex === null || imageUrls.length === 0) return
 
         setLightboxIndex(
-            (lightboxIndex - 1 + room.images.length) % room.images.length
+            (lightboxIndex - 1 + imageUrls.length) % imageUrls.length
         )
     }
 
     function showNext() {
-        if (lightboxIndex === null || !room?.images?.length) return
+        if (lightboxIndex === null || imageUrls.length === 0) return
 
         setLightboxIndex(
-            (lightboxIndex + 1) % room.images.length
+            (lightboxIndex + 1) % imageUrls.length
         )
     }
 
@@ -203,13 +215,15 @@ function RoomDetails() {
 
                 <div className="room-details-content">
                     <div className="room-details-images">
-                        {room.images?.map((image, index) => (
+                        {imageUrls.map((url, index) => (
                             <img
                                 key={index}
-                                src={image}
+                                src={url}
                                 alt={`Room ${room.room_name} - ${index + 1}`}
                                 onClick={() => openLightbox(index)}
                                 className="room-details-image"
+                                loading={index === 0 ? "eager" : "lazy"}
+                                decoding="async"
                             />
                         ))}
                     </div>
@@ -386,7 +400,7 @@ function RoomDetails() {
                 open={isReserveModalOpen}
                 onClose={() => setReserveModalOpen(false)}
                 roomName={room.room_name}
-                roomThumbnail={room.images?.[0]}
+                roomThumbnail={imageUrls[0]}
                 checkIn={checkIn}
                 checkOut={checkOut}
                 guestCount={guestCount}
@@ -394,7 +408,7 @@ function RoomDetails() {
                 total={pricing.total}
             />
 
-            {lightboxIndex !== null && room.images?.length > 0 && (
+            {lightboxIndex !== null && imageUrls.length > 0 && (
                 <div
                     className="room-lightbox-overlay"
                     onClick={closeLightbox}
@@ -421,7 +435,7 @@ function RoomDetails() {
                     </button>
 
                     <img
-                        src={room.images[lightboxIndex]}
+                        src={imageUrls[lightboxIndex]}
                         alt={`Room ${room.room_name} - ${lightboxIndex + 1}`}
                         className="room-lightbox-image"
                         onClick={(event) => event.stopPropagation()}

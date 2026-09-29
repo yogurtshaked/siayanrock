@@ -1,39 +1,79 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import '../index.css';
+import { supabase } from '../lib/supabaseClient';
 
-const FILTERS = ["All", "Hometel",  "Nakurang", "Tours", "Guests"];
+
+interface GalleryImage {
+    id: number;
+    path: string;          // exact file path in the bucket, e.g. "hometel/hometel-1.jpg"
+    category: string;
+    alt: string | null;
+}
+
+const BUCKET = "gallery";
 const INITIAL_COUNT = 9;
 const LOAD_MORE_COUNT = 6;
 
-const galleryImages = [
-    { src: "images/gallery/hometel-1.JPG", category: "Hometel" },
-    { src: "images/gallery/hometel-2.JPG", category: "Hometel" },
-    { src: "images/gallery/hometel-3.JPG", category: "Hometel" },
-    { src: "images/gallery/hometel-4.JPG", category: "Hometel" },
-    { src: "images/gallery/hometel-5.JPG", category: "Hometel" },
-    { src: "images/gallery/hometel-6.JPG", category: "Hometel" },
-    { src: "images/gallery/hometel-7.JPG", category: "Hometel" },
-    { src: "images/gallery/tours-1.jpg", category: "Tours" },
-    { src: "images/gallery/tours-2.jpg", category: "Tours" },
-    { src: "images/gallery/tours-3.JPG", category: "Tours" },
-    { src: "images/gallery/tours-4.JPG", category: "Tours" },
-    { src: "images/gallery/tours-5.JPG", category: "Tours" },
-    { src: "images/gallery/nakurang-1.jpg", category: "Nakurang" },
-    { src: "images/gallery/nakurang-2.jpg", category: "Nakurang" },
-    { src: "images/gallery/guests-1.jpg", category: "Guests" },
-    { src: "images/gallery/guests-2.jpg", category: "Guests" },
-    { src: "images/gallery/guests-3.jpg", category: "Guests" },
-];
+// Preferred tab order. Any new category in the database is added after these automatically.
+const CATEGORY_ORDER = ["Hometel", "Nakurang", "Tours", "Guests"];
+
+// Supabase can resize images on the fly, but only on the Pro plan.
+// Leave false on the free plan (otherwise images will fail to load).
+const USE_TRANSFORM = false;
+
+function imageUrl(path: string, width?: number): string {
+    const options =
+        USE_TRANSFORM && width
+            ? { transform: { width, quality: 75 } }
+            : undefined;
+    return supabase.storage.from(BUCKET).getPublicUrl(path, options).data.publicUrl;
+}
 
 function Gallery(){
+    const [images, setImages] = useState<GalleryImage[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
     const [activeFilter, setActiveFilter] = useState("All");
     const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
     const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
+    // Fetch once; filtering happens in memory
+    useEffect(() => {
+        async function fetchImages() {
+            const { data, error } = await supabase
+                .from("gallery_images")
+                .select("id, path, category, alt")
+                .order("sort_order", { ascending: true })
+                .order("id", { ascending: true });
+
+            if (error) {
+                console.error(error);
+                setError(true);
+            } else {
+                setImages(data as GalleryImage[]);
+            }
+            setLoading(false);
+        }
+
+        void fetchImages();
+    }, []);
+
+    // Filter tabs come from the data, so a new category needs no code change
+    const filters = useMemo(() => {
+        if (images.length === 0) return ["All", ...CATEGORY_ORDER];
+        const found = Array.from(new Set(images.map(img => img.category)));
+        const rank = (c: string) => {
+            const i = CATEGORY_ORDER.indexOf(c);
+            return i === -1 ? CATEGORY_ORDER.length : i;
+        };
+        return ["All", ...found.sort((a, b) => rank(a) - rank(b))];
+    }, [images]);
+
     const filteredImages =
         activeFilter === "All"
-            ? galleryImages
-            : galleryImages.filter(img => img.category === activeFilter);
+            ? images
+            : images.filter(img => img.category === activeFilter);
 
     const visibleImages = filteredImages.slice(0, visibleCount);
     const hasMore = visibleCount < filteredImages.length;
@@ -55,6 +95,24 @@ function Gallery(){
         setLightboxIndex(null);
     }
 
+    // Keyboard support: Escape to close, arrow keys to navigate
+    useEffect(() => {
+        if (lightboxIndex === null) return;
+
+        const total = visibleImages.length;
+
+        function handleKeyDown(e: KeyboardEvent) {
+            if (e.key === "Escape") setLightboxIndex(null);
+            if (e.key === "ArrowLeft")
+                setLightboxIndex(i => (i === null ? null : (i - 1 + total) % total));
+            if (e.key === "ArrowRight")
+                setLightboxIndex(i => (i === null ? null : (i + 1) % total));
+        }
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [lightboxIndex === null, visibleImages.length]);
+
     function showPrev() {
         if (lightboxIndex === null) return;
         setLightboxIndex((lightboxIndex - 1 + visibleImages.length) % visibleImages.length);
@@ -65,19 +123,7 @@ function Gallery(){
         setLightboxIndex((lightboxIndex + 1) % visibleImages.length);
     }
 
-    // Keyboard support: Escape to close, arrow keys to navigate
-    useEffect(() => {
-        if (lightboxIndex === null) return;
-
-        function handleKeyDown(e: KeyboardEvent) {
-            if (e.key === "Escape") closeLightbox();
-            if (e.key === "ArrowLeft") showPrev();
-            if (e.key === "ArrowRight") showNext();
-        }
-
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [lightboxIndex, visibleImages.length]);
+    const current = lightboxIndex !== null ? visibleImages[lightboxIndex] : null;
 
     return(
         <section>
@@ -90,7 +136,7 @@ function Gallery(){
                     </div>
 
                     <div className="filter-nav">
-                        {FILTERS.map(filter => (
+                        {filters.map(filter => (
                         <button
                             key={filter}
                             className={`filter-pill ${activeFilter === filter ? "active" : ""}`}
@@ -100,16 +146,43 @@ function Gallery(){
                         ))}
                     </div>
 
-                    <div className="gallery-page-grid">
-                        {visibleImages.map((img, i) => (
-                        <div
-                            className="gallery-page-item"
-                            key={i}
-                            onClick={() => openLightbox(i)}>
-                            <img src={img.src} alt={img.category} />
+                    {loading && (
+                        <div className="gallery-page-grid">
+                            {Array.from({ length: INITIAL_COUNT }).map((_, i) => (
+                                <div className="gallery-page-item gallery-skeleton" key={i} />
+                            ))}
                         </div>
-                        ))}
-                    </div>
+                    )}
+
+                    {error && (
+                        <p className="gallery-message">
+                            We couldn't load the gallery right now. Please refresh and try again.
+                        </p>
+                    )}
+
+                    {!loading && !error && filteredImages.length === 0 && (
+                        <p className="gallery-message">No photos in this category yet.</p>
+                    )}
+
+                    {!loading && !error && (
+                        <div className="gallery-page-grid">
+                            {visibleImages.map((img, i) => (
+                            <div
+                                className="gallery-page-item"
+                                key={img.id}
+                                onClick={() => openLightbox(i)}>
+                                <img
+                                    src={imageUrl(img.path, 500)}
+                                    alt={img.alt ?? img.category}
+                                    // first rows load right away, the rest wait until scrolled near
+                                    loading={i < 3 ? "eager" : "lazy"}
+                                    fetchPriority={i < 3 ? "high" : "auto"}
+                                    decoding="async"
+                                />
+                            </div>
+                            ))}
+                        </div>
+                    )}
 
                     {hasMore && (
                         <div className="load-more-wrapper">
@@ -121,7 +194,7 @@ function Gallery(){
                 </div>
             </div>
 
-            {lightboxIndex !== null && (
+            {current && (
                 <div className="lightbox-overlay" onClick={closeLightbox}>
                     <button
                         className="lightbox-close"
@@ -138,8 +211,8 @@ function Gallery(){
                     </button>
 
                     <img
-                        src={visibleImages[lightboxIndex].src}
-                        alt={visibleImages[lightboxIndex].category}
+                        src={imageUrl(current.path, 1600)}
+                        alt={current.alt ?? current.category}
                         className="lightbox-image"
                         onClick={(e) => e.stopPropagation()}/>
 

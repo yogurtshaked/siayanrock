@@ -158,7 +158,7 @@ function Home(){
             <div className="about-section" id="section">
                 <div className="about-content">
                     <div className="about-image">
-                        <img src="/public/images/siayanrock-img.jpg" alt="About Siayanrock Hometel" />
+                        <img src="images/siayanrock-img.jpg" alt="About Siayanrock Hometel" />
                     </div>
                     <div className="about-text">
                         <div className="about-title">

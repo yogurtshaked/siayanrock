@@ -8,6 +8,12 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Bed, Users } from "lucide-react";
 import ReserveModal from '../components/ReserveModal';
 
+const BUCKET = "gallery";
+
+function roomImageUrl(path: string): string {
+    return supabase.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+}
+
 function Accommodation(){
     interface Room {
         id: number;
@@ -97,8 +103,13 @@ function Accommodation(){
                                 <div className='room-card' key={room.id}>
                                     <div className='room-img'>
                                         <img
-                                            src={primaryImage || '/images/placeholder.jpg'}
+                                            src={primaryImage ? roomImageUrl(primaryImage) : '/images/placeholder.jpg'}
                                             alt={room.room_type}
+                                            loading="lazy"
+                                            decoding="async"
+                                            onError={(e) => {
+                                                e.currentTarget.src = '/images/placeholder.jpg';
+                                            }}
                                         />
                                     </div>
 
@@ -170,7 +181,7 @@ function Accommodation(){
                     open={reservingRoom !== null}
                     onClose={() => setReservingRoom(null)}
                     roomName={reservingRoom?.room_name}
-                    roomThumbnail={reservingRoom?.images?.[0]}
+                    roomThumbnail={reservingRoom?.images?.[0] ? roomImageUrl(reservingRoom.images[0]) : undefined}
                     guestCount={reservingRoom?.base_guests ?? 2}
                 />
         </section>

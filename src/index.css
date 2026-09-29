@@ -24,15 +24,19 @@
 
 /* ====================== Global Styles ======================*/
 :root{
+  --color-background: #F7F2E8;
+
   --color-yellow: #E8BC4E;
   --color-light-yellow: #FAF6EC;
   --color-dark-yellow: #C29D40;
 
-  --color-text: #54452F;
-  --color-section-title: #080708;
+  --color-green-background: #222411;
 
-  --color-background: #F7F2E8;
-  --color-description: #4d4d4d;
+  --color-text: #54452F;
+  --color-light-brown-text: #6B6555;
+  --color-section-header: #2E2E2A;
+  --color-section-description: #4D4D4D;
+
 }
 
 * {
@@ -69,7 +73,7 @@ h1 {
 h2 {
   font-size: 50px;
   font-style: italic;
-  color: #2E2E2A;
+  color: var(--color-section-header);
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
@@ -101,11 +105,11 @@ p, a, button {
     border-color 0.3s ease;
 }
 
-.navbar-scrolled, .navbar-gallery, .navbar-inquire {
-  background: rgba(255, 255, 255, 1);
-  /*backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);*/
-  border-bottom: 0.5px solid #E6DFC9;
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 0.5px solid #ededed;
 }
 
 .navbar-content {
@@ -152,11 +156,6 @@ p, a, button {
   color: var(--color-text);
 }
 
-.navbar-gallery .navbar-links a,
-.navbar-inquire .navbar-links a {
-  color: var(--color-text);
-}
-
 .book-button {
   padding: 0.3rem 0.8rem;
   border: none;
@@ -170,9 +169,7 @@ p, a, button {
   font-size: 14px;
 }
 
-.navbar-scrolled .book-button, 
-.navbar-gallery .book-button,
-.navbar-inquire .book-button{
+.navbar-scrolled .book-button{
   background: #222;
   border: 1px solid #222;
   color: white;
@@ -182,7 +179,7 @@ p, a, button {
 .hero-section {
   background:
     linear-gradient(rgba(0.6, 0.6, 0.6, 0.3), rgba(0.6, 0.6, 0.6, 0.3)),
-    url('./images/hero-bg.jpg') center / 75% auto no-repeat;
+    url('/images/hero-bg.jpg') center / 75% auto no-repeat;
   background-size: cover;  
   min-height: 100vh;
   display: flex;
@@ -366,7 +363,7 @@ p, a, button {
 }
 
 .section-description{
-  color: var(--color-description);
+  color: var(--color-section-description);
   font-size: 14px;
 }
 
@@ -391,10 +388,6 @@ p, a, button {
 /* ====================== About Section ======================*/
 .about-section {
   background-color: #F7F2E8;
-  background-image: url('/images/sand.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 
   /*background-image:
     repeating-linear-gradient(
@@ -537,11 +530,11 @@ p, a, button {
 }
 
 .accommodation-card {
-  background-image: url("/images/accommodation-bg.JPG");
+  background-image: url("/images/accommodation-bg.webp");
 }
 
 .tourpack-card {
-  background-image: url("/images/tours-bg.JPG"); 
+  background-image: url("/images/tours-bg.webp"); 
   background-size: 120%;
   background-position: left;
   background-repeat: no-repeat;
@@ -638,7 +631,7 @@ p, a, button {
 
 /* ====================== Gallery Section ======================*/
 .gallery-section {
-  background: #222411;
+  background: var(--color-green-background);
   padding: 140px;
   min-height: 100vh;
   text-align: center;
@@ -706,7 +699,6 @@ p, a, button {
 .gallery-wash {
   position: absolute;
   inset: 0;
-
   background: linear-gradient(
     to top,
     rgb(0 0 0 / 75%) 0%,
@@ -733,12 +725,8 @@ p, a, button {
   bottom: 0;
 
   padding: 50px 20px 20px;
-
   color: white;
-
   z-index: 2;
-
-  /* No background here — gradient is behind it */
   background: transparent;
 }
 
@@ -747,18 +735,13 @@ p, a, button {
   margin: 0 0 5px;
 
   text-align: left;
-
   color: rgb(230, 205, 130);
 
   font-size: 11px;
   font-weight: 500;
-
   letter-spacing: 0.12em;
-
   text-transform: uppercase;
 }
-
-
 .gallery-caption {
   margin: 0;
   color: white;
@@ -771,7 +754,7 @@ p, a, button {
 .inquire-section{
   background: 
     linear-gradient(rgba(0.6, 0.6, 0.6, 0.2), rgba(0.6, 0.6, 0.6, 0.2)),
-    url('./images/inquire-cover.JPG') center / 75% auto no-repeat;
+    url('/images/inquire-cover.webp') center / 75% auto no-repeat;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -824,7 +807,7 @@ p, a, button {
 
 .inquire-content button{
   background: white ;
-  color: #2e2e2a;
+  color: var(--color-section-header);
 }
 
 /* ====================== Footer Section ======================*/
@@ -855,7 +838,7 @@ p, a, button {
   font-size: 12px;
   letter-spacing: 1%;
   line-height: 20px;
-  color: #6B6555;
+  color: var(--color-light-brown-text);
   text-align: left;
   width: 250px;
 }
@@ -863,14 +846,14 @@ p, a, button {
 .footer-content h3{
   font-size: 13px;
   font-weight: 500;
-  color: #6B6555;
+  color: var(--color-light-brown-text);
   text-align: left;
   letter-spacing: 5%;
 }
 
 .footer-content a{
   font-size: 12px;
-  color: #6B6555;
+  color: var(--color-light-brown-text);
   text-decoration: none;
   text-align: left;
   transition: text-decoration 0.3s ease;
@@ -959,7 +942,7 @@ p, a, button {
 
 .footer-contact p{
   font-size: 12px;
-  color: #6B6555;
+  color: var(--color-light-brown-text);
   text-align: left;
 }
 
@@ -978,7 +961,7 @@ p, a, button {
 
 .footer-bottom p{
   font-size: 11px;
-  color: #6B6555;
+  color: var(--color-light-brown-text);
   text-align: center;
   margin-top:15px;
 }
@@ -1025,7 +1008,7 @@ p, a, button {
   font-style: italic;
   font-size: 40px;
   text-align: center;
-  color: #2E2E2A;
+  color: var(--color-section-header);
 }
 
 
@@ -1038,7 +1021,7 @@ p, a, button {
     rgba(28, 28, 28, 0.4) 42%,
     rgba(102, 102, 102, 0.3) 100%
   ),
-  url('./images/accommodation-bg.JPG') center / cover no-repeat;
+  url('/images/accommodation-bg.webp') center / cover no-repeat;
   background-size: cover;
   padding: 120px 140px;
   min-height: 80vh;
@@ -1093,7 +1076,7 @@ p, a, button {
 }
 
 .room-img img {
-  width: 100%;
+  width: 480px;
   height: 100%;
   border-radius: 4px;
   object-fit: cover;
@@ -1217,7 +1200,7 @@ p, a, button {
 /* ====================== Tours Page ======================*/
 .tours-hero-section {
   background:linear-gradient(rgba(0.0, 0.0, 0.0, 0.5), rgba(0.0, 0.0, 0.0, 0.5)),     
-    url('./images/tours-bg.JPG') center / 70% auto no-repeat;
+    url('/images/tours-bg.webp') center / 70% auto no-repeat;
   background-size: cover;
 
   padding: 120px 140px;
@@ -1345,7 +1328,7 @@ p, a, button {
   font-weight: 500;
   border: none;
   background: transparent;
-  color: #6B6555;
+  color: var(--color-light-brown-text);
   cursor: pointer;
   transition:
     background 0.25s ease,
@@ -1358,7 +1341,7 @@ p, a, button {
 }
 
 .filter-pill.active {
-  background: #222411;
+  background: var(--color-green-background);
   color: white;
 }
 
@@ -1372,6 +1355,16 @@ p, a, button {
 }
 
 .gallery-page-item {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(
+        90deg,
+        #e9e5da 25%,
+        #f3f0e8 50%,
+        #e9e5da 75%
+    );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+
   position: relative;  
   width: 100%;
   height: 250px;
@@ -1400,20 +1393,19 @@ p, a, button {
 }
 
 .load-more-btn {
-  padding: 0.3rem 1.2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5rem 1.2rem;
   font-size: 0.9rem;
-  border-radius: 50px;
-  border: 1px solid #3f3f3f;
-  background: transparent;
-  color: #3f3f3f;
+  background: var(--color-yellow);
+  color:white;
   cursor: pointer;
   transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 .load-more-btn:hover {
-  background: #2E2E2A;
-  border-color: #2E2E2A;
-  color: #fff;
+  background: var(--color-dark-yellow);
 }
 
 .gallery-page-item {
@@ -1485,6 +1477,31 @@ p, a, button {
 .lightbox-next {
   right: 24px;
 }
+
+.gallery-skeleton {
+  background: linear-gradient(
+        90deg,
+        #e9e5da 25%,
+        #f3f0e8 50%,
+        #e9e5da 75%
+    );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  cursor: default;
+  animation: gallery-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes gallery-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.gallery-message {
+  color: #6b6459;
+  padding: 48px 0;
+  text-align: center;
+}
+
 /* ====================== Inquire Page ======================*/
 .inquire-page-content {
   display: flex;
@@ -1568,6 +1585,11 @@ form{
   background: rgb(36, 36, 36);
 }
 
+.inquire-status { font-size: 14px; margin: 8px 0 16px; }
+.inquire-status.success { color: #2f6b3a; }
+.inquire-status.error { color: #b3412f; }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
 .location-section {
     background: #f8f8f4;
     padding: 80px 180px;
@@ -1587,34 +1609,34 @@ form{
 }
 
 .location-info h2 {
-    color: black;
-    font-size: 36px;
-    font-weight: 500;
-    margin: 8px 0 15px;
-    width: 220px;
+  color: black;
+  font-size: 36px;
+  font-weight: 500;
+  margin: 8px 0 15px;
+  width: 220px;
 }
 
 .location-info .section-description {
-    color: #6B6555;
-    line-height: 1.6;
+  color: var(color-text);
+  line-height: 1.6;
 }
 
 .location-map {
-    width: 100%;
-    height: 350px;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  height: 350px;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .location-map iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 /* ====================== Breadcrumb Navigation ======================*/
 .room-nav{
-  background:#222411;
+  background:var(--color-green-background);
   background-size: cover;
 
   padding: 65px 180px 0 180px;
@@ -1738,7 +1760,6 @@ form{
   font-weight: 500;
   font-style: normal;
   font-size: 20px;
-  color: #2E2E2A;
   margin-bottom: 15px;
 }
 
@@ -1885,7 +1906,7 @@ form{
 
 .booking-price-hint {
   margin: 0;
-  color: #6b6555;
+  color: var(--color-text);
   font-size: 14px;
 }
 
