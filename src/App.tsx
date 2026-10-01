@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider, Outlet, useLocation } from 'react-
 import ScrollToTop from './lib/ScrollToTop';
 import { supabase } from './lib/supabaseClient';
 
+import About from './pages/AboutUs';
+
 import Home from './pages/Home';
 import Accommodation from './pages/Accommodation';
 import RoomDetails from './pages/RoomDetails';
@@ -63,6 +65,7 @@ const router = createBrowserRouter([
       { path: "/tours", element: <Tours /> },
       { path: "/gallery", element: <Gallery /> },
       { path: "/inquire", element: <Inquire /> },
+      { path: "/about", element: <About /> },
     ],
   },
 ]);

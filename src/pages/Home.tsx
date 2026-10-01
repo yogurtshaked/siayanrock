@@ -168,7 +168,7 @@ function Home(){
                             It provides a relaxing atmosphere where visitors can feel at home while enjoying their trip. 
                             The hometel is ideal for travelers looking for convenience, comfort, and a peaceful environment.</p>
                         </div>
-                        <button className="learn-more landing-page-btn">Learn More&nbsp; <ArrowRight animateOnHover size={16} /></button>
+                        <button className="learn-more landing-page-btn" onClick={() => navigate("/about")}>Learn More&nbsp; <ArrowRight animateOnHover size={16} /></button>
                     </div>
                 </div>
             </div>

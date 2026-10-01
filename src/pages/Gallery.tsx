@@ -1,21 +1,20 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import '../index.css';
 import { supabase } from '../lib/supabaseClient';
 
 
 interface GalleryImage {
-    id: number;
-    path: string;          // exact file path in the bucket, e.g. "hometel/hometel-1.jpg"
+    path: string;          // full path in the bucket, e.g. "Hometel/hometel-1.webp"
     category: string;
-    alt: string | null;
+    alt: string;
 }
 
 const BUCKET = "gallery";
 const INITIAL_COUNT = 9;
 const LOAD_MORE_COUNT = 6;
 
-// Preferred tab order. Any new category in the database is added after these automatically.
-const CATEGORY_ORDER = ["Hometel", "Nakurang", "Tours", "Guests"];
+// Folder names in the bucket, in the order tabs should appear.
+const CATEGORIES = ["hometel", "nakurang", "tours", "guests"];
 
 // Supabase can resize images on the fly, but only on the Pro plan.
 // Leave false on the free plan (otherwise images will fail to load).
@@ -29,7 +28,15 @@ function imageUrl(path: string, width?: number): string {
     return supabase.storage.from(BUCKET).getPublicUrl(path, options).data.publicUrl;
 }
 
-function Gallery(){
+function isThumbnail(filename: string): boolean {
+    return filename.includes("-thumb");
+}
+
+function formatCategory(category: string): string {
+    return category.charAt(0).toUpperCase() + category.slice(1);
+}
+
+function Gallery() {
     const [images, setImages] = useState<GalleryImage[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -38,37 +45,46 @@ function Gallery(){
     const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
     const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-    // Fetch once; filtering happens in memory
+    // Filter tabs render immediately from the known category list, so they
+    // never wait on the storage fetch to appear.
+    const filters = ["All", ...CATEGORIES];
+
+    // Fetch once; list every category folder in parallel, skip thumbnails
     useEffect(() => {
         async function fetchImages() {
-            const { data, error } = await supabase
-                .from("gallery_images")
-                .select("id, path, category, alt")
-                .order("sort_order", { ascending: true })
-                .order("id", { ascending: true });
+            const results = await Promise.all(
+                CATEGORIES.map(async (category) => {
+                    const { data, error } = await supabase.storage
+                        .from(BUCKET)
+                        .list(category, { sortBy: { column: "name", order: "asc" } });
 
-            if (error) {
-                console.error(error);
+                    if (error) {
+                        console.error(`Failed to list ${category}:`, error);
+                        return [];
+                    }
+
+                    return (data ?? [])
+                        .filter((file) => file.name && !file.name.startsWith(".") && !isThumbnail(file.name))
+                        .map((file) => ({
+                            path: `${category}/${file.name}`,
+                            category,
+                            alt: `${category} photo`,
+                        }));
+                })
+            );
+
+            const allImages = results.flat();
+
+            if (allImages.length === 0) {
                 setError(true);
             } else {
-                setImages(data as GalleryImage[]);
+                setImages(allImages);
             }
             setLoading(false);
         }
 
         void fetchImages();
     }, []);
-
-    // Filter tabs come from the data, so a new category needs no code change
-    const filters = useMemo(() => {
-        if (images.length === 0) return ["All", ...CATEGORY_ORDER];
-        const found = Array.from(new Set(images.map(img => img.category)));
-        const rank = (c: string) => {
-            const i = CATEGORY_ORDER.indexOf(c);
-            return i === -1 ? CATEGORY_ORDER.length : i;
-        };
-        return ["All", ...found.sort((a, b) => rank(a) - rank(b))];
-    }, [images]);
 
     const filteredImages =
         activeFilter === "All"
@@ -125,7 +141,7 @@ function Gallery(){
 
     const current = lightboxIndex !== null ? visibleImages[lightboxIndex] : null;
 
-    return(
+    return (
         <section>
             <div className='gallery-page'>
                 <div className='gallery-page-content'>
@@ -137,12 +153,13 @@ function Gallery(){
 
                     <div className="filter-nav">
                         {filters.map(filter => (
-                        <button
-                            key={filter}
-                            className={`filter-pill ${activeFilter === filter ? "active" : ""}`}
-                            onClick={() => handleFilterChange(filter)}>
-                            {filter}
-                        </button>
+                            <button
+                                key={filter}
+                                className={`filter-pill ${activeFilter === filter ? "active" : ""}`}
+                                onClick={() => handleFilterChange(filter)}
+                            >
+                                {filter === "All" ? "All" : formatCategory(filter)}
+                            </button>
                         ))}
                     </div>
 
@@ -154,7 +171,7 @@ function Gallery(){
                         </div>
                     )}
 
-                    {error && (
+                    {error && !loading && (
                         <p className="gallery-message">
                             We couldn't load the gallery right now. Please refresh and try again.
                         </p>
@@ -167,19 +184,19 @@ function Gallery(){
                     {!loading && !error && (
                         <div className="gallery-page-grid">
                             {visibleImages.map((img, i) => (
-                            <div
-                                className="gallery-page-item"
-                                key={img.id}
-                                onClick={() => openLightbox(i)}>
-                                <img
-                                    src={imageUrl(img.path, 500)}
-                                    alt={img.alt ?? img.category}
-                                    // first rows load right away, the rest wait until scrolled near
-                                    loading={i < 3 ? "eager" : "lazy"}
-                                    fetchPriority={i < 3 ? "high" : "auto"}
-                                    decoding="async"
-                                />
-                            </div>
+                                <div
+                                    className="gallery-page-item"
+                                    key={img.path}
+                                    onClick={() => openLightbox(i)}>
+                                    <img
+                                        src={imageUrl(img.path, 500)}
+                                        alt={img.alt}
+                                        // first rows load right away, the rest wait until scrolled near
+                                        loading={i < 3 ? "eager" : "lazy"}
+                                        fetchPriority={i < 3 ? "high" : "auto"}
+                                        decoding="async"
+                                    />
+                                </div>
                             ))}
                         </div>
                     )}
@@ -212,9 +229,9 @@ function Gallery(){
 
                     <img
                         src={imageUrl(current.path, 1600)}
-                        alt={current.alt ?? current.category}
+                        alt={current.alt}
                         className="lightbox-image"
-                        onClick={(e) => e.stopPropagation()}/>
+                        onClick={(e) => e.stopPropagation()} />
 
                     <button
                         className="lightbox-nav lightbox-next"

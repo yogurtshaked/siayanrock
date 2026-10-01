@@ -24,7 +24,7 @@
 
 /* ====================== Global Styles ======================*/
 :root{
-  --color-background: #F7F2E8;
+  --color-background: #FBF9F3;
 
   --color-yellow: #E8BC4E;
   --color-light-yellow: #FAF6EC;
@@ -387,7 +387,7 @@ p, a, button {
 
 /* ====================== About Section ======================*/
 .about-section {
-  background-color: #F7F2E8;
+  background-color: var(--color-light-yellow);
 
   /*background-image:
     repeating-linear-gradient(
@@ -411,29 +411,79 @@ p, a, button {
 }
 
 .about-content {
-  width: fit-content;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
+  --scallop: 26px;   /* spacing between perforations */
+  --hole: 8px;       /* size of each perforation */
 
-  background: white;
-  border-radius: 5px;
+  position: relative;
+  width: fit-content;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 44px 48px;   /* extra room so content clears the perforated edge */
 
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 30px;
+
+  /* drop-shadow lives here because the mask below would clip a box-shadow */
+  filter: drop-shadow(0 4px 10px rgba(84, 69, 47, 0.3));
+}
+
+/* the paper, with the perforated stamp edge cut out of it */
+.about-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: white;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.33  0 0 0 0 0.27  0 0 0 0 0.18  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+
+  --top:    radial-gradient(circle var(--hole) at 50% 0,    #0000 98%, #000) top    / var(--scallop) var(--hole) repeat-x;
+  --bottom: radial-gradient(circle var(--hole) at 50% 100%, #0000 98%, #000) bottom / var(--scallop) var(--hole) repeat-x;
+  --left:   radial-gradient(circle var(--hole) at 0 50%,    #0000 98%, #000) left   / var(--hole) var(--scallop) repeat-y;
+  --right:  radial-gradient(circle var(--hole) at 100% 50%, #0000 98%, #000) right  / var(--hole) var(--scallop) repeat-y;
+  --fill:   linear-gradient(#000 0 0) center / calc(100% - 2 * var(--hole)) calc(100% - 2 * var(--hole)) no-repeat;
+
+  -webkit-mask: var(--top), var(--bottom), var(--left), var(--right), var(--fill);
+          mask: var(--top), var(--bottom), var(--left), var(--right), var(--fill);
+}
+
+/* thin inner frame, like the printed border on a stamp */
+.about-content::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(84, 69, 47, 0.25);
+  pointer-events: none;
+}
+
+/* keep the photo and text above the frame line */
+.about-image,
+.about-text {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .about-content {
+    flex-direction: column;
+    padding: 36px 28px;
+    gap: 20px;
+  }
+  .about-image { width: 100%; }
+  .about-text { padding: 0; align-items: flex-start; }
 }
 
 .about-image {
-  width: 480px;
+  width: 420px;
   flex-shrink: 0;
   padding: 0;
 }
 
 .about-image img {
-  width: 100%;
-  height: auto;
+  height: 380px;
+  width: auto;
   display: block;
 }
 
@@ -812,7 +862,7 @@ p, a, button {
 
 /* ====================== Footer Section ======================*/
 .footer-section{
-  background: var(--color-background);
+  background: #F7F2E8;
   padding: 40px 140px;
   min-height: 100px;
   border-top: 1px solid #E6DFC9;
@@ -993,7 +1043,7 @@ p, a, button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 60px;
+  gap: 50px;
 }
 
 .page-title{
@@ -1288,6 +1338,7 @@ p, a, button {
 .gallery-page, .inquire-page{
   display: flex;
   flex-direction: column;
+  background: var(--color-background);
 }
 
 .gallery-page-content, .inquire-page-content{
@@ -1314,18 +1365,21 @@ p, a, button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
-  width: fit-content;
+  padding: 0.2rem;
+  gap: 0.2rem;
   margin: 2rem auto;
-  background: #f1f1f1;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.05),
 }
 
 .filter-pill {
-  padding: 0.6rem 2rem;
+  padding: 0.7rem 2rem;
   font-size: 14px;
   font-weight: 500;
+  border-radius: 6px;
   border: none;
   background: transparent;
   color: var(--color-light-brown-text);
@@ -1397,7 +1451,7 @@ p, a, button {
   flex-direction: row;
   align-items: center;
   padding: 0.5rem 1.2rem;
-  font-size: 0.9rem;
+  font-size: 14px; 
   background: var(--color-yellow);
   color:white;
   cursor: pointer;
@@ -1591,7 +1645,7 @@ form{
 .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .location-section {
-    background: #f8f8f4;
+    background: white;
     padding: 80px 180px;
 }
 
@@ -2036,7 +2090,7 @@ form{
 .bookroom-container {
   width: 100%;
   padding: 0 180px;
-  margin: 0 auto;
+  margin: 0 about-usto;
   display: flex;
   flex-direction: column;
 }
@@ -2144,7 +2198,7 @@ form{
 }
 
 .modify-button {
-    margin-left: auto;
+    margin-left: about-usto;
     border: none;
     background: transparent;
     color: #1555a5;
@@ -2209,7 +2263,7 @@ form{
 }
 
 .save-modify-button {
-    margin-left: auto;
+    margin-left: about-usto;
     color: #315d50;
 }
 
@@ -2708,4 +2762,1316 @@ form{
 .reserve-modal-option-chevron {
   color: #b5b5b5;
   flex-shrink: 0;
+}
+.about-us {
+  --about-us-line: #E6DFC9;
+
+  background: var(--color-background);
+  color: var(--color-section-description);
+}
+
+.about-us-wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+/* ====================== Typography ====================== */
+.about-us .about-us-h2,
+.about-us .about-us-h3 {
+  font-family: "Instrument Serif", serif;
+  font-weight: 500;
+  color: var(--color-section-header);
+  margin: 0;
+}
+
+.about-us .about-us-h2 {
+  font-size: 56px;
+  font-style: italic;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.about-us .about-us-h2 em {
+  font-style: normal;
+  color: var(--color-dark-yellow);
+}
+
+.about-us .about-us-h3 {
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.about-us-lead {
+  margin: 0;
+  font-size: 15px;
+  line-height: 27px;
+}
+
+.about-us-lead strong {
+  display: inline;
+  font-weight: 700;
+}
+
+.about-us-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 0.5rem 1.1rem;
+  background: var(--color-yellow);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s;
+}
+
+.about-us-btn:hover {
+  background: var(--color-dark-yellow);
+}
+
+/* ====================== Story ====================== */
+
+.about-us-story {
+  position: relative;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
+    url("/images/accommodation-bg.webp");
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.about-us-story-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ====================== Story (postcard) ====================== */
+
+.about-us-story-overlay {
+  --scallop: 16px;   /* spacing between the perforations */
+  --hole: 5px;       /* size of each perforation */
+
+  position: relative;
+  z-index: 1;
+  width: min(700px, 90%);
+  padding: 64px 72px;
+  text-align: center;
+
+  /* drop-shadow goes here because the mask below would clip a box-shadow */
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.35));
+}
+
+/* the paper, with the perforated edge cut out of it */
+.about-us-story-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: #fbf9f3;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.33  0 0 0 0 0.27  0 0 0 0 0.18  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+
+  --top:    radial-gradient(circle var(--hole) at 50% 0,    #0000 98%, #000) top    / var(--scallop) var(--hole) repeat-x;
+  --bottom: radial-gradient(circle var(--hole) at 50% 100%, #0000 98%, #000) bottom / var(--scallop) var(--hole) repeat-x;
+  --left:   radial-gradient(circle var(--hole) at 0 50%,    #0000 98%, #000) left   / var(--hole) var(--scallop) repeat-y;
+  --right:  radial-gradient(circle var(--hole) at 100% 50%, #0000 98%, #000) right  / var(--hole) var(--scallop) repeat-y;
+  --fill:   linear-gradient(#000 0 0) center / calc(100% - 2 * var(--hole)) calc(100% - 2 * var(--hole)) no-repeat;
+
+  -webkit-mask: var(--top), var(--bottom), var(--left), var(--right), var(--fill);
+          mask: var(--top), var(--bottom), var(--left), var(--right), var(--fill);
+}
+
+/* thin inner frame, like the printed border on a stamp */
+.about-us-story-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(84, 69, 47, 0.25);
+  pointer-events: none;
+}
+
+/* text is now on light paper, so switch from white to your dark tones */
+.about-us-story .about-us-h2 {
+  color: var(--color-section-header);
+  margin-bottom: 20px;
+}
+
+.about-us-story .about-us-lead {
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--color-section-description);
+}
+.about-us-text, .about-us-text p {
+  text-align: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+/* ====================== Two Businesses ====================== */
+
+.about-us-family {
+  padding: 70px 280px;
+  background: var(--color-background);
+}
+
+.about-us-family-grid {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  /*border-top: 1px solid var(--about-us-line);
+  border-bottom: 1px solid var(--about-us-line);*/
+}
+
+.about-us-divider {
+  background: var(--about-us-line);
+}
+
+.about-us-biz {
+  padding: 48px 48px 48px 0;
+}
+
+.about-us-divider + .about-us-biz {
+  padding: 48px 0 48px 48px;
+}
+
+.about-us-tag {
+  margin: 0 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-dark-yellow);
+}
+
+.about-us-biz .about-us-h3 {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.about-us-biz p {
+  font-size: 14px;
+  line-height: 24px;
+  max-width: 440px;
+}
+
+.about-us-owners-line {
+  padding-top: 34px;
+  text-align: center;
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--color-text);
+}
+
+/* ====================== Perks ====================== */
+
+.about-us-perks {
+  padding: 20px 180px 80px 180px;
+}
+
+.about-us-viewdeck {
+  position: relative;
+  height: 600px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background: var(--color-green-background); /* shows while images load */
+}
+
+/* slides crossfade, with a slow zoom on the active one */
+.about-us-viewdeck-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1.1s ease, transform 6s ease;
+}
+.about-us-viewdeck-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.about-us-viewdeck-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(0 0 0 / 70%), rgb(0 0 0 / 5%) 65%);
+  pointer-events: none;
+}
+
+.about-us-viewdeck-copy {
+  position: relative;
+  z-index: 2;
+}
+
+/* arrows */
+.about-us-viewdeck-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.about-us-viewdeck-arrow:hover { background: var(--color-yellow); }
+.about-us-viewdeck-arrow--prev { left: 18px; }
+.about-us-viewdeck-arrow--next { right: 18px; }
+
+/* dots */
+.about-us-viewdeck-dots {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+  z-index: 3;
+  display: flex;
+  gap: 4px;
+}
+.about-us-viewdeck-dots button {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: width 0.3s, background 0.3s;
+}
+.about-us-viewdeck-dots button.is-active {
+  width: 22px;
+  background: var(--color-yellow);
+}
+
+
+.about-us-viewdeck-copy {
+  max-width: 560px;
+  padding: 44px;
+  color: #fff;
+}
+
+.about-us-viewdeck-tag {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(230, 205, 130);
+}
+
+.about-us-viewdeck-copy .about-us-h3 {
+  font-size: 44px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.about-us-viewdeck-copy p {
+  font-size: 14px;
+  line-height: 23px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.about-us-bikes {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 18px;
+  padding: 26px 34px;
+  background: var(--color-light-yellow);
+  border: 1px solid var(--about-us-line);
+  border-radius: 8px;
+}
+
+.about-us-bikes-free {
+  flex-shrink: 0;
+  padding-right: 28px;
+  border-right: 1px solid var(--about-us-line);
+  font-family: "Instrument Serif", serif;
+  font-size: 44px;
+  font-style: italic;
+  color: var(--color-dark-yellow);
+}
+
+.about-us-bikes .about-us-h3 {
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+
+.about-us-bikes p {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+/* ====================== Five Nearby Spots ====================== */
+
+.about-us-nearby {
+  background: var(--color-green-background);
+  padding: 130px 40px;
+}
+
+.about-us-nearby-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.about-us-nearby-text h2 {
+  max-width: 560px;
+  color: #fff;
+}
+
+.about-us-nearby .about-us-lead {
+  max-width: 360px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.about-us-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+  grid-template-rows: 220px 220px;
+  gap: 14px;
+}
+
+.about-us-spot {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #3a3d1c, #222411);
+  box-shadow: 0 8px 22px rgb(0 0 0 / 25%);
+}
+
+/*
+.about-us-spot--feature {
+  grid-row: span 2;
+}*/
+
+.about-us-spot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.about-us-spot:hover img {
+  transform: scale(1.06);
+}
+
+.about-us-spot-wash {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.45s ease;
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 80%) 0%,
+    rgb(0 0 0 / 40%) 35%,
+    rgb(0 0 0 / 5%) 70%
+  );
+}
+
+.about-us-spot:hover .about-us-spot-wash {
+  opacity: 0.85;
+}
+
+.about-us-spot-num {
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  font-family: "Instrument Serif", serif;
+  font-size: 34px;
+  line-height: 1;
+  color: #fff;
+}
+
+
+.about-us-spot-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 50px 20px 18px;
+  color: #fff;
+}
+
+.about-us-spot-kind {
+  margin: 0 0 4px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(230, 205, 130);
+}
+
+.about-us-spot .about-us-h3 {
+  font-size: 24px;
+  color: #fff;
+}
+
+/*
+.about-us-spot--feature .about-us-h3 {
+  font-size: 36px;
+}*/
+
+.about-us-spot-desc {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  transition:
+    max-height 0.5s ease,
+    opacity 0.4s ease,
+    margin 0.4s ease;
+}
+
+.about-us-spot:hover .about-us-spot-desc {
+  max-height: 80px;
+  opacity: 1;
+  margin-top: 8px;
+}
+
+.about-us-spot-distance {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: rgb(230, 205, 130);
+}
+
+.about-us-spot-distance::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--color-yellow);
+}
+/* ====================== Responsive ====================== */
+
+@media (max-width: 1024px) {
+  .about-us .about-us-h2 {
+    font-size: 34px;
+  }
+
+  .about-us-story {
+    padding: 100px 20px 60px;
+  }
+
+  .about-us-story-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-us-collage {
+    height: 400px;
+  }
+
+  .about-us-collage-big {
+    height: 320px;
+  }
+
+  .about-us-collage-small {
+    height: 180px;
+  }
+
+  .about-us-family,
+  .about-us-perks {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .about-us-family-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-us-divider {
+    display: none;
+  }
+
+  .about-us-biz,
+  .about-us-divider + .about-us-biz {
+    padding: 32px 0;
+  }
+
+  .about-us-viewdeck {
+    height: 400px;
+  }
+
+  .about-us-viewdeck-copy {
+    padding: 24px;
+  }
+
+  .about-us-viewdeck-copy .about-us-h3 {
+    font-size: 32px;
+  }
+
+  .about-us-bikes {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .about-us-bikes-free {
+    padding: 0;
+    border: 0;
+    font-size: 36px;
+  }
+
+  .about-us-nearby {
+    padding: 80px 20px;
+  }
+
+  .about-us-nearby-text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .about-us-bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-rows: 240px;
+  }
+
+  .about-us-spot--feature {
+    grid-row: auto;
+    height: 320px;
+  }
+
+  .about-us-spot-desc {
+    max-height: 80px;
+    opacity: 1;
+    margin-top: 8px;
+  }
+}
+
+/* Tour packages page — paste into index.css */
+.tours-packages {
+  --tp-ink: #243639;
+  --tp-muted: #788486;
+  --tp-teal: #222411;
+  --tp-teal-dark: #222411;
+  --tp-sea-mist: #e4eeec;
+  --tp-paper: #fffefa;
+  --tp-page: #f5f3ed;
+  --tp-line: #e3e5dd;
+  --tp-gold: #c58a55;
+}
+
+
+
+/* Package navigation sits at the top of the page body. */
+.tours-packages-switcher {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 6px;
+  margin-bottom: 36px;
+  border: 1px solid var(--tp-line);
+  border-radius: 8px;
+  background: var(--tp-paper);
+}
+
+.tours-packages-pill {
+  display: flex;
+  flex-direction: column;
+  min-height: 56px;
+  align-items: left;
+  gap: 2px;
+  padding: 10px 17px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #657477;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.tours-packages-pill:hover {
+  background: #f1f5f0;
+}
+
+.tours-packages-pill:focus-visible,
+.tours-packages-day-head:focus-visible,
+.tours-packages-btn:focus-visible {
+  outline: 3px solid #96c8c1;
+  outline-offset: 3px;
+}
+
+.tours-packages-pill[aria-selected='true'] {
+  background: var(--tp-teal);
+  color: #fff;
+  box-shadow: 0 5px 14px #245d6121;
+}
+
+.tours-packages-pill-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+}
+
+.tours-packages-pill-meta {
+  display: block;
+  margin-top: 2px;
+  font-size: 10px;
+  opacity: 0.76;
+}
+
+.tours-packages-panel-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 286px;
+  gap: 18px;
+  align-items: start;
+}
+
+.tours-packages-main-column {
+  min-width: 0;
+}
+
+.tours-packages-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 1px 2px 17px;
+}
+
+.tours-packages-eyebrow {
+  margin: 0 0 5px;
+  color: #C29D40;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.tours-packages-heading h3 {
+  margin: 0 0 5px;
+  color: var(--tp-ink);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.tours-packages-intro {
+  max-width: 650px;
+  margin: 0;
+  color: var(--tp-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.tours-packages-stop-count {
+  flex: 0 0 auto;
+  padding: 7px 11px;
+  border: 1px solid #c8d9d5;
+  border-radius: 99px;
+  color: var(--tp-muted);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.tours-packages-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+  margin-bottom: 14px;
+  border: 1px solid var(--tp-line);
+  border-radius: 12px;
+  background: var(--tp-paper);
+}
+
+.tours-packages-fact {
+  display: flex;
+  min-height: 65px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 11px 14px;
+}
+
+.tours-packages-fact + .tours-packages-fact {
+  border-left: 1px solid var(--tp-line);
+}
+
+.tours-packages-fact span {
+  margin-bottom: 3px;
+  color: #89938f;
+  font-size: 11px;
+}
+
+.tours-packages-fact strong {
+  color: #3e5554;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tours-packages-itinerary {
+  padding: 17px 19px 13px;
+  border: 1px solid var(--tp-line);
+  border-radius: 13px;
+  background: var(--tp-paper);
+}
+
+.tours-packages-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--tp-line);
+}
+
+.tours-packages-section-heading .tours-packages-eyebrow {
+  margin-bottom: 3px;
+}
+
+.tours-packages-section-heading h3,
+.tours-packages-detail-title h3 {
+  margin: 0;
+  color: var(--tp-ink);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.tours-packages-section-heading > span {
+  color: #89938f;
+  font-size: 11px;
+}
+
+.tours-packages-day {
+  border-bottom: 1px solid #eaebe5;
+}
+
+.tours-packages-day:last-child {
+  border-bottom: 0;
+}
+
+.tours-packages-day-head {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 1px;
+  border: 0;
+  background: transparent;
+  color: var(--tp-ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.tours-packages-day-heading {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.tours-packages-day-n {
+  flex: 0 0 auto;
+  color: #C29D40;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tours-packages-day-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.tours-packages-chev {
+  flex: 0 0 auto;
+  color: #6e8280;
+  transition: transform 180ms ease;
+}
+
+.tours-packages-day-head[aria-expanded='true'] .tours-packages-chev {
+  transform: rotate(180deg);
+}
+
+.tours-packages-day-content {
+  padding: 0 30px 14px 1px;
+}
+
+.tours-packages-stops {
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 10px;
+  row-gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tours-packages-stop {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  color: #5e706c;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.tours-packages-stop::before {
+  width: 4px;
+  height: 4px;
+  flex: 0 0 4px;
+  border-radius: 50%;
+  background: #83a69c;
+  content: '';
+  transform: translateY(-2px);
+}
+
+.tours-packages-stop.tours-packages-timed::before {
+  display: none;
+}
+
+.tours-packages-time {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 6px;
+  border-radius: 99px;
+  background: var(--tp-sea-mist);
+  color: var(--tp-teal-dark);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.tours-packages-note {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-left: 2px solid var(--tp-gold);
+  background: #fbf5eb;
+  color: #806749;
+  font-size: 10px;
+}
+
+.tours-packages-details {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 12px;
+  margin-top: 13px;
+}
+
+.tours-packages-detail-card {
+  padding: 15px 17px 16px;
+  border: 1px solid var(--tp-line);
+  border-radius: 12px;
+  background: var(--tp-paper);
+}
+
+.tours-packages-detail-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 18px;
+}
+
+.tours-packages-detail-title > span {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-light-yellow);
+  color: var(--color-dark-yellow);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.tours-packages-detail-title h3 {
+  font-size: 15px;
+}
+
+.tours-packages-detail-card ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px 13px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tours-packages-detail-card li {
+  position: relative;
+  padding-left: 13px;
+  color: #667570;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.tours-packages-inclusions li::before,
+.tours-packages-exclusions li::before {
+  position: absolute;
+  left: 0;
+  color: #4c9181;
+  font-weight: 700;
+  content: '✓';
+}
+
+.tours-packages-exclusions li::before {
+  color: #bd775e;
+  content: '–';
+}
+
+.tours-packages-aside {
+  position: sticky;
+  top: 20px;
+}
+
+.tours-packages-booking-card {
+  padding: 21px 20px 18px;
+  border: 1px solid #25595d;
+  border-radius: 6px;
+  background: var(--tp-teal);
+  color: #fff;
+  box-shadow: 0 8px 24px #28575b1a;
+}
+
+.tours-packages-booking-card .tours-packages-eyebrow {
+  color: #c6ded5;
+}
+
+.tours-packages-booking-card h3 {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.tours-packages-price {
+  margin: 5px 0 0;
+  color: #e3eee6;
+  font-size: 12px;
+}
+
+.tours-packages-booking-rule {
+  height: 1px;
+  margin: 16px 0;
+  background: #ffffff37;
+}
+
+.tours-packages-booking-card h4 {
+  margin: 0 0 9px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.tours-packages-highlights {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tours-packages-highlights li {
+  position: relative;
+  padding-left: 17px;
+  color: #e1ece5;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.tours-packages-highlights li::before {
+  position: absolute;
+  left: 0;
+  color: #edc27e;
+  content: '✦';
+}
+
+.tours-packages-btn {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 19px;
+  padding: 0.5rem 1.1rem;
+  background: var(--color-yellow);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.tours-packages-btn:hover {
+  background: var(--color-dark-yellow);
+  transform: translateY(-1px);
+}
+
+.tours-packages-contact-note {
+  margin: 10px 0 0;
+  color: #c8dcd4;
+  font-size: 9px;
+  text-align: center;
+}
+
+.tours-packages-footnote {
+  margin: 12px 2px 0;
+  color: #89938f;
+  font-size: 9px;
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .tours-packages-panel-layout {
+    grid-template-columns: minmax(0, 1fr) 250px;
+    gap: 13px;
+  }
+
+  .tours-packages {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .tours-packages-day-content {
+    padding-right: 5px;
+  }
+}
+
+@media (max-width: 720px) {
+  .tours-packages-panel-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tours-packages-aside {
+    position: static;
+  }
+
+  .tours-packages-booking-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(160px, 0.8fr);
+    column-gap: 20px;
+  }
+
+  .tours-packages-booking-card > .tours-packages-eyebrow,
+  .tours-packages-booking-card > h3,
+  .tours-packages-booking-card > .tours-packages-price,
+  .tours-packages-booking-rule {
+    grid-column: 1 / -1;
+  }
+
+  .tours-packages-booking-rule {
+    margin: 12px 0;
+  }
+
+  .tours-packages-booking-card h4,
+  .tours-packages-highlights {
+    grid-column: 1;
+  }
+
+  .tours-packages-booking-card h4 {
+    align-self: end;
+  }
+
+  .tours-packages-highlights {
+    grid-row: span 2;
+  }
+
+  .tours-packages-btn,
+  .tours-packages-contact-note {
+    grid-column: 2;
+  }
+
+  .tours-packages-btn {
+    align-self: end;
+    margin-top: 0;
+  }
+
+  .tours-packages-contact-note {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 540px) {
+  .tours-packages {
+    padding: 17px 14px 36px;
+  }
+
+  .tours-packages-switcher {
+    gap: 4px;
+    padding: 4px;
+    margin-bottom: 17px;
+  }
+
+  .tours-packages-pill {
+    min-height: 52px;
+    justify-content: center;
+    padding: 8px 4px;
+    text-align: center;
+  }
+
+  .tours-packages-pill-label {
+    font-size: 11px;
+  }
+
+  .tours-packages-pill-meta {
+    font-size: 8px;
+    line-height: 1.3;
+  }
+
+  .tours-packages-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 13px;
+  }
+
+  .tours-packages-heading h2 {
+    font-size: 24px;
+  }
+
+  .tours-packages-fact {
+    min-height: 61px;
+    padding: 9px 8px;
+  }
+
+  .tours-packages-fact span {
+    font-size: 8px;
+  }
+
+  .tours-packages-fact strong {
+    font-size: 9px;
+    line-height: 1.35;
+  }
+
+  .tours-packages-itinerary {
+    padding: 14px 13px 10px;
+  }
+
+  .tours-packages-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .tours-packages-section-heading h3 {
+    font-size: 17px;
+  }
+
+  .tours-packages-day-head {
+    gap: 8px;
+    padding: 12px 0;
+  }
+
+  .tours-packages-day-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .tours-packages-day-title {
+    font-size: 13px;
+  }
+
+  .tours-packages-day-content {
+    padding: 0 0 12px;
+  }
+
+  .tours-packages-stops {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .tours-packages-stop {
+    font-size: 10px;
+  }
+
+  .tours-packages-details {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .tours-packages-detail-card {
+    padding: 14px;
+  }
+
+  .tours-packages-detail-card ul {
+    gap: 7px 9px;
+  }
+
+  .tours-packages-detail-card li {
+    font-size: 9px;
+  }
+
+  .tours-packages-booking-card {
+    display: block;
+    padding: 18px;
+  }
+
+  .tours-packages-booking-rule {
+    margin: 14px 0;
+  }
+
+  .tours-packages-booking-card h4 {
+    margin-bottom: 9px;
+  }
+
+  .tours-packages-highlights {
+    gap: 7px;
+  }
+
+  .tours-packages-btn {
+    margin-top: 16px;
+  }
+
+  .tours-packages-footnote {
+    text-align: left;
+    line-height: 1.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tours-packages *,
+  .tours-packages *::before,
+  .tours-packages *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

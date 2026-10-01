@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 const NAVBAR_VARIANTS: Record<string, string> = {
     "/gallery": "navbar-scrolled",
     "/inquire": "navbar-scrolled",
+    "/about": "navbar-scrolled",
 };
 
 const NAVBAR_PREFIX_VARIANTS: [string, string][] = [
