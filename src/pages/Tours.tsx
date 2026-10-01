@@ -16,7 +16,7 @@ import {
 const countStops = (pkg: TourPackage): number =>
     pkg.plan.reduce((total, day) => total + day.stops.length, 0);
 
-const dayLabel = (index: number, lastIndex: number, day: Day): string =>
+const dayLabel = (index: number): string =>
     `Day ${index + 1}`;
 
 interface DayCardProps {
@@ -120,7 +120,7 @@ function Itinerary({ pkg }: { pkg: TourPackage }) {
                 <DayCard
                     key={`${pkg.id}-${index}`}
                     day={day}
-                    label={dayLabel(index, pkg.plan.length - 1, day)}
+                    label={dayLabel(index)}
                     open={openDays.has(index)}
                     onToggle={() => toggleDay(index)}
                 />
