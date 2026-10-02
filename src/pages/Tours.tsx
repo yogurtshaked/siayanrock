@@ -14,8 +14,6 @@ import {
     type TourPackage,
 } from './tourPackages';
 
-const countStops = (pkg: TourPackage): number =>
-    pkg.plan.reduce((total, day) => total + day.stops.length, 0);
 
 const dayLabel = (index: number): string =>
     `Day ${index + 1}`;
@@ -176,7 +174,6 @@ function Tours() {
                     <div className="tours-packages-main-column">
                         <header className="tours-packages-heading">
                             <div><h3 id="tours-packages-heading">{pkg.label} Batanes Tour Package</h3></div>
-                            {/*<span className="tours-packages-stop-count">{countStops(pkg)} itinerary stops</span>*/}
                         </header>
 
                         <section className="tours-packages-itinerary" aria-label="Day-by-day tour itinerary">

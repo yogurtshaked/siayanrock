@@ -97,12 +97,6 @@ const SABTANG_DAY: Day = {
     ],
 };
 
-// South Batan on its own day
-const SOUTH_DAY: Day = {
-    title: "South Batan Tour",
-    stops: SOUTH_STOPS,
-};
-
 const FREE_DAY: Day = {
     title: "Free Day — Optional Tours",
     stops: names([
