@@ -2,7 +2,8 @@ import '../index.css';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
-import { MoveUpRight } from 'lucide-react';
+import ScrollHint from '../components/Scrollhint'
+import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
 import {
     CONTACT,
     EXCLUSIONS,
@@ -64,7 +65,6 @@ function DayCard({ day, label, open, onToggle }: DayCardProps) {
                     <ul
                     className="tours-packages-stops"
                     style={{
-                        gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
                         gridTemplateRows: `repeat(${rows}, auto)`,
                     }}
                     >
@@ -140,15 +140,13 @@ function Tours() {
                     <div className='tours-text page-header'>
                         <h2>Mavien Point Travel & Tour</h2>
                         <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
+                        <ScrollHint targetId='tours-packages-body' />
                     </div>
                 </div>
             </div>
 
-            <div className='tours-packages page-body'>
-                <div className='tours-packages-title page-title'>
-                    <p className="section-title">OUR TOURS</p>
-                    <h3>Curated Batanes itineraries</h3>
-                </div>
+            <div id='tours-packages-body' className='tours-packages page-body'>
+                
             <div className="tours-packages-inner">
                 <div className="tours-packages-switcher" role="tablist" aria-label="Choose a tour package">
                     {PACKAGES.map((item) => (
@@ -177,27 +175,12 @@ function Tours() {
                 >
                     <div className="tours-packages-main-column">
                         <header className="tours-packages-heading">
-                            <div>
-                                <h3 id="tours-packages-heading">{pkg.label} Batanes itinerary</h3>
-                            </div>
-                            <span className="tours-packages-stop-count">{countStops(pkg)} itinerary stops</span>
+                            <div><h3 id="tours-packages-heading">{pkg.label} Batanes Tour Package</h3></div>
+                            {/*<span className="tours-packages-stop-count">{countStops(pkg)} itinerary stops</span>*/}
                         </header>
 
-                        {/*
-                        <div className="tours-packages-facts" aria-label="Package summary">
-                            <div className="tours-packages-fact"><span>Duration</span><strong>{pkg.days} days, {pkg.nights} nights</strong></div>
-                            <div className="tours-packages-fact"><span>Island coverage</span><strong>North · South · Sabtang</strong></div>
-                            <div className="tours-packages-fact"><span>Accommodation</span><strong>Private AC room</strong></div>
-                        </div>
-                        */}
-
                         <section className="tours-packages-itinerary" aria-label="Day-by-day tour itinerary">
-                            <div className="tours-packages-section-heading">
-                                <div>
-                                    <h3>Day-by-day itinerary</h3>
-                                </div>
-                                <span>Open a day to see its stops</span>
-                            </div>
+                            
                             <Itinerary key={pkg.id} pkg={pkg} />
                         </section>
 
@@ -235,12 +218,13 @@ function Tours() {
                                 <li>Local coordination and on-trip support</li>
                             </ul>
                             <a className="tours-packages-btn" href={CONTACT}>
-                                Inquire about {pkg.label} <MoveUpRight size={16} aria-hidden="true" />
+                                Inquire about {pkg.label} <ArrowRight animateOnHover size={16} />
                             </a>
                         </div>
+                    <p className="tours-packages-footnote">Tour timing and stops may change with weather, sea conditions, and local schedules.</p>
+
                     </aside>
                 </div>
-                <p className="tours-packages-footnote">Tour timing and stops may change with weather, sea conditions, and local schedules.</p>
             </div>
             </div>
         </section>

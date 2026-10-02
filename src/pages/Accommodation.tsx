@@ -1,6 +1,7 @@
 import '../index.css';
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from 'react';
+import ScrollHint from '../components/Scrollhint';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,9 +11,24 @@ import ReserveModal from '../components/ReserveModal';
 
 const BUCKET = "gallery";
 
+
+
 function roomImageUrl(path: string): string {
     return supabase.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
 }
+
+/* Room kinds shown in the switcher. `value` must match rooms.room_type in Supabase
+   (compared ignoring case, spaces and apostrophes). */
+const ROOM_KINDS = [
+    { value: "Couple's Room", label: "Couple's Room" },
+    { value: "Triple Sharing", label: "Triple Sharing" },
+    { value: "Barkada Room", label: "Barkada Room" },
+    { value: "Family Room", label: "Family Room" },
+];
+const ALL = "all";
+
+const normalizeKind = (s: string | null | undefined): string =>
+    (s ?? "").toLowerCase().replace(/[^a-z0-9]/g, "");
 
 function Accommodation(){
     interface Room {
@@ -44,6 +60,7 @@ function Accommodation(){
     const navigate = useNavigate();
     const [rooms, setRooms] = useState<Room[]>([]);
     const [reservingRoom, setReservingRoom] = useState<Room | null>(null)
+    const [kind, setKind] = useState<string>(ALL);
 
     useEffect(() => {
         getRoomInfo()
@@ -75,28 +92,57 @@ function Accommodation(){
         setReservingRoom(room);
     }
 
+    const countOf = (value: string): number =>
+        rooms.filter((r) => normalizeKind(r.room_type) === normalizeKind(value)).length;
+
+    const visibleRooms = kind === ALL
+        ? rooms
+        : rooms.filter((r) => normalizeKind(r.room_type) === normalizeKind(kind));
+
+    const switcherOptions = [
+        { value: ALL, label: "All rooms", count: rooms.length },
+        ...ROOM_KINDS.map((k) => ({ ...k, count: countOf(k.value) })),
+    ];
 
     return(
         <section>
             <div className='accommodation-hero-section'>
                 <div className='accommodation-content page-content'>
-                    <div className='accommodation-text page-header'>
-                        <h2>Siayanrock Is. Hometel</h2>
-                        <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
-                    </div>
+                    <div className='accommodation-text page-header hero-nudge'>
+                    <h2>Siayanrock Is. Hometel</h2>
+                    <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
+                    <ScrollHint targetId='accommodation-body' />
+                </div>
                 </div>
             </div>
 
-            <div className='accommodation-rooms page-body'>
-                <div className='accommodation-rooms-title page-title'>
-                    <p className="section-title">OUR ROOMS</p>
-                    <h3>Find your perfect room</h3>
+            <div id='accommodation-body' className='accommodation-rooms page-body'>
+                
+
+                <div className='accommodation-kind-switcher' role='tablist' aria-label='Filter rooms by kind'>
+                    {switcherOptions.map((opt) => (
+                        <button
+                            key={opt.value}
+                            type='button'
+                            role='tab'
+                            className='accommodation-kind-pill'
+                            aria-selected={kind === opt.value}
+                            onClick={() => setKind(opt.value)}>
+                            <span className='accommodation-kind-pill-label'>{opt.label}</span>
+                        </button>
+                    ))}
                 </div>
                 
                 <div className='accommodation-rooms-content'>
                     <div className='accommodation-room-cards'>
 
-                        {rooms.map((room) => {
+                        {visibleRooms.length === 0 && rooms.length > 0 && (
+                            <p className='accommodation-kind-empty'>
+                                No rooms of this kind are available right now.
+                            </p>
+                        )}
+
+                        {visibleRooms.map((room) => {
                             const primaryImage = room.images?.[0];
 
                             return (

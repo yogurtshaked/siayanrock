@@ -65,7 +65,7 @@ function Footer() {
                 </div>
             </div>
             <div className="footer-bottom">
-                    <p>© 2024 Siayanrock Hometel. All rights reserved.</p>
+                    <p>© 2026 Siayanrock Hometel. All rights reserved.</p>
                 </div>
         </footer>
     );
