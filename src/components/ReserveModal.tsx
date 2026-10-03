@@ -22,6 +22,9 @@ interface ReserveModalProps {
     guestCount?: number;
     nights?: number;
     total?: number;
+    // Tour inquiry (optional)
+    tourPackage?: string; // e.g. "4D3N Batanes"
+    tourDetail?: string;  // e.g. "4 days, 3 nights"
 }
 
 function formatDateLabel(dateStr: string): string {
@@ -39,6 +42,10 @@ function peso(amount: number): string {
 }
 
 function buildInquiryMessage(props: ReserveModalProps): string {
+    if (props.tourPackage) {
+        return `Hi! I'd like to inquire about the ${props.tourPackage} tour package (${props.tourDetail ?? "details to be confirmed"}). Is it available for my travel dates?`;
+    }
+
     if (!props.roomName) {
         return "Hi! I'd like to inquire about booking a room at Siayanrock Hometel.";
     }
@@ -68,19 +75,25 @@ function ReserveModal(props: ReserveModalProps) {
         guestCount = 2,
         nights = 0,
         total = 0,
+        tourPackage,
+        tourDetail,
     } = props;
 
     if (!open) return null;
 
+    const isTour = Boolean(tourPackage);
     const message = buildInquiryMessage(props);
     const encodedMessage = encodeURIComponent(message);
 
     const whatsappHref = `https://wa.me/${HOTEL_CONTACT.whatsappNumber}?text=${encodedMessage}`;
     const messengerHref = `https://m.me/${HOTEL_CONTACT.messengerUsername}`;
     const phoneHref = `tel:${HOTEL_CONTACT.phoneHref}`;
-    const emailHref = `mailto:${HOTEL_CONTACT.email}?subject=${encodeURIComponent(
-        roomName ? `Room inquiry: ${roomName} Room` : "Room inquiry"
-    )}&body=${encodedMessage}`;
+    const emailSubject = isTour
+        ? `Tour inquiry: ${tourPackage}`
+        : roomName
+            ? `Room inquiry: ${roomName} Room`
+            : "Room inquiry";
+    const emailHref = `mailto:${HOTEL_CONTACT.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodedMessage}`;
 
     function handleOverlayClick() {
         onClose();
@@ -94,7 +107,9 @@ function ReserveModal(props: ReserveModalProps) {
         <div className="reserve-modal-overlay" onClick={handleOverlayClick}>
             <div className="reserve-modal" onClick={stopPropagation}>
                 <div className="reserve-modal-header">
-                    <p className="reserve-modal-title">Reserve this room</p>
+                    <p className="reserve-modal-title">
+                        {isTour ? "Inquire about this tour" : "Reserve this room"}
+                    </p>
                     <button
                         type="button"
                         className="reserve-modal-close"
@@ -106,7 +121,12 @@ function ReserveModal(props: ReserveModalProps) {
                 </div>
 
                 <div className="reserve-modal-summary">
-                    {roomName ? (
+                    {isTour ? (
+                        <div>
+                            <p className="reserve-modal-room-name">{tourPackage}</p>
+                            {tourDetail && <p className="reserve-modal-room-meta">{tourDetail}</p>}
+                        </div>
+                    ) : roomName ? (
                         <>
                             {roomThumbnail ? (
                                 <img src={roomThumbnail} alt="" className="reserve-modal-thumb" />
@@ -136,8 +156,8 @@ function ReserveModal(props: ReserveModalProps) {
                 </div>
 
                 <p className="reserve-modal-note">
-                    Reach the owner directly to confirm this room. Your message will already
-                    include the room and dates above.
+                    Reach the owner directly to confirm {isTour ? "this tour" : "this room"}. Your message will
+                    already include the details above.
                 </p>
 
                 <div className="reserve-modal-options">

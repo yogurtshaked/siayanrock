@@ -6,13 +6,13 @@ import ScrollHint from '../components/Scrollhint'
 import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
 import {
     CONTACT,
-    EXCLUSIONS,
     INCLUSIONS,
     PACKAGES,
     type Day,
     type PackageId,
     type TourPackage,
 } from './tourPackages';
+import ReserveModal from '../components/ReserveModal';
 
 
 const dayLabel = (index: number): string =>
@@ -128,6 +128,7 @@ function Itinerary({ pkg }: { pkg: TourPackage }) {
 }
 
 function Tours() {
+    const [inquireOpen, setInquireOpen] = useState(false);
     const [id, setId] = useState<PackageId>('3d2n');
     const pkg = PACKAGES.find((item) => item.id === id) ?? PACKAGES[0];
 
@@ -179,30 +180,8 @@ function Tours() {
                         </header>
 
                         <section className="tours-packages-itinerary" aria-label="Day-by-day tour itinerary">
-                            
                             <Itinerary key={pkg.id} pkg={pkg} />
                         </section>
-
-                        <div className="tours-packages-details">
-                            <section className="tours-packages-detail-card tours-packages-inclusions">
-                                <div className="tours-packages-detail-title"><h3>Inclusions</h3></div>
-                                <ul>{INCLUSIONS.map((item) => <li key={item}>{item}</li>)}</ul>
-                            </section>
-                            <section className="tours-packages-detail-card tours-packages-exclusions">
-                                <div className="tours-packages-detail-title"><h3>Exclusions</h3></div>
-                                <ul
-                                style={{
-                                    gridTemplateColumns: `repeat(${EXCLUSIONS.length > 6 ? 2 : 1}, minmax(0, 1fr))`,
-                                    gridTemplateRows: `repeat(${Math.ceil(EXCLUSIONS.length / (EXCLUSIONS.length > 6 ? 2 : 1))}, auto)`,
-                                }}
-                                >
-                                {EXCLUSIONS.map((item) => (
-                                    <li key={item}>{item}</li>
-                                ))}
-                                </ul>
-
-                            </section>
-                        </div>
                     </div>
 
                     <aside className="tours-packages-aside">
@@ -210,24 +189,33 @@ function Tours() {
                             <h3>{pkg.label} Batanes</h3>
                             <p className="tours-packages-price">{pkg.price}</p>
                             <div className="tours-packages-booking-rule" />
-                            <h4>Package highlights</h4>
-                            <ul className="tours-packages-highlights">
-                                <li>North Batan, South Batan and Sabtang Island tours</li>
-                                <li>Photo stops with comfortable pacing</li>
-                                <li>Local coordination and on-trip support</li>
-                            </ul>
-                            <a className="tours-packages-btn" href={CONTACT}>
-                                Inquire about {pkg.label} <ArrowRight animateOnHover size={16} />
-                            </a>
-                        </div>
-                    <p className="tours-packages-footnote">Tour timing and stops may change with weather, sea conditions, and local schedules.</p>
 
+                            <h4>All Packages Include:</h4>
+                            <ul className="tours-packages-highlights">
+                                {INCLUSIONS.map((item) => (
+                                    <li key={item}>{item}</li>
+                                ))}
+                            </ul>
+
+                            <button type='button' className='tours-packages-btn' onClick={() => setInquireOpen(true)}>
+                                Inquire about {pkg.label} <ArrowRight size={16} />
+                            </button>
+                        </div>               
+                    <p className="tours-packages-footnote">Tour timing and stops may change with weather, sea conditions, and local schedules.</p>
+                                
                     </aside>
+                    
                 </div>
                 </div>
                 </div>
             </div>
             </div>
+            <ReserveModal
+                open={inquireOpen}
+                onClose={() => setInquireOpen(false)}
+                tourPackage={`${pkg.label} Batanes`}
+                tourDetail={`${pkg.days} days, ${pkg.days - 1} nights`}
+            />
         </section>
     );
 }

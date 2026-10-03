@@ -241,12 +241,12 @@ function Home(){
                         <div className="about-title">
                             <p className="section-title">About Us</p>
                             <h2>Siayanrock Is. Hometel</h2>
-                            <p className="section-description">A welcoming place to stay, 
-                                conveniently located in the heart of Batan Island. Situated in Ivana, right between North and South Batan, 
+                            <p className="section-description">A place conveniently located in the heart of Batan Island. Situated in Ivana, right between North and South Batan, 
                                 the hometel provides guests with a convenient starting point for exploring the island’s 
                                 cultural landmarks and local attractions.</p>
+                            <button className="learn-more landing-page-btn" onClick={() => navigate("/about")}>Learn More&nbsp; <ArrowRight animateOnHover size={16} /></button>
+
                         </div>
-                        <button className="learn-more landing-page-btn" onClick={() => navigate("/about")}>Learn More&nbsp; <ArrowRight animateOnHover size={16} /></button>
                     </div>
                 </div>
             </div>

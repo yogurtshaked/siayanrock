@@ -3,7 +3,35 @@ import type { FormEvent } from "react";
 import "../index.css";
 import "leaflet/dist/leaflet.css";
 import { supabase } from "../lib/supabaseClient";
+import { Mail, Phone, MapPin } from "lucide-react";
 
+const CONTACT_INFO = {
+    email: "siayanrockis.hometel@gmail.com", // confirm this address
+    phones: ["+63 919 5383 911 ", " +63 967 2003 129"],
+    address: "National Road, Brgy. Tuhel, Ivana, Batanes",
+    mapsUrl: "https://www.google.com/maps?q=Siayanrock+Hometel,+Ivana,+Batanes",
+};
+const telHref = (n: string) => `tel:${n.replace(/[^\d+]/g, "")}`;
+
+const phones = CONTACT_INFO.phones.filter(Boolean);
+const CONTACT_ROWS = [
+    {
+        icon: <Mail size={18} />,
+        label: "Email",
+        items: [{ text: CONTACT_INFO.email, href: `mailto:${CONTACT_INFO.email}` }],
+    },
+    {
+        icon: <Phone size={18} />,
+        label: phones.length > 1 ? "Phone numbers" : "Phone",
+        items: phones.map((p) => ({ text: p, href: telHref(p) })),
+    },
+    {
+        icon: <MapPin size={18} />,
+        label: "Visit us",
+        external: true,
+        items: [{ text: CONTACT_INFO.address, href: CONTACT_INFO.mapsUrl }],
+    },
+].filter((row) => row.items.length > 0);
 type Status = "idle" | "sending" | "success" | "error";
 
 function Inquire(){
@@ -92,7 +120,7 @@ function Inquire(){
     return(
         <section>
             <div className='inquire-page'>
-                <div id='gallery-body' className='page-body'>
+                <div id='inquire-body' className='page-body'>
                 <div className='inquire-page-content'>
                     <div className='inquire-title page-title'>
                         <p className="section-title">INQUIRE</p>
@@ -101,6 +129,47 @@ function Inquire(){
                     </div>
 
                     <div className="inquire-grid">
+                        <aside className="contact-card" aria-label="Contact details">
+                            <p className="contact-card-eyebrow">CONTACT</p>
+                            <p className="contact-card-title">Prefer to talk to us directly?</p>
+                            <p className="contact-card-text">
+                                Reach out any time. We're happy to help you plan your stay and your tours in Batanes.
+                            </p>
+
+                            <ul className="contact-card-list">
+                                {CONTACT_ROWS.map((row) => (
+                                    <li key={row.label} className="contact-card-row">
+                                        <span className="contact-card-icon" aria-hidden="true">{row.icon}</span>
+                                        <span className="contact-card-body">
+                                            <span className="contact-card-label">{row.label}</span>
+                                            {row.items.map((item) => (
+                                                <a
+                                                    key={item.href}
+                                                    className="contact-card-value"
+                                                    href={item.href}
+                                                    {...(row.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                                                    {item.text}
+                                                </a>
+                                            ))}
+                                        </span>
+                                    </li>
+                                ))}
+
+                                <div className="location-map">
+                                    <iframe
+                                        src="https://www.google.com/maps?q=Siayanrock+Hometel,+Ivana,+Batanes&output=embed"
+                                        width="100%"
+                                        height="450"
+                                        style={{ border: 0 }}
+                                        allowFullScreen
+                                        loading="lazy"
+                                        title="Siayanrock Hometel Location"
+                                    ></iframe>
+                                </div>
+                            </ul>
+                        </aside>
+
+
                         <div className="inquire-card">
                             <form onSubmit={handleSubmit}>
                                 <div className="input-field">
@@ -216,6 +285,7 @@ function Inquire(){
                 </div>
             </div>
 
+            {/* ---------- Location section ---------- 
             <div className="location-section">
                 <div className="location-content">
 
@@ -242,7 +312,9 @@ function Inquire(){
                     </div>
 
                 </div>
+                
             </div>
+            */}
             </div>
 
         </section>

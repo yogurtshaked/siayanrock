@@ -1,25 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
-
-@font-face {
-  font-family: 'Gontserrat';
-  src: url('./assets/fonts/Gontserrat-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'Gontserrat-Medium';
-  src: url('./assets/fonts/Gontserrat-Medium.ttf');
-}
-
-@font-face {
-  font-family: 'Gontserrat-Light';
-  src: url('./assets/fonts/Gontserrat-Light.ttf');
-}
 
 
 /* ====================== Global Styles ======================*/
@@ -42,7 +25,6 @@
 
   --color-line: #e3e5dd;
   --color-paper: #fcfcfc;
-
 }
 
 * {
@@ -104,7 +86,6 @@ p, a, button {
   background: transparent;
   border-bottom: 1px solid transparent;
   z-index: 1000;
-
   transition:
     background 0.3s ease,
     backdrop-filter 0.3s ease,
@@ -121,13 +102,12 @@ p, a, button {
 .navbar-content {
   width: 100%;
   max-width: 1440px;
+  max-height: 65px;
   margin: 0 auto;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  max-height: 65px;
 }
 
 .logo-image {
@@ -313,17 +293,16 @@ p, a, button {
 }
 
 .field-error {
-    position: absolute;
-    top: 100%;            /* directly below the card */
-    left: 0;
-    margin-top: 4px;
-    font-size: 0.75rem;
-    line-height: 1.2;
-    color: #ef4444;
-    white-space: nowrap;  /* keep it on one line */
-    pointer-events: none;
+  position: absolute;
+  top: 100%;            /* directly below the card */
+  left: 0;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: #ef4444;
+  white-space: nowrap;  /* keep it on one line */
+  pointer-events: none;
 }
-
 
 .scroll-down {
   position: absolute;
@@ -332,7 +311,6 @@ p, a, button {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   gap: 8px;
 }
 
@@ -382,6 +360,7 @@ p, a, button {
   flex-direction: row;
   align-items: center;
   padding: 0.4rem 0.9rem;
+  margin-top: 20px;
   border: none;
   background: var(--color-yellow);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
@@ -399,7 +378,7 @@ p, a, button {
 .about-section {
   background-color: var(--color-light-yellow);
 
-  /*background-image:
+  background-image:
     repeating-linear-gradient(
       45deg,
       rgba(194, 153, 82, 0.1) 0,
@@ -413,7 +392,7 @@ p, a, button {
       rgba(194, 153, 82, 0.1) 1px,
       transparent 1px,
       transparent 20px
-    );*/
+    );
 
   background-size: 40px 40px;
   min-height: clamp(600px, 100dvh, 1000px);
@@ -428,18 +407,16 @@ p, a, button {
   width: fit-content;
   max-width: 1080px;
   margin: 0 auto;
-  padding: 44px 48px;   /* extra room so content clears the perforated edge */
+  padding: 44px 48px; 
 
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 30px;
 
-  /* drop-shadow lives here because the mask below would clip a box-shadow */
   filter: drop-shadow(0 4px 4px rgba(84, 69, 47, 0.4));
 }
 
-/* the paper, with the perforated stamp edge cut out of it */
 .about-content::before {
   content: "";
   position: absolute;
@@ -473,16 +450,6 @@ p, a, button {
 .about-text {
   position: relative;
   z-index: 1;
-}
-
-@media (max-width: 1024px) {
-  .about-content {
-    flex-direction: column;
-    padding: 36px 28px;
-    gap: 20px;
-  }
-  .about-image { width: 100%; }
-  .about-text { padding: 0; align-items: flex-start; }
 }
 
 .about-image {
@@ -533,11 +500,6 @@ p, a, button {
   opacity: 0.4;
 
   background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 56'><g fill='none' stroke='rgb(84,69,47)' stroke-width='1.6' stroke-linecap='round'><path d='M0,10 q10,-8 20,0 t20,0 t20,0 t20,0 t20,0 t20,0'/><path d='M0,22 q10,-8 20,0 t20,0 t20,0 t20,0 t20,0 t20,0'/><path d='M0,34 q10,-8 20,0 t20,0 t20,0 t20,0 t20,0 t20,0'/><path d='M0,46 q10,-8 20,0 t20,0 t20,0 t20,0 t20,0 t20,0'/></g></svg>") center / contain no-repeat;
-}
-
-@media (max-width: 1024px) {
-  .about-title::before { top: -64px; right: 0; width: 80px; height: 80px; }
-  .about-title::after  { top: -48px; right: 66px; width: 96px; height: 45px; }
 }
 
 .about-text {
@@ -613,7 +575,7 @@ p, a, button {
 
 .offer-card {
   flex: 1;              
-  width: auto;
+  width: 100%;
   max-width: none;
   height: 350px;
 
@@ -714,7 +676,6 @@ p, a, button {
     padding-left 0.35s ease;
 }
 
-/* Hover */
 .offer-card-btn:hover {
   background: var(--color-dark-yellow);
 }
@@ -812,7 +773,6 @@ p, a, button {
   transition: opacity 450ms ease;
 }
 
-/* Remove gradient when hovering */
 .gallery-item:hover .gallery-wash {
   opacity: 0;
 }
@@ -850,6 +810,7 @@ p, a, button {
   line-height: 1.25;
   text-align: left;
 }
+
 /* ====================== Inquire Section ======================*/
 .inquire-section{
   background: 
@@ -1010,7 +971,7 @@ p, a, button {
 }
 
 .footer-socials a:hover {
-  background: black;
+  background: var(--color-light-brown-text);
 }
 
 .footer-company, .footer-explore, .footer-contact{
@@ -1125,6 +1086,74 @@ p, a, button {
   font-size: 40px;
   text-align: center;
   color: var(--color-section-header);
+}
+
+
+/* ====================== Scroll Hint ======================*/
+.scroll-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 300ms ease;
+}
+
+.scroll-hint-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  animation: scroll-hint-bob 1.8s ease-in-out infinite;
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+.scroll-hint:hover .scroll-hint-icon,
+.scroll-hint:focus-visible .scroll-hint-icon {
+  background: var(--color-accent, #e9b949);
+  border-color: var(--color-accent, #e9b949);
+  color: #201b0d;
+}
+
+.scroll-hint:focus-visible {
+  outline: 3px solid #96c8c1;
+  outline-offset: 6px;
+  border-radius: 999px;
+}
+
+.scroll-hint.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hero text lifts a few pixels now and then, hinting there is more below.
+   Add the class "hero-nudge" to the hero text wrapper. */
+.hero-nudge {
+  animation: hero-nudge 5s ease-in-out infinite;
+}
+
+@keyframes scroll-hint-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+@keyframes hero-nudge {
+  0%, 62%, 100% { transform: translateY(0); }
+  80% { transform: translateY(-8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint-icon, .hero-nudge { animation: none; }
 }
 
 
@@ -1277,23 +1306,6 @@ p, a, button {
     color: #d93a3a;
 }
 
-@media (max-width: 820px) {
-    .rs-bar {
-        grid-template-columns: 1fr 1fr;
-        row-gap: 4px;
-    }
-
-    .rs-range {
-        grid-column: 1 / -1;
-        padding-bottom: 4px;
-        border-bottom: 1px solid var(--rs-line);
-    }
-
-    .rs-bar > .rs-field { border-left: 0; }
-    .rs-action { padding-left: 0; }
-    .rs-btn { width: 100%; min-height: 48px; }
-}
-
 
 /* ====================== Accommodation Page ======================*/
 .accommodation-hero-section {
@@ -1317,73 +1329,6 @@ p, a, button {
   align-items: flex-start;
   justify-content: flex-end;
 }
-/* Scroll hint: append to index.css */
-.scroll-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: 28px;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: #fff;
-  font: inherit;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: opacity 300ms ease;
-}
-
-.scroll-hint-icon {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
-  animation: scroll-hint-bob 1.8s ease-in-out infinite;
-  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
-}
-
-.scroll-hint:hover .scroll-hint-icon,
-.scroll-hint:focus-visible .scroll-hint-icon {
-  background: var(--color-accent, #e9b949);
-  border-color: var(--color-accent, #e9b949);
-  color: #201b0d;
-}
-
-.scroll-hint:focus-visible {
-  outline: 3px solid #96c8c1;
-  outline-offset: 6px;
-  border-radius: 999px;
-}
-
-.scroll-hint.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Hero text lifts a few pixels now and then, hinting there is more below.
-   Add the class "hero-nudge" to the hero text wrapper. */
-.hero-nudge {
-  animation: hero-nudge 5s ease-in-out infinite;
-}
-
-@keyframes scroll-hint-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
-}
-
-@keyframes hero-nudge {
-  0%, 62%, 100% { transform: translateY(0); }
-  80% { transform: translateY(-8px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-hint-icon, .hero-nudge { animation: none; }
-}
-
 /* Room kind switcher: append to index.css */
 .accommodation-kind-switcher {
   width: 100%;
@@ -1444,15 +1389,6 @@ p, a, button {
   padding: 32px 16px;
   text-align: center;
   color: #657477;
-}
-
-@media (max-width: 720px) {
-  .accommodation-kind-switcher {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .accommodation-kind-pill:first-child {
-    grid-column: 1 / -1;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1642,16 +1578,6 @@ p, a, button {
   align-items: flex-start;
   justify-content: flex-end;
 }
-/* Tour packages page — paste into index.css */
-.tours-packages {
-  --tp-ink: #243639;
-  --tp-muted: #788486;
-  --tp-teal: #222411;
-  --tp-teal-dark: #222411;
-  --tp-sea-mist: #e4eeec;
-  --tp-page: #f5f3ed;
-
-}
 
 
 
@@ -1693,7 +1619,7 @@ p, a, button {
 }
 
 .tours-packages-pill[aria-selected='true'] {
-  background: var(--tp-teal);
+  background: var(--color-green-background);
   color: #fff;
   box-shadow: 0 5px 14px #245d6121;
 }
@@ -1714,8 +1640,8 @@ p, a, button {
 /* ==================== PANEL LAYOUT (BODY) ======================= */
 .tours-packages-panel-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 286px;
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 16px;
   align-items: start;
 }
 
@@ -1734,30 +1660,11 @@ p, a, button {
 
 .tours-packages-heading h3 {
   margin: 0 0 5px;
-  color: var(--tp-ink);
+  color: #243639;
   font-size: 38px;
   font-family: "Instrument Serif", serif;
   letter-spacing: -0.025em;
   line-height: 1.2;
-}
-
-.tours-packages-intro {
-  max-width: 650px;
-  margin: 0;
-  color: var(--tp-muted);
-  font-size: 12px;
-  line-height: 1.65;
-}
-
-.tours-packages-stop-count {
-  flex: 0 0 auto;
-  padding: 7px 11px;
-  border: 1px solid #c8d9d5;
-  border-radius: 99px;
-  color: var(--tp-muted);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  white-space: nowrap;
 }
 
 /* ==================== ITINERARY LIST ======================= */
@@ -1785,7 +1692,7 @@ p, a, button {
   padding: 13px 1px;
   border: 0;
   background: transparent;
-  color: var(--tp-ink);
+  color: #243639;
   text-align: left;
   cursor: pointer;
 }
@@ -1800,14 +1707,14 @@ p, a, button {
 .tours-packages-day-n {
   flex: 0 0 auto;
   color: #C29D40;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .tours-packages-day-title {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 1.4;
 }
@@ -1828,9 +1735,9 @@ p, a, button {
 /* ==================== TOURIST SPOT LIST ======================= */
 .tours-packages-stops {
   display: grid;
-  grid-template-columns: 0.7fr 1fr;
+  grid-template-columns: 0.8fr 1fr;
   grid-auto-flow: column;
-  column-gap: 10px;
+  column-gap: 12px;
   row-gap: 7px;
   margin: 10px;
   padding: 0;
@@ -1841,8 +1748,9 @@ p, a, button {
   display: flex;
   align-items: baseline;
   gap: 9px;
-  color: var(--color-light-brown-text);
-  font-size: 14px;
+  color: var(--color-text);
+  opacity: 0.8;
+  font-size: 15px;
   line-height: 1.55;
 }
 
@@ -1953,21 +1861,21 @@ p, a, button {
   padding: 25px 18px;
   border: 1px solid #25595d;
   border-radius: 6px;
-  background: var(--tp-teal);
+  background: var(--color-green-background);
   color: #fff;
   box-shadow: 0 8px 24px #28575b1a;
 }
 
 .tours-packages-booking-card h3 {
   margin: 0;
-  font-size: 23px;
+  font-size: 24px;
   font-weight: 600;
 }
 
 .tours-packages-price {
   margin: 5px 0 0;
   color: #e3eee6;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .tours-packages-booking-rule {
@@ -1978,7 +1886,7 @@ p, a, button {
 
 .tours-packages-booking-card h4 {
   margin: 0 0 9px;
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
@@ -1995,7 +1903,7 @@ p, a, button {
   position: relative;
   padding-left: 17px;
   color: #e1ece5;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.55;
 }
 
@@ -2007,6 +1915,7 @@ p, a, button {
 }
 
 .tours-packages-btn {
+  width: 100%;
   display: flex;
   min-height: 42px;
   align-items: center;
@@ -2036,9 +1945,10 @@ p, a, button {
 .tours-packages-footnote {
   margin: 8px 2px 0;
   color: #89938f;
-  font-size: 10px;
+  font-size: 12px;
   text-align: right;
 }
+
 /* ====================== Gallery & Inquire Settings ======================*/
 .gallery-page, .inquire-page{
   display: flex;
@@ -2049,7 +1959,8 @@ p, a, button {
 .gallery-page-content, .inquire-page-content{
   width: 100%;
   margin: 0 auto;
-  margin-top: 80px;
+  max-width: 1160px;
+  margin-top: 40px;
 
   min-height: clamp(600px, 100dvh, 1000px);
 
@@ -2071,7 +1982,7 @@ p, a, button {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 4px;
   padding: 4px;
-  margin: 60px 0 20px 0;
+  margin: 20px 0 0 0;
   border: 1px solid var(--color-line);
   background: var(--color-grey);
   
@@ -2270,7 +2181,7 @@ p, a, button {
 .inquire-page-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 60px;
 }
 .inquire-grid {
   display: grid;
@@ -2281,7 +2192,304 @@ p, a, button {
   /*background: var(--color-background); 
   border: 1px solid #E6DFC9;*/
   border-radius: 5px; 
-  padding: 40px 44px;
+  padding: 20px 44px;
+}
+
+/* ---------- Inquire: two columns ---------- */
+.inquire-grid {
+    display: grid;
+    grid-template-columns: minmax(420px, 360px) minmax(0, 1fr);
+    gap: 12px;
+    align-items: stretch;
+    width: 100%;
+}
+
+/* ---------- Contact card ---------- */
+.contact-card {
+  height: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 32px;
+    background: var(--color-green-background); /* swap for your green */
+    color: #fff;
+    border-radius: 6px; /* match .inquire-card */
+}
+
+.contact-card-eyebrow {
+    margin: 0 0 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-yellow, #e9bb4f);
+}
+
+.contact-card-title {
+    margin: 0 0 12px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #fff;
+}
+
+.contact-card-text {
+    margin: 0 0 28px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.contact-card-list {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.contact-card-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 8px 0;
+}
+
+.contact-card-value {
+    width: fit-content;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #fff;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.contact-card-value:hover,
+.contact-card-value:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    outline: none;
+}
+
+.contact-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    color: var(--color-yellow, #e9bb4f);
+}
+
+.contact-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.contact-card-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.contact-card-value {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #fff;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 820px) {
+    .rs-bar {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 4px;
+    }
+
+    .rs-range {
+        grid-column: 1 / -1;
+        padding-bottom: 4px;
+        border-bottom: 1px solid var(--rs-line);
+    }
+
+    .rs-bar > .rs-field { border-left: 0; }
+    .rs-action { padding-left: 0; }
+    .rs-btn { width: 100%; min-height: 48px; }
+}
+
+/* very small phones: one card per row */
+@media (max-width: 380px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-media {
+    height: 240px;
+  }
+}
+
+
+/* ---------- Hamburger + mobile menu ---------- */
+.navbar-toggle,
+.navbar-menu,
+.navbar-backdrop {
+    display: none;
+}
+
+@media (max-width: 820px) {
+    .navbar {
+        padding: 0.8rem 1.25rem;
+    }
+
+    .navbar-links {
+        display: none;
+    }
+
+    /* open state: solid bar so it joins the panel */
+    .navbar.navbar-open {
+        background: #fff;
+        border-bottom-color: #ededed;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+
+    /* --- hamburger button --- */
+    .navbar-toggle {
+        display: block;
+        position: relative;
+        width: 44px;
+        height: 44px;
+        margin-right: -10px;
+        padding: 0;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .navbar-toggle-bar {
+        position: absolute;
+        left: 11px;
+        width: 22px;
+        height: 2px;
+        border-radius: 2px;
+        background: #fff; /* over the hero image */
+        transition: transform 0.25s ease, opacity 0.2s ease, background 0.3s ease;
+    }
+
+    .navbar-toggle-bar:nth-child(1) { top: 15px; }
+    .navbar-toggle-bar:nth-child(2) { top: 21px; }
+    .navbar-toggle-bar:nth-child(3) { top: 27px; }
+
+    .navbar-scrolled .navbar-toggle-bar {
+        background: var(--color-text, #222);
+    }
+
+    .navbar-open .navbar-toggle-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .navbar-open .navbar-toggle-bar:nth-child(2) { opacity: 0; }
+    .navbar-open .navbar-toggle-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    .navbar-toggle:focus-visible {
+        outline: 2px solid var(--color-yellow, #e9bb4f);
+        outline-offset: 2px;
+    }
+
+    /* --- dropdown panel --- */
+    .navbar-menu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 8px 1.25rem 20px;
+        background: #fff;
+        border-bottom: 1px solid #ededed;
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-8px);
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0s linear 0.25s;
+    }
+
+    .navbar-menu.is-open {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0s;
+    }
+
+    .navbar-menu a {
+        position: relative;
+        padding: 16px 0 16px 18px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 17px;
+        font-weight: 400;
+        color: var(--color-text, #222);
+        text-decoration: none;
+        opacity: 0.65;
+        transition: opacity 0.2s ease;
+    }
+
+    .navbar-menu a:last-child {
+        border-bottom: 0;
+    }
+
+    .navbar-menu a:hover,
+    .navbar-menu a:focus-visible {
+        opacity: 1;
+    }
+
+    .navbar-menu a.active {
+        font-weight: 500;
+        opacity: 1;
+    }
+
+    /* gold marker on the current page */
+    .navbar-menu a.active::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--color-yellow, #e9bb4f);
+        transform: translateY(-50%);
+    }
+
+    /* --- backdrop --- */
+    .navbar-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 999; /* just under .navbar (1000) */
+        background: rgba(0, 0, 0, 0.35);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+    }
+
+    .navbar-backdrop.is-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+@media (max-width: 900px) {
+    .inquire-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+        padding: 28px 24px;
+    }
 }
 
 form{
@@ -2354,42 +2562,13 @@ form{
 .inquire-status.error { color: #b3412f; }
 .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-.location-section {
-    background: white;
-    padding: 80px 180px;
-}
-
-.location-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 0.8fr 1.7fr;
-    gap: 50px;
-    align-items: start;
-}
-
-.location-info {
-    text-align: left;
-}
-
-.location-info h2 {
-  color: black;
-  font-size: 36px;
-  font-weight: 500;
-  margin: 8px 0 15px;
-  width: 220px;
-}
-
-.location-info .section-description {
-  color: var(color-text);
-  line-height: 1.6;
-}
-
+/* ====================== Location Section ======================*/
 .location-map {
   width: 100%;
-  height: 350px;
+  height: 200px;
   border-radius: 6px;
   overflow: hidden;
+  margin-top: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
@@ -2430,7 +2609,7 @@ form{
 }
 
 .back-link:hover svg {
-  transform: translateX(-3px);         /* arrow nudges left on hover */
+  transform: translateX(-3px);       
 }
 
 .back-link:focus-visible {
@@ -2496,7 +2675,7 @@ form{
 
 .room-info-book {
   display: grid;
-  grid-template-columns: 2fr 1.1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 20px;
   align-items: start;
 }
@@ -3510,11 +3689,6 @@ form{
   color: #fff;
 }
 
-/*
-.about-us-spot--feature .about-us-h3 {
-  font-size: 36px;
-}*/
-
 .about-us-spot-desc {
   max-height: 0;
   opacity: 0;
@@ -3568,7 +3742,596 @@ form{
 }
 /* ====================== Responsive ====================== */
 
+
+/* ---------- Mobile: contact card stacks on top ---------- */
+@media (max-width: 576px) {
+
+  h2{
+    font-size: 42px;
+  }
+  .hero-content h1{
+    font-size: 62px;
+    max-width: 380px;
+  }
+
+  .hero-search-bar {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 14px;
+    box-sizing: border-box;
+    width: calc(100vw - 32px);
+    max-width: 420px;
+    padding: 16px;
+  }
+
+  /* dates stay side by side, sharing the width */
+  .date-range {
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: stretch;
+  }
+
+  .date-range .date-card {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* the arrow has no room here */
+  .date-arrow {
+    display: none;
+  }
+
+  /* react-datepicker wraps the input in its own div; let it fill the card */
+  .date-card .react-datepicker-wrapper {
+    width: 100%;
+  }
+
+  .date-card-value,
+  .guests-select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    font-size: 16px; /* 16px stops iOS Safari from zooming in on focus */
+  }
+
+  .date-card-label {
+    font-size: 13px;
+  }
+
+  /* the guests card goes full width */
+  .hero-search-bar > .date-card {
+    width: 100%;
+  }
+
+  .search-button-container {
+    width: 100%;
+  }
+
+  .search-btn {
+    width: 100%;
+    height: 46px;
+    padding: 0 24px;
+  }
+
+  /* errors flow under their field instead of floating over the next one */
+  .hero-search-bar .field-error {
+    position: static;
+    white-space: normal;
+    margin-top: 2px;
+    color: #ffb4b4; /* readable on the blurred glass background */
+  }
+
+  
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .about-title {
+    padding: 20px;
+    flex: 1;
+    max-width: 440px;
+  }
+  .offer-section {
+    padding: 80px 24px; 
+  }
+  .offer-cards{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .gallery-section {
+    padding: 56px 24px;
+    min-height: auto; /* stop forcing a full-screen height on short content */
+  }
+
+  .gallery-content {
+    gap: 24px;
+  }
+
+  .gallery-text {
+    max-width: 100%;
+  }
+
+  /* flex row -> 2 columns */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  /* if you ever have an odd number of cards, the last one spans the row */
+  .gallery-item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .gallery-media {
+    height: 220px;
+  }
+
+  .gallery-caption-wrap {
+    padding: 36px 12px 12px;
+  }
+
+  .gallery-tag {
+    margin-bottom: 3px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .gallery-caption {
+    font-size: 17px;
+    line-height: 1.2;
+  }
+
+  /* ===== Footer ===== */
+  .footer-section {
+    padding: 40px 16px 24px;
+    min-height: auto; /* the clamp() height is meant for desktop */
+  }
+
+  .footer-content {
+    flex-wrap: wrap;
+    gap: 32px 20px;
+  }
+
+  /* logo/about block takes the full first row */
+  .footer-logo {
+    flex: 1 1 100%;
+    max-width: none;
+    gap: 16px;
+  }
+
+  .footer-logo-text p {
+    width: auto;
+    max-width: 340px;
+  }
+
+  /* Explore + Company sit side by side */
+  .footer-explore,
+  .footer-company {
+    flex: 1 1 calc(50% - 10px);
+    min-width: 0;
+    gap: 14px;
+  }
+
+  /* Contact takes the full last row */
+  .footer-contact {
+    flex: 1 1 100%;
+    gap: 14px;
+  }
+
+  .footer-contact-content {
+    gap: 18px;
+  }
+
+  .footer-email,
+  .footer-phone {
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .footer-contact a,
+  .footer-contact p {
+    overflow-wrap: anywhere; /* long email addresses can't push the page sideways */
+  }
+
+  /* bigger tap targets for the link lists */
+  .footer-company-links,
+  .footer-explore-links {
+    gap: 4px;
+  }
+
+  .footer-content a {
+    display: inline-block;
+    padding: 6px 0;
+  }
+
+  /* but keep the round social buttons round */
+  .footer-socials a {
+    padding: 0;
+  }
+
+  .footer-bottom {
+    margin-top: 28px;
+  }
+
+  /* ===== Shared page layout ===== */
+  .page-content {
+    gap: 24px;
+  }
+
+  .page-body {
+    padding: 48px 16px;
+    gap: 28px;
+  }
+
+  .page-header h2 {
+    font-size: 36px;
+    line-height: 1.1;
+  }
+
+  .page-header p {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .page-title h3 {
+    font-size: 42px;
+    line-height: 1.15;
+  }
+
+  /* ===== Scroll hint ===== */
+  .scroll-hint {
+    gap: 12px;
+    margin-top: 20px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+  }
+
+  .scroll-hint-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* smaller lift so the text doesn't bump into the navbar on short screens */
+  @keyframes hero-nudge {
+    0%, 62%, 100% { transform: translateY(0); }
+    80% { transform: translateY(-5px); }
+  }
+
+  /* ===== Search bar: dates on top, guests + button below ===== */
+  .rs-bar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 6px;
+  }
+
+  .rs-range {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--rs-line);
+  }
+
+  .rs-arrow {
+    display: none;
+  }
+
+  /* divider between check-in and check-out (replaces the arrow) */
+  .rs-range > .rs-field:last-child {
+    border-left: 1px solid var(--rs-line);
+  }
+
+  .rs-field {
+    padding: 10px 12px;
+  }
+
+  /* guests field no longer needs its left divider */
+  .rs-bar > .rs-field {
+    border-left: 0;
+  }
+
+  .rs-action {
+    padding-left: 6px;
+  }
+
+  .rs-btn {
+    min-width: 64px;
+    padding: 0 20px;
+  }
+
+  /* ===== Accommodation hero ===== */
+  .accommodation-hero-section {
+    padding: 100px 16px 48px;
+  }
+
+  /* ===== Room kind switcher: "All rooms" on top, then a 2x2 grid ===== */
+  .accommodation-kind-switcher {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .accommodation-kind-pill:first-child {
+    grid-column: 1 / -1;
+  }
+
+  /* ===== Room cards ===== */
+  .accommodation-room-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .room-img {
+    height: 220px;
+  }
+
+  .room-contents {
+    padding: 4px 18px 8px;
+    gap: 20px;
+  }
+
+  .room-contents h3 {
+    font-size: 26px;
+  }
+
+  .room-items {
+    gap: 18px;
+  }
+
+  /* max-content columns can overflow a narrow card */
+  .room-checklist {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 12px;
+  }
+
+  /* price on top, buttons full width underneath */
+  .room-price {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .room-buttons button {
+    flex: 1;
+    padding: 10px 14px;
+  }
+
+  /* ===== Tours hero ===== */
+  .tours-hero-section {
+    padding: 100px 16px 48px;
+  }
+
+  /* ===== Package switcher: 3 pills stay in a row, just tighter ===== */
+  .tours-packages {
+    padding: 17px 14px 36px;
+  }
+
+  .tours-packages-switcher {
+    gap: 4px;
+    padding: 4px;
+    margin-bottom: 17px;
+  }
+
+  .tours-packages-pill {
+    min-height: 52px;
+    justify-content: center;
+    padding: 8px 4px;
+    text-align: center;
+  }
+
+  .tours-packages-pill-label {
+    font-size: 11px;
+  }
+
+  .tours-packages-pill-meta {
+    font-size: 8px;
+    line-height: 1.3;
+  }
+
+  .tours-packages-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 13px;
+  }
+
+  .tours-packages-heading h2 {
+    font-size: 24px;
+  }
+
+  .tours-packages-itinerary {
+    padding: 14px 10px;
+  }
+
+  .tours-packages-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .tours-packages-section-heading h3 {
+    font-size: 17px;
+  }
+
+  .tours-packages-day-head {
+    gap: 8px;
+    padding: 12px 0;
+  }
+
+  .tours-packages-day-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .tours-packages-day-title {
+    font-size: 13px;
+  }
+
+  .tours-packages-day-content {
+    padding: 0 0 12px;
+  }
+
+  .tours-packages-stops {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .tours-packages-stop {
+    font-size: 10px;
+  }
+
+  .tours-packages-details {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .tours-packages-detail-card {
+    padding: 14px;
+  }
+
+  .tours-packages-detail-card ul {
+    gap: 7px 9px;
+  }
+
+  .tours-packages-detail-card li {
+    font-size: 9px;
+  }
+
+  .tours-packages-booking-card {
+  display: block;
+}
+
+  .tours-packages-booking-rule {
+    margin: 14px 0;
+  }
+
+  .tours-packages-booking-card h4 {
+    margin-bottom: 9px;
+  }
+
+  .tours-packages-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tours-packages-highlights li {
+  font-size: 13px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+ .tours-packages-btn {
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 19px;
+}
+
+  .tours-packages-footnote {
+    text-align: left;
+    line-height: 1.5;
+  }
+
+  /* ===== Gallery + inquire shared layout ===== */
+  .gallery-page-content,
+  .inquire-page-content {
+    margin-top: 24px;
+    min-height: auto; /* the clamp() height is a desktop value */
+  }
+
+  /* ===== Gallery filter: one scrolling row instead of 5 cramped columns ===== */
+  .filter-nav {
+    display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 4px;
+    margin-top: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filter-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-pill {
+    flex: 0 0 auto;
+    padding: 10px 16px;
+    white-space: nowrap;
+  }
+
+  /* ===== Gallery grid: 2 columns ===== */
+  .gallery-page-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  /* the fixed 250px height would override aspect-ratio on narrow tiles */
+  .gallery-page-item {
+    height: auto;
+  }
+
+  .load-more-wrapper {
+    padding-top: 1.25rem;
+  }
+
+  .gallery-message {
+    padding: 32px 0;
+  }
+
+  /* ===== Lightbox ===== */
+  .lightbox-image {
+    max-width: 94vw;
+    max-height: 78vh;
+  }
+
+  .lightbox-close {
+    top: 12px;
+    right: 16px;
+  }
+
+  .lightbox-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+  }
+
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
+
+}
+
+
+@media (max-width: 1200px) {
+  .navbar-content {
+    width: 100%;
+    max-height: 65px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+
 @media (max-width: 1024px) {
+  .about-content {
+    flex-direction: column;
+    padding: 36px 28px;
+    gap: 20px;
+  }
+  .about-image { width: 100%; }
+  .about-text { padding: 0; align-items: flex-start; }
+
+  .about-title::before { top: -64px; right: 0; width: 80px; height: 80px; }
+  .about-title::after  { top: -48px; right: 66px; width: 96px; height: 45px; }
+
   .about-us .about-us-h2 {
     font-size: 34px;
   }
@@ -3683,6 +4446,13 @@ form{
 }
 
 @media (max-width: 720px) {
+  .accommodation-kind-switcher {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .accommodation-kind-pill:first-child {
+    grid-column: 1 / -1;
+  }
+
   .tours-packages-panel-layout {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -3692,10 +4462,10 @@ form{
   }
 
   .tours-packages-booking-card {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(160px, 0.8fr);
-    column-gap: 20px;
-  }
+    display: flex;
+  flex-direction: column;    
+  column-gap: 20px;
+    }
 
   .tours-packages-booking-card > .tours-packages-eyebrow,
   .tours-packages-booking-card > h3,
@@ -3714,7 +4484,7 @@ form{
   }
 
   .tours-packages-booking-card h4 {
-    align-self: end;
+    align-self: start;
   }
 
   .tours-packages-highlights {
@@ -3733,144 +4503,6 @@ form{
 
   .tours-packages-contact-note {
     margin-bottom: 0;
-  }
-}
-
-@media (max-width: 540px) {
-  .tours-packages {
-    padding: 17px 14px 36px;
-  }
-
-  .tours-packages-switcher {
-    gap: 4px;
-    padding: 4px;
-    margin-bottom: 17px;
-  }
-
-  .tours-packages-pill {
-    min-height: 52px;
-    justify-content: center;
-    padding: 8px 4px;
-    text-align: center;
-  }
-
-  .tours-packages-pill-label {
-    font-size: 11px;
-  }
-
-  .tours-packages-pill-meta {
-    font-size: 8px;
-    line-height: 1.3;
-  }
-
-  .tours-packages-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 8px;
-    padding-bottom: 13px;
-  }
-
-  .tours-packages-heading h2 {
-    font-size: 24px;
-  }
-
-  .tours-packages-fact {
-    min-height: 61px;
-    padding: 9px 8px;
-  }
-
-  .tours-packages-fact span {
-    font-size: 8px;
-  }
-
-  .tours-packages-fact strong {
-    font-size: 9px;
-    line-height: 1.35;
-  }
-
-  .tours-packages-itinerary {
-    padding: 14px 13px 10px;
-  }
-
-  .tours-packages-section-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 3px;
-  }
-
-  .tours-packages-section-heading h3 {
-    font-size: 17px;
-  }
-
-  .tours-packages-day-head {
-    gap: 8px;
-    padding: 12px 0;
-  }
-
-  .tours-packages-day-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .tours-packages-day-title {
-    font-size: 13px;
-  }
-
-  .tours-packages-day-content {
-    padding: 0 0 12px;
-  }
-
-  .tours-packages-stops {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 6px;
-  }
-
-  .tours-packages-stop {
-    font-size: 10px;
-  }
-
-  .tours-packages-details {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 9px;
-  }
-
-  .tours-packages-detail-card {
-    padding: 14px;
-  }
-
-  .tours-packages-detail-card ul {
-    gap: 7px 9px;
-  }
-
-  .tours-packages-detail-card li {
-    font-size: 9px;
-  }
-
-  .tours-packages-booking-card {
-    display: block;
-    padding: 18px;
-  }
-
-  .tours-packages-booking-rule {
-    margin: 14px 0;
-  }
-
-  .tours-packages-booking-card h4 {
-    margin-bottom: 9px;
-  }
-
-  .tours-packages-highlights {
-    gap: 7px;
-  }
-
-  .tours-packages-btn {
-    margin-top: 16px;
-  }
-
-  .tours-packages-footnote {
-    text-align: left;
-    line-height: 1.5;
   }
 }
 

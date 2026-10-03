@@ -27,7 +27,7 @@ export const CONTACT = "mailto:hello@siayanrock.com";
 const names = (list: string[]): Stop[] => list.map((n) => ({ n }));
 
 const NORTH_STOPS: Stop[] = [
-    { t: "9:30 AM", n: "Tour leaves Siayanrock" },
+    { t: "2:00 PM", n: "North Tour leaves Siayanrock" },
     { n: "Chawa View Deck" },
     { n: "Mt. Carmel Chapel" },
     { n: "Tukon Radar Station" },
@@ -35,39 +35,43 @@ const NORTH_STOPS: Stop[] = [
     { n: "Japanese Tunnel" },
     { n: "Valugan Boulder Beach" },
     { n: "Naidi Lighthouse" },
-    { t: "12:00 PM", n: "Lunch (Basco)" },
+    { n: "Naidi or Vayang Rolling Hills" },
     { n: "Capitol/Sto. Domingo Church" },
-    { n: "Vayang Rolling Hills" },
 ];
 
 const SABTANG_STOPS: Stop[] = [
-    { t: "6:30 AM", n: "Ivana Port" },
-    { t: "7:00 AM", n: "Pick-up to Sabtang Port" },
-    { n: "San Vicente Ferrer Church" },
-    { n: "Savidug Town" },
-    { n: "Tinian/Chamantad" },
-    { n: "Chavayan Town" },
+    { t: "6:30 AM", n: "Arrive at Ivana Port" },
+    { t: "7:15 AM", n: "Pick-up at Sabtang Port" },
     { n: "Morong Rock Arc" },
+    { n: "San Vicente Ferrer Church" },
+    { n: "Savidug Village" },
+    { n: "Savidug Idjang (Viewing)" },
+    { n: "Tinian/Chamantad" },
+    { n: "Chamantad View Point" },
+    { n: "Chavayan Village (Temporary Road Closure)" },
+
     { t: "11:00 AM", n: "Lunch at Wakaii Catering" },
     { t: "12:00 PM", n: "Depart back to Batan" },
 ];
 
 const SOUTH_STOPS: Stop[] = [
-    { t: "9:00 AM", n: "Tour leaves Siayanrock" },
+    { t: "9:00 AM", n: "South Tour leaves Siayanrock" },
     { n: "Chatapuyan View (Tobleron Mountains)" },
     { n: "White Beach & Blue Lagoon" },
     { n: "Mahatao Church" },
     { n: "Blank Book Archives" },
     { n: "Mahatao Spanish Lighthouse" },
     { n: "Racuh a Payaman (Marlboro Hills)" },
-    { n: "BAMSO / Alapad Rock Formation" },
+    { n: "BAMSO" },
+    { n: "Alapad Rock Formation / Blow Ur Horn" },
+    { n: "Tangayen Sky Bridge" },
+    { n: "Madangay Point" },
     { n: "Muchung View" },
     { n: "Honesty Coffee Shop" },
     { n: "San Jose Church" },
     { n: "Ivana Lighthouse" },
     { n: "Dakay House" },
     { n: "Spanish Bridge" },
-    { n: "Back to Siayanrock" },
 ];
 
 
@@ -81,6 +85,7 @@ const ARRIVAL_SOUTH_DAY: Day = {
         ...SOUTH_STOPS,
     ],
 };
+
 
 // North Batan on its own day
 const NORTH_DAY: Day = {
@@ -97,12 +102,21 @@ const SABTANG_DAY: Day = {
     ],
 };
 
+// Sabtang in the morning, then back to Batan Island for North Batan
+const SABTANG_NORTH_DAY: Day = {
+    title: "Sabtang Island + North Batan Tour",
+    stops: [
+        ...SABTANG_DAY.stops,   // Sabtang stops + "12:30 PM Arrive at Batan Island"
+        ...NORTH_STOPS,
+    ],
+};
+
 const FREE_DAY: Day = {
     title: "Free Day — Optional Tours",
     stops: names([
-        "Spring of Youth",
+        "Itbayat Island Tour",
+        "Diura Fishing Village",
         "Cycling around Ivana",
-        "Nakurang View Deck",
     ]),
 };
 
@@ -127,7 +141,7 @@ export const PACKAGES: TourPackage[] = [
         price: "Price on request",
         plan: [
             ARRIVAL_SOUTH_DAY,
-            SABTANG_DAY,
+            SABTANG_NORTH_DAY,
             DEPARTURE,
         ],
     },
