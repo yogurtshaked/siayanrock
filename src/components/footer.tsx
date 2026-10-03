@@ -11,7 +11,7 @@ function Footer() {
             <div className="footer-content">
                 <div className="footer-logo">
                     <div className='footer-logo-text'>
-                        <img src="/images/logo.png" alt="Logo" className="logo-image"/>
+                        <img src="/images/logo.svg" alt="Logo" className="logo-image"/>
                         <p className="footer-description">A cozy hometel on the edge of Batanes, built around comfort, quiet mornings, and open horizons.</p>
                     </div>
                     <div className="footer-socials">
@@ -38,10 +38,10 @@ function Footer() {
                 <div className="footer-company">
                     <h3>COMPANY</h3>
                     <div className='footer-company-links'>
-                        <a href="/">About Us</a>
+                        <a href="/about">About Us</a>
                         <a href="/rooms">Reviews</a>
                         <a href="/about">FAQs</a>
-                        <a href="/contact">Inquire</a>
+                        <a href="/inquire">Inquire</a>
                     </div>
                 </div>
                 <div className="footer-contact">

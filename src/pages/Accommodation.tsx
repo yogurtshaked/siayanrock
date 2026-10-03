@@ -106,17 +106,22 @@ function Accommodation(){
 
     return(
         <section>
-            <div className='accommodation-hero-section'>
-                <div className='accommodation-content page-content'>
-                    <div className='accommodation-text page-header hero-nudge'>
-                    <h2>Siayanrock Is. Hometel</h2>
-                    <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
-                    <ScrollHint targetId='accommodation-body' />
-                </div>
-                </div>
-            </div>
+            <div className='accommodation-page'> 
 
+                <div className='accommodation-hero-section'>
+                    <div className='accommodation-content page-content'>
+                        <div className='accommodation-text page-header hero-nudge'>
+                            <h2>Siayanrock Is. Hometel</h2>
+                            <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
+                            <ScrollHint targetId='accommodation-body' />
+                        </div>
+                    </div>
+                
+                </div>
+
+    
             <div id='accommodation-body' className='accommodation-rooms page-body'>
+                <div className='accommodation-content page-content'>
                 
 
                 <div className='accommodation-kind-switcher' role='tablist' aria-label='Filter rooms by kind'>
@@ -223,6 +228,8 @@ function Accommodation(){
 
                     </div>
                 </div>
+                </div>
+                </div>
                 <ReserveModal
                     open={reservingRoom !== null}
                     onClose={() => setReservingRoom(null)}
@@ -230,6 +237,7 @@ function Accommodation(){
                     roomThumbnail={reservingRoom?.images?.[0] ? roomImageUrl(reservingRoom.images[0]) : undefined}
                     guestCount={reservingRoom?.base_guests ?? 2}
                 />
+                
         </section>
     );
 }

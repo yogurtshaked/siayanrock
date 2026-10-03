@@ -92,6 +92,7 @@ function Inquire(){
     return(
         <section>
             <div className='inquire-page'>
+                <div id='gallery-body' className='page-body'>
                 <div className='inquire-page-content'>
                     <div className='inquire-title page-title'>
                         <p className="section-title">INQUIRE</p>
@@ -241,6 +242,7 @@ function Inquire(){
                     </div>
 
                 </div>
+            </div>
             </div>
 
         </section>

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { supabase } from "../lib/supabaseClient"
-import { Bath, Bed, Check, DoorOpen, ShowerHead, Snowflake, Tv, Users, SquareDashed, ChevronRight, Wifi } from "lucide-react"
+import { Bath, Bed, Check, DoorOpen, ShowerHead, Snowflake, Tv, Users, SquareDashed, ChevronRight, Wifi, Shirt, Clapperboard, LampDesk, Plus } from "lucide-react"
 import ReserveModal from "@/components/ReserveModal"
 
 const BUCKET = "gallery"
@@ -33,7 +33,10 @@ const amenityIcons: Record<string, React.ElementType> = {
     balcony: DoorOpen,
     "flat-screen tv": Tv,
     "hot and cold shower": ShowerHead,
-    towels: Bath,
+    toiletries: Bath,
+    "wardrobe / closet": Shirt,
+    "streaming service (like netflix)": Clapperboard,
+    "desk & seating area": LampDesk,
 }
 
 function RoomDetails() {
@@ -287,57 +290,65 @@ function RoomDetails() {
 
                         <div className="booking-form">
 
-                            <div>
-                                <p>Room Pricing</p>
-                                <p className="pricing-rate">
-                                    <span className="price-highlight">
-                                        ₱{room.room_price}
-                                    </span>
-                                    <span className="pricing-unit">
-                                        /night
-                                    </span>
-                                    <span className="pricing-guests">
-                                        per 2 pax
-                                    </span>
-                                </p>
-                            </div>
+                            {/* 1. Rate */}
+                            <div className="pricing-header">
+                                <p className="pricing-label">Room rate</p>
 
-                            <div className="booking-form-date booking-form-dates">
-                                <div className="booking-input-field">
-                                    <label htmlFor="check-in">Check in</label>
-                                    <input
-                                        id="check-in"
-                                        type="date"
-                                        value={checkIn}
-                                        onChange={(event) => setCheckIn(event.target.value)}
-                                    />
+                                <div className="pricing-rate">
+                                    <span className="price-highlight">{peso(room.room_price)}</span>
+                                    <span className="pricing-unit">/ night</span>
                                 </div>
 
-                                <div className="booking-input-field">
-                                    <label htmlFor="check-out">Check out</label>
-                                    <input
-                                        id="check-out"
-                                        type="date"
-                                        min={checkIn || undefined}
-                                        value={checkOut}
-                                        onChange={(event) => setCheckOut(event.target.value)}
-                                    />
-                                </div>
+                                <ul className="pricing-notes">
+                                    <li>
+                                        <Users size={15} strokeWidth={1.75} />
+                                        Room price is good for {room.base_guests ?? 2} guests
+                                    </li>
+                                    {Number(room.extra_guests_fee) > 0 && (
+                                        <li>
+                                            <Plus size={15} strokeWidth={1.75} />
+                                            {peso(Number(room.extra_guests_fee))} per extra guest, per night
+                                        </li>
+                                    )}
+                                </ul>
                             </div>
 
+                            {/* 2. Your stay */}
+                            <div className="booking-fields">
+                                <div className="booking-fields-row">
+                                    <div className="booking-field">
+                                        <label htmlFor="check-in">Check in</label>
+                                        <input
+                                            id="check-in"
+                                            type="date"
+                                            value={checkIn}
+                                            onChange={(e) => setCheckIn(e.target.value)}
+                                        />
+                                    </div>
 
-                            <div className="booking-form-date">
-                                <div className="booking-input-field">
-                                    <label htmlFor="guests">Guests</label>
+                                    <div className="booking-field">
+                                        <label htmlFor="check-out">Check out</label>
+                                        <input
+                                            id="check-out"
+                                            type="date"
+                                            min={checkIn || undefined}
+                                            value={checkOut}
+                                            onChange={(e) => setCheckOut(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
 
+                                <div className="booking-field">
+                                    <label htmlFor="guests">
+                                        Guests <span className="booking-field-hint">(max {room.max_guests})</span>
+                                    </label>
                                     <select
                                         id="guests"
                                         value={guestCount}
-                                        onChange={(event) => setGuestCount(Number(event.target.value))}
+                                        onChange={(e) => setGuestCount(Number(e.target.value))}
                                     >
-                                        {Array.from({ length: room.max_guests }, (_, index) => {
-                                            const count = index + 1
-
+                                        {Array.from({ length: room.max_guests }, (_, i) => {
+                                            const count = i + 1
                                             return (
                                                 <option key={count} value={count}>
                                                     {count} {count === 1 ? "guest" : "guests"}
@@ -348,7 +359,7 @@ function RoomDetails() {
                                 </div>
                             </div>
 
-
+                            {/* 3. Cost */}
                             <div className="booking-price-summary">
                                 {pricing.nights > 0 ? (
                                     <>
@@ -357,17 +368,17 @@ function RoomDetails() {
                                                 {peso(room.room_price)} × {pricing.nights}{" "}
                                                 {pricing.nights === 1 ? "night" : "nights"}
                                             </span>
-                                            <strong>{peso(pricing.roomSubtotal)}</strong>
+                                            <span>{peso(pricing.roomSubtotal)}</span>
                                         </div>
 
                                         {pricing.extraGuests > 0 && (
                                             <div className="booking-price-row">
                                                 <span>
                                                     {pricing.extraGuests} extra{" "}
-                                                    {pricing.extraGuests === 1 ? "guest" : "guests"} ×{" "}
-                                                    {pricing.nights} {pricing.nights === 1 ? "night" : "nights"}
+                                                    {pricing.extraGuests === 1 ? "guest" : "guests"} × {pricing.nights}{" "}
+                                                    {pricing.nights === 1 ? "night" : "nights"}
                                                 </span>
-                                                <strong>{peso(pricing.extraGuestTotal)}</strong>
+                                                <span>{peso(pricing.extraGuestTotal)}</span>
                                             </div>
                                         )}
 
@@ -378,12 +389,12 @@ function RoomDetails() {
                                     </>
                                 ) : (
                                     <p className="booking-price-hint">
-                                        Select check-in and check-out dates to see the total.
+                                        Pick your dates to see the total.
                                     </p>
                                 )}
                             </div>
 
-
+                            {/* 4. Action */}
                             <div className="booking-form-btn">
                                 <button className="book-room-btn" onClick={handleBookRoom}>
                                     Reserve this room

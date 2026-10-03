@@ -144,7 +144,8 @@ function Gallery() {
     return (
         <section>
             <div className='gallery-page'>
-                <div className='gallery-page-content'>
+                <div id='gallery-body' className='page-body'>
+                <div className='gallery-page-content page-content'>
                     <div className='gallery-title page-title'>
                         <p className="section-title">GALLERY</p>
                         <h3>Moments worth the flight</h3>
@@ -210,6 +211,7 @@ function Gallery() {
                     )}
                 </div>
             </div>
+            </div>
 
             {current && (
                 <div className="lightbox-overlay" onClick={closeLightbox}>
@@ -240,6 +242,7 @@ function Gallery() {
                         ›
                     </button>
                 </div>
+                
             )}
         </section>
     );

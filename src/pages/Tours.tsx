@@ -133,17 +133,19 @@ function Tours() {
 
     return (
         <section>
-            <div className='tours-hero-section'>
-                <div className='tours-content page-content'>
-                    <div className='tours-text page-header'>
-                        <h2>Mavien Point Travel & Tour</h2>
-                        <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
-                        <ScrollHint targetId='tours-packages-body' />
+            <div className='tours-page'> 
+                <div className='tours-hero-section'>
+                    <div className='tours-content page-content'>
+                        <div className='tours-text page-header'>
+                            <h2>Mavien Point Travel & Tour</h2>
+                            <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
+                            <ScrollHint targetId='tours-packages-body' />
+                        </div>
                     </div>
                 </div>
-            </div>
 
             <div id='tours-packages-body' className='tours-packages page-body'>
+                <div className='tours-content page-content'>
                 
             <div className="tours-packages-inner">
                 <div className="tours-packages-switcher" role="tablist" aria-label="Choose a tour package">
@@ -221,6 +223,8 @@ function Tours() {
                     <p className="tours-packages-footnote">Tour timing and stops may change with weather, sea conditions, and local schedules.</p>
 
                     </aside>
+                </div>
+                </div>
                 </div>
             </div>
             </div>
