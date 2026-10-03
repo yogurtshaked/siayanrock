@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Bed, Users } from "lucide-react";
 import ReserveModal from '../components/ReserveModal';
-import RoomSearchBar, { type RoomSearchValues } from '../components/roomSearchBar';
+import RoomSearchBar, { type RoomSearchValues } from '../components/RoomSearch';
 import { parseLocalDate, nightsBetween } from '../lib/searchDates';
 
 const BUCKET = "gallery";
@@ -20,12 +20,6 @@ function roomImageUrl(path: string): string {
     return supabase.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
 }
 
-const ROOM_KINDS = [
-    { value: "Couple's Room", label: "Couple's Room" },
-    { value: "Triple Sharing", label: "Triple Sharing" },
-    { value: "Barkada Room", label: "Barkada Room" },
-    { value: "Family Room", label: "Family Room" },
-];
 const ALL = "all";
 
 const normalizeKind = (s: string | null | undefined): string =>

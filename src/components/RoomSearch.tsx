@@ -27,7 +27,7 @@ type Props = {
     variant?: "hero" | "inline";
 };
 
-export default function RoomSearchBar({
+export default function RoomSearch({
     defaultCheckIn = null,
     defaultCheckOut = null,
     defaultGuests = null,
