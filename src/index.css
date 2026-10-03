@@ -1129,97 +1129,14 @@ p, a, button {
 
 
 /* ====================== SEARCH BAR ======================*/
-/* ---------- Search summary (under the bar) ---------- */
-.rs-summary {
-    --rs-ink: #25230f;
-    --rs-gold: #e9bb4f;
-    --rs-muted: #6b7373;
-    --rs-line: #e4e4e4;
-    --rs-soft: #f5f5f5;
-
+.rs-icon-swap {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px 16px;
-    margin: 0 0 20px;
+    animation: rs-icon-pop 0.18s ease;
 }
 
-.rs-summary-chips {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    min-width: 0;
-}
-
-.rs-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    background: var(--rs-soft);
-    border: 1px solid var(--rs-line);
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    line-height: 1;
-    color: var(--rs-ink);
-    white-space: nowrap;
-}
-
-.rs-chip svg {
-    color: var(--rs-muted);
-    flex-shrink: 0;
-}
-
-/* dates chip gets the gold tint so it reads as the main one */
-.rs-chip--dates {
-    background: rgba(233, 187, 79, 0.16);
-    border-color: rgba(233, 187, 79, 0.55);
-}
-
-.rs-chip--dates svg {
-    color: var(--rs-ink);
-}
-
-.rs-summary-count {
-    margin-left: 4px;
-    font-size: 0.85rem;
-    color: var(--rs-muted);
-}
-
-.rs-clear {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-    padding: 7px 14px;
-    background: transparent;
-    border: 1px solid var(--rs-ink);
-    border-radius: 999px;
-    font: inherit;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--rs-ink);
-    cursor: pointer;
-    transition: background 0.15s ease, color 0.15s ease;
-}
-
-.rs-clear:hover {
-    background: var(--rs-ink);
-    color: #fff;
-}
-
-.rs-clear:focus-visible {
-    outline: 2px solid var(--rs-ink);
-    outline-offset: 2px;
-}
-
-@media (max-width: 640px) {
-    .rs-summary {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+@keyframes rs-icon-pop {
+    from { opacity: 0; transform: scale(0.6) rotate(-45deg); }
+    to   { opacity: 1; transform: scale(1) rotate(0); }
 }
 .rs-bar {
     --rs-ink: #25230f;

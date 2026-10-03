@@ -6,7 +6,7 @@ import ScrollHint from '../components/Scrollhint';
 import { supabase } from '../lib/supabaseClient';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { Bed, Users, CalendarDays, Moon, X } from "lucide-react";
+import { Bed, Users } from "lucide-react";
 import ReserveModal from '../components/ReserveModal';
 import RoomSearchBar, { type RoomSearchValues } from '../components/roomSearchBar';
 import { parseLocalDate, nightsBetween } from '../lib/searchDates';
@@ -201,45 +201,15 @@ function Accommodation() {
                     <div className='accommodation-content page-content'>
 
                         <RoomSearchBar
-                            variant="inline"
-                            defaultCheckIn={search?.checkInStr ?? null}
-                            defaultCheckOut={search?.checkOutStr ?? null}
-                            defaultGuests={search ? params.get("guests") : null}
-                            onSearch={handleSearch}
-                        />
+    variant="inline"
+    defaultCheckIn={search?.checkInStr ?? null}
+    defaultCheckOut={search?.checkOutStr ?? null}
+    defaultGuests={search ? params.get("guests") : null}
+    onSearch={handleSearch}
+    onClear={clearSearch}
+/>
 
-                        {search && (
-                    <div className='rs-summary'>
-                        <div className='rs-summary-chips'>
-                            <span className='rs-chip rs-chip--dates'>
-                                <CalendarDays size={14} />
-                                {search.checkIn.toLocaleDateString("en-PH", { month: "short", day: "numeric" })} –{" "}
-                                {search.checkOut.toLocaleDateString("en-PH", { month: "short", day: "numeric", year: "numeric" })}
-                            </span>
-
-                            <span className='rs-chip'>
-                                <Moon size={14} />
-                                {search.nights} night{search.nights > 1 ? "s" : ""}
-                            </span>
-
-                            <span className='rs-chip'>
-                                <Users size={14} />
-                                {search.guests}{params.get("guests") === "5+" ? "+" : ""} guest{search.guests > 1 ? "s" : ""}
-                            </span>
-
-                            <span className='rs-summary-count'>
-                                {checking
-                                    ? "Checking availability…"
-                                    : `${availableRooms.length} room${availableRooms.length === 1 ? "" : "s"} available`}
-                            </span>
-                        </div>
-
-                        <button type='button' className='rs-clear' onClick={clearSearch}>
-                            <X size={14} />
-                            Clear search
-                        </button>
-                    </div>
-                )}
+{checking && <p className='accommodation-checking'>Checking availability…</p>}
 
 
                         {/* Kind switcher: pills restored 

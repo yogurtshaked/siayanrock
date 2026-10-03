@@ -6,7 +6,7 @@ import { Users } from '@/components/animate-ui/icons/users';
 import { Search } from '@/components/animate-ui/icons/search';
 import { CalendarDaysIcon } from '@/components/ui/calendar-days';
 import { addDays, parseLocalDate, startOfToday, toLocalISO } from "../lib/searchDates";
-
+import { X } from "lucide-react";
 
 
 export type RoomSearchValues = {
@@ -23,6 +23,7 @@ type Props = {
     defaultCheckOut?: string | null;
     defaultGuests?: string | null;
     onSearch: (values: RoomSearchValues) => void;
+    onClear?: () => void;
     variant?: "hero" | "inline";
 };
 
@@ -31,6 +32,7 @@ export default function RoomSearchBar({
     defaultCheckOut = null,
     defaultGuests = null,
     onSearch,
+    onClear,
     variant = "hero",
 }: Props) {
     const [checkIn, setCheckIn] = useState<Date | null>(parseLocalDate(defaultCheckIn));
@@ -98,6 +100,21 @@ export default function RoomSearchBar({
         action: "search-button-container", btn: "search-btn", error: "field-error",
         guestsLabel: "guests-label",
       };
+
+      const isApplied =
+    !!defaultCheckIn && !!defaultCheckOut && !!defaultGuests &&
+    !!checkIn && !!checkOut &&
+    toLocalISO(checkIn) === defaultCheckIn &&
+    toLocalISO(checkOut) === defaultCheckOut &&
+    guests === defaultGuests;
+
+const handleClear = () => {
+    setCheckIn(null);
+    setCheckOut(null);
+    setGuests("");
+    setErrors({});
+    onClear?.();
+};
 
     return (
     <div className={c.root}>
@@ -170,15 +187,18 @@ export default function RoomSearchBar({
             {errors.guests && <span className={c.error}>{errors.guests}</span>}
         </div>
 
-        <div className={c.action}>
-            <button
-                type="button"
-                className={c.btn}
-                onClick={handleSearch}
-                aria-label="Search rooms">
-                <Search size={22} />
-            </button>
-        </div>
+       <div className={c.action}>
+    <button
+        type="button"
+        className={c.btn}
+        onClick={isApplied ? handleClear : handleSearch}
+        aria-label={isApplied ? "Clear search" : "Search rooms"}
+        title={isApplied ? "Clear search" : "Search rooms"}>
+        <span key={isApplied ? "clear" : "search"} className="rs-icon-swap">
+            {isApplied ? <X size={22} /> : <Search size={22} />}
+        </span>
+    </button>
+</div>
     </div>
 );
 }
