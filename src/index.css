@@ -209,11 +209,16 @@ p, a, button {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(26px);
   -webkit-backdrop-filter: blur(28px);
-  padding: 18px 24px;
+  padding: 18px 24px 26px 24px;
   border-radius: 6px;
-  /*border: 1px solid rgba(255, 255, 255, 0.25);*/
 }
 
+.field-error {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: #ef4444;
+}
 .date-range{
   display: flex;
   flex-direction: row;
@@ -306,6 +311,19 @@ p, a, button {
 .search-btn:hover {
   background: var(--color-dark-yellow);
 }
+
+.field-error {
+    position: absolute;
+    top: 100%;            /* directly below the card */
+    left: 0;
+    margin-top: 4px;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    color: #ef4444;
+    white-space: nowrap;  /* keep it on one line */
+    pointer-events: none;
+}
+
 
 .scroll-down {
   position: absolute;
@@ -418,7 +436,7 @@ p, a, button {
   gap: 30px;
 
   /* drop-shadow lives here because the mask below would clip a box-shadow */
-  filter: drop-shadow(0 4px 10px rgba(84, 69, 47, 0.3));
+  filter: drop-shadow(0 4px 4px rgba(84, 69, 47, 0.4));
 }
 
 /* the paper, with the perforated stamp edge cut out of it */
@@ -468,21 +486,64 @@ p, a, button {
 }
 
 .about-image {
-  width: 420px;
-  flex-shrink: 0;
-  padding: 0;
+  position: relative;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(84, 69, 47, 0.15);
+  transform: rotate(-1deg);
 }
 
 .about-image img {
-  height: 380px;
-  width: auto;
   display: block;
+  width: 340px;
+  height: 320px;
+  object-fit: cover;
+}
+.about-title {
+  position: relative;
+}
+
+/* circular postmark: double ring with the text running around it */
+.about-image::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  right: -8px;
+  width: 90px;
+  height: 90px;
+  transform: rotate(-8deg);
+  pointer-events: none;
+  mix-blend-mode: multiply; /* reads like ink on paper */
+  opacity: 0.6;
+
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><path id='r' d='M11,50 a39,39 0 1,1 78,0 a39,39 0 1,1 -78,0'/></defs><g fill='none' stroke='rgb(84,69,47)'><circle cx='50' cy='50' r='47' stroke-width='1.6'/><circle cx='50' cy='50' r='31' stroke-width='1'/></g><text font-family='Georgia,serif' font-size='7.2' font-weight='bold' fill='rgb(84,69,47)'><textPath href='%23r' textLength='238' lengthAdjust='spacing'>IVANA · BATANES · PHILIPPINES ·</textPath></text><text x='50' y='54' text-anchor='middle' font-family='Georgia,serif' font-size='11' font-weight='bold' letter-spacing='1' fill='rgb(84,69,47)'>IVANA</text><path d='M36,42 h28 M36,60 h28' stroke='rgb(84,69,47)' stroke-width='0.8'/></svg>") center / contain no-repeat;
+}
+
+/* wavy cancellation lines running off the postmark */
+.about-image::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 65px;
+  width: 110px;
+  height: 48px;
+  transform: rotate(-8deg);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.4;
+
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 56'><g fill='none' stroke='rgb(84,69,47)' stroke-width='1.6' stroke-linecap='round'><path d='M0,10 q10,-8 20,0 t20,0 t20,0 t20,0 t20,0 t20,0'/><path d='M0,22 q10,-8 20,0 t20,0 t20,0 t20,0 t20,0 t20,0'/><path d='M0,34 q10,-8 20,0 t20,0 t20,0 t20,0 t20,0 t20,0'/><path d='M0,46 q10,-8 20,0 t20,0 t20,0 t20,0 t20,0 t20,0'/></g></svg>") center / contain no-repeat;
+}
+
+@media (max-width: 1024px) {
+  .about-title::before { top: -64px; right: 0; width: 80px; height: 80px; }
+  .about-title::after  { top: -48px; right: 66px; width: 96px; height: 45px; }
 }
 
 .about-text {
-  padding: 0 30px 0 0;
+  padding: 0px 30px 0 0;
   flex: 1;
-  max-width: 560px;
+  max-width: 440px;
 
   display: flex;
   flex-direction: column;
@@ -492,7 +553,7 @@ p, a, button {
 }
 
 .about-text .section-description {
-  max-width: 390px;
+  max-width: 380px;
   line-height: 26px;
 }
 
@@ -1006,7 +1067,7 @@ p, a, button {
 }
 
 /* ====================== Page Settings ======================*/
-.accommodation-page, .gallery-page, .tours-page, .inquire-page{
+.accommodation-page, .gallery-page, .tours-page, .inquire-page, .room-details-page{
   width: 100%;
 }
 .page-content{
@@ -1041,7 +1102,6 @@ p, a, button {
 }
 
 .page-body{
-
   background: white;
   padding: 80px 140px;
 
@@ -1068,6 +1128,254 @@ p, a, button {
 }
 
 
+/* ====================== SEARCH BAR ======================*/
+/* ---------- Search summary (under the bar) ---------- */
+.rs-summary {
+    --rs-ink: #25230f;
+    --rs-gold: #e9bb4f;
+    --rs-muted: #6b7373;
+    --rs-line: #e4e4e4;
+    --rs-soft: #f5f5f5;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 16px;
+    margin: 0 0 20px;
+}
+
+.rs-summary-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.rs-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: var(--rs-soft);
+    border: 1px solid var(--rs-line);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--rs-ink);
+    white-space: nowrap;
+}
+
+.rs-chip svg {
+    color: var(--rs-muted);
+    flex-shrink: 0;
+}
+
+/* dates chip gets the gold tint so it reads as the main one */
+.rs-chip--dates {
+    background: rgba(233, 187, 79, 0.16);
+    border-color: rgba(233, 187, 79, 0.55);
+}
+
+.rs-chip--dates svg {
+    color: var(--rs-ink);
+}
+
+.rs-summary-count {
+    margin-left: 4px;
+    font-size: 0.85rem;
+    color: var(--rs-muted);
+}
+
+.rs-clear {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    padding: 7px 14px;
+    background: transparent;
+    border: 1px solid var(--rs-ink);
+    border-radius: 999px;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--rs-ink);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.rs-clear:hover {
+    background: var(--rs-ink);
+    color: #fff;
+}
+
+.rs-clear:focus-visible {
+    outline: 2px solid var(--rs-ink);
+    outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+    .rs-summary {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+.rs-bar {
+    --rs-ink: #25230f;
+    --rs-gold: #e9bb4f;
+    --rs-gold-hover: #dfae3a;
+    --rs-muted: #6b7373;
+    --rs-line: #e4e4e4;
+    --rs-soft: #f5f5f5;
+
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 0 20px;
+    padding: 8px;
+    background: #fff;
+    border: 1px solid var(--rs-line);
+    box-shadow: 0 4px 12px rgba(37, 35, 15, 0.08);
+    text-align: left;
+}
+
+.rs-range {
+    display: flex;
+    align-items: stretch;
+    min-width: 0;
+}
+
+.rs-field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+    padding: 12px 18px;
+    transition: background 0.15s ease;
+}
+
+.rs-field:hover,
+.rs-field:focus-within {
+    background: var(--rs-soft);
+}
+
+/* divider before the guests field */
+.rs-bar > .rs-field {
+    border-left: 1px solid var(--rs-line);
+    border-radius: 0 6px 6px 0;
+}
+
+.rs-arrow {
+    display: flex;
+    align-items: center;
+    color: #b5b5b5;
+}
+
+.rs-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rs-muted);
+    cursor: pointer;
+}
+
+.rs-label svg {
+    color: var(--rs-muted);
+    stroke: currentColor;
+}
+
+.rs-bar .react-datepicker-wrapper {
+    width: 100%;
+}
+
+.rs-input,
+.rs-select {
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--rs-ink);
+    cursor: pointer;
+}
+
+.rs-input::placeholder {
+    color: #9a9a9a;
+    font-weight: 400;
+}
+
+.rs-select {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.rs-action {
+    display: flex;
+    padding-left: 8px;
+}
+
+.rs-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 96px;
+    height: 100%;
+    padding: 0 28px;
+    background: var(--rs-gold);
+    color: var(--rs-ink);
+    border: 0;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.rs-btn:hover { background: var(--rs-gold-hover); }
+.rs-btn:active { transform: translateY(1px); }
+
+.rs-btn:focus-visible,
+.rs-input:focus-visible,
+.rs-select:focus-visible {
+    outline: 2px solid var(--rs-ink);
+    outline-offset: 2px;
+}
+
+.rs-error {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    color: #d93a3a;
+}
+
+@media (max-width: 820px) {
+    .rs-bar {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 4px;
+    }
+
+    .rs-range {
+        grid-column: 1 / -1;
+        padding-bottom: 4px;
+        border-bottom: 1px solid var(--rs-line);
+    }
+
+    .rs-bar > .rs-field { border-left: 0; }
+    .rs-action { padding-left: 0; }
+    .rs-btn { width: 100%; min-height: 48px; }
+}
 
 
 /* ====================== Accommodation Page ======================*/
@@ -2173,59 +2481,60 @@ form{
   width: 100%;
   height: 100%;
 }
-/* ====================== Breadcrumb Navigation ======================*/
-.room-nav{
-  background:var(--color-green-background);
-  background-size: cover;
+/* ====================== Back Navigation ======================*/
 
-  padding: 65px 180px 0 180px;
-  min-height: 18vh;
-
-  color: #ffffff;
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+.room-details-nav {
+  padding: calc(var(--nav-h, 84px) + 16px) 0 8px;
 }
 
-.breadcrumb {
-  display: flex;
+.back-link {
+  width: fit-content;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.755);
-}
-
-.breadcrumb-link {
-  border: none;
+  gap: 6px;
+  padding: 6px 12px 6px 8px;
   background: none;
-  padding: 0;
-  font: inherit;
-  color: rgba(255, 255, 255, 0.755);
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.breadcrumb-link:hover {
-  color: white;
-}
-
-.breadcrumb-separator {
-  color: white;
-  font-size: 18px;
-}
-
-.breadcrumb-current {
-  color: white;
+  border: 0;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 14px;
   font-weight: 500;
+  color: var(--color-green-background, #222411);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.back-link svg {
+  transition: transform 0.2s ease;
+}
+
+.back-link:hover {
+  background: rgba(34, 36, 17, 0.08);
+}
+
+.back-link:hover svg {
+  transform: translateX(-3px);         /* arrow nudges left on hover */
+}
+
+.back-link:focus-visible {
+  outline: 2px solid var(--color-yellow, #eabb4b);
+  outline-offset: 2px;
 }
 
 /* ====================== Room Details ======================*/
+.room-details-body{
+  background: white;
+  padding: 20px 0px 80px 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
 .room-details-content {
   margin: 0 auto;
-  padding: 80px 180px;
+  max-width: 1160px;
     
   display: flex;
   flex-direction: column;
@@ -2308,6 +2617,10 @@ form{
 }
 .room-overview p{
   font-weight: 400;
+}
+
+.room-details-header p {
+  white-space: pre-line;
 }
 
 .room-amenities-list {
@@ -2953,7 +3266,6 @@ form{
 }
 
 .about-us-story .about-us-lead {
-  max-width: 600px;
   margin: 0 auto;
   color: var(--color-section-description);
 }
@@ -3190,11 +3502,11 @@ form{
 
 .about-us-nearby-text h2 {
   max-width: 560px;
+  font-size: 50px;
   color: #fff;
 }
 
 .about-us-nearby .about-us-lead {
-  max-width: 360px;
   color: rgba(255, 255, 255, 0.7);
 }
 

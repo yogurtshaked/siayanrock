@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { supabase } from "../lib/supabaseClient"
-import { Bath, Bed, Check, DoorOpen, ShowerHead, Snowflake, Tv, Users, SquareDashed, ChevronRight, Wifi, Shirt, Clapperboard, LampDesk, Plus } from "lucide-react"
+import { Bath, Bed, Check, DoorOpen, ShowerHead, Snowflake, Tv, Users, SquareDashed, ChevronLeft, Wifi, Shirt, Clapperboard, LampDesk, Plus } from "lucide-react"
 import ReserveModal from "@/components/ReserveModal"
+import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
 
 const BUCKET = "gallery"
 
@@ -184,226 +185,207 @@ function RoomDetails() {
     return (
         <section>
             <div className="room-details-page">
-                <div className="room-nav">
-                    <nav className="breadcrumb" aria-label="Breadcrumb">
-                        <button
-                            type="button"
-                            className="breadcrumb-link"
-                            onClick={() => navigate("/")}
-                        >
-                            Home
-                        </button>
-
-                        <span className="breadcrumb-separator">
-                            <ChevronRight size={14} strokeWidth={1.5} />
-                        </span>
-
-                        <button
-                            type="button"
-                            className="breadcrumb-link"
-                            onClick={() => navigate("/accommodation")}
-                        >
-                            Accommodation
-                        </button>
-
-                        <span className="breadcrumb-separator">
-                            <ChevronRight size={14} strokeWidth={1.5} />
-                        </span>
-
-                        <span className="breadcrumb-current" aria-current="page">
-                            {room.room_name} Room
-                        </span>
-                    </nav>
+                <div className='room-details-body'>
+                <div className="room-details-nav page-content">
+                    <button
+                        type="button"
+                        className="back-link"
+                        onClick={() => navigate("/accommodation")}
+                    >
+                        <ChevronLeft size={16} strokeWidth={1.5} />
+                        Back to rooms
+                    </button>
                 </div>
 
-                <div className="room-details-content">
-                    <div className="room-details-images">
-                        {imageUrls.map((url, index) => (
-                            <img
-                                key={index}
-                                src={url}
-                                alt={`Room ${room.room_name} - ${index + 1}`}
-                                onClick={() => openLightbox(index)}
-                                className="room-details-image"
-                                loading={index === 0 ? "eager" : "lazy"}
-                                decoding="async"
-                            />
-                        ))}
-                    </div>
+                
+                        <div className="room-details-content page-content ">
+                            <div className="room-details-images">
+                                {imageUrls.map((url, index) => (
+                                    <img
+                                        key={index}
+                                        src={url}
+                                        alt={`Room ${room.room_name} - ${index + 1}`}
+                                        onClick={() => openLightbox(index)}
+                                        className="room-details-image"
+                                        loading={index === 0 ? "eager" : "lazy"}
+                                        decoding="async"
+                                    />
+                                ))}
+                            </div>
 
 
-                    <div className="room-info-book">
-                        <div className="room-information">
-                            <div className="room-details-title">
-                                <h2 className="room-name">{room.room_name} Room</h2>
-                                <div className="room-items">
+                            <div className="room-info-book">
+                                <div className="room-information">
+                                    <div className="room-details-title">
+                                        <h2 className="room-name">{room.room_name} Room</h2>
+                                        <div className="room-items">
 
-                                    <div className="room-item">
-                                        <Bed size={20} strokeWidth={1.5} />
-                                        <p>
-                                            {room.num_beds}{' '}
-                                            {room.num_beds === 1 ? 'bed' : 'beds'}
-                                        </p>
+                                            <div className="room-item">
+                                                <Bed size={20} strokeWidth={1.5} />
+                                                <p>
+                                                    {room.num_beds}{' '}
+                                                    {room.num_beds === 1 ? 'bed' : 'beds'}
+                                                </p>
+                                            </div>
+                                            <div className="room-item">
+                                                <Users size={20} strokeWidth={1.5} />
+                                                <p>
+                                                    {room.max_guests}{' '}
+                                                    {room.max_guests === 1 ? 'guest' : 'guests'}
+                                                </p>
+                                            </div>
+                                            <div className="room-item">
+                                                <SquareDashed size={20} strokeWidth={1.5} />
+                                                <p>
+                                                    {room.room_size_sqm}{' '}
+                                                    {room.room_size_sqm === 1 ? 'sqm' : 'sqm'}
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="room-item">
-                                        <Users size={20} strokeWidth={1.5} />
-                                        <p>
-                                            {room.max_guests}{' '}
-                                            {room.max_guests === 1 ? 'guest' : 'guests'}
-                                        </p>
+
+                                    <div className="room-overview room-details-header">
+                                        <h2>Overview</h2>
+                                        <p>{room.description}</p>
                                     </div>
-                                    <div className="room-item">
-                                        <SquareDashed size={20} strokeWidth={1.5} />
-                                        <p>
-                                            {room.room_size_sqm}{' '}
-                                            {room.room_size_sqm === 1 ? 'sqm' : 'sqm'}
-                                        </p>
+
+                                    <div className="room-amenities room-details-header">
+                                        <h2>Amenities</h2>
+                                        <div className="room-amenities-list">
+                                            {room.amenities?.map((amenity) => {
+                                                const Icon = amenityIcons[amenity.toLowerCase()] ?? Check
+
+                                                return (
+                                                    <div className="room-amenity" key={amenity}>
+                                                        <div className="room-amenity-icon">
+                                                            <Icon size={20} strokeWidth={1.5} />
+                                                        </div>
+
+                                                        <p>{amenity}</p>
+                                                    </div>
+
+                                                )
+                                            })}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div className="room-overview room-details-header">
-                                <h2>Overview</h2>
-                                <p>{room.description}</p>
-                            </div>
+                                <div className="booking-form">
 
-                            <div className="room-amenities room-details-header">
-                                <h2>Amenities</h2>
-                                <div className="room-amenities-list">
-                                    {room.amenities?.map((amenity) => {
-                                        const Icon = amenityIcons[amenity.toLowerCase()] ?? Check
+                                    {/* 1. Rate */}
+                                    <div className="pricing-header">
+                                        <p className="pricing-label">Room rate</p>
 
-                                        return (
-                                            <div className="room-amenity" key={amenity}>
-                                                <div className="room-amenity-icon">
-                                                    <Icon size={20} strokeWidth={1.5} />
+                                        <div className="pricing-rate">
+                                            <span className="price-highlight">{peso(room.room_price)}</span>
+                                            <span className="pricing-unit">/ night</span>
+                                        </div>
+
+                                        <ul className="pricing-notes">
+                                            <li>
+                                                <Users size={15} strokeWidth={1.75} />
+                                                Room price is good for {room.base_guests ?? 2} guests
+                                            </li>
+                                            {Number(room.extra_guests_fee) > 0 && (
+                                                <li>
+                                                    <Plus size={15} strokeWidth={1.75} />
+                                                    {peso(Number(room.extra_guests_fee))} per extra guest, per night
+                                                </li>
+                                            )}
+                                        </ul>
+                                    </div>
+
+                                    {/* 2. Your stay */}
+                                    <div className="booking-fields">
+                                        <div className="booking-fields-row">
+                                            <div className="booking-field">
+                                                <label htmlFor="check-in">Check in</label>
+                                                <input
+                                                    id="check-in"
+                                                    type="date"
+                                                    value={checkIn}
+                                                    onChange={(e) => setCheckIn(e.target.value)}
+                                                />
+                                            </div>
+
+                                            <div className="booking-field">
+                                                <label htmlFor="check-out">Check out</label>
+                                                <input
+                                                    id="check-out"
+                                                    type="date"
+                                                    min={checkIn || undefined}
+                                                    value={checkOut}
+                                                    onChange={(e) => setCheckOut(e.target.value)}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="booking-field">
+                                            <label htmlFor="guests">
+                                                Guests <span className="booking-field-hint">(max {room.max_guests})</span>
+                                            </label>
+                                            <select
+                                                id="guests"
+                                                value={guestCount}
+                                                onChange={(e) => setGuestCount(Number(e.target.value))}
+                                            >
+                                                {Array.from({ length: room.max_guests }, (_, i) => {
+                                                    const count = i + 1
+                                                    return (
+                                                        <option key={count} value={count}>
+                                                            {count} {count === 1 ? "guest" : "guests"}
+                                                        </option>
+                                                    )
+                                                })}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    {/* 3. Cost */}
+                                    <div className="booking-price-summary">
+                                        {pricing.nights > 0 ? (
+                                            <>
+                                                <div className="booking-price-row">
+                                                    <span>
+                                                        {peso(room.room_price)} × {pricing.nights}{" "}
+                                                        {pricing.nights === 1 ? "night" : "nights"}
+                                                    </span>
+                                                    <span>{peso(pricing.roomSubtotal)}</span>
                                                 </div>
 
-                                                <p>{amenity}</p>
-                                            </div>
+                                                {pricing.extraGuests > 0 && (
+                                                    <div className="booking-price-row">
+                                                        <span>
+                                                            {pricing.extraGuests} extra{" "}
+                                                            {pricing.extraGuests === 1 ? "guest" : "guests"} × {pricing.nights}{" "}
+                                                            {pricing.nights === 1 ? "night" : "nights"}
+                                                        </span>
+                                                        <span>{peso(pricing.extraGuestTotal)}</span>
+                                                    </div>
+                                                )}
 
-                                        )
-                                    })}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="booking-form">
-
-                            {/* 1. Rate */}
-                            <div className="pricing-header">
-                                <p className="pricing-label">Room rate</p>
-
-                                <div className="pricing-rate">
-                                    <span className="price-highlight">{peso(room.room_price)}</span>
-                                    <span className="pricing-unit">/ night</span>
-                                </div>
-
-                                <ul className="pricing-notes">
-                                    <li>
-                                        <Users size={15} strokeWidth={1.75} />
-                                        Room price is good for {room.base_guests ?? 2} guests
-                                    </li>
-                                    {Number(room.extra_guests_fee) > 0 && (
-                                        <li>
-                                            <Plus size={15} strokeWidth={1.75} />
-                                            {peso(Number(room.extra_guests_fee))} per extra guest, per night
-                                        </li>
-                                    )}
-                                </ul>
-                            </div>
-
-                            {/* 2. Your stay */}
-                            <div className="booking-fields">
-                                <div className="booking-fields-row">
-                                    <div className="booking-field">
-                                        <label htmlFor="check-in">Check in</label>
-                                        <input
-                                            id="check-in"
-                                            type="date"
-                                            value={checkIn}
-                                            onChange={(e) => setCheckIn(e.target.value)}
-                                        />
-                                    </div>
-
-                                    <div className="booking-field">
-                                        <label htmlFor="check-out">Check out</label>
-                                        <input
-                                            id="check-out"
-                                            type="date"
-                                            min={checkIn || undefined}
-                                            value={checkOut}
-                                            onChange={(e) => setCheckOut(e.target.value)}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="booking-field">
-                                    <label htmlFor="guests">
-                                        Guests <span className="booking-field-hint">(max {room.max_guests})</span>
-                                    </label>
-                                    <select
-                                        id="guests"
-                                        value={guestCount}
-                                        onChange={(e) => setGuestCount(Number(e.target.value))}
-                                    >
-                                        {Array.from({ length: room.max_guests }, (_, i) => {
-                                            const count = i + 1
-                                            return (
-                                                <option key={count} value={count}>
-                                                    {count} {count === 1 ? "guest" : "guests"}
-                                                </option>
-                                            )
-                                        })}
-                                    </select>
-                                </div>
-                            </div>
-
-                            {/* 3. Cost */}
-                            <div className="booking-price-summary">
-                                {pricing.nights > 0 ? (
-                                    <>
-                                        <div className="booking-price-row">
-                                            <span>
-                                                {peso(room.room_price)} × {pricing.nights}{" "}
-                                                {pricing.nights === 1 ? "night" : "nights"}
-                                            </span>
-                                            <span>{peso(pricing.roomSubtotal)}</span>
-                                        </div>
-
-                                        {pricing.extraGuests > 0 && (
-                                            <div className="booking-price-row">
-                                                <span>
-                                                    {pricing.extraGuests} extra{" "}
-                                                    {pricing.extraGuests === 1 ? "guest" : "guests"} × {pricing.nights}{" "}
-                                                    {pricing.nights === 1 ? "night" : "nights"}
-                                                </span>
-                                                <span>{peso(pricing.extraGuestTotal)}</span>
-                                            </div>
+                                                <div className="booking-total-row">
+                                                    <span>Total</span>
+                                                    <strong>{peso(pricing.total)}</strong>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <p className="booking-price-hint">
+                                                Pick your dates to see the total.
+                                            </p>
                                         )}
+                                    </div>
 
-                                        <div className="booking-total-row">
-                                            <span>Total</span>
-                                            <strong>{peso(pricing.total)}</strong>
-                                        </div>
-                                    </>
-                                ) : (
-                                    <p className="booking-price-hint">
-                                        Pick your dates to see the total.
-                                    </p>
-                                )}
+                                    {/* 4. Action */}
+                                    <div className="booking-form-btn">
+                                        <button className="book-room-btn" onClick={handleBookRoom}>
+                                            Reserve this room&nbsp; <ArrowRight animateOnHover size={16} />
+                                        </button>
+                                    </div>
+
+                                </div>
                             </div>
-
-                            {/* 4. Action */}
-                            <div className="booking-form-btn">
-                                <button className="book-room-btn" onClick={handleBookRoom}>
-                                    Reserve this room
-                                </button>
-                            </div>
-
                         </div>
-                    </div>
-
                 </div>
             </div>
 

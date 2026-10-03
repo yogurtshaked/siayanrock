@@ -11,15 +11,38 @@ import { Users } from '@/components/animate-ui/icons/users';
 import { Search } from '@/components/animate-ui/icons/search';
 import { CalendarDaysIcon } from '@/components/ui/calendar-days';
 
+/* ---------- date helpers ---------- */
+const startOfToday = (): Date => {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
+};
 
+const addDays = (date: Date, days: number): Date => {
+    const d = new Date(date);
+    d.setDate(d.getDate() + days);
+    d.setHours(0, 0, 0, 0);
+    return d;
+};
+
+// Local yyyy-MM-dd (avoids the UTC shift from toISOString)
+const toLocalISO = (date: Date): string => {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+};
+
+type SearchErrors = {
+    checkIn?: string;
+    checkOut?: string;
+    guests?: string;
+};
 function Home(){
-    const navigate = useNavigate();
-    const [hoveredGalleryIndex, setHoveredGalleryIndex] =
-    useState<number | null>(null);
 
     const galleryImages = [
         {
-            src: "/images/siayanrock-img.jpg",
+            src: "/images/gallery/hometel-1.JPG",
             alt: "Siayanrock Is. Hometel",
             caption: "Siayanrock Is. Hometel",
             description:
@@ -48,9 +71,60 @@ function Home(){
         },
     ];
 
+    const navigate = useNavigate();
+    const [hoveredGalleryIndex, setHoveredGalleryIndex] =
+        useState<number | null>(null);
+
     const [checkIn, setCheckIn] = useState<Date | null>(null);
     const [checkOut, setCheckOut] = useState<Date | null>(null);
     const [guests, setGuests] = useState<string>("");
+    const [errors, setErrors] = useState<SearchErrors>({});
+
+    const today = startOfToday();
+
+    const handleCheckInChange = (date: Date | null) => {
+        setCheckIn(date);
+        setErrors((e) => ({ ...e, checkIn: undefined }));
+
+        // If the new check-in is on/after the current check-out, clear check-out
+        if (date && checkOut && date >= checkOut) {
+            setCheckOut(null);
+        }
+    };
+
+    const handleCheckOutChange = (date: Date | null) => {
+        setCheckOut(date);
+        setErrors((e) => ({ ...e, checkOut: undefined }));
+    };
+
+    const validate = (): SearchErrors => {
+        const next: SearchErrors = {};
+
+        if (!checkIn) next.checkIn = "Select a check-in date";
+        else if (checkIn < today) next.checkIn = "Check-in can't be in the past";
+
+        if (!checkOut) next.checkOut = "Select a check-out date";
+        else if (checkIn && checkOut <= checkIn)
+            next.checkOut = "Check-out must be after check-in";
+
+        if (!guests) next.guests = "Select number of guests";
+
+        return next;
+    };
+
+    const handleSearchRooms = () => {
+        const validationErrors = validate();
+        setErrors(validationErrors);
+        if (Object.keys(validationErrors).length > 0) return;
+
+        const params = new URLSearchParams({
+            checkIn: toLocalISO(checkIn!),
+            checkOut: toLocalISO(checkOut!),
+            guests,
+        });
+
+        navigate(`/accommodation?${params.toString()}`);
+    };
 
     return(
         <section>
@@ -59,7 +133,7 @@ function Home(){
                     <h1>Discover Your Perfect <span className="hero-highlight">Holiday Home</span> With Us!</h1>
                     
                     <div className="hero-search-bar">
-                        <div className="date-range"> 
+                        <div className="date-range">
                             <div className="date-card">
                                 <label className="date-card-label">
                                     <CalendarDaysIcon size={16} />
@@ -67,18 +141,12 @@ function Home(){
                                 </label>
                                 <DatePicker
                                     selected={checkIn}
-                                    onChange={(date: Date | null) => {
-                                        if (date && checkOut && date >= checkOut) {
-                                            return;
-                                        }
-
-                                        setCheckIn(date);
-                                    }}
+                                    onChange={handleCheckInChange}
                                     selectsStart
                                     startDate={checkIn}
                                     endDate={checkOut}
-                                    minDate={new Date()}
-                                    maxDate={checkOut || undefined}
+                                    minDate={today}
+                                    maxDate={checkOut ? addDays(checkOut, -1) : undefined}
                                     placeholderText="mm-dd-yyyy"
                                     dateFormat="MM-dd-yyyy"
                                     className="date-card-value"
@@ -86,6 +154,7 @@ function Home(){
                                     withPortal={false}
                                     portalId="datepicker-portal"
                                 />
+                                {errors.checkIn && <span className="field-error">{errors.checkIn}</span>}
                             </div>
 
                             <div className="date-arrow">
@@ -99,14 +168,11 @@ function Home(){
                                 </label>
                                 <DatePicker
                                     selected={checkOut}
-                                    onChange={(date: Date | null) => setCheckOut(date)}
+                                    onChange={handleCheckOutChange}
                                     selectsEnd
                                     startDate={checkIn}
                                     endDate={checkOut}
-                                    minDate={checkIn
-                                            ? new Date(checkIn.getTime() + 24 * 60 * 60 * 1000)
-                                            : new Date()
-                                    } 
+                                    minDate={addDays(checkIn ?? today, 1)}
                                     placeholderText="mm-dd-yyyy"
                                     dateFormat="MM-dd-yyyy"
                                     className="date-card-value"
@@ -114,6 +180,7 @@ function Home(){
                                     withPortal={false}
                                     portalId="datepicker-portal"
                                 />
+                                {errors.checkOut && <span className="field-error">{errors.checkOut}</span>}
                             </div>
                         </div>
 
@@ -125,7 +192,10 @@ function Home(){
                             <select
                                 className="guests-select"
                                 value={guests}
-                                onChange={(e) => setGuests(e.target.value)}>
+                                onChange={(e) => {
+                                    setGuests(e.target.value);
+                                    setErrors((er) => ({ ...er, guests: undefined }));
+                                }}>
                                 <option value="" disabled hidden>No. of guests</option>
                                 <option value="1">1 guest</option>
                                 <option value="2">2 guests</option>
@@ -133,10 +203,17 @@ function Home(){
                                 <option value="4">4 guests</option>
                                 <option value="5+">5+ guests</option>
                             </select>
+                            {errors.guests && <span className="field-error">{errors.guests}</span>}
                         </div>
-                        
+
                         <div className="search-button-container">
-                            <button className="search-btn"><Search size={22}/></button>
+                            <button
+                                type="button"
+                                className="search-btn"
+                                onClick={handleSearchRooms}
+                                aria-label="Search rooms">
+                                <Search size={22} />
+                            </button>
                         </div>
                     </div>
 
@@ -158,15 +235,16 @@ function Home(){
             <div className="about-section" id="section">
                 <div className="about-content">
                     <div className="about-image">
-                        <img src="images/siayanrock-img.jpg" alt="About Siayanrock Hometel" />
+                        <img src="images/accommodation-bg.webp" alt="About Siayanrock Hometel" />
                     </div>
                     <div className="about-text">
                         <div className="about-title">
                             <p className="section-title">About Us</p>
                             <h2>Siayanrock Is. Hometel</h2>
-                            <p className="section-description">Siayanrock Hometel is a welcoming place that offers guests a comfortable stay. 
-                            It provides a relaxing atmosphere where visitors can feel at home while enjoying their trip. 
-                            The hometel is ideal for travelers looking for convenience, comfort, and a peaceful environment.</p>
+                            <p className="section-description">A welcoming place to stay, 
+                                conveniently located in the heart of Batan Island. Situated in Ivana, right between North and South Batan, 
+                                the hometel provides guests with a convenient starting point for exploring the island’s 
+                                cultural landmarks and local attractions.</p>
                         </div>
                         <button className="learn-more landing-page-btn" onClick={() => navigate("/about")}>Learn More&nbsp; <ArrowRight animateOnHover size={16} /></button>
                     </div>
@@ -179,7 +257,7 @@ function Home(){
                         <div className="offer-title">
                             <p className="section-title">Services</p>
                             <h2>Explore Batanes with us</h2>
-                            <p className="section-description">Discover curated experiences designed by locals who know the islands best.</p>
+                            <p className="section-description">Comfortable stays and memorable adventures, all in one place.</p>
                         </div>
                     </div>
 
@@ -187,8 +265,7 @@ function Home(){
                         <div className="offer-card accommodation-card">
                             <div className="offer-card-content">
                                 <h3>Accommodation</h3>
-                                <p>Relax in comfortable, well-appointed rooms designed to make your stay
-                                    in Batanes memorable.</p>
+                                <p>Enjoy a comfortable stay in a space that feels like home, perfect for resting between adventures.</p>
                                 <button className="offer-card-btn landing-page-btn" onClick={() => navigate("/accommodation")}>
                                     <span className="offer-btn-text">View Details</span>
                                     <span className="offer-btn-icon">
@@ -201,8 +278,7 @@ function Home(){
                         <div className="offer-card tourpack-card">
                             <div className="offer-card-content">
                                 <h3>Tour Packages</h3>
-                                <p>Experience the beauty of Batanes with our guided tours led by
-                                    knowledgeable local guides.</p>
+                                <p>Discover the beauty of Batanes through breathtaking landscapes, cultural landmarks, and local destinations.</p>
                                 <button className="offer-card-btn landing-page-btn" onClick={() => navigate("/tours")}>
                                     <span className="offer-btn-text">View Details</span>
                                     <span className="offer-btn-icon"><ArrowRight animateOnHover size={16} /></span>
@@ -219,10 +295,10 @@ function Home(){
                     <div className="gallery-text">
                         <p className="section-title">Gallery</p>
 
-                        <h2>See Batanes through our lens.</h2>
+                        <h2>Postcards from Batanes</h2>
 
                         <p className="section-description">
-                            Discover curated experiences designed by locals who know the islands best
+                            A collection of moments from the beautiful islands of Batanes.
                         </p>
                     </div>
 

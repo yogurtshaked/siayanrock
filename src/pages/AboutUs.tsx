@@ -22,7 +22,7 @@ const SITE_IMAGES_BUCKET = "gallery";
 const SPOTS: Spot[] = [
     {
         name: "Spanish Bridge",
-        description: "Hilltop views over Basco and the sea.",
+        description: "Located beside Siayanrock Hometel, this bridge is a remnant of the Spanish colonial era.",
         imagePath: "tours/tours-6.webp",
         distance: "5 meters",
         bikeTime: "[XX] min",
@@ -30,7 +30,7 @@ const SPOTS: Spot[] = [
     {
         name: "Dakay House",
         description:
-        "Windswept green slopes, sea cliffs, and grazing cattle. The postcard view of Batanes.",
+        "The oldest surviving traditional stone house on the island, built in the 1800s.",
         imagePath: "tours/tours-9.webp",
         distance: "59 meters",
         bikeTime: "[XX] min",
@@ -38,28 +38,28 @@ const SPOTS: Spot[] = [
     },
     {
         name: "Honesty Coffee Shop",
-        description: "A shoreline of smooth boulders shaped by the sea.",
+        description: "A quaint coffee shop where you can enjoy a cup of coffee while taking in the serene surroundings.",
         imagePath: "tours/tours-7.webp",
         distance: "650 meters",
         bikeTime: "[XX] min",
     },
     {
         name: "Ivana Lighthouse",
-        description: "A calm coastal deck with a sea-facing sunset.",
+        description: "A lighthouse offering views of the surrounding landscape and the sea.",
         imagePath: "tours/tours-10.webp",
         distance: "650 meters",
         bikeTime: "[XX] min",
     },
     {
         name: "San Jose Church",
-        description: "Open meadows and ocean views, best at golden hour.",
+        description: "A historic church with a rich cultural heritage.",
         imagePath: "tours/tours-8.webp",
         distance: "600 meters",
         bikeTime: "[XX] min",
     },
     {
         name: "Nakurang Viewdeck",
-        description: "A calm coastal deck with a sea-facing sunset.",
+        description: "A private viewdeck reserved for our guests. Come for the sunrise, stay for the open sky and the sea beyond.",
         imagePath: "nakurang/nakurang-2.webp",
         distance: "1.8 km",
         bikeTime: "[XX] min",
@@ -248,11 +248,12 @@ export default function AboutUs() {
                         <div>
                         <p className="about-us-eyebrow section-title">Nearby</p>
                         <h2>Six places worth the pedal.</h2>
-                        </div>
                         <p className="about-us-lead">
                             Close to the hometel, and easy to reach on our free bikes or with
                             Mavien Point Travel and Tours.
                         </p>
+                        </div>
+                        
                     </div>
 
                     <div className="about-us-bento">
