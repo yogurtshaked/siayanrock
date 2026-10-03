@@ -5,7 +5,6 @@ import { faClock } from '@fortawesome/free-solid-svg-icons';
 import ScrollHint from '../components/Scrollhint'
 import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
 import {
-    CONTACT,
     INCLUSIONS,
     PACKAGES,
     type Day,

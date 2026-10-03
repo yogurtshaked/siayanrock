@@ -63,7 +63,7 @@ function Accommodation() {
 
     const [rooms, setRooms] = useState<Room[]>([]);
     const [reservingRoom, setReservingRoom] = useState<Room | null>(null);
-    const [kind, setKind] = useState<string>(ALL);
+    const [kind] = useState<string>(ALL);
     const [unavailableIds, setUnavailableIds] = useState<Set<number>>(new Set());
     const [checking, setChecking] = useState(false);
 
@@ -150,18 +150,9 @@ function Accommodation() {
         );
     }, [rooms, search, unavailableIds]);
 
-    // ONE countOf only, based on availableRooms
-    const countOf = (value: string): number =>
-        availableRooms.filter((r) => normalizeKind(r.room_type) === normalizeKind(value)).length;
-
     const visibleRooms = kind === ALL
         ? availableRooms
         : availableRooms.filter((r) => normalizeKind(r.room_type) === normalizeKind(kind));
-
-    const switcherOptions = [
-        { value: ALL, label: "All rooms", count: availableRooms.length },
-        ...ROOM_KINDS.map((k) => ({ ...k, count: countOf(k.value) })),
-    ];
 
     const stayTotal = (room: Room): number | null => {
         if (!search) return null;
