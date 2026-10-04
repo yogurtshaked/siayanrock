@@ -143,7 +143,7 @@ function Gallery() {
 
     return (
         <section>
-            <div className='gallery-page'>
+            <div className='gallery-page' id='page'>
                 <div id='gallery-body' className='page-body'>
                 <div className='gallery-page-content page-content'>
                     <div className='gallery-title page-title'>

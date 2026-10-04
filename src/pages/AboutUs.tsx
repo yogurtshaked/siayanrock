@@ -107,7 +107,7 @@ export default function AboutUs() {
     }, [total, paused]);
     
     return (
-        <div className="about-us">
+        <div className="about-us" id='page'>
         {/* ===== Story ===== */}
             <section className="about-us-story" id="about">
                 <div className="about-us-story-overlay">

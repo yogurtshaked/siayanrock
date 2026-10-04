@@ -119,7 +119,7 @@ function Inquire(){
 
     return(
         <section>
-            <div className='inquire-page'>
+            <div className='inquire-page' id='page'>
                 <div id='inquire-body' className='page-body'>
                 <div className='inquire-page-content'>
                     <div className='inquire-title page-title'>

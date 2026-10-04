@@ -1,4 +1,5 @@
-import "../index.css";
+import "./home.css";
+import "../../index.css";
 import { useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
@@ -294,9 +295,7 @@ function Home(){
 
                     <div className="gallery-text">
                         <p className="section-title">Gallery</p>
-
                         <h2>Postcards from Batanes</h2>
-
                         <p className="section-description">
                             A collection of moments from the beautiful islands of Batanes.
                         </p>

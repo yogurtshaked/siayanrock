@@ -133,7 +133,7 @@ function Tours() {
 
     return (
         <section>
-            <div className='tours-page'> 
+            <div className='tours-page' id='page'> 
                 <div className='tours-hero-section'>
                     <div className='tours-content page-content'>
                         <div className='tours-text page-header'>

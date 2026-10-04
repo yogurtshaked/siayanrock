@@ -13,7 +13,6 @@ import { parseLocalDate, nightsBetween } from '../lib/searchDates';
 
 const BUCKET = "gallery";
 
-
 const peso = (n: number) => `₱${n.toLocaleString("en-PH")}`;
 
 function roomImageUrl(path: string): string {
@@ -155,8 +154,8 @@ function Accommodation() {
     };
 
     const handleSearch = ({ checkIn, checkOut, guests }: RoomSearchValues) => {
-    setParams({ checkIn, checkOut, guests });
-};
+        setParams({ checkIn, checkOut, guests });
+    };
 
     const clearSearch = () => setParams({});
 
@@ -170,8 +169,7 @@ function Accommodation() {
 
     return (
         <section>
-            <div className='accommodation-page'>
-
+            <div className='accommodation-page' id='page'>
                 <div className='accommodation-hero-section'>
                     <div className='accommodation-content page-content'>
                         <div className='accommodation-text page-header hero-nudge'>
@@ -186,32 +184,15 @@ function Accommodation() {
                     <div className='accommodation-content page-content'>
 
                         <RoomSearchBar
-    variant="inline"
-    defaultCheckIn={search?.checkInStr ?? null}
-    defaultCheckOut={search?.checkOutStr ?? null}
-    defaultGuests={search ? params.get("guests") : null}
-    onSearch={handleSearch}
-    onClear={clearSearch}
-/>
+                            variant="inline"
+                            defaultCheckIn={search?.checkInStr ?? null}
+                            defaultCheckOut={search?.checkOutStr ?? null}
+                            defaultGuests={search ? params.get("guests") : null}
+                            onSearch={handleSearch}
+                            onClear={clearSearch}
+                        />
 
-{checking && <p className='accommodation-checking'>Checking availability…</p>}
-
-
-                        {/* Kind switcher: pills restored 
-                        <div className='accommodation-kind-switcher' role='tablist' aria-label='Filter rooms by kind'>
-                            {switcherOptions.map((opt) => (
-                                <button
-                                    key={opt.value}
-                                    type='button'
-                                    role='tab'
-                                    className='accommodation-kind-pill'
-                                    aria-selected={kind === opt.value}
-                                    onClick={() => setKind(opt.value)}>
-                                    <span className='accommodation-kind-pill-label'>{opt.label}</span>
-                                </button>
-                            ))}
-                        </div>
-                        */}
+                        {checking && <p className='accommodation-checking'>Checking availability…</p>}
 
                         <div className='accommodation-rooms-content'>
                             <div className='accommodation-room-cards'>

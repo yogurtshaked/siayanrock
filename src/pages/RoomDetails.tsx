@@ -36,7 +36,7 @@ const amenityIcons: Record<string, React.ElementType> = {
     "hot and cold shower": ShowerHead,
     toiletries: Bath,
     "wardrobe / closet": Shirt,
-    "streaming service (like netflix)": Clapperboard,
+    "streaming service (netflix)": Clapperboard,
     "desk & seating area": LampDesk,
 }
 
@@ -184,7 +184,7 @@ function RoomDetails() {
 
     return (
         <section>
-            <div className="room-details-page">
+            <div className="room-details-page" id='page'>
                 <div className='room-details-body'>
                 <div className="room-details-nav page-content">
                     <button

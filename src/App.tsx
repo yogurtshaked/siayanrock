@@ -5,7 +5,7 @@ import { supabase } from './lib/supabaseClient';
 
 import About from './pages/AboutUs';
 
-import Home from './pages/Home';
+import Home from './pages/home/Home';
 import Accommodation from './pages/Accommodation';
 import RoomDetails from './pages/RoomDetails';
 
@@ -13,8 +13,8 @@ import Tours from './pages/Tours';
 import Gallery from './pages/Gallery';
 import Inquire from './pages/Inquire';
 
-import Navbar from './components/navbar';
-import Footer from './components/footer';
+import Navbar from './components/navbar/navbar';
+import Footer from './components/footer/footer';
 import { useLenis } from './lib/useLenis';
 
 
