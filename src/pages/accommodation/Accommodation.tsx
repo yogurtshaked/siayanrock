@@ -1,15 +1,15 @@
-import '../index.css';
-
+import "./accommodation.css";
+import "../../index.css";
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import ScrollHint from '../components/Scrollhint';
-import { supabase } from '../lib/supabaseClient';
+import ScrollHint from '@/components/Scrollhint';
+import { supabase } from '@/lib/supabaseClient';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Bed, Users } from "lucide-react";
-import ReserveModal from '../components/ReserveModal';
-import RoomSearchBar, { type RoomSearchValues } from '../components/RoomSearch';
-import { parseLocalDate, nightsBetween } from '../lib/searchDates';
+import ReserveModal from '@/components/ReserveModal';
+import RoomSearchBar, { type RoomSearchValues } from '@/components/RoomSearch';
+import { parseLocalDate, nightsBetween } from '@/lib/searchDates';
 
 const BUCKET = "gallery";
 

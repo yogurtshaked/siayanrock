@@ -6,12 +6,12 @@ import { supabase } from './lib/supabaseClient';
 import About from './pages/AboutUs';
 
 import Home from './pages/home/Home';
-import Accommodation from './pages/Accommodation';
-import RoomDetails from './pages/RoomDetails';
+import Accommodation from './pages/accommodation/Accommodation';
+import RoomDetails from './pages/accommodation/RoomDetails';
 
-import Tours from './pages/Tours';
-import Gallery from './pages/Gallery';
-import Inquire from './pages/Inquire';
+import Tours from './pages/tours/Tours';
+import Gallery from './pages/gallery/Gallery';
+import Inquire from './pages/inquire/Inquire';
 
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';

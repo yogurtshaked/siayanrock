@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import '../index.css';
-import { supabase } from '../lib/supabaseClient';
+import "./gallery.css";
+import "../../index.css";
+import { supabase } from '@/lib/supabaseClient';
 
 
 interface GalleryImage {

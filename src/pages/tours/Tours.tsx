@@ -1,8 +1,9 @@
-import '../index.css';
+import "./tours.css";
+import "../../index.css";
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
-import ScrollHint from '../components/Scrollhint'
+import ScrollHint from '@/components/Scrollhint';
 import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
 import {
     INCLUSIONS,
@@ -11,7 +12,7 @@ import {
     type PackageId,
     type TourPackage,
 } from './tourPackages';
-import ReserveModal from '../components/ReserveModal';
+import ReserveModal from '@/components/ReserveModal';
 
 
 const dayLabel = (index: number): string =>
@@ -196,7 +197,7 @@ function Tours() {
                                 ))}
                             </ul>
 
-                            <button type='button' className='tours-packages-btn' onClick={() => setInquireOpen(true)}>
+                            <button type='button' className='tours-packages-btn page-btn' onClick={() => setInquireOpen(true)}>
                                 Inquire about {pkg.label} <ArrowRight size={16} />
                             </button>
                         </div>               

@@ -1,0 +1,580 @@
+/* ====================== Tours Page ======================*/
+.tours-hero-section {
+    background:
+        linear-gradient(to top,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(28, 28, 28, 0.4) 45%,
+            rgba(102, 102, 102, 0.3) 100%),
+        url('/images/tours-bg.webp') center / 70% auto no-repeat;
+    background-size: cover;
+
+    padding: 120px 140px;
+    min-height: clamp(600px, 100dvh, 1000px);
+
+    color: #ffffff;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+
+
+/* ==================== NAV SWITCHER ======================= */
+.tours-packages-switcher {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    padding: 4px;
+    margin: 10px 0 20px 0;
+    border: 1px solid var(--color-line);
+    background: var(--color-grey);
+}
+
+.tours-packages-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 10px 17px;
+    border: 0;
+    background: transparent;
+    color: #657477;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.tours-packages-pill:hover {
+    background: #f1f5f0;
+}
+
+.tours-packages-pill:focus-visible,
+.tours-packages-day-head:focus-visible,
+.tours-packages-btn:focus-visible {
+    outline: 3px solid #96c8c1;
+    outline-offset: 3px;
+}
+
+.tours-packages-pill[aria-selected='true'] {
+    background: var(--color-green-background);
+    color: #fff;
+    box-shadow: 0 5px 14px #245d6121;
+}
+
+.tours-packages-pill-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.tours-packages-pill-meta {
+    display: block;
+    margin-top: 1px;
+    font-size: 12px;
+    opacity: 0.76;
+}
+
+/* ==================== PANEL LAYOUT (BODY) ======================= */
+.tours-packages-panel-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 16px;
+    align-items: start;
+}
+
+/* ==================== ITENERARY DAYS ======================= */
+.tours-packages-main-column {
+    min-width: 0;
+}
+
+.tours-packages-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 20px 2px 15px;
+}
+
+.tours-packages-heading h3 {
+    margin: 0 0 5px;
+    color: #243639;
+    font-size: 38px;
+    font-family: "Instrument Serif", serif;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+}
+
+/* ==================== ITINERARY LIST ======================= */
+.tours-packages-itinerary {
+    padding: 17px 19px 13px;
+    border-radius: 6px;
+    background: var(--color-grey);
+}
+
+/* ==================== DAY CARDS (DAY 1: ....) ======================= */
+.tours-packages-day {
+    border-bottom: 1px solid #eaebe5;
+}
+
+.tours-packages-day:last-child {
+    border-bottom: 0;
+}
+
+.tours-packages-day-head {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 13px 1px;
+    border: 0;
+    background: transparent;
+    color: #243639;
+    text-align: left;
+    cursor: pointer;
+}
+
+.tours-packages-day-heading {
+    display: flex;
+    min-width: 0;
+    align-items: baseline;
+    gap: 16px;
+}
+
+.tours-packages-day-n {
+    flex: 0 0 auto;
+    color: #C29D40;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.tours-packages-day-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.tours-packages-chev {
+    flex: 0 0 auto;
+    color: #6e8280;
+    transition: transform 180ms ease;
+}
+
+.tours-packages-day-head[aria-expanded='true'] .tours-packages-chev {
+    transform: rotate(180deg);
+}
+
+.tours-packages-day-content {
+    padding: 0 30px 14px 1px;
+}
+
+/* ==================== TOURIST SPOT LIST ======================= */
+.tours-packages-stops {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    grid-auto-flow: column;
+    column-gap: 12px;
+    row-gap: 7px;
+    margin: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+.tours-packages-stop {
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    color: var(--color-text);
+    opacity: 0.8;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.tours-packages-stop::before {
+    width: 4px;
+    height: 4px;
+    flex: 0 0 4px;
+    border-radius: 50%;
+    background: var(--color-dark-yellow);
+    content: '';
+    transform: translateY(-2px);
+}
+
+.tours-packages-stop.tours-packages-timed::before {
+    display: none;
+}
+
+.tours-packages-time {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 6px;
+    border-radius: 99px;
+    background: var(--color-light-yellow);
+    color: var(--color-dark-yellow);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.tours-packages-note {
+    margin: 10px 0 0;
+    padding: 8px 10px;
+    border-left: 2px solid var(--color-gold);
+    background: #fbf5eb;
+    color: #806749;
+    font-size: 10px;
+}
+
+.tours-packages-details {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    gap: 12px;
+    margin-top: 13px;
+}
+
+/* ==================== INCLUSIONS & EXCLUSIONS ======================= */
+.tours-packages-detail-card {
+    padding: 15px 16px;
+    border-radius: 8px;
+    background: var(--color-grey);
+}
+
+.tours-packages-detail-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 18px;
+}
+
+
+
+.tours-packages-detail-title h3 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.tours-packages-detail-card ul {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    grid-auto-flow: row;
+    gap: 7px 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tours-packages-detail-card li {
+    position: relative;
+    padding-left: 16px;
+    color: #667570;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.tours-packages-inclusions li::before,
+.tours-packages-exclusions li::before {
+    position: absolute;
+    left: 0;
+    color: #4c9181;
+    font-weight: 700;
+    content: '✓';
+    font-size: 12px;
+}
+
+.tours-packages-exclusions li::before {
+    color: #bd775e;
+    content: '–';
+}
+
+/* ==================== TOUR BOOKING CARD ======================= */
+.tours-packages-aside {
+    position: static;
+    margin-top: 90px;
+}
+
+.tours-packages-booking-card {
+    padding: 25px 18px;
+    border: 1px solid #25595d;
+    border-radius: 6px;
+    background: var(--color-green-background);
+    color: #fff;
+    box-shadow: 0 8px 24px #28575b1a;
+}
+
+.tours-packages-booking-card h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.tours-packages-price {
+    margin: 5px 0 0;
+    color: #e3eee6;
+    font-size: 13px;
+}
+
+.tours-packages-booking-rule {
+    height: 1px;
+    margin: 16px 0;
+    background: #ffffff37;
+}
+
+.tours-packages-booking-card h4 {
+    margin: 0 0 9px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.tours-packages-highlights {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tours-packages-highlights li {
+    position: relative;
+    padding-left: 17px;
+    color: #e1ece5;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.tours-packages-highlights li::before {
+    position: absolute;
+    left: 0;
+    color: #edc27e;
+    content: '✦';
+}
+
+.tours-packages-btn {
+    width: 100%;
+    display: flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 19px;
+    padding: 0.5rem 1.1rem;
+    background: var(--color-yellow);
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.tours-packages-btn:hover {
+    background: var(--color-dark-yellow);
+}
+
+.tours-packages-contact-note {
+    margin: 10px 0 0;
+    color: #c8dcd4;
+    font-size: 9px;
+    text-align: center;
+}
+
+.tours-packages-footnote {
+    margin: 8px 2px 0;
+    color: #89938f;
+    font-size: 12px;
+    text-align: right;
+}
+
+
+/* ---------- Mobile: contact card stacks on top ---------- */
+@media (max-width: 480px) {
+
+    .scroll-hint {
+        gap: 12px;
+        margin-top: 20px;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+    }
+
+    .scroll-hint-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* ===== Tours hero + body share the same 16px edge ===== */
+    .tours-hero-section {
+        padding: 100px 16px 48px;
+    }
+
+    .tours-packages.page-body {
+        padding: 32px 16px 48px;
+        gap: 20px;
+    }
+
+    /* ===== Package switcher: 3 pills in a row ===== */
+    .tours-packages-switcher {
+        gap: 4px;
+        margin: 0 0 12px;
+    }
+
+    .tours-packages-pill {
+        min-height: 52px;
+        padding: 8px 4px;
+    }
+
+    .tours-packages-pill-label {
+        font-size: 14px;
+    }
+
+    .tours-packages-pill-meta {
+        font-size: 11px;
+        line-height: 1.1;
+    }
+
+    .tours-packages-panel-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+    }
+
+    .tours-packages-main-column {
+        width: 100%;
+    }
+
+    .tours-packages-aside {
+        margin-top: 0px;
+    }
+
+    /* ===== Heading ===== */
+    .tours-packages-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px 2px 12px;
+    }
+
+    .tours-packages-heading h3 {
+        font-size: 28px;
+        line-height: 1.15;
+    }
+
+    /* ===== Itinerary ===== */
+    .tours-packages-itinerary {
+        padding: 8px 14px;
+    }
+
+    .tours-packages-day-head {
+        gap: 8px;
+        padding: 14px 0;
+    }
+
+    .tours-packages-day-heading {
+        align-items: baseline;
+        flex-direction: row;
+        gap: 12px;
+    }
+
+    .tours-packages-day-title {
+        font-size: 14px;
+    }
+
+    .tours-packages-day-content {
+        padding: 0 0 14px;
+    }
+
+    /* one column, read top to bottom, with a thin timeline */
+    .tours-packages-stops {
+        display: flex;
+        /* ignores the inline grid-template-rows */
+        flex-direction: column;
+        position: relative;
+        margin: 4px 0;
+        padding-left: 20px;
+    }
+
+    .tours-packages-stops::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 14px;
+        bottom: 14px;
+        width: 1px;
+        background: #e3dccb;
+    }
+
+    .tours-packages-stop {
+        position: relative;
+        padding: 7px 0;
+        font-size: 14px;
+        line-height: 1.45;
+        opacity: 1;
+    }
+
+    .tours-packages-stop::before,
+    .tours-packages-stop.tours-packages-timed::before {
+        display: block;
+        position: absolute;
+        left: -20px;
+        top: 14px;
+        width: 8px;
+        height: 8px;
+        flex: none;
+        box-sizing: border-box;
+        border: 2px solid var(--color-grey);
+        border-radius: 50%;
+        background: var(--color-dark-yellow);
+        transform: none;
+    }
+
+    /* timed stops: pill on top, text underneath */
+    .tours-packages-stop.tours-packages-timed {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .tours-packages-note {
+        font-size: 12px;
+    }
+
+    /* ===== Booking card ===== */
+    .tours-packages-booking-card {
+        display: block;
+        padding: 20px 18px;
+    }
+
+    .tours-packages-price {
+        font-size: 14px;
+    }
+
+    .tours-packages-booking-rule {
+        margin: 14px 0;
+    }
+
+    .tours-packages-booking-card h4 {
+        margin-bottom: 10px;
+    }
+
+    .tours-packages-highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px 12px;
+        margin-bottom: 16px;
+    }
+
+    .tours-packages-highlights li {
+        font-size: 14px;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+    }
+
+    .tours-packages-footnote {
+        text-align: left;
+        line-height: 1.5;
+    }
+}

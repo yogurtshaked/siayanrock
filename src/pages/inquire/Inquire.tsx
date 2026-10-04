@@ -1,8 +1,9 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-import "../index.css";
+import "./inquire.css";
+import "../../index.css";
 import "leaflet/dist/leaflet.css";
-import { supabase } from "../lib/supabaseClient";
+import { supabase } from "@/lib/supabaseClient";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const CONTACT_INFO = {
@@ -130,7 +131,7 @@ function Inquire(){
 
                     <div className="inquire-grid">
                         <aside className="contact-card" aria-label="Contact details">
-                            <p className="contact-card-eyebrow">CONTACT</p>
+                            <p className="contact-card-eyebrow section-title">CONTACT</p>
                             <p className="contact-card-title">Prefer to talk to us directly?</p>
                             <p className="contact-card-text">
                                 Reach out any time. We're happy to help you plan your stay and your tours in Batanes.
@@ -275,7 +276,7 @@ function Inquire(){
 
                                 <button
                                     type="submit"
-                                    className="submit-btn"
+                                    className="submit-btn page-btn"
                                     disabled={status === "sending"}>
                                     {status === "sending" ? "Sending..." : "Send inquiry"}
                                 </button>

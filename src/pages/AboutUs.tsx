@@ -119,8 +119,9 @@ export default function AboutUs() {
                         </h2>
 
                         <p className="about-us-lead">
-                            Siayanrock Is. Hometel is owned and run by <strong>Robert Gabas and Ofelia Gabas</strong>,
-                            a couple who wanted travelers to feel the warmth of a Batanes home, not just
+                            Siayanrock Is. Hometel is owned and run by{" "}
+                            <span className="about-us-lead-highlight">Robert Gabas and Ofelia Gabas</span>
+                            , a couple who wanted travelers to feel the warmth of a Batanes home, not just
                             book a room. Every stay here comes with quiet mornings, open views, and
                             hosts who treat you like family.
                         </p>
@@ -133,9 +134,9 @@ export default function AboutUs() {
             <section className="about-us-family">
                 <div className="about-us-wrap about-us-family-grid">
                     <div className="about-us-biz">
-                        <p className="about-us-tag">Stay</p>
+                        <p className="about-us-tag section-title">Stay</p>
                         <h3 className="about-us-h3">Siayanrock Is. Hometel</h3>
-                        <p>
+                        <p className="section-description">
                             A comfortable, peaceful place to rest between adventures, with
                             the feel of a real home and the convenience travelers need right in the heart of Ivana.
                         </p>
@@ -147,9 +148,9 @@ export default function AboutUs() {
                     <div className="about-us-divider" />
 
                     <div className="about-us-biz">
-                        <p className="about-us-tag">Explore</p>
+                        <p className="about-us-tag section-title">Explore</p>
                         <h3 className="about-us-h3">Mavien Point Travel and Tours</h3>
-                        <p>
+                        <p className="section-description">
                             Our own travel agency, run by the same owners. Book your room and
                             your island tours together, guided by people who know Batanes
                             best.
@@ -187,9 +188,9 @@ export default function AboutUs() {
                         <div className="about-us-viewdeck-shade" />
 
                         <div className="about-us-viewdeck-copy">
-                            <p className="about-us-viewdeck-tag">Private Viewdeck</p>
+                            <p className="about-us-viewdeck-tag section-title">Private Viewdeck</p>
                             <h3 className="about-us-h3">Nakurang Viewdeck</h3>
-                            <p>
+                            <p className="section-description">
                             A private viewdeck reserved for our guests, far from the crowds.
                             Come for the sunrise, stay for the open sky and the sea beyond.
                             </p>
@@ -260,7 +261,7 @@ export default function AboutUs() {
                         {SPOTS.map((spot, i) => (
                         <article
                             key={spot.name}
-                            className={`about-us-spot${spot.featured ? " about-us-spot--feature" : ""}`}
+                            className="about-us-spot"
                         >
                             <img
                             src={getPublicImageUrl(spot.imagePath)}

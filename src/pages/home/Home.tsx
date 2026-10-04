@@ -245,7 +245,7 @@ function Home(){
                             <p className="section-description">A place conveniently located in the heart of Batan Island. Situated in Ivana, right between North and South Batan, 
                                 the hometel provides guests with a convenient starting point for exploring the island’s 
                                 cultural landmarks and local attractions.</p>
-                            <button className="learn-more landing-page-btn" onClick={() => navigate("/about")}>Learn More&nbsp; <ArrowRight animateOnHover size={16} /></button>
+                            <button className="learn-more home-btn" onClick={() => navigate("/about")}>Learn More&nbsp; <ArrowRight animateOnHover size={16} /></button>
 
                         </div>
                     </div>
@@ -267,7 +267,7 @@ function Home(){
                             <div className="offer-card-content">
                                 <h3>Accommodation</h3>
                                 <p>Enjoy a comfortable stay in a space that feels like home, perfect for resting between adventures.</p>
-                                <button className="offer-card-btn landing-page-btn" onClick={() => navigate("/accommodation")}>
+                                <button className="offer-card-btn home-btn" onClick={() => navigate("/accommodation")}>
                                     <span className="offer-btn-text">View Details</span>
                                     <span className="offer-btn-icon">
                                         <ArrowRight animateOnHover size={16} />
@@ -280,7 +280,7 @@ function Home(){
                             <div className="offer-card-content">
                                 <h3>Tour Packages</h3>
                                 <p>Discover the beauty of Batanes through breathtaking landscapes, cultural landmarks, and local destinations.</p>
-                                <button className="offer-card-btn landing-page-btn" onClick={() => navigate("/tours")}>
+                                <button className="offer-card-btn home-btn" onClick={() => navigate("/tours")}>
                                     <span className="offer-btn-text">View Details</span>
                                     <span className="offer-btn-icon"><ArrowRight animateOnHover size={16} /></span>
                                 </button>
@@ -369,7 +369,7 @@ function Home(){
                         <h2>Ready for your Batanes getaway?</h2>
                         <p>Need more information about our accommodations or tours?</p>
                     </div>
-                    <button className="landing-page-btn" onClick={() => navigate("/inquire")}>Inquire Now&nbsp; <ArrowRight size={16} /></button>
+                    <button className="home-btn" onClick={() => navigate("/inquire")}>Inquire Now&nbsp; <ArrowRight size={16} /></button>
                 </div>
             </div>
         </section>

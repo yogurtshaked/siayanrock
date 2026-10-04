@@ -1,6 +1,8 @@
+import "./accommodation.css";
+import "../../index.css";
 import { useEffect, useMemo, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { supabase } from "../lib/supabaseClient"
+import { supabase } from "@/lib/supabaseClient"
 import { Bath, Bed, Check, DoorOpen, ShowerHead, Snowflake, Tv, Users, SquareDashed, ChevronLeft, Wifi, Shirt, Clapperboard, LampDesk, Plus } from "lucide-react"
 import ReserveModal from "@/components/ReserveModal"
 import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
