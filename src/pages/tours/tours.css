@@ -578,3 +578,99 @@
         line-height: 1.5;
     }
 }
+
+/* ---------- Tours page: tablets (≤768px) ---------- */
+@media (max-width: 768px) {
+
+    /* ===== Hero: identical to the accommodation hero ===== */
+    .tours-hero-section {
+        padding: 110px 28px 56px;
+    }
+
+    /* ===== Body: same side padding as the accommodation page ===== */
+    .tours-packages.page-body {
+        padding: 48px 28px;
+        gap: 24px;
+    }
+
+    /* ===== Package switcher: 3 pills, a bit tighter ===== */
+    .tours-packages-switcher {
+        gap: 4px;
+        margin: 0 0 16px;
+    }
+
+    .tours-packages-pill {
+        padding: 10px 6px;
+    }
+
+    .tours-packages-pill-label {
+        font-size: 14px;
+    }
+
+    /* ===== Layout: itinerary on top, booking card underneath ===== */
+    .tours-packages-panel-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    .tours-packages-aside {
+        margin-top: 0;
+    }
+
+    .tours-packages-heading {
+        padding: 14px 2px 12px;
+    }
+
+    .tours-packages-heading h3 {
+        font-size: 34px;
+    }
+
+    /* ===== Itinerary: keeps its 2-column stop list, now at full width ===== */
+    .tours-packages-itinerary {
+        padding: 12px 20px;
+    }
+
+    .tours-packages-day-content {
+        padding: 0 0 14px;
+    }
+
+    .tours-packages-stops {
+        margin: 8px 0;
+        column-gap: 20px;
+    }
+
+    .tours-packages-stop {
+        font-size: 14px;
+    }
+
+    /* ===== Exclusions ===== */
+    .tours-packages-details {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    /* ===== Booking card: full width, inclusions in 2 columns ===== */
+    .tours-packages-booking-card {
+        display: block;
+        padding: 24px 22px;
+    }
+
+    .tours-packages-highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 24px;
+        margin-bottom: 18px;
+    }
+
+    .tours-packages-highlights li {
+        overflow-wrap: anywhere;
+    }
+
+    .tours-packages-btn {
+        box-sizing: border-box;
+        margin-top: 0;
+    }
+
+    .tours-packages-footnote {
+        text-align: left;
+    }
+}

@@ -126,6 +126,7 @@ function Home(){
 
         navigate(`/accommodation?${params.toString()}`);
     };
+    
 
     return(
         <section>
@@ -235,18 +236,24 @@ function Home(){
 
             <div className="about-section" id="section">
                 <div className="about-content">
+                    <div className="postcard postcard-front">
                     <div className="about-image">
+                        
                         <img src="images/accommodation-bg.webp" alt="About Siayanrock Hometel" />
+                        </div>
                     </div>
-                    <div className="about-text">
-                        <div className="about-title">
-                            <p className="section-title">About Us</p>
-                            <h2>Siayanrock Is. Hometel</h2>
-                            <p className="section-description">A place conveniently located in the heart of Batan Island. Situated in Ivana, right between North and South Batan, 
-                                the hometel provides guests with a convenient starting point for exploring the island’s 
-                                cultural landmarks and local attractions.</p>
-                            <button className="learn-more home-btn" onClick={() => navigate("/about")}>Learn More&nbsp; <ArrowRight animateOnHover size={16} /></button>
+                    <div className="postcard postcard-back">
+                        <div className="about-text">
 
+                            <div className="about-title">
+                                <p className="section-title">About Us</p>
+                                <h2>Siayanrock Is. Hometel</h2>
+                                <p className="section-description">A place conveniently located in the heart of Batan Island. Situated in Ivana, right between North and South Batan, 
+                                    the hometel provides guests with a convenient starting point for exploring the island’s 
+                                    cultural landmarks and local attractions.</p>
+                                <button className="learn-more home-btn" onClick={() => navigate("/about")}>Learn More&nbsp; <ArrowRight animateOnHover size={16} /></button>
+
+                            </div>
                         </div>
                     </div>
                 </div>

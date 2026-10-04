@@ -1179,6 +1179,202 @@
     .room-lightbox-next {
         right: 8px;
     }
+}
+
+/* ---------- Accommodation + room details: tablets (≤768px) ---------- */
+@media (max-width: 768px) {
+
+  /* ===== Page frame ===== */
+  .accommodation-hero-section {
+    padding: 110px 28px 56px;
+  }
+
+  .accommodation-rooms.page-body {
+    padding: 48px 28px;
+  }
+
+  /* ===== Search bar: same 3-part layout, tighter ===== */
+  .rs-field {
+    padding: 10px 14px;
+  }
+
+  .rs-label {
+    font-size: 0.68rem;
+  }
+
+  .rs-input,
+  .rs-select {
+    font-size: 0.95rem;
+  }
+
+  .rs-btn {
+    min-width: 72px;
+    padding: 0 22px;
+  }
 
 
+
+  /* ===== Room list cards (still 2 across) ===== */
+  .accommodation-room-cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .room-card {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  /* image column: fixed share, fills the card height */
+  .room-img {
+    position: relative;
+    box-sizing: border-box;
+    flex: 0 0 38%;
+    width: 38%;
+    height: auto;
+    min-height: 280px;
+    padding: 0;
+  }
+
+  .room-img img {
+    position: absolute;
+    inset: 12px;
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+  }
+
+  /* text column */
+  .room-contents {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 16px 22px 12px 10px;
+    gap: 14px;
+  }
+
+  .room-contents h3 {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+
+  .room-items {
+    flex-wrap: wrap;
+    gap: 6px 16px;
+  }
+
+  .room-checklist {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    gap: 6px 12px;
+  }
+
+  .amenity p {
+    font-size: 13px;
+  }
+
+  /* price on top, buttons side by side underneath, pinned to the bottom */
+  .room-price {
+    margin-top: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 4px 0 0;
+  }
+
+  .room-price .price-highlight {
+    font-size: 22px;
+}
+
+  .room-buttons button {
+    flex: 1;
+    padding: 7px 12px;
+  }
+
+  /* ===== Room details ===== */
+  .room-details-body {
+    padding: 12px 28px 64px;
+  }
+
+  .room-details-images {
+    height: 320px;
+    margin-bottom: 20px;
+  }
+
+  /* info on top, booking card underneath (the 1/3 column is too narrow here) */
+  .room-info-book {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .room-information {
+    max-width: none;
+    gap: 26px;
+  }
+
+  .room-name {
+    font-size: 36px;
+    line-height: 1.15;
+  }
+
+  .booking-form {
+    padding: 22px 20px;
+  }
+
+  /* ===== Lightbox ===== */
+  .room-lightbox-overlay {
+    padding: 24px;
+  }
+
+  .room-lightbox-image {
+    max-width: 92vw;
+    max-height: 82vh;
+  }
+
+  .room-lightbox-close {
+    top: 16px;
+    right: 20px;
+  }
+
+  .room-lightbox-nav {
+    width: 44px;
+    height: 44px;
+    font-size: 30px;
+  }
+
+  .room-lightbox-prev { left: 14px; }
+  .room-lightbox-next { right: 14px; }
+}
+
+/* ---------- one room card per row under 640px ---------- */
+/* ---------- under 560px the text column gets too thin: stack again ---------- */
+@media (max-width: 560px) {
+  .room-card {
+    flex-direction: column;
+  }
+
+  .room-img {
+    position: static;
+    flex: none;
+    width: 100%;
+    height: 220px;
+    min-height: 0;
+    padding: 12px;
+  }
+
+  .room-img img {
+    position: static;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+  }
+
+  .room-contents {
+    flex: none;
+    padding: 4px 18px 8px;
+    gap: 16px;
+  }
+
+  .room-price {
+    margin-top: 0;
+  }
 }

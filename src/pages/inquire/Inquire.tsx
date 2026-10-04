@@ -130,45 +130,47 @@ function Inquire(){
                     </div>
 
                     <div className="inquire-grid">
-                        <aside className="contact-card" aria-label="Contact details">
-                            <p className="contact-card-eyebrow section-title">CONTACT</p>
-                            <p className="contact-card-title">Prefer to talk to us directly?</p>
-                            <p className="contact-card-text">
-                                Reach out any time. We're happy to help you plan your stay and your tours in Batanes.
-                            </p>
+    <aside className="contact-card" aria-label="Contact details">
 
-                            <ul className="contact-card-list">
-                                {CONTACT_ROWS.map((row) => (
-                                    <li key={row.label} className="contact-card-row">
-                                        <span className="contact-card-icon" aria-hidden="true">{row.icon}</span>
-                                        <span className="contact-card-body">
-                                            <span className="contact-card-label">{row.label}</span>
-                                            {row.items.map((item) => (
-                                                <a
-                                                    key={item.href}
-                                                    className="contact-card-value"
-                                                    href={item.href}
-                                                    {...(row.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
-                                                    {item.text}
-                                                </a>
-                                            ))}
-                                        </span>
-                                    </li>
-                                ))}
+        <div className="contact-card-info">
+            <p className="contact-card-eyebrow section-title">CONTACT</p>
+            <p className="contact-card-title">Prefer to talk to us directly?</p>
+            <p className="contact-card-text">
+                Reach out any time. We're happy to help you plan your stay and your tours in Batanes.
+            </p>
 
-                                <div className="location-map">
-                                    <iframe
-                                        src="https://www.google.com/maps?q=Siayanrock+Hometel,+Ivana,+Batanes&output=embed"
-                                        width="100%"
-                                        height="450"
-                                        style={{ border: 0 }}
-                                        allowFullScreen
-                                        loading="lazy"
-                                        title="Siayanrock Hometel Location"
-                                    ></iframe>
-                                </div>
-                            </ul>
-                        </aside>
+            <ul className="contact-card-list">
+                {CONTACT_ROWS.map((row) => (
+                    <li key={row.label} className="contact-card-row">
+                        <span className="contact-card-icon" aria-hidden="true">{row.icon}</span>
+                        <span className="contact-card-body">
+                            <span className="contact-card-label">{row.label}</span>
+                            {row.items.map((item) => (
+                                <a
+                                    key={item.href}
+                                    className="contact-card-value"
+                                    href={item.href}
+                                    {...(row.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                                    {item.text}
+                                </a>
+                            ))}
+                        </span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+
+        <div className="contact-card-map">
+            <iframe
+                src="https://www.google.com/maps?q=Siayanrock+Hometel,+Ivana,+Batanes&output=embed"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                title="Siayanrock Hometel Location"
+            ></iframe>
+        </div>
+
+    </aside>
 
 
                         <div className="inquire-card">
@@ -286,36 +288,7 @@ function Inquire(){
                 </div>
             </div>
 
-            {/* ---------- Location section ---------- 
-            <div className="location-section">
-                <div className="location-content">
-
-                    <div className="location-info">
-                        <p className="section-title">LOCATION</p>
-
-                        <h2>This is where your stay begins.</h2>
-
-                        <p className="section-description">
-                            National Road, Brgy. Tuhel, Ivana, Batanes
-                        </p>
-                    </div>
-
-                    <div className="location-map">
-                        <iframe
-                            src="https://www.google.com/maps?q=Siayanrock+Hometel,+Ivana,+Batanes&output=embed"
-                            width="100%"
-                            height="450"
-                            style={{ border: 0 }}
-                            allowFullScreen
-                            loading="lazy"
-                            title="Siayanrock Hometel Location"
-                        ></iframe>
-                    </div>
-
-                </div>
-                
-            </div>
-            */}
+    
             </div>
 
         </section>
