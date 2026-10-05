@@ -208,6 +208,169 @@
     text-align: center;
 }
 
+/* ---------- Gallery page: laptops (≤1280px) ---------- */
+@media (max-width: 1280px) {
+
+    /* ===== Page frame ===== */
+    .gallery-page .page-body {
+        padding: 72px 80px;
+        /* was the shared 140px */
+    }
+
+    .gallery-page-content {
+        margin-top: 32px;
+    }
+
+    /* ===== Filter + grid ===== */
+    .filter-pill {
+        padding: 10px 14px;
+        /* was 19px on each side */
+    }
+
+    .gallery-page-grid {
+        gap: 14px;
+    }
+}
+
+/* ---------- Gallery page: small laptops / large tablets (≤1024px) ---------- */
+@media (max-width: 1024px) {
+
+    /* ===== Page frame ===== */
+    .gallery-page .page-body {
+        padding: 56px 40px 64px;
+        /* was the shared 140px on each side */
+    }
+
+    .gallery-page-content {
+        min-height: auto;
+        /* the clamp() height is a desktop value */
+        margin-top: 56px;
+        /* clears the fixed navbar */
+    }
+
+    /* ===== Filter: still 5 pills across ===== */
+    .filter-nav {
+        gap: 4px;
+        margin: 22px 0 0;
+    }
+
+    .filter-pill {
+        padding: 10px 8px;
+        font-size: 13px;
+        letter-spacing: 0;
+    }
+
+    /* ===== Grid: 3 columns ===== */
+    .gallery-page-grid {
+        gap: 12px;
+    }
+
+    /* the fixed 250px height overrides aspect-ratio once tiles get narrower */
+    .gallery-page-item {
+        height: auto;
+    }
+
+    .load-more-wrapper {
+        padding-top: 1.75rem;
+    }
+
+    .gallery-message {
+        padding: 40px 0;
+    }
+
+    /* ===== Lightbox ===== */
+    .lightbox-image {
+        max-width: 90vw;
+        max-height: 84vh;
+    }
+}
+
+/* touch devices (iPad landscape) keep the hover zoom from sticking after a tap */
+@media (max-width: 1024px) and (hover: none) {
+    .gallery-page-item:hover img {
+        transform: none;
+    }
+}
+
+/* ---------- Gallery page: tablets (≤768px) ---------- */
+@media (max-width: 768px) {
+
+    /* ===== Page frame ===== */
+    .gallery-page .page-body {
+        padding: 48px 28px 56px;
+    }
+
+    .gallery-page-content {
+        min-height: auto;
+        /* the clamp() height is a desktop value */
+        margin-top: 64px;
+        /* clears the fixed navbar */
+    }
+
+    /* ===== Filter: still 5 pills across, tighter ===== */
+    .filter-nav {
+        gap: 4px;
+        margin: 24px 0 0;
+    }
+
+    .filter-pill {
+        padding: 10px 6px;
+        font-size: 13px;
+        letter-spacing: 0;
+    }
+
+    /* ===== Grid: 3 columns ===== */
+    .gallery-page-grid {
+        gap: 10px;
+    }
+
+    /* the fixed 250px height overrides aspect-ratio on narrower tiles */
+    .gallery-page-item {
+        height: auto;
+    }
+
+    .load-more-wrapper {
+        padding-top: 1.5rem;
+    }
+
+    .gallery-message {
+        padding: 40px 0;
+    }
+
+    /* ===== Lightbox ===== */
+    .lightbox-image {
+        max-width: 92vw;
+        max-height: 82vh;
+    }
+
+    .lightbox-close {
+        top: 16px;
+        right: 20px;
+    }
+
+    .lightbox-nav {
+        width: 44px;
+        height: 44px;
+        font-size: 28px;
+    }
+
+    .lightbox-prev {
+        left: 14px;
+    }
+
+    .lightbox-next {
+        right: 14px;
+    }
+}
+
+/* 3 columns get too small under 600px: switch to 2 */
+@media (max-width: 600px) {
+    .gallery-page-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+}
+
 
 @media (max-width: 480px) {
 
@@ -215,7 +378,7 @@
         min-height: auto;
         /* the clamp() height is a desktop value */
         margin-top: 72px;
-        gap:0px;
+        gap: 0px;
     }
 
     /* ===== Gallery filter: one scrolling row instead of 5 cramped columns ===== */
@@ -257,7 +420,7 @@
     }
 
     .load-more-btn {
-    font-size: 13px;
+        font-size: 13px;
     }
 
     .gallery-message {
@@ -287,5 +450,34 @@
 
     .lightbox-next {
         right: 8px;
+    }
+}
+
+@media (max-width: 390px) {
+
+    .gallery-page .page-body {
+        padding: 32px 14px 48px;
+    }
+
+    /* five pills at 67px each get cramped: let them scroll sideways instead */
+    .filter-nav {
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+    }
+
+    .filter-pill {
+        flex: 0 0 auto;
+        padding: 10px 14px;
+        white-space: nowrap;
+    }
+
+    .gallery-page-grid {
+        gap: 6px;
+    }
+
+    .lightbox-image {
+        max-width: 96vw;
+        max-height: 74vh;
     }
 }

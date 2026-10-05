@@ -7,7 +7,7 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons/faPhone';
 
 function Footer() {
     return (
-        <footer className="footer-section" id="section">
+        <footer className="footer-section">
             <div className="footer-content">
                 <div className="footer-logo">
                     <div className='footer-logo-text'>
@@ -15,13 +15,13 @@ function Footer() {
                         <p className="footer-description">A cozy hometel on the edge of Batanes, built around comfort, quiet mornings, and open horizons.</p>
                     </div>
                     <div className="footer-socials">
-                        <a href="https://www.facebook.com/siayanrockhometel" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/profile.php?id=61566843206345" target="_blank" rel="noopener noreferrer">
                             <FontAwesomeIcon icon={faFacebookF} />
                         </a>
-                        <a href="https://www.instagram.com/siayanrockhometel" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/siayanrock_batanes" target="_blank" rel="noopener noreferrer">
                             <FontAwesomeIcon icon={faInstagram} />
                         </a>
-                        <a href="https://www.email.com/siayanrockhometel" target="_blank" rel="noopener noreferrer">
+                        <a href="mailto:siayanrockis.hometel@gmail.com" target="_blank" rel="noopener noreferrer">
                             <FontAwesomeIcon icon={faEnvelope} />
                         </a>
                     </div>
@@ -48,17 +48,17 @@ function Footer() {
                     <h3>REACH US</h3>
                     <div className="footer-contact-content">
                         <div className="footer-email">
-                            <FontAwesomeIcon icon={faEnvelope} style={{color: "var(--color-text)",}} />
+                            <FontAwesomeIcon icon={faEnvelope} style={{color: "#F7F2E8",}} />
                             <div className="footer-email-text">
                                 <p>Email:</p>
                                 <p>siayanrockis.hometel@gmail.com</p>
                             </div>
                         </div>
                         <div className="footer-phone">
-                            <FontAwesomeIcon icon={faPhone} style={{color: "var(--color-text)",}} />
+                            <FontAwesomeIcon icon={faPhone} style={{color: "#F7F2E8",}} />
                             <div className="footer-phone-text">
                                 <p>Phone:</p>
-                                <p>+(63) 961 3945 607</p>
+                                <p>+(63) 967 2003 129</p>
                             </div>
                         </div>
                     </div>

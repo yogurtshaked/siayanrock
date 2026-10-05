@@ -71,7 +71,44 @@
     color: white;
 }
 
+/* ---------- Navbar: laptops (≤1280px) ---------- */
+@media (max-width: 1280px) {
+    .navbar {
+        padding: 0.8rem 2.5rem;       /* was 3rem */
+    }
 
+    .navbar-links {
+        gap: 1.75rem;                 /* was 2rem */
+    }
+}
+
+/* ---------- Navbar: small laptops / large tablets (≤1024px) ---------- */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 0.8rem 2rem;
+    }
+
+    .navbar-content {
+        gap: 1.5rem;
+    }
+
+    .navbar-logo {
+        flex-shrink: 0;
+    }
+
+    .logo-image {
+        height: 36px;
+    }
+
+    .navbar-links {
+        gap: 1.5rem;
+    }
+
+    .navbar-links a {
+        font-size: 14px;
+        white-space: nowrap;      /* "Accommodation" can't wrap onto two lines */
+    }
+}
 
 /* ---------- Hamburger + mobile menu ---------- */
 .navbar-toggle,

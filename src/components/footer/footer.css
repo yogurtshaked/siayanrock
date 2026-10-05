@@ -1,10 +1,10 @@
 
 /* ====================== Footer Section ======================*/
 .footer-section{
-  background: #F7F2E8;
+  background: #54452F;
   padding: 40px 140px;
   min-height: clamp(100px, 100dvh, 200px);
-  border-top: 1px solid #E6DFC9;
+  border-top: 1px solid rgba(243, 235, 221, 0.12);
   text-align: center;
 }
 
@@ -27,7 +27,7 @@
   font-size: 12px;
   letter-spacing: 1%;
   line-height: 20px;
-  color: var(--color-light-brown-text);
+  color: rgba(243, 235, 221, 0.75);
   text-align: left;
   width: 250px;
 }
@@ -35,20 +35,21 @@
 .footer-content h3{
   font-size: 13px;
   font-weight: 500;
-  color: var(--color-light-brown-text);
+  color: #F7F2E8;
   text-align: left;
   letter-spacing: 5%;
 }
 
 .footer-content a{
   font-size: 12px;
-  color: var(--color-light-brown-text);
+  color: rgba(243, 235, 221, 0.75);
   text-decoration: none;
   text-align: left;
   transition: text-decoration 0.3s ease;
 }
 
 .footer-content a:hover{
+  color: #fff;
   text-decoration: underline;
 }
 
@@ -90,8 +91,8 @@
   align-items: center;
   justify-content: center;
 
-  background: var(--color-text);
-  color: white;
+  background: rgba(243, 235, 221, 0.14);
+  color: #F7F2E8;
 
   border-radius: 50px;
   text-decoration: none;
@@ -99,7 +100,8 @@
 }
 
 .footer-socials a:hover {
-  background: var(--color-light-brown-text);
+  background: var(--color-yellow, #e9bb4f);
+  color: #54452F;
 }
 
 .footer-company, .footer-explore, .footer-contact{
@@ -131,7 +133,7 @@
 
 .footer-contact p{
   font-size: 12px;
-  color: var(--color-light-brown-text);
+  color: rgba(243, 235, 221, 0.75);
   text-align: left;
 }
 
@@ -145,17 +147,93 @@
   width: 100%;
   max-width: 1160px;
   margin-top: 20px;
-  border-top: 1px solid #E6DFC9;
+  border-top: 1px solid rgba(243, 235, 221, 0.18);
 }
 
 .footer-bottom p{
   font-size: 11px;
-  color: var(--color-light-brown-text);
+  color: rgba(243, 235, 221, 0.6);
   text-align: center;
   margin-top:15px;
 }
 
-@media (max-width: 576px) {
+/* ---------- Footer: laptops (≤1280px) ---------- */
+@media (max-width: 1280px) {
+    .footer-section {
+        padding: 40px 80px;           /* was 140px on each side */
+    }
+
+    .footer-content {
+        gap: 32px;                    /* was 40px */
+    }
+}
+
+/* ---------- Footer: tablets (≤768px) ---------- */
+@media (max-width: 768px) {
+  .footer-section {
+    box-sizing: border-box;
+    padding: 40px 28px 24px;      /* 28px matches the other pages' side padding */
+    min-height: auto;
+  }
+
+  .footer-content {
+    flex-wrap: wrap;
+    gap: 32px 24px;
+  }
+
+  /* same selector as the base rule so it wins: items may shrink and wrap */
+  .footer-content > div {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* logo and description take the whole first row */
+  .footer-content > .footer-logo {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  .footer-logo-text p {
+    width: auto;
+    max-width: 420px;
+  }
+
+  /* Explore, Company and Reach us share the second row */
+  .footer-content > .footer-explore,
+  .footer-content > .footer-company,
+  .footer-content > .footer-contact {
+    flex: 1 1 calc(33.333% - 16px);
+  }
+
+  .footer-email-text,
+  .footer-phone-text {
+    min-width: 0;
+  }
+
+  .footer-contact a,
+  .footer-contact p {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* ---------- Footer: small tablets (≤600px) ---------- */
+/* three columns get too narrow here: Explore + Company share a row, Reach us goes below */
+@media (max-width: 600px) {
+  .footer-content > .footer-explore,
+  .footer-content > .footer-company {
+    flex: 1 1 calc(50% - 12px);
+  }
+
+  .footer-content > .footer-contact {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-explore,
+  .footer-company {
+    display: none;
+  }
   /* ========== FOOTER ========== */
   .footer-section {
     padding: 40px 16px 24px;
@@ -175,7 +253,7 @@
 
   .footer-logo-text p {
     width: auto;
-    max-width: 340px;
+    max-width: 220px;
   }
 
   .footer-explore,
@@ -202,7 +280,7 @@
 
   .footer-contact a,
   .footer-contact p {
-    overflow-wrap: anywhere; /* long email addresses can't push the page sideways */
+    overflow-wrap: anywhere;
   }
 
   .footer-company-links,
@@ -211,7 +289,6 @@
   }
 
   .footer-content a {
-    display: inline-block;
     padding: 6px 0;
   }
 
@@ -222,4 +299,113 @@
   .footer-bottom {
     margin-top: 28px;
   }
+}
+
+/* ---------- Footer: tablets (≤768px) ---------- */
+@media (max-width: 768px) {
+  .footer-section {
+    box-sizing: border-box;
+    padding: 40px 24px 24px;
+    min-height: auto;
+  }
+
+  .footer-content {
+    flex-wrap: wrap;
+    gap: 32px 24px;
+  }
+
+  /* same selector as the base rule so it wins: items may shrink and wrap */
+  .footer-content > div {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* logo and description take the whole first row */
+  .footer-content > .footer-logo {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  .footer-logo-text p {
+    width: auto;
+    max-width: 420px;
+  }
+
+  /* Explore, Company and Reach us share the second row */
+  .footer-content > .footer-explore,
+  .footer-content > .footer-company,
+  .footer-content > .footer-contact {
+    flex: 1 1 calc(33.333% - 16px);
+  }
+
+  /* long email addresses can wrap instead of widening the page */
+  .footer-email-text,
+  .footer-phone-text {
+    min-width: 0;
+  }
+
+  .footer-contact a,
+  .footer-contact p {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* ---------- Footer: phones (≤480px) ---------- */
+@media (max-width: 480px) {
+
+  /* the hamburger menu already has these links */
+  .footer-content > .footer-explore,
+  .footer-content > .footer-company {
+    display: none;
+  }
+
+  .footer-section {
+    padding: 46px 28px;
+  }
+
+  .footer-content {
+    gap: 28px 20px;
+  }
+
+  .footer-content > .footer-logo {
+    flex: 1 1 100%;
+    max-width: none;
+    gap: 16px;
+  }
+
+  .footer-logo-text p {
+    max-width: 260px;
+  }
+
+  .footer-content > .footer-contact {
+    flex: 1 1 100%;
+    gap: 14px;
+  }
+
+  .footer-contact-content {
+    gap: 18px;
+  }
+
+  .footer-email,
+  .footer-phone {
+    gap: 14px;
+  }
+
+  .footer-content a {
+    padding: 6px 0;
+  }
+
+  .footer-socials a {
+    padding: 0;
+  }
+
+  .footer-bottom {
+    margin-top: 28px;
+  }
+}
+
+@media (max-width: 390px) {
+  .footer-section { padding: 32px 16px 20px; }
+  .footer-logo-text p { max-width: 100%; }
+  .footer-bottom p { font-size: 10px; }
 }

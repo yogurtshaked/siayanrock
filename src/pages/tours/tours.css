@@ -391,6 +391,198 @@
     text-align: right;
 }
 
+/* ---------- Tours: laptops (≤1280px) ---------- */
+@media (max-width: 1280px) {
+
+    /* ===== Page frame ===== */
+    .tours-hero-section {
+        padding: 120px 80px;          /* was 140px on each side */
+    }
+
+    .tours-packages.page-body {
+        padding: 72px 80px;           /* was the shared 140px */
+    }
+
+    /* ===== Itinerary ===== */
+    .tours-packages-day-content {
+        padding-right: 20px;          /* was 30px */
+    }
+}
+
+/* ---------- Tours page: small laptops / large tablets (≤1024px) ---------- */
+@media (max-width: 1024px) {
+
+    /* ===== Hero: same padding as the accommodation hero ===== */
+    .tours-hero-section {
+        padding: 110px 40px 64px;
+        /* was 140px on each side */
+    }
+
+    /* ===== Body ===== */
+    .tours-packages.page-body {
+        padding: 56px 40px;
+        /* was the shared 140px */
+    }
+
+    /* ===== Package switcher ===== */
+    .tours-packages-pill {
+        padding: 10px 8px;
+    }
+
+    /* ===== Layout: itinerary left, narrower booking card right ===== */
+    .tours-packages-panel-layout {
+        grid-template-columns: minmax(0, 1fr) 300px;
+        gap: 20px;
+    }
+
+    .tours-packages-aside {
+        margin-top: 78px;
+        /* lines the card up with the top of the itinerary box */
+    }
+
+    .tours-packages-heading h3 {
+        font-size: 34px;
+    }
+
+    /* ===== Itinerary ===== */
+    .tours-packages-itinerary {
+        padding: 14px 20px;
+    }
+
+    .tours-packages-day-content {
+        padding: 0 12px 14px 1px;
+    }
+
+    .tours-packages-stops {
+        column-gap: 20px;
+    }
+
+    .tours-packages-stop {
+        font-size: 14px;
+    }
+
+    /* ===== Exclusions: full width under the itinerary ===== */
+    .tours-packages-details {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* ===== Booking card ===== */
+    .tours-packages-booking-card {
+        padding: 22px 18px;
+    }
+
+    .tours-packages-booking-card h3 {
+        font-size: 22px;
+    }
+
+    .tours-packages-highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px 12px;
+    }
+
+    .tours-packages-highlights li {
+        font-size: 13px;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+    }
+}
+
+/* ---------- Tours page: tablets (≤768px) ---------- */
+@media (max-width: 768px) {
+
+    /* ===== Hero: identical to the accommodation hero ===== */
+    .tours-hero-section {
+        padding: 110px 28px 56px;
+    }
+
+    /* ===== Body: same side padding as the accommodation page ===== */
+    .tours-packages.page-body {
+        padding: 48px 28px;
+        gap: 24px;
+    }
+
+    /* ===== Package switcher: 3 pills, a bit tighter ===== */
+    .tours-packages-switcher {
+        gap: 4px;
+        margin: 0 0 16px;
+    }
+
+    .tours-packages-pill {
+        padding: 10px 6px;
+    }
+
+    .tours-packages-pill-label {
+        font-size: 14px;
+    }
+
+    /* ===== Layout: itinerary on top, booking card underneath ===== */
+    .tours-packages-panel-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    .tours-packages-aside {
+        margin-top: 0;
+    }
+
+    .tours-packages-heading {
+        padding: 14px 2px 12px;
+    }
+
+    .tours-packages-heading h3 {
+        font-size: 34px;
+    }
+
+    /* ===== Itinerary: keeps its 2-column stop list, now at full width ===== */
+    .tours-packages-itinerary {
+        padding: 12px 20px;
+    }
+
+    .tours-packages-day-content {
+        padding: 0 0 14px;
+    }
+
+    .tours-packages-stops {
+        margin: 8px 0;
+        column-gap: 20px;
+    }
+
+    .tours-packages-stop {
+        font-size: 14px;
+    }
+
+    /* ===== Exclusions ===== */
+    .tours-packages-details {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    /* ===== Booking card: full width, inclusions in 2 columns ===== */
+    .tours-packages-booking-card {
+        display: block;
+        padding: 24px 22px;
+    }
+
+    .tours-packages-highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 24px;
+        margin-bottom: 18px;
+    }
+
+    .tours-packages-highlights li {
+        overflow-wrap: anywhere;
+    }
+
+    .tours-packages-btn {
+        box-sizing: border-box;
+        margin-top: 0;
+    }
+
+    .tours-packages-footnote {
+        text-align: left;
+    }
+}
+
 
 /* ---------- Mobile: contact card stacks on top ---------- */
 @media (max-width: 480px) {
@@ -577,4 +769,35 @@
         text-align: left;
         line-height: 1.5;
     }
+}
+
+@media (max-width: 390px) {
+
+  .tours-hero-section { padding: 92px 16px 40px; }
+  .tours-packages.page-body { padding: 24px 14px 40px; }
+
+  .tours-packages-pill-label { font-size: 13px; }
+
+  .tours-packages-pill-meta {
+    font-size: 10px;
+    line-height: 1.15;
+  }
+
+  .tours-packages-heading h3 { font-size: 26px; }
+
+  .tours-packages-itinerary { padding: 6px 12px; }
+  .tours-packages-day-n { font-size: 11px; }
+  .tours-packages-day-title { font-size: 13px; }
+  .tours-packages-stop { font-size: 13px; }
+
+  .tours-packages-booking-card { padding: 18px 14px; }
+
+  .tours-packages-highlights {
+    gap: 8px 10px;
+  }
+
+  .tours-packages-highlights li {
+    padding-left: 15px;
+    font-size: 13px;
+  }
 }

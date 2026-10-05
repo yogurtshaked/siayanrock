@@ -6,7 +6,7 @@
 
 
 /* ====================== Global Styles ======================*/
-:root{
+:root {
   --color-background: #FBF9F3;
 
   --color-yellow: #E8BC4E;
@@ -53,11 +53,13 @@ h1 {
   font-size: 56px;
   letter-spacing: -1.68px;
   margin: 32px 0;
+
   @media (max-width: 1024px) {
     font-size: 36px;
     margin: 20px 0;
   }
 }
+
 h2 {
   font-size: 50px;
   font-style: italic;
@@ -65,12 +67,15 @@ h2 {
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
+
   @media (max-width: 1024px) {
-    font-size: 20px;
+    font-size: 36px;
   }
 }
 
-p, a, button {
+p,
+a,
+button {
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
   margin: 0;
@@ -80,11 +85,11 @@ p, a, button {
 #section {
   display: flex;
   flex-direction: column;
-  align-items: center;   
+  align-items: center;
   justify-content: center;
 }
 
-.section-title{
+.section-title {
   width: fit-content;
   font-family: "DM Sans", sans-serif;
   text-transform: uppercase;
@@ -96,7 +101,7 @@ p, a, button {
   text-align: center;
 }
 
-.section-description{
+.section-description {
   color: var(--color-section-description);
   font-size: 15px;
 }
@@ -107,31 +112,33 @@ p, a, button {
 .inquire-content p {
   letter-spacing: 3%;
 }
+
 /* =============== HOME BUTTONS =================== */
 .home-btn {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0.4rem 0.9rem;
-    margin-top: 20px;
-    border: none;
-    background: var(--color-yellow);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
-    color: white;
-    cursor: pointer;
-    font-size: 15px;
-    transition: background 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.4rem 0.9rem;
+  margin-top: 20px;
+  border: none;
+  background: var(--color-yellow);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s ease;
 }
 
 .home-btn:hover {
-    background: var(--color-dark-yellow);
+  background: var(--color-dark-yellow);
 }
 
 /* ====================== Page Settings ======================*/
-#page{
+#page {
   width: 100%;
 }
-.page-content{
+
+.page-content {
   width: 100%;
   max-width: 1160px;
   margin: 0 auto;
@@ -142,11 +149,11 @@ p, a, button {
   gap: 30px;
 }
 
-.page-header{
+.page-header {
   max-width: 1160px;
 }
 
-.page-header h2{
+.page-header h2 {
   color: white;
   font-style: normal;
   font-size: 56px;
@@ -154,7 +161,7 @@ p, a, button {
   text-align: start;
 }
 
-.page-header p{
+.page-header p {
   color: white;
   max-width: 550px;
   font-size: 15px;
@@ -162,7 +169,7 @@ p, a, button {
   letter-spacing: 3%;
 }
 
-.page-body{
+.page-body {
   background: white;
   padding: 80px 140px;
 
@@ -173,14 +180,14 @@ p, a, button {
   gap: 40px;
 }
 
-.page-title{
+.page-title {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.page-title h3{
+.page-title h3 {
   font-family: "Instrument Serif";
   font-style: italic;
   font-size: 40px;
@@ -243,29 +250,50 @@ p, a, button {
 }
 
 @keyframes scroll-hint-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(8px);
+  }
 }
 
 @keyframes hero-nudge {
-  0%, 62%, 100% { transform: translateY(0); }
-  80% { transform: translateY(-8px); }
+
+  0%,
+  62%,
+  100% {
+    transform: translateY(0);
+  }
+
+  80% {
+    transform: translateY(-8px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scroll-hint-icon, .hero-nudge { animation: none; }
+
+  .scroll-hint-icon,
+  .hero-nudge {
+    animation: none;
+  }
 }
 
 
 
 /* ====================== Gallery & Inquire Settings ======================*/
-.gallery-page, .inquire-page{
+.gallery-page,
+.inquire-page {
   display: flex;
   flex-direction: column;
   background: var(--color-page-background);
 }
 
-.gallery-page-content, .inquire-page-content{
+.gallery-page-content,
+.inquire-page-content {
   width: 100%;
   margin: 0 auto;
   max-width: 1160px;
@@ -279,7 +307,9 @@ p, a, button {
   justify-content: flex-start;
 }
 
-.gallery-title .section-description, .inquire-title .section-description, .bookroom-page .section-description{
+.gallery-title .section-description,
+.inquire-title .section-description,
+.bookroom-page .section-description {
   max-width: 540px;
   font-size: 14px;
 }
@@ -316,7 +346,7 @@ p, a, button {
 }
 
 .back-link:hover svg {
-  transform: translateX(-3px);       
+  transform: translateX(-3px);
 }
 
 .back-link:focus-visible {
@@ -325,7 +355,7 @@ p, a, button {
 }
 
 /* ====================== Room Details ======================*/
-.room-details-body{
+.room-details-body {
   background: white;
   padding: 20px 0px 80px 0px;
 
@@ -335,15 +365,16 @@ p, a, button {
   justify-content: center;
   gap: 10px;
 }
+
 .room-details-content {
   margin: 0 auto;
   max-width: 1160px;
-    
+
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: 15px;
-  
+
   background: white;
 }
 
@@ -363,19 +394,22 @@ p, a, button {
   overflow: hidden;
 }
 
-.room-details-images > img {
+.room-details-images>img {
   width: 100%;
   height: 100%;
   min-height: 0;
   object-fit: cover;
   border-radius: 5px;
 }
+
 .room-details-images img:nth-of-type(1) {
   grid-area: main;
 }
+
 .room-details-images img:nth-of-type(2) {
   grid-area: top-right;
 }
+
 .room-details-images img:nth-of-type(3) {
   grid-area: bottom-right;
 }
@@ -387,11 +421,11 @@ p, a, button {
   align-items: start;
 }
 
-.room-information{
+.room-information {
   max-width: 680px;
   display: flex;
   flex-direction: column;
-  gap:30px;
+  gap: 30px;
 }
 
 .room-details-title::after {
@@ -403,11 +437,11 @@ p, a, button {
   margin-top: 16px;
 }
 
-.room-name{
+.room-name {
   font-size: 42px;
 }
 
-.room-details-header h2{
+.room-details-header h2 {
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
   font-style: normal;
@@ -415,10 +449,11 @@ p, a, button {
   margin-bottom: 15px;
 }
 
-.room-details-header p{
+.room-details-header p {
   font-size: 15px;
 }
-.room-overview p{
+
+.room-overview p {
   font-weight: 400;
 }
 
@@ -431,6 +466,7 @@ p, a, button {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px 32px;
 }
+
 .room-amenity {
   display: flex;
   align-items: center;
@@ -459,7 +495,8 @@ p, a, button {
 .booking-form {
   padding: 24px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  background-color: var(--color-green-background);   /* #222411 */
+  background-color: var(--color-green-background);
+  /* #222411 */
   color: #f5f1e6;
   border-radius: 6px;
   display: flex;
@@ -511,7 +548,8 @@ p, a, button {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: rgba(234, 187, 75, 0.1);               /* gold tint */
+  background: rgba(234, 187, 75, 0.1);
+  /* gold tint */
   border: 1px solid rgba(234, 187, 75, 0.35);
   border-radius: 8px;
 }
@@ -548,11 +586,11 @@ p, a, button {
   transition: background 0.2s ease;
 }
 
-.booking-field + .booking-field {
+.booking-field+.booking-field {
   border-left: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.booking-fields-row + .booking-field {
+.booking-fields-row+.booking-field {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   border-left: 0;
 }
@@ -587,7 +625,8 @@ p, a, button {
   font-size: 15px;
   font-weight: 600;
   font-family: inherit;
-  color-scheme: dark;            /* makes the calendar icon and dropdown list light-on-dark */
+  color-scheme: dark;
+  /* makes the calendar icon and dropdown list light-on-dark */
 }
 
 .booking-field select option {
@@ -639,7 +678,7 @@ p, a, button {
   font-weight: 600;
 }
 
-.book-room-btn{
+.book-room-btn {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -647,98 +686,98 @@ p, a, button {
   background: var(--color-yellow);
   color: white;
   transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-} 
+}
 
-.book-room-btn:hover{
+.book-room-btn:hover {
   background: var(--color-dark-yellow);
 }
 
 
 .room-lightbox-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background: rgb(0 0 0 / 88%);
+  background: rgb(0 0 0 / 88%);
 
-    padding: 40px;
+  padding: 40px;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .room-lightbox-image {
-    max-width: 90vw;
-    max-height: 90vh;
+  max-width: 90vw;
+  max-height: 90vh;
 
-    width: auto;
-    height: auto;
+  width: auto;
+  height: auto;
 
-    object-fit: contain;
+  object-fit: contain;
 
-    border-radius: 4px;
+  border-radius: 4px;
 
-    cursor: default;
+  cursor: default;
 }
 
 .room-lightbox-close {
-    position: absolute;
-    top: 25px;
-    right: 30px;
+  position: absolute;
+  top: 25px;
+  right: 30px;
 
-    width: 42px;
-    height: 42px;
+  width: 42px;
+  height: 42px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    border: 1px solid rgb(255 255 255 / 40%);
-    border-radius: 50%;
+  border: 1px solid rgb(255 255 255 / 40%);
+  border-radius: 50%;
 
-    background: rgb(0 0 0 / 30%);
-    color: white;
+  background: rgb(0 0 0 / 30%);
+  color: white;
 
-    font-size: 20px;
-    cursor: pointer;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .room-lightbox-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 
-    width: 48px;
-    height: 48px;
+  width: 48px;
+  height: 48px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    border: 1px solid rgb(255 255 255 / 40%);
-    border-radius: 50%;
+  border: 1px solid rgb(255 255 255 / 40%);
+  border-radius: 50%;
 
-    background: rgb(0 0 0 / 35%);
-    color: white;
+  background: rgb(0 0 0 / 35%);
+  color: white;
 
-    font-size: 34px;
-    cursor: pointer;
+  font-size: 34px;
+  cursor: pointer;
 }
 
 .room-lightbox-prev {
-    left: 30px;
+  left: 30px;
 }
 
 .room-lightbox-next {
-    right: 30px;
+  right: 30px;
 }
 
 .room-lightbox-close:hover,
 .room-lightbox-nav:hover {
-    background: rgb(255 255 255 / 15%);
+  background: rgb(255 255 255 / 15%);
 }
 
 /* ============================== RESERVE MODAL ============================== */
@@ -755,8 +794,13 @@ p, a, button {
 }
 
 @keyframes reserve-modal-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .reserve-modal {
@@ -921,6 +965,7 @@ p, a, button {
   color: #b5b5b5;
   flex-shrink: 0;
 }
+
 .about-us {
   --about-us-line: #E6DFC9;
 
@@ -1007,16 +1052,15 @@ p, a, button {
   justify-content: center;
 
   background-image:
-    linear-gradient(
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0.2)
-    ),
+    linear-gradient(rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)),
     url("/images/accommodation-bg.webp");
-  
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .about-us-story-grid {
   display: grid;
   grid-template-columns: 1.05fr 1fr;
@@ -1027,8 +1071,10 @@ p, a, button {
 /* ====================== Story (postcard) ====================== */
 
 .about-us-story-overlay {
-  --scallop: 16px;   /* spacing between the perforations */
-  --hole: 5px;       /* size of each perforation */
+  --scallop: 16px;
+  /* spacing between the perforations */
+  --hole: 5px;
+  /* size of each perforation */
 
   position: relative;
   z-index: 1;
@@ -1050,14 +1096,14 @@ p, a, button {
   background-image:
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.33  0 0 0 0 0.27  0 0 0 0 0.18  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 
-  --top:    radial-gradient(circle var(--hole) at 50% 0,    #0000 98%, #000) top    / var(--scallop) var(--hole) repeat-x;
+  --top: radial-gradient(circle var(--hole) at 50% 0, #0000 98%, #000) top / var(--scallop) var(--hole) repeat-x;
   --bottom: radial-gradient(circle var(--hole) at 50% 100%, #0000 98%, #000) bottom / var(--scallop) var(--hole) repeat-x;
-  --left:   radial-gradient(circle var(--hole) at 0 50%,    #0000 98%, #000) left   / var(--hole) var(--scallop) repeat-y;
-  --right:  radial-gradient(circle var(--hole) at 100% 50%, #0000 98%, #000) right  / var(--hole) var(--scallop) repeat-y;
-  --fill:   linear-gradient(#000 0 0) center / calc(100% - 2 * var(--hole)) calc(100% - 2 * var(--hole)) no-repeat;
+  --left: radial-gradient(circle var(--hole) at 0 50%, #0000 98%, #000) left / var(--hole) var(--scallop) repeat-y;
+  --right: radial-gradient(circle var(--hole) at 100% 50%, #0000 98%, #000) right / var(--hole) var(--scallop) repeat-y;
+  --fill: linear-gradient(#000 0 0) center / calc(100% - 2 * var(--hole)) calc(100% - 2 * var(--hole)) no-repeat;
 
   -webkit-mask: var(--top), var(--bottom), var(--left), var(--right), var(--fill);
-          mask: var(--top), var(--bottom), var(--left), var(--right), var(--fill);
+  mask: var(--top), var(--bottom), var(--left), var(--right), var(--fill);
 }
 
 /* thin inner frame, like the printed border on a stamp */
@@ -1079,8 +1125,10 @@ p, a, button {
   margin: 0 auto;
   color: var(--color-section-description);
 }
-.about-us-text, .about-us-text p {
-  text-align: center; 
+
+.about-us-text,
+.about-us-text p {
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1109,7 +1157,7 @@ p, a, button {
   padding: 48px 48px 48px 0;
 }
 
-.about-us-divider + .about-us-biz {
+.about-us-divider+.about-us-biz {
   padding: 48px 0 48px 48px;
 }
 
@@ -1152,7 +1200,8 @@ p, a, button {
   overflow: hidden;
   display: flex;
   align-items: flex-end;
-  background: var(--color-green-background); /* shows while images load */
+  background: var(--color-green-background);
+  /* shows while images load */
 }
 
 /* slides crossfade, with a slow zoom on the active one */
@@ -1166,6 +1215,7 @@ p, a, button {
   transform: scale(1.06);
   transition: opacity 1.1s ease, transform 6s ease;
 }
+
 .about-us-viewdeck-slide.is-active {
   opacity: 1;
   transform: scale(1);
@@ -1205,9 +1255,18 @@ p, a, button {
   cursor: pointer;
   transition: background 0.3s;
 }
-.about-us-viewdeck-arrow:hover { background: var(--color-yellow); }
-.about-us-viewdeck-arrow--prev { left: 18px; }
-.about-us-viewdeck-arrow--next { right: 18px; }
+
+.about-us-viewdeck-arrow:hover {
+  background: var(--color-yellow);
+}
+
+.about-us-viewdeck-arrow--prev {
+  left: 18px;
+}
+
+.about-us-viewdeck-arrow--next {
+  right: 18px;
+}
 
 /* dots */
 .about-us-viewdeck-dots {
@@ -1218,6 +1277,7 @@ p, a, button {
   display: flex;
   gap: 4px;
 }
+
 .about-us-viewdeck-dots button {
   width: 7px;
   height: 7px;
@@ -1228,6 +1288,7 @@ p, a, button {
   cursor: pointer;
   transition: width 0.3s, background 0.3s;
 }
+
 .about-us-viewdeck-dots button.is-active {
   width: 22px;
   background: var(--color-yellow);
@@ -1317,7 +1378,7 @@ p, a, button {
 
 .about-us-bento {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr ;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 220px 220px;
   gap: 14px;
 }
@@ -1353,12 +1414,10 @@ p, a, button {
   position: absolute;
   inset: 0;
   transition: opacity 0.45s ease;
-  background: linear-gradient(
-    to top,
-    rgb(0 0 0 / 80%) 0%,
-    rgb(0 0 0 / 40%) 35%,
-    rgb(0 0 0 / 5%) 70%
-  );
+  background: linear-gradient(to top,
+      rgb(0 0 0 / 80%) 0%,
+      rgb(0 0 0 / 40%) 35%,
+      rgb(0 0 0 / 5%) 70%);
 }
 
 .about-us-spot:hover .about-us-spot-wash {
@@ -1435,19 +1494,47 @@ p, a, button {
 }
 
 @supports (backdrop-filter: blur(1px)) {
-  .offer-card-content { backdrop-filter: blur(20px); }
-  .hero-search-bar { backdrop-filter: blur(20px); }
-  .navbar-scrolled { backdrop-filter: blur(10px); }
-  .about-us-viewdeck-arrow { backdrop-filter: blur(10px); }
-  .inquire-content { backdrop-filter: blur(20px); }
+  .offer-card-content {
+    backdrop-filter: blur(20px);
+  }
+
+  .hero-search-bar {
+    backdrop-filter: blur(20px);
+  }
+
+  .navbar-scrolled {
+    backdrop-filter: blur(10px);
+  }
+
+  .about-us-viewdeck-arrow {
+    backdrop-filter: blur(10px);
+  }
+
+  .inquire-content {
+    backdrop-filter: blur(20px);
+  }
 }
 
 @supports (-webkit-backdrop-filter: blur(1px)) {
-  .offer-card-content { -webkit-backdrop-filter: blur(20px); }
-  .hero-search-bar { -webkit-backdrop-filter: blur(20px); }
-  .navbar-scrolled { -webkit-backdrop-filter: blur(10px); }
-  .about-us-viewdeck-arrow { -webkit-backdrop-filter: blur(10px); }
-  .inquire-content { -webkit-backdrop-filter: blur(20px); }
+  .offer-card-content {
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .hero-search-bar {
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .navbar-scrolled {
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .about-us-viewdeck-arrow {
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .inquire-content {
+    -webkit-backdrop-filter: blur(20px);
+  }
 }
 
 /* ---------- Mobile: contact card stacks on top ---------- */
@@ -1456,17 +1543,20 @@ p, a, button {
     letter-spacing: -2%;
     font-weight: 400;
   }
-  h2{
+
+  h2 {
     font-size: 32px;
   }
 
   /* ========== SECTION SETTINGS ========== */
-  .section-description{
+  .section-description {
     font-size: 14px;
   }
+
   .section-title {
     font-size: 11px;
   }
+
   .home-btn {
     font-size: 14px;
     padding: 8px 12px;
@@ -1474,36 +1564,36 @@ p, a, button {
   }
 
   /* ===== Typography: p 14px, section h2 16px ===== */
-    .about-text p:not(.section-title),
-    .offer-text p:not(.section-title),
-    .gallery-text p:not(.section-title),
-    .inquire-content p,
-    .offer-card p,
-    .section-description {
-        font-size: 14px;
-    }
+  .about-text p:not(.section-title),
+  .offer-text p:not(.section-title),
+  .gallery-text p:not(.section-title),
+  .inquire-content p,
+  .offer-card p,
+  .section-description {
+    font-size: 14px;
+  }
 
-    .about-text p,
-    .gallery-text p,
-    .offer-text p,
-    .inquire-content p {
-        letter-spacing: 1%;
-        line-height: 20px;
-    }
+  .about-text p,
+  .gallery-text p,
+  .offer-text p,
+  .inquire-content p {
+    letter-spacing: 1%;
+    line-height: 20px;
+  }
 
-    .about-text h2,
-    .offer-text h2,
-    .gallery-text h2,
-    .inquire-content h2 {
-        font-size: 32px;
-        line-height: 1.3;
-    }
+  .about-text h2,
+  .offer-text h2,
+  .gallery-text h2,
+  .inquire-content h2 {
+    font-size: 32px;
+    line-height: 1.3;
+  }
 
-    .section-description {
-        font-weight: 400;
-    }
+  .section-description {
+    font-weight: 400;
+  }
 
-  #section{
+  #section {
     padding: 80px 28px;
   }
 
@@ -1529,7 +1619,7 @@ p, a, button {
     line-height: 1.15;
   }
 
-  .page-btn{
+  .page-btn {
     justify-self: stretch;
     width: 100%;
     margin-top: 0;
@@ -1550,15 +1640,40 @@ p, a, button {
   }
 
   @keyframes hero-nudge {
-    0%, 62%, 100% { transform: translateY(0); }
-    80% { transform: translateY(-5px); }
+
+    0%,
+    62%,
+    100% {
+      transform: translateY(0);
+    }
+
+    80% {
+      transform: translateY(-5px);
+    }
   }
 
-  .about-us-story-overlay{
-    padding: 42px 36px;
+  /* text */
+  .about-text {
+    padding: 0 4px;
+    gap: 12px;
   }
 
-  .about-us-lead{
+  .about-text .section-description {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .about-us-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .about-us-story-overlay {
+    padding: 42px 38px;
+  }
+
+  .about-us-lead {
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
@@ -1570,7 +1685,7 @@ p, a, button {
   }
 
   .about-us-biz .about-us-h3 {
-    font-size: 32px;
+    font-size: 38px;
     margin-bottom: 12px;
   }
 
@@ -1580,129 +1695,136 @@ p, a, button {
 }
 
 
-@media (max-width: 1200px) {
-  .navbar-content {
-    width: 100%;
-    max-height: 65px;
-    margin: 0 auto;
+/* ---------- Laptops (≤1280px): trim the oversized side padding ---------- */
+@media (max-width: 1280px) {
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
-
-
-@media (max-width: 1024px) {
-  .about-content {
-    flex-direction: column;
-    padding: 36px 28px;
-    gap: 20px;
-  }
-  .about-image { width: 100%; }
-  .about-text { padding: 0; align-items: flex-start; }
-
-  .about-title::before { top: -64px; right: 0; width: 80px; height: 80px; }
-  .about-title::after  { top: -48px; right: 66px; width: 96px; height: 45px; }
-
-  .about-us .about-us-h2 {
-    font-size: 34px;
+  /* ===== Shared page layout ===== */
+  .page-body {
+    padding: 72px 80px;            /* was 80px 140px */
   }
 
-  .about-us-story {
-    padding: 100px 20px 60px;
+  /* ===== Heroes (they had 140px / 180px on each side) ===== */
+  .accommodation-hero-section {
+    padding: 120px 80px;
   }
 
-  .about-us-story-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .tours-hero-section {
+    padding: 120px 80px;
   }
 
-  .about-us-collage {
-    height: 400px;
+  /* ===== Home sections ===== */
+  .offer-section,
+  .gallery-section {
+    padding: 72px 80px;
   }
 
-  .about-us-collage-big {
-    height: 320px;
+  /* ===== Footer ===== */
+  .footer-section {
+    padding: 40px 80px;
   }
 
-  .about-us-collage-small {
-    height: 180px;
+  /* ===== About Us page ===== */
+  .about-us-family {
+    padding: 64px 140px;           /* was 280px on each side */
   }
 
-  .about-us-family,
   .about-us-perks {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .about-us-family-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-us-divider {
-    display: none;
-  }
-
-  .about-us-biz,
-  .about-us-divider + .about-us-biz {
-    padding: 32px 0;
-  }
-
-  .about-us-viewdeck {
-    height: 400px;
-  }
-
-  .about-us-viewdeck-copy {
-    padding: 24px;
-  }
-
-  .about-us-viewdeck-copy .about-us-h3 {
-    font-size: 32px;
-  }
-
-  .about-us-bikes {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .about-us-bikes-free {
-    padding: 0;
-    border: 0;
-    font-size: 36px;
+    padding: 20px 80px 72px;       /* was 180px on each side */
   }
 
   .about-us-nearby {
-    padding: 80px 20px;
+    padding: 110px 60px;
+  }
+}
+/* ---------- About Us page: small laptops / large tablets (≤1024px) ---------- */
+@media (max-width: 1024px) {
+
+  /* ===== Story postcard ===== */
+  .about-us-story {
+    padding: 110px 40px 70px;       /* top padding clears the fixed navbar */
   }
 
-  .about-us-nearby-text {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+  .about-us-story-overlay {
+    width: min(640px, 100%);
+    padding: 56px;
   }
 
-  
+  .about-us-story .about-us-h2 {
+    font-size: 46px;
+  }
+
+  /* ===== Two businesses: still side by side ===== */
+  .about-us-family {
+    padding: 56px 40px;
+  }
+
+  .about-us-biz {
+    padding: 40px 32px 40px 0;
+  }
+
+  .about-us-divider + .about-us-biz {
+    padding: 40px 0 40px 32px;
+  }
+
+  .about-us-biz .about-us-h3 {
+    font-size: 30px;
+  }
+
+  /* ===== Perks ===== */
+  .about-us-perks {
+    padding: 16px 40px 64px;
+  }
+
+  .about-us-viewdeck {
+    height: 500px;
+  }
+
+  .about-us-viewdeck-copy {
+    max-width: 520px;
+    padding: 36px;
+  }
+
+  .about-us-viewdeck-copy .about-us-h3 {
+    font-size: 38px;
+  }
+
+  .about-us-bikes {
+    gap: 24px;
+    padding: 24px 28px;
+  }
+
+  .about-us-bikes-free {
+    padding-right: 24px;
+    font-size: 40px;
+  }
+
+  /* ===== Nearby spots: 3 across, shorter ===== */
+  .about-us-nearby {
+    padding: 90px 40px;
+  }
+
+  .about-us-nearby-text h2 {
+    font-size: 42px;
+  }
 
   .about-us-bento {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    grid-auto-rows: 240px;
+    grid-template-rows: 200px 200px;
+    gap: 12px;
   }
+}
 
-  .about-us-spot--feature {
-    grid-row: auto;
-    height: 320px;
+/* touch screens have no hover: show the descriptions and give the cards room for them */
+@media (max-width: 1024px) and (hover: none) {
+  .about-us-bento {
+    grid-template-rows: 250px 250px;
   }
 
   .about-us-spot-desc {
-    max-height: 80px;
+    max-height: 60px;
     opacity: 1;
     margin-top: 8px;
   }
 }
-
 
 @media (max-width: 900px) {
   .tours-packages-panel-layout {
@@ -1720,68 +1842,190 @@ p, a, button {
   }
 }
 
-@media (max-width: 720px) {
-  .accommodation-kind-switcher {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .accommodation-kind-pill:first-child {
-    grid-column: 1 / -1;
+/* ---------- About Us page: tablets (≤768px) ---------- */
+@media (max-width: 768px) {
+
+  /* ===== Story postcard ===== */
+  .about-us-story {
+    padding: 100px 28px 56px;
   }
 
-  .tours-packages-panel-layout {
+  .about-us-story-overlay {
+    width: 100%;
+    padding: 48px 44px;
+  }
+
+  .about-us-story-overlay::after {
+    inset: 14px;
+  }
+
+  .about-us-story .about-us-h2 {
+    font-size: 40px;
+  }
+
+  /* ===== Two businesses: stacked, the divider becomes a horizontal rule ===== */
+  .about-us-family {
+    padding: 48px 28px;
+  }
+
+  .about-us-family-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .tours-packages-aside {
-    position: static;
+  .about-us-divider {
+    height: 1px;
   }
 
-  .tours-packages-booking-card {
-    display: flex;
-  flex-direction: column;    
-  column-gap: 20px;
-    }
+  .about-us-biz,
+  .about-us-divider + .about-us-biz {
+    padding: 32px 0;
+  }
 
-  .tours-packages-booking-card > .tours-packages-eyebrow,
-  .tours-packages-booking-card > h3,
-  .tours-packages-booking-card > .tours-packages-price,
-  .tours-packages-booking-rule {
+  .about-us-biz .section-description {
+    max-width: none;
+  }
+
+  .about-us-owners-line {
+    padding-top: 28px;
+    font-size: 20px;
+  }
+
+  /* ===== Perks ===== */
+  .about-us-perks {
+    padding: 12px 28px 56px;
+  }
+
+  .about-us-viewdeck {
+    height: 440px;
+  }
+
+  .about-us-viewdeck-copy {
+    max-width: 480px;
+    padding: 28px;
+  }
+
+  .about-us-viewdeck-copy .about-us-h3 {
+    font-size: 34px;
+  }
+
+  .about-us-viewdeck-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .about-us-viewdeck-dots {
+    right: 20px;
+    bottom: 22px;
+  }
+
+  .about-us-bikes {
+    gap: 20px;
+    padding: 22px 24px;
+  }
+
+  /* ===== Nearby spots: heading stacks, 2 columns of cards ===== */
+  .about-us-nearby {
+    padding: 64px 28px;
+  }
+
+  .about-us-nearby-text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .about-us-nearby-text h2 {
+    max-width: none;
+    font-size: 36px;
+  }
+
+  .about-us-bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: 250px;
+  }
+
+  /* an odd last card spans the row instead of leaving a hole */
+  .about-us-spot:last-child:nth-child(odd) {
     grid-column: 1 / -1;
   }
 
-  .tours-packages-booking-rule {
-    margin: 12px 0;
-  }
-
-  .tours-packages-booking-card h4,
-  .tours-packages-highlights {
-    grid-column: 1;
-  }
-
-  .tours-packages-booking-card h4 {
-    align-self: start;
-  }
-
-  .tours-packages-highlights {
-    grid-row: span 2;
-  }
-
-  .tours-packages-btn,
-  .tours-packages-contact-note {
-    grid-column: 2;
-  }
-
-  .tours-packages-btn {
-    align-self: end;
-    margin-top: 0;
-  }
-
-  .tours-packages-contact-note {
-    margin-bottom: 0;
+  .about-us-spot-desc {
+    max-height: 60px;
+    opacity: 1;
+    margin-top: 8px;
   }
 }
 
+/* ---------- About Us page: small phones (≤560px) ---------- */
+@media (max-width: 560px) {
+  .about-us-viewdeck {
+    height: 400px;
+  }
+
+  .about-us-viewdeck-copy {
+    padding: 22px;
+  }
+
+  .about-us-viewdeck-copy .about-us-h3 {
+    font-size: 30px;
+  }
+
+  /* dots move to the top so they don't collide with the text */
+  .about-us-viewdeck-dots {
+    top: 16px;
+    right: 16px;
+    bottom: auto;
+  }
+
+  .about-us-bikes {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .about-us-bikes-free {
+    padding: 0;
+    border: 0;
+    font-size: 36px;
+  }
+
+  .about-us-bento {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 390px) {
+
+  .about-us-story { padding: 92px 14px 48px; }
+  .about-us-story-overlay { padding: 36px 28px; }
+  .about-us-story-overlay::after { inset: 12px; }
+  .about-us-story .about-us-h2 { font-size: 32px; }
+
+  .about-us-family { padding: 36px 20px; }
+  .about-us-biz .about-us-h3 { font-size: 28px; }
+  .about-us-owners-line { font-size: 18px; }
+
+  .about-us-perks { padding: 8px 16px 40px; }
+  .about-us-viewdeck { height: 360px; }
+  .about-us-viewdeck-copy { padding: 18px; }
+  .about-us-viewdeck-copy .about-us-h3 { font-size: 26px; }
+
+  .about-us-viewdeck-arrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .about-us-bikes { padding: 18px 16px; }
+
+  .about-us-nearby { padding: 48px 16px; }
+  .about-us-nearby-text h2 { font-size: 28px; }
+  .about-us-bento { grid-auto-rows: 220px; }
+  .about-us-spot .about-us-h3 { font-size: 21px; }
+}
 @media (prefers-reduced-motion: reduce) {
+
   .tours-packages *,
   .tours-packages *::before,
   .tours-packages *::after {
