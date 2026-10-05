@@ -1317,6 +1317,197 @@
     }
 }
 
+/* ---------- Home page: tablets (≤768px) ---------- */
+@media (max-width: 768px) {
+
+  /* ===== Hero ===== */
+  .hero-section {
+    box-sizing: border-box;
+    padding: 96px 24px 80px;
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  .hero-content h1 {
+    font-size: 56px;
+    line-height: 60px;
+    width: 100%;
+    max-width: 460px;
+  }
+
+  /* same row layout as desktop, just tighter */
+  .hero-search-bar {
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    max-width: 560px;
+    padding: 16px 18px 24px;
+  }
+
+  .date-card-value {
+    width: 118px;
+  }
+
+    /* ===== About ===== */
+  .about-section {
+    padding: 72px 24px;
+    min-height: auto;
+  }
+
+  .about-content {
+    --scallop: 22px;
+    --hole: 6px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 680px;
+    padding: 36px 32px;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .about-content::after {
+    inset: 14px;
+  }
+
+  /* photo: fixed share of the card, never grows */
+  .about-image {
+    flex: 0 0 44%;
+    width: 44%;
+    box-sizing: border-box;
+    padding: 8px;
+  }
+
+  /* the image scales with its frame instead of using fixed pixels */
+  .about-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 6 / 7;
+  }
+
+  .about-image::before {
+    width: 68px;
+    height: 68px;
+    top: -14px;
+    right: -10px;
+  }
+
+  .about-image::after {
+    width: 82px;
+    height: 36px;
+    top: 12px;
+    right: 50px;
+  }
+
+  /* text: takes the rest, and is allowed to shrink */
+  .about-text {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+    padding: 0;
+    gap: 14px;
+  }
+
+  .about-text .section-description {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 23px;
+  }
+
+  /* ===== Services: two cards stay side by side ===== */
+  .offer-section {
+    padding: 64px 40px;
+    min-height: auto;
+  }
+
+  .offer-cards {
+    gap: 1.25rem;
+  }
+
+  .offer-card {
+    height: 320px;
+    padding: 14px 16px;
+  }
+
+  .offer-card-content {
+    padding: 18px;
+    gap: 12px;
+  }
+
+  .offer-card h3 {
+    font-size: 28px;
+  }
+
+  .offer-card p {
+    width: auto;
+    max-width: 210px;
+  }
+
+  /* ===== Gallery: 2 x 2 grid (4 across would be ~160px each) ===== */
+  .gallery-section {
+    padding: 64px 40px;
+    min-height: auto;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .gallery-media {
+    height: 260px;
+  }
+
+  /* ===== Inquire ===== */
+  .inquire-section {
+    min-height: clamp(340px, 40dvh, 500px);
+  }
+
+  .inquire-content {
+    padding: 22px 40px;
+  }
+}
+
+/* postcard stacks once the row gets too narrow */
+@media (max-width: 680px) {
+  .about-content {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 520px;
+    padding: 32px 24px;
+  }
+
+  .about-image {
+    flex: none;
+    width: 100%;
+  }
+
+  .about-image img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .about-image::before {
+    width: 76px;
+    height: 76px;
+  }
+
+  .about-image::after {
+    width: 90px;
+    height: 40px;
+    right: 56px;
+  }
+}
+
+/* touch tablets have no hover: keep the dark wash so captions stay readable */
+@media (max-width: 768px) and (hover: none) {
+  .gallery-item:hover .gallery-wash {
+    opacity: 1;
+  }
+}
+
 
 
 
@@ -1347,3 +1538,4 @@
         -webkit-backdrop-filter: blur(20px);
     }
 }
+

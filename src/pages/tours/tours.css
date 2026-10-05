@@ -396,16 +396,19 @@
 
     /* ===== Page frame ===== */
     .tours-hero-section {
-        padding: 120px 80px;          /* was 140px on each side */
+        padding: 120px 80px;
+        /* was 140px on each side */
     }
 
     .tours-packages.page-body {
-        padding: 72px 80px;           /* was the shared 140px */
+        padding: 72px 80px;
+        /* was the shared 140px */
     }
 
     /* ===== Itinerary ===== */
     .tours-packages-day-content {
-        padding-right: 20px;          /* was 30px */
+        padding-right: 20px;
+        /* was 30px */
     }
 }
 
@@ -773,31 +776,53 @@
 
 @media (max-width: 390px) {
 
-  .tours-hero-section { padding: 92px 16px 40px; }
-  .tours-packages.page-body { padding: 24px 14px 40px; }
+    .tours-hero-section {
+        padding: 92px 16px 40px;
+    }
 
-  .tours-packages-pill-label { font-size: 13px; }
+    .tours-packages.page-body {
+        padding: 24px 14px 40px;
+    }
 
-  .tours-packages-pill-meta {
-    font-size: 10px;
-    line-height: 1.15;
-  }
+    .tours-packages-pill-label {
+        font-size: 13px;
+    }
 
-  .tours-packages-heading h3 { font-size: 26px; }
+    .tours-packages-pill-meta {
+        font-size: 10px;
+        line-height: 1.15;
+    }
 
-  .tours-packages-itinerary { padding: 6px 12px; }
-  .tours-packages-day-n { font-size: 11px; }
-  .tours-packages-day-title { font-size: 13px; }
-  .tours-packages-stop { font-size: 13px; }
+    .tours-packages-heading h3 {
+        font-size: 26px;
+    }
 
-  .tours-packages-booking-card { padding: 18px 14px; }
+    .tours-packages-itinerary {
+        padding: 6px 12px;
+    }
 
-  .tours-packages-highlights {
-    gap: 8px 10px;
-  }
+    .tours-packages-day-n {
+        font-size: 11px;
+    }
 
-  .tours-packages-highlights li {
-    padding-left: 15px;
-    font-size: 13px;
-  }
+    .tours-packages-day-title {
+        font-size: 13px;
+    }
+
+    .tours-packages-stop {
+        font-size: 13px;
+    }
+
+    .tours-packages-booking-card {
+        padding: 18px 14px;
+    }
+
+    .tours-packages-highlights {
+        gap: 8px 10px;
+    }
+
+    .tours-packages-highlights li {
+        padding-left: 15px;
+        font-size: 13px;
+    }
 }
