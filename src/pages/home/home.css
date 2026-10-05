@@ -1317,195 +1317,154 @@
     }
 }
 
-/* ---------- Home page: tablets (≤768px) ---------- */
-@media (max-width: 768px) {
+/* ---------- Home + global: small phones (≤375px) ---------- */
+@media (max-width: 390px) {
 
-  /* ===== Hero ===== */
-  .hero-section {
-    box-sizing: border-box;
-    padding: 96px 24px 80px;
-  }
+    #section {
+        padding: 64px 20px;
+    }
 
-  .hero-content {
-    width: 100%;
-  }
+    .page-body {
+        padding: 40px 20px;
+        gap: 24px;
+    }
 
-  .hero-content h1 {
-    font-size: 56px;
-    line-height: 60px;
-    width: 100%;
-    max-width: 460px;
-  }
+    /* ===== Hero ===== */
+    .hero-section {
+        padding: 84px 12px 72px;
+    }
 
-  /* same row layout as desktop, just tighter */
-  .hero-search-bar {
-    box-sizing: border-box;
-    flex-wrap: wrap;
-    gap: 12px;
-    width: 100%;
-    max-width: 560px;
-    padding: 16px 18px 24px;
-  }
+    .hero-content h1 {
+        font-size: 44px;
+        line-height: 48px;
+        max-width: 300px;
+    }
 
-  .date-card-value {
-    width: 118px;
-  }
+    .hero-search-bar {
+        width: calc(100% - 40px);
+        max-width: 260px;
+        padding: 12px;
+        gap: 10px;
+    }
 
-    /* ===== About ===== */
-  .about-section {
-    padding: 72px 24px;
-    min-height: auto;
-  }
+    .date-range {
+        gap: 6px;
+    }
 
-  .about-content {
-    --scallop: 22px;
-    --hole: 6px;
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 680px;
-    padding: 36px 32px;
-    gap: 24px;
-    align-items: center;
-  }
+    .date-card-value,
+    .guests-select {
+        padding: 5px 6px;
+        font-size: 12px;
+    }
 
-  .about-content::after {
-    inset: 14px;
-  }
+    .date-card-label {
+        font-size: 11px;
+    }
 
-  /* photo: fixed share of the card, never grows */
-  .about-image {
-    flex: 0 0 44%;
-    width: 44%;
-    box-sizing: border-box;
-    padding: 8px;
-  }
+    /* ===== About postcard ===== */
+    .about-section {
+        padding: 48px 12px;
+    }
 
-  /* the image scales with its frame instead of using fixed pixels */
-  .about-image img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 6 / 7;
-  }
+    .about-content {
+        --scallop: 16px;
+        --hole: 4px;
+        padding: 24px 16px;
+        gap: 18px;
+    }
 
-  .about-image::before {
-    width: 68px;
-    height: 68px;
-    top: -14px;
-    right: -10px;
-  }
+    .about-content::after {
+        inset: 10px;
+    }
 
-  .about-image::after {
-    width: 82px;
-    height: 36px;
-    top: 12px;
-    right: 50px;
-  }
+    .about-image img {
+        height: 180px;
+    }
 
-  /* text: takes the rest, and is allowed to shrink */
-  .about-text {
-    flex: 1 1 0;
-    min-width: 0;
-    max-width: none;
-    padding: 0;
-    gap: 14px;
-  }
+    .about-image::before {
+        width: 56px;
+        height: 56px;
+        top: -10px;
+        right: -4px;
+    }
 
-  .about-text .section-description {
-    max-width: 100%;
-    font-size: 14px;
-    line-height: 23px;
-  }
+    .about-image::after {
+        width: 66px;
+        height: 30px;
+        right: 38px;
+    }
 
-  /* ===== Services: two cards stay side by side ===== */
-  .offer-section {
-    padding: 64px 40px;
-    min-height: auto;
-  }
+    /* ===== Services ===== */
+    .offer-section {
+        padding: 48px 16px;
+    }
 
-  .offer-cards {
-    gap: 1.25rem;
-  }
+    .offer-card {
+        height: 260px;
+        padding: 10px 12px;
+    }
 
-  .offer-card {
-    height: 320px;
-    padding: 14px 16px;
-  }
+    .offer-card-content {
+        width: 80%;
+        padding: 14px;
+    }
 
-  .offer-card-content {
-    padding: 18px;
-    gap: 12px;
-  }
+    .offer-card h3 {
+        font-size: 22px;
+    }
 
-  .offer-card h3 {
-    font-size: 28px;
-  }
+    .offer-card p {
+        font-size: 13px;
+        line-height: 18px;
+    }
 
-  .offer-card p {
-    width: auto;
-    max-width: 210px;
-  }
+    /* ===== Gallery ===== */
+    .gallery-section {
+        padding: 48px 20px;
+    }
 
-  /* ===== Gallery: 2 x 2 grid (4 across would be ~160px each) ===== */
-  .gallery-section {
-    padding: 64px 40px;
-    min-height: auto;
-  }
+    .gallery-media {
+        height: 160px;
+    }
 
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
+    .gallery-caption {
+        font-size: 18px;
+    }
 
-  .gallery-media {
-    height: 260px;
-  }
+    /* ===== Inquire banner ===== */
+    .inquire-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 18px 14px;
+    }
 
-  /* ===== Inquire ===== */
-  .inquire-section {
-    min-height: clamp(340px, 40dvh, 500px);
-  }
+    .inquire-content h2 {
+        font-size: 26px;
+    }
 
-  .inquire-content {
-    padding: 22px 40px;
-  }
-}
+    /* ===== Reserve modal ===== */
+    .reserve-modal {
+        padding: 16px;
+    }
 
-/* postcard stacks once the row gets too narrow */
-@media (max-width: 680px) {
-  .about-content {
-    flex-direction: column;
-    align-items: stretch;
-    max-width: 520px;
-    padding: 32px 24px;
-  }
+    .reserve-modal-thumb {
+        width: 90px;
+        height: 68px;
+    }
 
-  .about-image {
-    flex: none;
-    width: 100%;
-  }
-
-  .about-image img {
-    aspect-ratio: 4 / 3;
-  }
-
-  .about-image::before {
-    width: 76px;
-    height: 76px;
-  }
-
-  .about-image::after {
-    width: 90px;
-    height: 40px;
-    right: 56px;
-  }
+    /* nothing should ever be wider than the screen */
+    img,
+    iframe,
+    video {
+        max-width: 100%;
+    }
 }
 
 /* touch tablets have no hover: keep the dark wash so captions stay readable */
 @media (max-width: 768px) and (hover: none) {
-  .gallery-item:hover .gallery-wash {
-    opacity: 1;
-  }
+    .gallery-item:hover .gallery-wash {
+        opacity: 1;
+    }
 }
 
 
@@ -1538,4 +1497,3 @@
         -webkit-backdrop-filter: blur(20px);
     }
 }
-
