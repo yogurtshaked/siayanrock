@@ -350,6 +350,23 @@ form {
     }
 }
 
+@media (max-width: 900px) {
+    .inquire-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;               /* optional: roomier gap now that the cards are stacked */
+    }
+
+    /* form first, contact card underneath */
+    .inquire-card {
+        order: 1;
+    }
+
+    .contact-card {
+        order: 2;
+        padding: 28px 24px;
+    }
+}
+
 /* ---------- Inquire page: tablets (≤768px) ---------- */
 @media (max-width: 768px) {
 

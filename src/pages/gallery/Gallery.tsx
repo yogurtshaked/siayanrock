@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import "./gallery.css";
 import "../../index.css";
 import { supabase } from '@/lib/supabaseClient';
@@ -42,7 +43,11 @@ function Gallery() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
-    const [activeFilter, setActiveFilter] = useState("All");
+    const [params, setParams] = useSearchParams();
+
+    // "?category=nakurang" -> "nakurang"; anything missing or unknown falls back to "All"
+    const categoryParam = params.get("category")?.toLowerCase() ?? "";
+    const activeFilter = CATEGORIES.includes(categoryParam) ? categoryParam : "All";
     const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT);
     const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -87,6 +92,11 @@ function Gallery() {
         void fetchImages();
     }, []);
 
+    useEffect(() => {
+        setVisibleCount(INITIAL_COUNT);
+        setLightboxIndex(null);
+    }, [activeFilter]);
+
     const filteredImages =
         activeFilter === "All"
             ? images
@@ -96,8 +106,8 @@ function Gallery() {
     const hasMore = visibleCount < filteredImages.length;
 
     function handleFilterChange(filter: string) {
-        setActiveFilter(filter);
-        setVisibleCount(INITIAL_COUNT);
+        if (filter === "All") setParams({}, { replace: true });
+        else setParams({ category: filter }, { replace: true });
     }
 
     function handleLoadMore() {
@@ -146,72 +156,72 @@ function Gallery() {
         <section>
             <div className='gallery-page' id='page'>
                 <div id='gallery-body' className='page-body'>
-                <div className='gallery-page-content page-content'>
-                    <div className='gallery-title page-title'>
-                        <p className="section-title">GALLERY</p>
-                        <h3>Moments worth the flight</h3>
-                        <p className='section-description'>Browse by category or scroll through everything — from the hometel itself to the roads, hills, and sunsets just outside the door.</p>
-                    </div>
+                    <div className='gallery-page-content page-content'>
+                        <div className='gallery-title page-title'>
+                            <p className="section-title">GALLERY</p>
+                            <h3>Moments worth the flight</h3>
+                            <p className='section-description'>Browse by category or scroll through everything — from the hometel itself to the roads, hills, and sunsets just outside the door.</p>
+                        </div>
 
-                    <div className="filter-nav">
-                        {filters.map(filter => (
-                            <button
-                                key={filter}
-                                className={`filter-pill ${activeFilter === filter ? "active" : ""}`}
-                                onClick={() => handleFilterChange(filter)}
-                            >
-                                {filter === "All" ? "All" : formatCategory(filter)}
-                            </button>
-                        ))}
-                    </div>
-
-                    {loading && (
-                        <div className="gallery-page-grid">
-                            {Array.from({ length: INITIAL_COUNT }).map((_, i) => (
-                                <div className="gallery-page-item gallery-skeleton" key={i} />
+                        <div className="filter-nav">
+                            {filters.map(filter => (
+                                <button
+                                    key={filter}
+                                    className={`filter-pill ${activeFilter === filter ? "active" : ""}`}
+                                    onClick={() => handleFilterChange(filter)}
+                                >
+                                    {filter === "All" ? "All" : formatCategory(filter)}
+                                </button>
                             ))}
                         </div>
-                    )}
 
-                    {error && !loading && (
-                        <p className="gallery-message">
-                            We couldn't load the gallery right now. Please refresh and try again.
-                        </p>
-                    )}
+                        {loading && (
+                            <div className="gallery-page-grid">
+                                {Array.from({ length: INITIAL_COUNT }).map((_, i) => (
+                                    <div className="gallery-page-item gallery-skeleton" key={i} />
+                                ))}
+                            </div>
+                        )}
 
-                    {!loading && !error && filteredImages.length === 0 && (
-                        <p className="gallery-message">No photos in this category yet.</p>
-                    )}
+                        {error && !loading && (
+                            <p className="gallery-message">
+                                We couldn't load the gallery right now. Please refresh and try again.
+                            </p>
+                        )}
 
-                    {!loading && !error && (
-                        <div className="gallery-page-grid">
-                            {visibleImages.map((img, i) => (
-                                <div
-                                    className="gallery-page-item"
-                                    key={img.path}
-                                    onClick={() => openLightbox(i)}>
-                                    <img
-                                        src={imageUrl(img.path, 500)}
-                                        alt={img.alt}
-                                        // first rows load right away, the rest wait until scrolled near
-                                        loading={i < 3 ? "eager" : "lazy"}
-                                        fetchPriority={i < 3 ? "high" : "auto"}
-                                        decoding="async"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    )}
+                        {!loading && !error && filteredImages.length === 0 && (
+                            <p className="gallery-message">No photos in this category yet.</p>
+                        )}
 
-                    {hasMore && (
-                        <div className="load-more-wrapper">
-                            <button className="load-more-btn" onClick={handleLoadMore}>
-                                Load more
-                            </button>
-                        </div>
-                    )}
+                        {!loading && !error && (
+                            <div className="gallery-page-grid">
+                                {visibleImages.map((img, i) => (
+                                    <div
+                                        className="gallery-page-item"
+                                        key={img.path}
+                                        onClick={() => openLightbox(i)}>
+                                        <img
+                                            src={imageUrl(img.path, 500)}
+                                            alt={img.alt}
+                                            // first rows load right away, the rest wait until scrolled near
+                                            loading={i < 3 ? "eager" : "lazy"}
+                                            fetchPriority={i < 3 ? "high" : "auto"}
+                                            decoding="async"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        {hasMore && (
+                            <div className="load-more-wrapper">
+                                <button className="load-more-btn" onClick={handleLoadMore}>
+                                    Load more
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
             </div>
 
             {current && (
@@ -243,7 +253,7 @@ function Gallery() {
                         ›
                     </button>
                 </div>
-                
+
             )}
         </section>
     );

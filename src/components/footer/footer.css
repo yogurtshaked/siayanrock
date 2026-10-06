@@ -301,6 +301,46 @@
   }
 }
 
+/* ---------- Footer: small laptops / large tablets (≤900px) ---------- */
+/* still one row, but tighter so the three link columns don't get squeezed */
+@media (max-width: 900px) {
+  .footer-section {
+    box-sizing: border-box;
+    padding: 40px 48px;            /* was 80px from the 1280px rule */
+  }
+
+  .footer-content {
+    gap: 24px;
+  }
+
+  /* narrower logo block frees up room for the three columns */
+  .footer-logo {
+    max-width: 240px;
+  }
+
+  .footer-logo-text p {
+    width: auto;                   /* was a fixed 250px */
+    max-width: 220px;
+  }
+
+  /* columns may shrink so long emails don't push the row wider than the screen */
+  .footer-explore,
+  .footer-company,
+  .footer-contact {
+    min-width: 0;
+  }
+
+  .footer-email,
+  .footer-phone {
+    gap: 14px;                     /* was 20px */
+  }
+
+  .footer-contact a,
+  .footer-contact p {
+    overflow-wrap: anywhere;
+  }
+}
+
 /* ---------- Footer: tablets (≤768px) ---------- */
 @media (max-width: 768px) {
   .footer-section {

@@ -3,15 +3,10 @@ import { createBrowserRouter, RouterProvider, Outlet, useLocation } from 'react-
 import ScrollToTop from './lib/ScrollToTop';
 import { supabase } from './lib/supabaseClient';
 
-import About from './pages/AboutUs';
 
 import Home from './pages/home/Home';
 import Accommodation from './pages/accommodation/Accommodation';
-import RoomDetails from './pages/accommodation/RoomDetails';
 
-import Tours from './pages/tours/Tours';
-import Gallery from './pages/gallery/Gallery';
-import Inquire from './pages/inquire/Inquire';
 
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
@@ -60,12 +55,12 @@ const router = createBrowserRouter([
           return data;
         },
       },
-      { path: "/rooms/:roomId", element: <RoomDetails /> },
 
-      { path: "/tours", element: <Tours /> },
-      { path: "/gallery", element: <Gallery /> },
-      { path: "/inquire", element: <Inquire /> },
-      { path: "/about", element: <About /> },
+      { path: "/tours", lazy: async () => ({ Component: (await import("./pages/tours/Tours")).default }) },
+      { path: "/gallery", lazy: async () => ({ Component: (await import("./pages/gallery/Gallery")).default }) },
+      { path: "/inquire", lazy: async () => ({ Component: (await import("./pages/inquire/Inquire")).default }) },
+      { path: "/about", lazy: async () => ({ Component: (await import("./pages/AboutUs")).default }) },
+      { path: "/rooms/:roomId", lazy: async () => ({ Component: (await import("./pages/accommodation/RoomDetails")).default }) },
     ],
   },
 ]);

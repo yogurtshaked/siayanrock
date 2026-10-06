@@ -552,6 +552,12 @@
     cursor: pointer;
 }
 
+.gallery-item:focus-visible {
+    outline: 3px solid var(--color-yellow);
+    outline-offset: 4px;
+    border-radius: 6px;
+}
+
 .gallery-media {
     position: relative;
     height: 350px;

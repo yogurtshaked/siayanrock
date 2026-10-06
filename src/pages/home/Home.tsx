@@ -11,6 +11,7 @@ import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
 import { Users } from '@/components/animate-ui/icons/users';
 import { Search } from '@/components/animate-ui/icons/search';
 import { CalendarDaysIcon } from '@/components/ui/calendar-days';
+import Reveal from "@/components/Reveal";
 
 /* ---------- date helpers ---------- */
 const startOfToday = (): Date => {
@@ -39,39 +40,38 @@ type SearchErrors = {
     checkOut?: string;
     guests?: string;
 };
-function Home(){
+function Home() {
 
     const galleryImages = [
         {
             src: "/images/gallery/hometel-1.JPG",
             alt: "Siayanrock Is. Hometel",
             caption: "Siayanrock Is. Hometel",
-            description:
-                "HOMETEL",
+            description: "HOMETEL",
+            category: "hometel",
         },
         {
             src: "/images/gallery/nakurang-1.jpg",
             alt: "Nakurang Viewdeck",
             caption: "Nakurang Viewdeck",
-            description:
-                "PRIVATE VIEWDECK",
+            description: "PRIVATE VIEWDECK",
+            category: "nakurang",
         },
         {
             src: "/images/gallery/tours-1.jpg",
             alt: "Mavien Point Travel & Tours",
-            caption: "Malboro Hills",
-            description:
-                "TOURS",
+            caption: "Chamantad Viewpoint",
+            description: "TOURS",
+            category: "tours",
         },
         {
             src: "/images/gallery/guests-1.jpg",
             alt: "Our Guests",
             caption: "Our Guests",
-            description:
-                "GUESTS",
+            description: "GUESTS",
+            category: "guests",
         },
     ];
-
     const navigate = useNavigate();
     const [hoveredGalleryIndex, setHoveredGalleryIndex] =
         useState<number | null>(null);
@@ -126,14 +126,14 @@ function Home(){
 
         navigate(`/accommodation?${params.toString()}`);
     };
-    
 
-    return(
+
+    return (
         <section>
             <div className="hero-section">
                 <div className="hero-content">
                     <h1>Discover Your Perfect <span className="hero-highlight">Holiday Home</span> With Us!</h1>
-                    
+
                     <div className="hero-search-bar">
                         <div className="date-range">
                             <div className="date-card">
@@ -227,7 +227,7 @@ function Home(){
                                 loop
                                 loopDelay={400}
                                 size={26}
-                                strokeWidth={1}/>
+                                strokeWidth={1} />
                         </div>
                         <p>SCROLL DOWN</p>
                     </div>
@@ -237,40 +237,40 @@ function Home(){
             <div className="about-section" id="section">
                 <div className="about-content">
                     <div className="postcard postcard-front">
-                    <div className="about-image">
-                        
-                        <img src="images/accommodation-bg.webp" alt="About Siayanrock Hometel" />
+                        <div className="about-image">
+
+                            <img src="/images/accommodation-bg.webp" alt="About Siayanrock Hometel" />
                         </div>
                     </div>
-                    <div className="postcard postcard-back">
+                    <Reveal className="postcard postcard-back">
                         <div className="about-text">
 
                             <div className="about-title">
                                 <p className="section-title">About Us</p>
                                 <h2>Siayanrock Is. Hometel</h2>
-                                <p className="section-description">A place conveniently located in the heart of Batan Island. Situated in Ivana, right between North and South Batan, 
-                                    the hometel provides guests with a convenient starting point for exploring the island’s 
+                                <p className="section-description">A place conveniently located in the heart of Batan Island. Situated in Ivana, right between North and South Batan,
+                                    the hometel provides guests with a convenient starting point for exploring the island’s
                                     cultural landmarks and local attractions.</p>
                                 <button className="learn-more home-btn" onClick={() => navigate("/about")}>Learn More&nbsp; <ArrowRight animateOnHover size={16} /></button>
 
                             </div>
                         </div>
-                    </div>
+                    </Reveal>
                 </div>
             </div>
 
             <div className="offer-section" id="section">
                 <div className="offer-content">
-                    <div className="offer-text">
+                    <Reveal className="offer-text">
                         <div className="offer-title">
                             <p className="section-title">Services</p>
                             <h2>Explore Batanes with us</h2>
                             <p className="section-description">Comfortable stays and memorable adventures, all in one place.</p>
                         </div>
-                    </div>
+                    </Reveal>
 
                     <div className="offer-cards">
-                        <div className="offer-card accommodation-card">
+                        <Reveal className="offer-card accommodation-card">
                             <div className="offer-card-content">
                                 <h3>Accommodation</h3>
                                 <p>Enjoy a comfortable stay in a space that feels like home, perfect for resting between adventures.</p>
@@ -281,9 +281,9 @@ function Home(){
                                     </span>
                                 </button>
                             </div>
-                        </div>
+                        </Reveal>
 
-                        <div className="offer-card tourpack-card">
+                        <Reveal className="offer-card tourpack-card">
                             <div className="offer-card-content">
                                 <h3>Tour Packages</h3>
                                 <p>Discover the beauty of Batanes through breathtaking landscapes, cultural landmarks, and local destinations.</p>
@@ -292,40 +292,40 @@ function Home(){
                                     <span className="offer-btn-icon"><ArrowRight animateOnHover size={16} /></span>
                                 </button>
                             </div>
-                        </div>
-                        </div>
+                        </Reveal>
+                    </div>
                 </div>
             </div>
 
             <div className="gallery-section" id="section">
                 <div className="gallery-content">
 
-                    <div className="gallery-text">
+                    <Reveal className="gallery-text">
                         <p className="section-title">Gallery</p>
                         <h2>Postcards from Batanes</h2>
                         <p className="section-description">
                             A collection of moments from the beautiful islands of Batanes.
                         </p>
-                    </div>
+                    </Reveal>
 
-                    <div className="gallery-grid">
+                    <Reveal className="gallery-grid">
                         {galleryImages.map((image, index) => (
                             <motion.article
                                 key={index}
                                 className="gallery-item"
-
-                                transition={{
-                                    duration: 0.5,
-                                    ease: "easeInOut",
+                                role="link"
+                                tabIndex={0}
+                                aria-label={`View ${image.description.toLowerCase()} photos in the gallery`}
+                                onClick={() => navigate(`/gallery?category=${image.category}`)}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter" || e.key === " ") {
+                                        e.preventDefault();
+                                        navigate(`/gallery?category=${image.category}`);
+                                    }
                                 }}
-
-                                onMouseEnter={() =>
-                                    setHoveredGalleryIndex(index)
-                                }
-
-                                onMouseLeave={() =>
-                                    setHoveredGalleryIndex(null)
-                                }
+                                transition={{ duration: 0.5, ease: "easeInOut" }}
+                                onMouseEnter={() => setHoveredGalleryIndex(index)}
+                                onMouseLeave={() => setHoveredGalleryIndex(null)}
                             >
                                 <div className="gallery-media">
 
@@ -335,13 +335,13 @@ function Home(){
                                         style={{
                                             filter:
                                                 hoveredGalleryIndex !== null &&
-                                                hoveredGalleryIndex !== index
+                                                    hoveredGalleryIndex !== index
                                                     ? "grayscale(1)"
                                                     : "grayscale(0)",
 
                                             opacity:
                                                 hoveredGalleryIndex !== null &&
-                                                hoveredGalleryIndex !== index
+                                                    hoveredGalleryIndex !== index
                                                     ? 0.7
                                                     : 1,
                                         }}
@@ -363,21 +363,21 @@ function Home(){
                                 </div>
                             </motion.article>
                         ))}
-                    </div>
+                    </Reveal>
 
                 </div>
             </div>
 
 
             <div className="inquire-section" id="section">
-                <div className="inquire-content">
+                <Reveal className="inquire-content">
                     <div className="inquire-text">
-                        
+
                         <h2>Ready for your Batanes getaway?</h2>
                         <p>Need more information about our accommodations or tours?</p>
                     </div>
                     <button className="home-btn" onClick={() => navigate("/inquire")}>Inquire Now&nbsp; <ArrowRight size={16} /></button>
-                </div>
+                </Reveal>
             </div>
         </section>
     )

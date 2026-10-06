@@ -5,7 +5,7 @@ import '../index.css';
 // Consider moving this into a `hotel_settings` table later so it's editable
 // without a code change/redeploy.
 const HOTEL_CONTACT = {
-    whatsappNumber: "639170000000", // digits only, country code, no + or spaces
+    whatsappNumber: "639672003129", // digits only, country code, no + or spaces
     messengerUsername: "453301817861917",
     phoneDisplay: "+63 919 538 3911",
     phoneHref: "+639195383911",
@@ -56,14 +56,9 @@ function buildInquiryMessage(props: ReserveModalProps): string {
             : "dates to be confirmed";
 
     const guestCount = props.guestCount ?? 2;
-    const nights = props.nights ?? 0;
-    const total = props.total ?? 0;
-    const totalLine = nights > 0 ? ` Estimated total is ${peso(total)}.` : "";
 
-    return `Hi! I'd like to inquire about booking the ${props.roomName} Room for ${dateRange}, ${guestCount} ${guestCount === 1 ? "guest" : "guests"
-        }.${totalLine}`;
+    return `Hi! I'd like to inquire about booking the ${props.roomName} Room for ${dateRange}, ${guestCount} ${guestCount === 1 ? "guest" : "guests"}.`;
 }
-
 function ReserveModal(props: ReserveModalProps) {
     const {
         open,
@@ -86,7 +81,7 @@ function ReserveModal(props: ReserveModalProps) {
     const encodedMessage = encodeURIComponent(message);
 
     const whatsappHref = `https://wa.me/${HOTEL_CONTACT.whatsappNumber}?text=${encodedMessage}`;
-    const messengerHref = `https://m.me/${HOTEL_CONTACT.messengerUsername}`;
+    const messengerHref = `https://m.me/${HOTEL_CONTACT.messengerUsername}?text=${encodedMessage}`;
     const phoneHref = `tel:${HOTEL_CONTACT.phoneHref}`;
     const emailSubject = isTour
         ? `Tour inquiry: ${tourPackage}`

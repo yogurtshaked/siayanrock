@@ -160,9 +160,13 @@ function Accommodation() {
     const clearSearch = () => setParams({});
 
     function handleViewDetails(room: Room) {
-        navigate(`/rooms/${room.id}`);
+        navigate({
+            pathname: `/rooms/${room.id}`,
+            search: search
+                ? `?checkIn=${search.checkInStr}&checkOut=${search.checkOutStr}&guests=${params.get("guests")}`
+                : "",
+        });
     }
-
     function handleBookRoom(room: Room) {
         setReservingRoom(room);
     }
@@ -264,7 +268,7 @@ function Accommodation() {
                                                             <>
                                                                 <br />
                                                                 <small>
-                                                                    Total {peso(total)} for {search.nights} night{search.nights > 1 ? "s" : ""}
+                                                                    Total {peso(total)} · {search.nights} night{search.nights > 1 ? "s" : ""} · {search.guests} guest{search.guests > 1 ? "s" : ""}
                                                                 </small>
                                                             </>
                                                         )}
@@ -300,7 +304,11 @@ function Accommodation() {
                 onClose={() => setReservingRoom(null)}
                 roomName={reservingRoom?.room_name}
                 roomThumbnail={reservingRoom?.images?.[0] ? roomImageUrl(reservingRoom.images[0]) : undefined}
-                guestCount={reservingRoom?.base_guests ?? 2}
+                checkIn={search?.checkInStr}
+                checkOut={search?.checkOutStr}
+                guestCount={search?.guests ?? reservingRoom?.base_guests ?? 2}
+                nights={search?.nights}
+                total={reservingRoom ? stayTotal(reservingRoom) ?? undefined : undefined}
             />
         </section>
     );
