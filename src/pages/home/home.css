@@ -4,19 +4,6 @@
 
 
 /* ====================== Hero Section ======================*/
-.hero-section {
-    background:
-        linear-gradient(rgba(0.6, 0.6, 0.6, 0.3), rgba(0.6, 0.6, 0.6, 0.3)),
-        url('/images/hero-bg.jpg') center / 75% auto no-repeat;
-    background-size: cover;
-    min-height: clamp(600px, 100dvh, 1000px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #ffffff;
-    position: relative;
-}
 
 .hero-content {
     display: flex;

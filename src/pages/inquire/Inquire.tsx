@@ -5,6 +5,7 @@ import "../../index.css";
 import { supabase } from "@/lib/supabaseClient";
 import { toLocalISO } from "@/lib/searchDates";
 import { Mail, Phone, MapPin } from "lucide-react";
+import Reveal from "@/components/Reveal";
 
 const CONTACT_INFO = {
     email: "siayanrockis.hometel@gmail.com", // confirm this address
@@ -131,180 +132,187 @@ function Inquire() {
         }
     }
     return (
-        <section>
-            <div className='inquire-page' id='page'>
-                <div id='inquire-body' className='page-body'>
-                    <div className='inquire-page-content'>
-                        <div className='inquire-title page-title'>
-                            <p className="section-title">INQUIRE</p>
-                            <h3>Tell us about your trip</h3>
-                            <p className='section-description'>Share a few details below and our team will follow up with availability, pricing, and a tailored recommendation.</p>
-                        </div>
+        <>
+            <title>Contact & Inquire | Siayanrock Hometel & Mavien Point Tours</title>
+            <meta
+                name="description"
+                content="Send an inquiry about rooms, availability or tour packages in Batanes. Siayanrock Is. Hometel and Mavien Point Travel & Tours will get back to you." />
+            <link rel="canonical" href="https://siayanrockhometel.com/inquire" />
+            <section>
+                <div className='inquire-page' id='page'>
+                    <div id='inquire-body' className='page-body'>
+                        <div className='inquire-page-content'>
+                            <Reveal className='inquire-title page-title'>
+                                <p className="section-title">INQUIRE</p>
+                                <h3>Tell us about your trip</h3>
+                                <p className='section-description'>Share a few details below and our team will follow up with availability, pricing, and a tailored recommendation.</p>
+                            </Reveal>
 
-                        <div className="inquire-grid">
-                            <aside className="contact-card" aria-label="Contact details">
+                            <Reveal className="inquire-grid">
+                                <aside className="contact-card" aria-label="Contact details">
 
-                                <div className="contact-card-info">
-                                    <p className="contact-card-eyebrow section-title">CONTACT</p>
-                                    <p className="contact-card-title">Prefer to talk to us directly?</p>
-                                    <p className="contact-card-text">
-                                        Reach out any time. We're happy to help you plan your stay and your tours in Batanes.
-                                    </p>
-
-                                    <ul className="contact-card-list">
-                                        {CONTACT_ROWS.map((row) => (
-                                            <li key={row.label} className="contact-card-row">
-                                                <span className="contact-card-icon" aria-hidden="true">{row.icon}</span>
-                                                <span className="contact-card-body">
-                                                    <span className="contact-card-label">{row.label}</span>
-                                                    {row.items.map((item) => (
-                                                        <a
-                                                            key={item.href}
-                                                            className="contact-card-value"
-                                                            href={item.href}
-                                                            {...(row.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
-                                                            {item.text}
-                                                        </a>
-                                                    ))}
-                                                </span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-
-                                <div className="contact-card-map">
-                                    <iframe
-                                        src="https://www.google.com/maps?q=Siayanrock+Hometel,+Ivana,+Batanes&output=embed"
-                                        style={{ border: 0 }}
-                                        allowFullScreen
-                                        loading="lazy"
-                                        title="Siayanrock Hometel Location"
-                                    ></iframe>
-                                </div>
-
-                            </aside>
-
-
-                            <div className="inquire-card">
-                                <form onSubmit={handleSubmit}>
-                                    <div className="input-field">
-                                        <label htmlFor="name">Full name</label>
-                                        <input id="name"
-                                            type="text"
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
-                                            placeholder="Your full name"
-                                            maxLength={100}
-                                            required />
-                                    </div>
-
-                                    <div className="input-field">
-                                        <label htmlFor="email">Email address</label>
-                                        <input id="email"
-                                            type="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            placeholder="juan@email.com"
-                                            maxLength={150}
-                                            required />
-                                    </div>
-
-                                    <div className="input-field">
-                                        <label htmlFor="phone">Phone number</label>
-                                        <input id="phone"
-                                            type="tel"
-                                            value={phone}
-                                            onChange={(e) => setPhone(e.target.value)}
-                                            placeholder="+63 9XX XXX XXXX"
-                                            maxLength={30} />
-                                    </div>
-
-                                    <div className="input-field">
-                                        <label htmlFor="guests">Guests</label>
-                                        <select id="guests"
-                                            value={guests}
-                                            onChange={(e) => setGuests(e.target.value)}>
-                                            <option value="" disabled>Select guests</option>
-                                            <option value="1">1 guest</option>
-                                            <option value="2">2 guests</option>
-                                            <option value="3-4">3–4 guests</option>
-                                            <option value="5+">5+ guests</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="input-field">
-                                        <label htmlFor="checkin">Check-in</label>
-                                        <input id="checkin"
-                                            type="date"
-                                            min={today}
-                                            value={checkin}
-                                            onChange={(e) => setCheckin(e.target.value)} />
-                                    </div>
-
-                                    <div className="input-field">
-                                        <label htmlFor="checkout">Check-out</label>
-                                        <input id="checkout"
-                                            type="date"
-                                            min={checkin || today}
-                                            value={checkout}
-                                            onChange={(e) => setCheckout(e.target.value)} />
-                                    </div>
-
-                                    <div className="input-field full">
-                                        <label htmlFor="interest">Interested in</label>
-                                        <select id="interest"
-                                            value={interest}
-                                            onChange={(e) => setInterest(e.target.value)}>
-                                            <option>Accommodation only</option>
-                                            <option>Accommodation + tour package</option>
-                                            <option>Tour package only</option>
-                                            <option>Others</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="input-field full">
-                                        <label htmlFor="message">Message</label>
-                                        <textarea id="message"
-                                            value={message}
-                                            onChange={(e) => setMessage(e.target.value)}
-                                            maxLength={2000}
-                                            placeholder="Tell us a bit more about your trip — dates, group size, or anything else we should know."></textarea>
-                                    </div>
-
-                                    {/* honeypot field: hidden from people, visible to bots */}
-                                    <input
-                                        type="text"
-                                        name="company_url"
-                                        value={website}
-                                        onChange={(e) => setWebsite(e.target.value)}
-                                        tabIndex={-1}
-                                        autoComplete="off"
-                                        aria-hidden="true"
-                                        style={{ position: "absolute", left: "-9999px", opacity: 0 }} />
-
-                                    {feedback && (
-                                        <p className={`inquire-status ${status}`} role={status === "error" ? "alert" : "status"}>
-                                            {feedback}{" "}
-                                            {canFallback && <a href={`mailto:${CONTACT_INFO.email}`}>email us directly.</a>}
+                                    <div className="contact-card-info">
+                                        <p className="contact-card-eyebrow section-title">CONTACT</p>
+                                        <p className="contact-card-title">Prefer to talk to us directly?</p>
+                                        <p className="contact-card-text">
+                                            Reach out any time. We're happy to help you plan your stay and your tours in Batanes.
                                         </p>
-                                    )}
 
-                                    <button
-                                        type="submit"
-                                        className="submit-btn page-btn"
-                                        disabled={status === "sending"}>
-                                        {status === "sending" ? "Sending..." : "Send inquiry"}
-                                    </button>
-                                </form>
-                            </div>
+                                        <ul className="contact-card-list">
+                                            {CONTACT_ROWS.map((row) => (
+                                                <li key={row.label} className="contact-card-row">
+                                                    <span className="contact-card-icon" aria-hidden="true">{row.icon}</span>
+                                                    <span className="contact-card-body">
+                                                        <span className="contact-card-label">{row.label}</span>
+                                                        {row.items.map((item) => (
+                                                            <a
+                                                                key={item.href}
+                                                                className="contact-card-value"
+                                                                href={item.href}
+                                                                {...(row.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                                                                {item.text}
+                                                            </a>
+                                                        ))}
+                                                    </span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="contact-card-map">
+                                        <iframe
+                                            src="https://www.google.com/maps?q=Siayanrock+Hometel,+Ivana,+Batanes&output=embed"
+                                            style={{ border: 0 }}
+                                            allowFullScreen
+                                            loading="lazy"
+                                            title="Siayanrock Hometel Location"
+                                        ></iframe>
+                                    </div>
+
+                                </aside>
+
+
+                                <div className="inquire-card">
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="input-field">
+                                            <label htmlFor="name">Full name</label>
+                                            <input id="name"
+                                                type="text"
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                                placeholder="Your full name"
+                                                maxLength={100}
+                                                required />
+                                        </div>
+
+                                        <div className="input-field">
+                                            <label htmlFor="email">Email address</label>
+                                            <input id="email"
+                                                type="email"
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                placeholder="juan@email.com"
+                                                maxLength={150}
+                                                required />
+                                        </div>
+
+                                        <div className="input-field">
+                                            <label htmlFor="phone">Phone number</label>
+                                            <input id="phone"
+                                                type="tel"
+                                                value={phone}
+                                                onChange={(e) => setPhone(e.target.value)}
+                                                placeholder="+63 9XX XXX XXXX"
+                                                maxLength={30} />
+                                        </div>
+
+                                        <div className="input-field">
+                                            <label htmlFor="guests">Guests</label>
+                                            <select id="guests"
+                                                value={guests}
+                                                onChange={(e) => setGuests(e.target.value)}>
+                                                <option value="" disabled>Select guests</option>
+                                                <option value="1">1 guest</option>
+                                                <option value="2">2 guests</option>
+                                                <option value="3-4">3–4 guests</option>
+                                                <option value="5+">5+ guests</option>
+                                            </select>
+                                        </div>
+
+                                        <div className="input-field">
+                                            <label htmlFor="checkin">Check-in</label>
+                                            <input id="checkin"
+                                                type="date"
+                                                min={today}
+                                                value={checkin}
+                                                onChange={(e) => setCheckin(e.target.value)} />
+                                        </div>
+
+                                        <div className="input-field">
+                                            <label htmlFor="checkout">Check-out</label>
+                                            <input id="checkout"
+                                                type="date"
+                                                min={checkin || today}
+                                                value={checkout}
+                                                onChange={(e) => setCheckout(e.target.value)} />
+                                        </div>
+
+                                        <div className="input-field full">
+                                            <label htmlFor="interest">Interested in</label>
+                                            <select id="interest"
+                                                value={interest}
+                                                onChange={(e) => setInterest(e.target.value)}>
+                                                <option>Accommodation only</option>
+                                                <option>Accommodation + tour package</option>
+                                                <option>Tour package only</option>
+                                                <option>Others</option>
+                                            </select>
+                                        </div>
+
+                                        <div className="input-field full">
+                                            <label htmlFor="message">Message</label>
+                                            <textarea id="message"
+                                                value={message}
+                                                onChange={(e) => setMessage(e.target.value)}
+                                                maxLength={2000}
+                                                placeholder="Tell us a bit more about your trip — dates, group size, or anything else we should know."></textarea>
+                                        </div>
+
+                                        {/* honeypot field: hidden from people, visible to bots */}
+                                        <input
+                                            type="text"
+                                            name="company_url"
+                                            value={website}
+                                            onChange={(e) => setWebsite(e.target.value)}
+                                            tabIndex={-1}
+                                            autoComplete="off"
+                                            aria-hidden="true"
+                                            style={{ position: "absolute", left: "-9999px", opacity: 0 }} />
+
+                                        {feedback && (
+                                            <p className={`inquire-status ${status}`} role={status === "error" ? "alert" : "status"}>
+                                                {feedback}{" "}
+                                                {canFallback && <a href={`mailto:${CONTACT_INFO.email}`}>email us directly.</a>}
+                                            </p>
+                                        )}
+
+                                        <button
+                                            type="submit"
+                                            className="submit-btn page-btn"
+                                            disabled={status === "sending"}>
+                                            {status === "sending" ? "Sending..." : "Send inquiry"}
+                                        </button>
+                                    </form>
+                                </div>
+                            </Reveal>
                         </div>
                     </div>
+
+
                 </div>
 
-
-            </div>
-
-        </section>
+            </section>
+        </>
     );
 }
 

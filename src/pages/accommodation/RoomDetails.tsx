@@ -9,6 +9,8 @@ import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
 import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { addDays, parseLocalDate, startOfToday, toLocalISO } from "@/lib/searchDates"
 
+import Reveal from "@/components/Reveal";
+
 const BUCKET = "gallery"
 
 function roomImageUrl(path: string): string {
@@ -269,7 +271,7 @@ function RoomDetails() {
         <section>
             <div className="room-details-page" id='page'>
                 <div className='room-details-body'>
-                    <div className="room-details-nav page-content">
+                    <Reveal className="room-details-nav page-content">
                         <button
                             type="button"
                             className="back-link"
@@ -278,11 +280,11 @@ function RoomDetails() {
                             <ChevronLeft size={16} strokeWidth={1.5} />
                             Back to rooms
                         </button>
-                    </div>
+                    </Reveal>
 
 
                     <div className="room-details-content page-content ">
-                        <div className="room-details-images">
+                        <Reveal className="room-details-images">
                             {imageUrls.map((url, index) => (
                                 <img
                                     key={index}
@@ -294,10 +296,10 @@ function RoomDetails() {
                                     decoding="async"
                                 />
                             ))}
-                        </div>
+                        </Reveal>
 
 
-                        <div className="room-info-book">
+                        <Reveal className="room-info-book">
                             <div className="room-information">
                                 <div className="room-details-title">
                                     <h2 className="room-name">{room.room_name} Room</h2>
@@ -473,7 +475,7 @@ function RoomDetails() {
                                 </div>
 
                             </div>
-                        </div>
+                        </Reveal>
                     </div>
                 </div>
             </div>

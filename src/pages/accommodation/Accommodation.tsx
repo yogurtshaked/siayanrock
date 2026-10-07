@@ -10,6 +10,7 @@ import { Bed, Users } from "lucide-react";
 import ReserveModal from '@/components/ReserveModal';
 import RoomSearchBar, { type RoomSearchValues } from '@/components/RoomSearch';
 import { parseLocalDate, nightsBetween } from '@/lib/searchDates';
+import Reveal from "@/components/Reveal";
 
 const BUCKET = "gallery";
 
@@ -172,145 +173,152 @@ function Accommodation() {
     }
 
     return (
-        <section>
-            <div className='accommodation-page' id='page'>
-                <div className='accommodation-hero-section'>
-                    <div className='accommodation-content page-content'>
-                        <div className='accommodation-text page-header hero-nudge'>
-                            <h2>Siayanrock Is. Hometel</h2>
-                            <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
-                            <ScrollHint targetId='accommodation-body' />
-                        </div>
-                    </div>
-                </div>
-
-                <div id='accommodation-body' className='accommodation-rooms page-body'>
-                    <div className='accommodation-content page-content'>
-
-                        <RoomSearchBar
-                            variant="inline"
-                            defaultCheckIn={search?.checkInStr ?? null}
-                            defaultCheckOut={search?.checkOutStr ?? null}
-                            defaultGuests={search ? params.get("guests") : null}
-                            onSearch={handleSearch}
-                            onClear={clearSearch}
-                        />
-
-                        {checking && <p className='accommodation-checking'>Checking availability…</p>}
-
-                        <div className='accommodation-rooms-content'>
-                            <div className='accommodation-room-cards'>
-
-                                {/* One empty state only */}
-                                {!checking && rooms.length > 0 && visibleRooms.length === 0 && (
-                                    <p className='accommodation-kind-empty'>
-                                        {search
-                                            ? "No rooms are available for those dates and group size. Try different dates or fewer guests."
-                                            : "No rooms of this kind are available right now."}
-                                    </p>
-                                )}
-
-                                {visibleRooms.map((room) => {
-                                    const primaryImage = room.images?.[0];
-                                    const total = stayTotal(room);
-
-                                    return (
-                                        <div className='room-card' key={room.id}>
-                                            <div className='room-img'>
-                                                <img
-                                                    src={primaryImage ? roomImageUrl(primaryImage) : '/images/placeholder.jpg'}
-                                                    alt={room.room_type}
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                    onError={(e) => {
-                                                        e.currentTarget.src = '/images/placeholder.jpg';
-                                                    }}
-                                                />
-                                            </div>
-
-                                            <div className='room-contents'>
-                                                <div className='room-header'>
-                                                    <h3>{room.room_name} Room</h3>
-
-                                                    <div className="room-items">
-                                                        <div className="room-item">
-                                                            <Bed size={16} />
-                                                            <p>
-                                                                {room.num_beds}{' '}
-                                                                {room.num_beds === 1 ? 'bed' : 'beds'}
-                                                            </p>
-                                                        </div>
-
-                                                        <div className="room-item">
-                                                            <Users size={16} />
-                                                            <p>{room.max_guests} people</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="room-checklist">
-                                                    {room.amenities?.map((amenity) => (
-                                                        <div className="amenity" key={amenity}>
-                                                            <FontAwesomeIcon icon={faCheck} color='#5f5e5e' />
-                                                            <p>{AMENITY_LABELS[amenity] || amenity}</p>
-                                                        </div>
-                                                    ))}
-                                                </div>
-
-                                                <div className='room-price'>
-                                                    <p>
-                                                        From{' '}
-                                                        <span className="price-highlight">
-                                                            {peso(room.room_price)}
-                                                        </span>
-                                                        /night
-                                                        {total !== null && search && (
-                                                            <>
-                                                                <br />
-                                                                <small>
-                                                                    Total {peso(total)} · {search.nights} night{search.nights > 1 ? "s" : ""} · {search.guests} guest{search.guests > 1 ? "s" : ""}
-                                                                </small>
-                                                            </>
-                                                        )}
-                                                    </p>
-
-                                                    <div className='room-buttons'>
-                                                        <button
-                                                            className='view-details'
-                                                            onClick={() => handleViewDetails(room)}>
-                                                            View Details
-                                                        </button>
-
-                                                        <button
-                                                            className='book-room'
-                                                            onClick={() => handleBookRoom(room)}>
-                                                            Reserve Room
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-
+        <>
+            <title>Rooms & Accommodation in Ivana, Batanes | Siayanrock Hometel</title>
+            <meta
+                name="description"
+                content="Browse comfortable rooms at Siayanrock Is. Hometel in Ivana, Batan Island. Check availability, view room details, and plan your Batanes trip." />
+            <link rel="canonical" href="https://siayanrockhometel.com/accommodation" />
+            <section>
+                <div className='accommodation-page' id='page'>
+                    <div className='accommodation-hero-section relative flex min-h-[clamp(600px,100dvh,1000px)] flex-col items-start justify-end bg-[image:linear-gradient(to_top,rgba(0,0,0,0.9)_0%,rgba(28,28,28,0.4)_50%,rgba(102,102,102,0.3)_100%),url(/images/accommodation-bg.webp)] bg-cover bg-center bg-no-repeat px-[180px] py-[120px] text-white'>
+                        <Reveal className='accommodation-content page-content'>
+                            <div className='accommodation-text page-header hero-nudge'>
+                                <h2>Siayanrock Is. Hometel</h2>
+                                <p>A cozy and welcoming stay offering comfortable accommodations and a true home-away-from-home in Batanes experience.</p>
+                                <ScrollHint targetId='accommodation-body' />
                             </div>
-                        </div>
+                        </Reveal>
+                    </div>
+
+                    <div id='accommodation-body' className='accommodation-rooms page-body'>
+                        <Reveal className='accommodation-content page-content'>
+
+                            <RoomSearchBar
+                                variant="inline"
+                                defaultCheckIn={search?.checkInStr ?? null}
+                                defaultCheckOut={search?.checkOutStr ?? null}
+                                defaultGuests={search ? params.get("guests") : null}
+                                onSearch={handleSearch}
+                                onClear={clearSearch}
+                            />
+
+                            {checking && <p className='accommodation-checking'>Checking availability…</p>}
+
+                            <div className='accommodation-rooms-content'>
+                                <div className='accommodation-room-cards'>
+
+                                    {/* One empty state only */}
+                                    {!checking && rooms.length > 0 && visibleRooms.length === 0 && (
+                                        <p className='accommodation-kind-empty'>
+                                            {search
+                                                ? "No rooms are available for those dates and group size. Try different dates or fewer guests."
+                                                : "No rooms of this kind are available right now."}
+                                        </p>
+                                    )}
+
+                                    {visibleRooms.map((room) => {
+                                        const primaryImage = room.images?.[0];
+                                        const total = stayTotal(room);
+
+                                        return (
+                                            <Reveal className='room-card' key={room.id}>
+                                                <div className='room-img'>
+                                                    <img
+                                                        src={primaryImage ? roomImageUrl(primaryImage) : '/images/placeholder.jpg'}
+                                                        alt={room.room_type}
+                                                        loading="lazy"
+                                                        decoding="async"
+                                                        onError={(e) => {
+                                                            e.currentTarget.src = '/images/placeholder.jpg';
+                                                        }}
+                                                    />
+                                                </div>
+
+                                                <div className='room-contents'>
+                                                    <div className='room-header'>
+                                                        <h3>{room.room_name} Room</h3>
+
+                                                        <div className="room-items">
+                                                            <div className="room-item">
+                                                                <Bed size={16} />
+                                                                <p>
+                                                                    {room.num_beds}{' '}
+                                                                    {room.num_beds === 1 ? 'bed' : 'beds'}
+                                                                </p>
+                                                            </div>
+
+                                                            <div className="room-item">
+                                                                <Users size={16} />
+                                                                <p>{room.max_guests} people</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="room-checklist">
+                                                        {room.amenities?.map((amenity) => (
+                                                            <div className="amenity" key={amenity}>
+                                                                <FontAwesomeIcon icon={faCheck} color='#5f5e5e' />
+                                                                <p>{AMENITY_LABELS[amenity] || amenity}</p>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+
+                                                    <div className='room-price'>
+                                                        <p>
+                                                            From{' '}
+                                                            <span className="price-highlight">
+                                                                {peso(room.room_price)}
+                                                            </span>
+                                                            /night
+                                                            {total !== null && search && (
+                                                                <>
+                                                                    <br />
+                                                                    <small>
+                                                                        Total {peso(total)} · {search.nights} night{search.nights > 1 ? "s" : ""} · {search.guests} guest{search.guests > 1 ? "s" : ""}
+                                                                    </small>
+                                                                </>
+                                                            )}
+                                                        </p>
+
+                                                        <div className='room-buttons'>
+                                                            <button
+                                                                className='view-details'
+                                                                onClick={() => handleViewDetails(room)}>
+                                                                View Details
+                                                            </button>
+
+                                                            <button
+                                                                className='book-room'
+                                                                onClick={() => handleBookRoom(room)}>
+                                                                Reserve Room
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </Reveal>
+                                        );
+                                    })}
+
+                                </div>
+                            </div>
+                        </Reveal>
                     </div>
                 </div>
-            </div>
 
-            <ReserveModal
-                open={reservingRoom !== null}
-                onClose={() => setReservingRoom(null)}
-                roomName={reservingRoom?.room_name}
-                roomThumbnail={reservingRoom?.images?.[0] ? roomImageUrl(reservingRoom.images[0]) : undefined}
-                checkIn={search?.checkInStr}
-                checkOut={search?.checkOutStr}
-                guestCount={search?.guests ?? reservingRoom?.base_guests ?? 2}
-                nights={search?.nights}
-                total={reservingRoom ? stayTotal(reservingRoom) ?? undefined : undefined}
-            />
-        </section>
+                <ReserveModal
+                    open={reservingRoom !== null}
+                    onClose={() => setReservingRoom(null)}
+                    roomName={reservingRoom?.room_name}
+                    roomThumbnail={reservingRoom?.images?.[0] ? roomImageUrl(reservingRoom.images[0]) : undefined}
+                    checkIn={search?.checkInStr}
+                    checkOut={search?.checkOutStr}
+                    guestCount={search?.guests ?? reservingRoom?.base_guests ?? 2}
+                    nights={search?.nights}
+                    total={reservingRoom ? stayTotal(reservingRoom) ?? undefined : undefined}
+                />
+            </section>
+        </>
     );
 }
 

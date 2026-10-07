@@ -1,3 +1,5 @@
+
+
 import "./tours.css";
 import "../../index.css";
 import { useState } from 'react';
@@ -13,6 +15,7 @@ import {
     type TourPackage,
 } from './tourPackages';
 import ReserveModal from '@/components/ReserveModal';
+import Reveal from "@/components/Reveal";
 
 
 const dayLabel = (index: number): string =>
@@ -61,17 +64,16 @@ function DayCard({ day, label, open, onToggle }: DayCardProps) {
             {open && (
                 <div className="tours-packages-day-content">
                     <ul
-                    className="tours-packages-stops"
-                    style={{
-                        gridTemplateRows: `repeat(${rows}, auto)`,
-                    }}
+                        className="tours-packages-stops"
+                        style={{
+                            gridTemplateRows: `repeat(${rows}, auto)`,
+                        }}
                     >
                         {day.stops.map((stop, index) => (
                             <li
                                 key={`${stop.n}-${index}`}
-                                className={`tours-packages-stop${
-                                    stop.t ? ' tours-packages-timed' : ''
-                                }`}
+                                className={`tours-packages-stop${stop.t ? ' tours-packages-timed' : ''
+                                    }`}
                             >
                                 {stop.t && (
                                     <span className="tours-packages-time">
@@ -133,90 +135,97 @@ function Tours() {
     const pkg = PACKAGES.find((item) => item.id === id) ?? PACKAGES[0];
 
     return (
-        <section>
-            <div className='tours-page' id='page'> 
-                <div className='tours-hero-section'>
-                    <div className='tours-content page-content'>
-                        <div className='tours-text page-header'>
-                            <h2>Mavien Point Travel & Tour</h2>
-                            <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
-                            <ScrollHint targetId='tours-packages-body' />
+        <>
+            <title>Batanes Tour Packages 3D2N, 4D3N & 5D4N | Mavien Point Travel & Tours</title>
+            <meta
+                name="description"
+                content="Explore Batanes with 3D2N, 4D3N and 5D4N tour packages from Mavien Point Travel & Tours. See itineraries, highlights, inclusions and exclusions."/>
+            <link rel="canonical" href="https://siayanrockhometel.com/tours"/>
+            <section>
+                <div className='tours-page' id='page'>
+                    <div className='tours-hero-section relative flex min-h-[clamp(600px,100dvh,1000px)] flex-col items-start justify-end bg-[image:linear-gradient(to_top,rgba(0,0,0,0.8)_0%,rgba(28,28,28,0.4)_45%,rgba(102,102,102,0.3)_100%),url(/images/tours-bg.webp)] bg-cover bg-center bg-no-repeat px-[140px] py-[120px] text-white'>
+                        <Reveal className='tours-content page-content'>
+                            <div className='tours-text page-header'>
+                                <h2>Mavien Point Travel & Tour</h2>
+                                <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
+                                <ScrollHint targetId='tours-packages-body' />
+                            </div>
+                        </Reveal>
+                    </div>
+
+                    <div id='tours-packages-body' className='tours-packages page-body'>
+                        <div className='tours-content page-content'>
+
+                            <div className="tours-packages-inner">
+                                <div className="tours-packages-switcher" role="tablist" aria-label="Choose a tour package">
+                                    {PACKAGES.map((item) => (
+                                        <button
+                                            key={item.id}
+                                            id={`tour-tab-${item.id}`}
+                                            className="tours-packages-pill"
+                                            type="button"
+                                            role="tab"
+                                            aria-selected={item.id === id}
+                                            aria-controls={`tour-panel-${item.id}`}
+                                            onClick={() => setId(item.id)}
+                                        >
+                                            <span className="tours-packages-pill-label">{item.label}</span>
+                                            <span className="tours-packages-pill-meta">{item.days} days · {item.nights} nights</span>
+                                        </button>
+                                    ))}
+                                </div>
+
+                                <div
+                                    className="tours-packages-panel-layout"
+                                    id={`tour-panel-${pkg.id}`}
+                                    role="tabpanel"
+                                    aria-labelledby={`tour-tab-${pkg.id}`}
+                                    tabIndex={0}
+                                >
+                                    <div className="tours-packages-main-column">
+                                        <header className="tours-packages-heading">
+                                            <div><h3 id="tours-packages-heading">{pkg.label} Batanes Tour Package</h3></div>
+                                        </header>
+
+                                        <section className="tours-packages-itinerary" aria-label="Day-by-day tour itinerary">
+                                            <Itinerary key={pkg.id} pkg={pkg} />
+                                        </section>
+                                    </div>
+
+                                    <aside className="tours-packages-aside">
+                                        <div className="tours-packages-booking-card">
+                                            <h3>{pkg.label} Batanes</h3>
+                                            <p className="tours-packages-price">{pkg.price}</p>
+                                            <div className="tours-packages-booking-rule" />
+
+                                            <h4>All Packages Include:</h4>
+                                            <ul className="tours-packages-highlights">
+                                                {INCLUSIONS.map((item) => (
+                                                    <li key={item}>{item}</li>
+                                                ))}
+                                            </ul>
+
+                                            <button type='button' className='tours-packages-btn page-btn' onClick={() => setInquireOpen(true)}>
+                                                Inquire about {pkg.label} <ArrowRight size={16} />
+                                            </button>
+                                        </div>
+                                        <p className="tours-packages-footnote">Tour timing and stops may change with weather, sea conditions, and local schedules.</p>
+
+                                    </aside>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            <div id='tours-packages-body' className='tours-packages page-body'>
-                <div className='tours-content page-content'>
-                
-            <div className="tours-packages-inner">
-                <div className="tours-packages-switcher" role="tablist" aria-label="Choose a tour package">
-                    {PACKAGES.map((item) => (
-                        <button
-                            key={item.id}
-                            id={`tour-tab-${item.id}`}
-                            className="tours-packages-pill"
-                            type="button"
-                            role="tab"
-                            aria-selected={item.id === id}
-                            aria-controls={`tour-panel-${item.id}`}
-                            onClick={() => setId(item.id)}
-                        >
-                            <span className="tours-packages-pill-label">{item.label}</span>
-                            <span className="tours-packages-pill-meta">{item.days} days · {item.nights} nights</span>
-                        </button>
-                    ))}
-                </div>
-
-                <div
-                    className="tours-packages-panel-layout"
-                    id={`tour-panel-${pkg.id}`}
-                    role="tabpanel"
-                    aria-labelledby={`tour-tab-${pkg.id}`}
-                    tabIndex={0}
-                >
-                    <div className="tours-packages-main-column">
-                        <header className="tours-packages-heading">
-                            <div><h3 id="tours-packages-heading">{pkg.label} Batanes Tour Package</h3></div>
-                        </header>
-
-                        <section className="tours-packages-itinerary" aria-label="Day-by-day tour itinerary">
-                            <Itinerary key={pkg.id} pkg={pkg} />
-                        </section>
-                    </div>
-
-                    <aside className="tours-packages-aside">
-                        <div className="tours-packages-booking-card">
-                            <h3>{pkg.label} Batanes</h3>
-                            <p className="tours-packages-price">{pkg.price}</p>
-                            <div className="tours-packages-booking-rule" />
-
-                            <h4>All Packages Include:</h4>
-                            <ul className="tours-packages-highlights">
-                                {INCLUSIONS.map((item) => (
-                                    <li key={item}>{item}</li>
-                                ))}
-                            </ul>
-
-                            <button type='button' className='tours-packages-btn page-btn' onClick={() => setInquireOpen(true)}>
-                                Inquire about {pkg.label} <ArrowRight size={16} />
-                            </button>
-                        </div>               
-                    <p className="tours-packages-footnote">Tour timing and stops may change with weather, sea conditions, and local schedules.</p>
-                                
-                    </aside>
-                    
-                </div>
-                </div>
-                </div>
-            </div>
-            </div>
-            <ReserveModal
-                open={inquireOpen}
-                onClose={() => setInquireOpen(false)}
-                tourPackage={`${pkg.label} Batanes`}
-                tourDetail={`${pkg.days} days, ${pkg.days - 1} nights`}
-            />
-        </section>
+                <ReserveModal
+                    open={inquireOpen}
+                    onClose={() => setInquireOpen(false)}
+                    tourPackage={`${pkg.label} Batanes`}
+                    tourDetail={`${pkg.days} days, ${pkg.days - 1} nights`}
+                />
+            </section>
+        </>
     );
 }
 

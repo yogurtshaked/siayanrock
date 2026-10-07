@@ -1,20 +1,81 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Siayanrock Hometel & Batanes Tour Packages | Mavien Point Travel & Tour</title>
-    <meta
-      name="description"
-      content="Book a comfortable stay at Siayanrock Hometel and explore Batanes with 3D2N, 4D3N and 5D4N tour packages. See itineraries, inclusions and rates."
-    />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="https://siayanrockhometel.com/" />
-    <meta name="theme-color" content="#2f3a1f" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <script>
+    (function () {
+      var map = {
+        "/": "/images/hero-bg.webp",
+        "/accommodation": "/images/accommodation-bg.webp",
+        "/tours": "/images/tours-bg.webp"
+      };
+      var src = map[location.pathname];
+      if (!src) return;
+      var l = document.createElement("link");
+      l.rel = "preload";
+      l.as = "image";
+      l.href = src;
+      l.setAttribute("fetchpriority", "high");
+      document.head.appendChild(l);
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siayanrock Hometel & Batanes Tour Packages | Mavien Point Travel & Tour</title>
+  <meta name="description"
+    content="Book a comfortable stay at Siayanrock Hometel and explore Batanes with 3D2N, 4D3N and 5D4N tour packages. See itineraries, inclusions and rates." />
+  <meta name="keywords" content="batanes hometel, batanes hotel, tours, tour packages">
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://siayanrockhometel.com/" />
+  <meta name="theme-color" content="#2f3a1f" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LodgingBusiness",
+        "@id": "https://siayanrockhometel.com/#hometel",
+        "name": "Siayanrock Is. Hometel",
+        "description": "A comfortable hometel in Ivana, Batanes, between North and South Batan.",
+        "url": "https://siayanrockhometel.com/",
+        "image": "https://siayanrockhometel.com/images/hero-bg.webp",
+        "telephone": "+639672003129",
+        "email": "siayanrockis.hometel@email.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Nat Rd., Brgy. Tuhel",
+          "addressLocality": "Ivana",
+          "addressRegion": "Batanes",
+          "postalCode": "3902",
+          "addressCountry": "PH"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 20.37352664109002,
+          "longitude": 121.91382391889186
+        },
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=61566843206345"
+        ]
+      },
+      {
+        "@type": "TravelAgency",
+        "@id": "https://siayanrockhometel.com/#tours",
+        "name": "Mavien Point Travel & Tours",
+        "url": "https://siayanrockhometel.com/tours",
+        "image": "https://siayanrockhometel.com/images/tours-bg.webp",
+        "telephone": "+639672003129",
+        "areaServed": "Batanes, Philippines"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

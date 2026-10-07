@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import "./gallery.css";
 import "../../index.css";
 import { supabase } from '@/lib/supabaseClient';
-
+import Reveal from "@/components/Reveal";
 
 interface GalleryImage {
     path: string;          // full path in the bucket, e.g. "Hometel/hometel-1.webp"
@@ -157,13 +157,13 @@ function Gallery() {
             <div className='gallery-page' id='page'>
                 <div id='gallery-body' className='page-body'>
                     <div className='gallery-page-content page-content'>
-                        <div className='gallery-title page-title'>
+                        <Reveal className='gallery-title page-title'>
                             <p className="section-title">GALLERY</p>
                             <h3>Moments worth the flight</h3>
                             <p className='section-description'>Browse by category or scroll through everything — from the hometel itself to the roads, hills, and sunsets just outside the door.</p>
-                        </div>
+                        </Reveal>
 
-                        <div className="filter-nav">
+                        <Reveal className="filter-nav">
                             {filters.map(filter => (
                                 <button
                                     key={filter}
@@ -173,7 +173,7 @@ function Gallery() {
                                     {filter === "All" ? "All" : formatCategory(filter)}
                                 </button>
                             ))}
-                        </div>
+                        </Reveal>
 
                         {loading && (
                             <div className="gallery-page-grid">
@@ -194,7 +194,7 @@ function Gallery() {
                         )}
 
                         {!loading && !error && (
-                            <div className="gallery-page-grid">
+                            <Reveal className="gallery-page-grid">
                                 {visibleImages.map((img, i) => (
                                     <div
                                         className="gallery-page-item"
@@ -210,7 +210,7 @@ function Gallery() {
                                         />
                                     </div>
                                 ))}
-                            </div>
+                            </Reveal>
                         )}
 
                         {hasMore && (
