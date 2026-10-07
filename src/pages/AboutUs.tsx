@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
 import '../index.css';
+import Reveal from "@/components/Reveal";
 
 type Spot = {
     name: string;
@@ -110,7 +111,7 @@ export default function AboutUs() {
         <div className="about-us" id='page'>
         {/* ===== Story ===== */}
             <section className="about-us-story" id="about">
-                <div className="about-us-story-overlay">
+                <Reveal className="about-us-story-overlay">
                     <div className="about-us-text">
                         <p className="section-title">About Us</p>
 
@@ -127,12 +128,12 @@ export default function AboutUs() {
                         </p>
 
                     </div>
-                </div>
+                </Reveal>
             </section>
 
             {/* ===== Two businesses ===== */}
             <section className="about-us-family">
-                <div className="about-us-wrap about-us-family-grid">
+                <Reveal className="about-us-wrap about-us-family-grid">
                     <div className="about-us-biz">
                         <p className="about-us-tag section-title">Stay</p>
                         <h3 className="about-us-h3">Siayanrock Is. Hometel</h3>
@@ -159,7 +160,7 @@ export default function AboutUs() {
                             See our tours <ArrowRight animateOnHover size={16} />
                         </Link>
                     </div>
-                </div>
+                </Reveal>
                 {/*<p className="about-us-wrap about-us-owners-line">
                 One family. One roof. Two ways to enjoy Batanes.
                 </p>*/}
@@ -167,7 +168,7 @@ export default function AboutUs() {
 
             {/* ===== Perks ===== */}
             <section className="about-us-perks">
-                <div className="about-us-wrap">
+                <Reveal className="about-us-wrap">
                     <div
                         className="about-us-viewdeck"
                         onMouseEnter={() => setPaused(true)}
@@ -239,13 +240,13 @@ export default function AboutUs() {
                         </div>
                     </div>
                     */}
-                </div>
+                </Reveal>
             </section>
 
             {/* ===== Five nearby spots ===== */}
             <section className="about-us-nearby">
                 <div className="about-us-wrap">
-                    <div className="about-us-nearby-text">
+                    <Reveal className="about-us-nearby-text">
                         <div>
                         <p className="about-us-eyebrow section-title">Nearby</p>
                         <h2>Six places worth the pedal.</h2>
@@ -255,9 +256,9 @@ export default function AboutUs() {
                         </p>
                         </div>
                         
-                    </div>
+                    </Reveal>
 
-                    <div className="about-us-bento">
+                    <Reveal className="about-us-bento">
                         {SPOTS.map((spot, i) => (
                         <article
                             key={spot.name}
@@ -289,7 +290,7 @@ export default function AboutUs() {
                             </div>
                         </article>
                         ))}
-                    </div>
+                    </Reveal>
                 </div>
             </section>
         </div>

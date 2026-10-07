@@ -44,28 +44,28 @@ function Home() {
 
     const galleryImages = [
         {
-            src: "/images/gallery/hometel-1.JPG",
+            src: "/images/gallery/hometel-1.webp",
             alt: "Siayanrock Is. Hometel",
             caption: "Siayanrock Is. Hometel",
             description: "HOMETEL",
             category: "hometel",
         },
         {
-            src: "/images/gallery/nakurang-1.jpg",
+            src: "/images/gallery/nakurang-1.webp",
             alt: "Nakurang Viewdeck",
             caption: "Nakurang Viewdeck",
             description: "PRIVATE VIEWDECK",
             category: "nakurang",
         },
         {
-            src: "/images/gallery/tours-1.jpg",
+            src: "/images/gallery/tours-1.webp",
             alt: "Mavien Point Travel & Tours",
             caption: "Chamantad Viewpoint",
             description: "TOURS",
             category: "tours",
         },
         {
-            src: "/images/gallery/guests-1.jpg",
+            src: "/images/gallery/guests-1.webp",
             alt: "Our Guests",
             caption: "Our Guests",
             description: "GUESTS",
@@ -136,9 +136,9 @@ function Home() {
                 content="Stay at Siayanrock Is. Hometel in Ivana, Batanes, a comfortable home-away-from-home between North and South Batan. Plan your Batanes trip." />
             <link rel="canonical" href="https://siayanrockhometel.com/" />
             <section>
-                <div className="hero-section relative flex min-h-[clamp(600px,100dvh,1000px)] items-center justify-center bg-[image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('/images/hero-bg.jpg')] bg-cover bg-center bg-no-repeat text-center text-white">
+                <div className="hero-section relative flex min-h-[clamp(600px,100dvh,1000px)] items-center justify-center bg-[image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('/images/hero-bg.webp')] bg-cover bg-center bg-no-repeat text-center text-white">
                     <div className="hero-content">
-                        <h1>Discover Your Perfect <span className="hero-highlight">Holiday Home</span> With Us!</h1>
+                        <h1>Discover Your <span className="hero-highlight">Perfect Batanes Stay</span> With Us!</h1>
 
                         <div className="hero-search-bar">
                             <div className="date-range">
