@@ -746,11 +746,6 @@
     color: #ffb4a8;
 }
 
-.booking-price-hint--error {
-    color: #ffb4a8;
-    border-color: rgba(255, 180, 168, 0.5);
-}
-
 .book-room-btn:disabled {
     opacity: 0.55;
     cursor: not-allowed;
@@ -789,6 +784,12 @@
     border: 1px dashed rgba(255, 255, 255, 0.25);
     border-radius: 8px;
 }
+
+.booking-price-hint--error {
+    color: #ffb4a8;
+    border-color: rgba(255, 180, 168, 0.5);
+}
+
 
 /* ---------- 4. Button ---------- */
 .booking-form-btn button {

@@ -1,14 +1,11 @@
 import { X, ChevronRight, Phone, Mail, MessageCircle } from "lucide-react";
 import '../index.css';
 
-// Update these to the hotel's real contact channels.
-// Consider moving this into a `hotel_settings` table later so it's editable
-// without a code change/redeploy.
 const HOTEL_CONTACT = {
-    whatsappNumber: "639672003129", // digits only, country code, no + or spaces
+    whatsappNumber: "639672003129",
     messengerUsername: "453301817861917",
-    phoneDisplay: "+63 919 538 3911",
-    phoneHref: "+639195383911",
+    phoneDisplay: "+63 967 200 3129",
+    phoneHref: "+639672003129",
     email: "siayanrockis.hometel@gmail.com",
 };
 
@@ -23,8 +20,8 @@ interface ReserveModalProps {
     nights?: number;
     total?: number;
     // Tour inquiry (optional)
-    tourPackage?: string; // e.g. "4D3N Batanes"
-    tourDetail?: string;  // e.g. "4 days, 3 nights"
+    tourPackage?: string; 
+    tourDetail?: string;  
 }
 
 function formatDateLabel(dateStr: string): string {

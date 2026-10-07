@@ -74,7 +74,6 @@ function RoomDetails() {
     const [checkIn, setCheckIn] = useState(initial.ci)
     const [checkOut, setCheckOut] = useState(initial.co)
     const [guestCount, setGuestCount] = useState(initial.g)
-    const [attempted, setAttempted] = useState(false)       // true after the first Reserve click
     const [unavailable, setUnavailable] = useState(false)
     const [checking, setChecking] = useState(false)
 
@@ -85,12 +84,8 @@ function RoomDetails() {
         if (checkIn && checkIn < todayISO) e.checkIn = "Check-in can't be in the past"
         if (checkIn && checkOut && checkOut <= checkIn) e.checkOut = "Check-out must be after check-in"
 
-        if (attempted) {
-            if (!checkIn && !e.checkIn) e.checkIn = "Select a check-in date"
-            if (!checkOut && !e.checkOut) e.checkOut = "Select a check-out date"
-        }
         return e
-    }, [checkIn, checkOut, attempted, todayISO])
+    }, [checkIn, checkOut, todayISO])
 
     const datesValid = !!checkIn && !!checkOut && !errors.checkIn && !errors.checkOut
     const minCheckOut = toLocalISO(addDays(parseLocalDate(checkIn) ?? startOfToday(), 1))
@@ -249,8 +244,7 @@ function RoomDetails() {
         }).format(amount)
 
     function handleBookRoom() {
-        setAttempted(true)
-        if (!datesValid || unavailable || checking) return
+        if (unavailable) return          // booked on the dates entered
         setReserveModalOpen(true)
     }
 
@@ -485,8 +479,8 @@ function RoomDetails() {
                 onClose={() => setReserveModalOpen(false)}
                 roomName={room.room_name}
                 roomThumbnail={imageUrls[0]}
-                checkIn={checkIn}
-                checkOut={checkOut}
+                checkIn={datesValid ? checkIn : ""}
+                checkOut={datesValid ? checkOut : ""}
                 guestCount={guestCount}
                 nights={pricing.nights}
                 total={pricing.total}

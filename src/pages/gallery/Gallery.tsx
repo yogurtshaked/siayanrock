@@ -4,7 +4,7 @@ import "./gallery.css";
 import "../../index.css";
 import { supabase } from '@/lib/supabaseClient';
 import Reveal from "@/components/Reveal";
-
+import SEO from "@/components/SEO";
 interface GalleryImage {
     path: string;          // full path in the bucket, e.g. "Hometel/hometel-1.webp"
     category: string;
@@ -154,6 +154,11 @@ function Gallery() {
 
     return (
         <section>
+            <SEO
+                title="Photo Gallery | Siayanrock Hometel, Batanes"
+                description="See photos of Siayanrock Hometel in Ivana, the Nakurang Viewdeck, Batanes tour destinations, and guests enjoying their stay on Batan Island."
+                path="/gallery"
+            />
             <div className='gallery-page' id='page'>
                 <div id='gallery-body' className='page-body'>
                     <div className='gallery-page-content page-content'>

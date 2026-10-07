@@ -39,8 +39,9 @@ function Footer() {
                     <h3>COMPANY</h3>
                     <div className='footer-company-links'>
                         <a href="/about">About Us</a>
-                        <a href="/rooms">Reviews</a>
-                        <a href="/about">FAQs</a>
+                        {/*
+                        <a href="/">Reviews</a>
+                        <a href="/">FAQs</a>*/}
                         <a href="/inquire">Inquire</a>
                     </div>
                 </div>
