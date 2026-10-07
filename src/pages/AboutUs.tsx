@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
 import { supabase } from '../lib/supabaseClient';
@@ -11,20 +11,8 @@ import SEO from "@/components/SEO";
 import '../index.css';
 import Reveal from "@/components/Reveal";
 
-type Review = {
-    name: string;
-    origin: string;
-    rating: number; // 1 to 5
-    text: string;
-};
-
 // Replace these placeholders with real guest reviews (with the guest's permission)
-const REVIEWS: Review[] = [
-    { name: "Guest Name", origin: "City, Country", rating: 5, text: "Replace with a real guest review." },
-    { name: "Guest Name", origin: "City, Country", rating: 5, text: "Replace with a real guest review." },
-    { name: "Guest Name", origin: "City, Country", rating: 5, text: "Replace with a real guest review." },
-    { name: "Guest Name", origin: "City, Country", rating: 4, text: "Replace with a real guest review." },
-];
+;
 type Spot = {
     name: string;
     description: string;
@@ -122,16 +110,6 @@ export default function AboutUs() {
         const id = setInterval(() => setSlide((s) => (s + 1) % total), 5000);
         return () => clearInterval(id);
     }, [total, paused]);
-
-    const reviewsRef = useRef<HTMLDivElement>(null);
-
-    const scrollReviews = (dir: 1 | -1) => {
-        const el = reviewsRef.current;
-        if (!el) return;
-        const card = el.querySelector<HTMLElement>("[data-review-card]");
-        const step = (card?.offsetWidth ?? 320) + 24; // 24px = gap-6
-        el.scrollBy({ left: dir * step, behavior: "smooth" });
-    };
 
     return (
         <div className="about-us" id='page'>
@@ -325,73 +303,7 @@ export default function AboutUs() {
                 </div>
             </section>
 
-            {/* ===== Reviews ===== 
-            <section className="relative overflow-hidden bg-[image:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url(/images/hero-bg.webp)] bg-cover bg-center bg-no-repeat px-6 py-16 text-white md:px-12 lg:px-[100px] xl:px-[180px] xl:py-[80px]">
-                <div className="mx-auto max-w-[1200px]">
-                    <Reveal className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-                        <div>
-                            <p className="section-title !text-white/80">Reviews</p>
-                            <h2 className="!text-white">What our guests say</h2>
-                        </div>
 
-                        <div className="flex gap-3">
-                            <button
-                                onClick={() => scrollReviews(-1)}
-                                aria-label="Previous reviews"
-                                className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/10 backdrop-blur-md transition hover:bg-white/25"
-                            >
-                                <FontAwesomeIcon icon={faAngleLeft} />
-                            </button>
-                            <button
-                                onClick={() => scrollReviews(1)}
-                                aria-label="Next reviews"
-                                className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/10 backdrop-blur-md transition hover:bg-white/25"
-                            >
-                                <FontAwesomeIcon icon={faAngleRight} />
-                            </button>
-                        </div>
-                    </Reveal>
-
-                    <Reveal>
-                        <div
-                            ref={reviewsRef}
-                            aria-roledescription="carousel"
-                            aria-label="Guest reviews"
-                            className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                        >
-                            {REVIEWS.map((r, i) => (
-                                <article
-                                    key={`${r.name}-${i}`}
-                                    data-review-card
-                                    className="flex w-[85%] shrink-0 snap-start flex-col justify-between gap-6 rounded-2xl border border-white/20 bg-white/10 p-7 shadow-lg backdrop-blur-md sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
-                                >
-                                    <div>
-                                        <div
-                                            className="mb-4 flex gap-1 text-[#d4a73a]"
-                                            role="img"
-                                            aria-label={`${r.rating} out of 5 stars`}
-                                        >
-                                            {Array.from({ length: 5 }).map((_, s) => (
-                                                <FontAwesomeIcon
-                                                    key={s}
-                                                    icon={faStar}
-                                                    className={s < r.rating ? "" : "opacity-25"}
-                                                />
-                                            ))}
-                                        </div>
-                                        <p className="text-[15px] leading-relaxed text-white/90">“{r.text}”</p>
-                                    </div>
-
-                                    <div>
-                                        <p className="font-semibold">{r.name}</p>
-                                        <p className="text-sm text-white/60">{r.origin}</p>
-                                    </div>
-                                </article>
-                            ))}
-                        </div>
-                    </Reveal>
-                </div> 
-            </section>*/}
         </div>
     );
 }

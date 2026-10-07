@@ -426,7 +426,11 @@ function RoomDetails() {
 
                                 {/* 3. Cost */}
                                 <div className="booking-price-summary">
-                                    {unavailable ? (
+                                    {checking ? (
+                                        <p className="booking-price-hint" aria-live="polite">
+                                            Checking availability…
+                                        </p>
+                                    ) : unavailable ? (
                                         <p className="booking-price-hint booking-price-hint--error">
                                             This room isn't available on those dates. Try different dates.
                                         </p>
