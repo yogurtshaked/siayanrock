@@ -8,6 +8,8 @@ import { ArrowRight } from '@/components/animate-ui/icons/arrow-right';
 
 import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { addDays, parseLocalDate, startOfToday, toLocalISO } from "@/lib/searchDates"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 import Reveal from "@/components/Reveal";
 
@@ -22,6 +24,7 @@ function readDate(value: string | null, minISO: string): string {
     return parseLocalDate(value) && value! >= minISO ? value! : ""
 }
 
+type BookedRange = { start: string; end: string }   // yyyy-MM-dd: a booking's check-in and check-out
 type Room = {
     id: number
     room_number: string
@@ -74,8 +77,7 @@ function RoomDetails() {
     const [checkIn, setCheckIn] = useState(initial.ci)
     const [checkOut, setCheckOut] = useState(initial.co)
     const [guestCount, setGuestCount] = useState(initial.g)
-    const [unavailable, setUnavailable] = useState(false)
-    const [checking, setChecking] = useState(false)
+    const [booked, setBooked] = useState<BookedRange[]>([])
 
     // ---------- date validation ----------
     const errors = useMemo(() => {
@@ -88,13 +90,55 @@ function RoomDetails() {
     }, [checkIn, checkOut, todayISO])
 
     const datesValid = !!checkIn && !!checkOut && !errors.checkIn && !errors.checkOut
-    const minCheckOut = toLocalISO(addDays(parseLocalDate(checkIn) ?? startOfToday(), 1))
+   const checkInDate = parseLocalDate(checkIn)
+const checkOutDate = parseLocalDate(checkOut)
 
-    function handleCheckInChange(value: string) {
-        setCheckIn(value)
-        // new check-in on/after the current check-out: clear check-out
-        if (value && checkOut && value >= checkOut) setCheckOut("")
-    }
+// a booking holds the nights check_in ... check_out - 1, and its check-out day stays free
+const blockedCheckIns = useMemo(
+    () => booked.map((b) => ({
+        start: parseLocalDate(b.start)!,
+        end: addDays(parseLocalDate(b.end)!, -1),
+    })),
+    [booked]
+)
+
+// a check-out day is blocked when the night before it is taken
+const blockedCheckOuts = useMemo(
+    () => booked.map((b) => ({
+        start: addDays(parseLocalDate(b.start)!, 1),
+        end: parseLocalDate(b.end)!,
+    })),
+    [booked]
+)
+
+// first booking starting on or after a day (ISO strings compare correctly)
+const nextBookingStart = (fromISO: string): string | undefined =>
+    booked.map((b) => b.start).filter((s) => s >= fromISO).sort()[0]
+
+// a stay can't run past the next booking
+const lastCheckOut = checkIn ? parseLocalDate(nextBookingStart(checkIn) ?? "") ?? undefined : undefined
+
+const isBookedNight = (d: Date) => {
+    const iso = toLocalISO(d)
+    return booked.some((b) => iso >= b.start && iso < b.end)
+}
+
+// still checked for dates that arrive through the URL
+const unavailable = datesValid && booked.some((b) => b.start < checkOut && b.end > checkIn)
+
+function handleCheckInChange(date: Date | null) {
+    const value = date ? toLocalISO(date) : ""
+    setCheckIn(value)
+
+    if (!value || !checkOut) return
+    const next = nextBookingStart(value)
+    // clear check-out if it's now on or before check-in, or the stay would run into another booking
+    if (checkOut <= value || (next && checkOut > next)) setCheckOut("")
+}
+
+function handleCheckOutChange(date: Date | null) {
+    setCheckOut(date ? toLocalISO(date) : "")
+}
 
     // resolved public URLs for this room's images, derived once room loads
     const imageUrls = useMemo(
@@ -170,32 +214,35 @@ function RoomDetails() {
         if (room && guestCount > room.max_guests) setGuestCount(room.max_guests)
     }, [room])
 
-    // is this room free on the chosen dates?
-    useEffect(() => {
-        if (!room || !datesValid) {
-            setUnavailable(false)
-            return
-        }
+    // this room's current and future bookings
+useEffect(() => {
+    if (!room) return
+    let cancelled = false
 
-        let cancelled = false
-        setChecking(true)
+    supabase
+        .from("bookings")
+        .select("check_in, check_out")
+        .eq("room_id", room.id)
+        .gte("check_out", todayISO)
+        .in("status", ["pending", "confirmed"])
+        .then(({ data, error }) => {
+            if (cancelled) return
+            if (error) {
+                console.error(error)
+                return
+            }
+            setBooked(
+                (data ?? [])
+                    .map((b) => ({
+                        start: String(b.check_in).slice(0, 10),   // works for date or timestamp columns
+                        end: String(b.check_out).slice(0, 10),
+                    }))
+                    .filter((b) => parseLocalDate(b.start) && parseLocalDate(b.end) && b.end > b.start)
+            )
+        })
 
-        supabase
-            .from("bookings")                                   // same table and columns as the search
-            .select("id", { count: "exact", head: true })
-            .eq("room_id", room.id)
-            .lt("check_in", checkOut)
-            .gt("check_out", checkIn)
-            .in("status", ["pending", "confirmed"])
-            .then(({ count, error }) => {
-                if (cancelled) return
-                if (error) console.error(error)
-                setUnavailable(!error && (count ?? 0) > 0)
-                setChecking(false)
-            })
-
-        return () => { cancelled = true }
-    }, [room, datesValid, checkIn, checkOut])
+    return () => { cancelled = true }
+}, [room, todayISO])
 
     // keep the URL in step, so refresh and "Back to rooms" keep the search
     useEffect(() => {
@@ -377,30 +424,47 @@ function RoomDetails() {
                                 <div className="booking-fields">
                                     <div className="booking-fields-row">
                                         <div className={`booking-field${errors.checkIn ? " has-error" : ""}`}>
-                                            <label htmlFor="check-in">Check in</label>
-                                            <input
-                                                id="check-in"
-                                                type="date"
-                                                min={todayISO}
-                                                value={checkIn}
-                                                aria-invalid={!!errors.checkIn}
-                                                onChange={(e) => handleCheckInChange(e.target.value)}
-                                            />
-                                            {errors.checkIn && <span className="booking-field-error" role="alert">{errors.checkIn}</span>}
-                                        </div>
+    <label htmlFor="check-in">Check in</label>
+    <DatePicker
+        id="check-in"
+        selected={checkInDate}
+        onChange={handleCheckInChange}
+        selectsStart
+        startDate={checkInDate}
+        endDate={checkOutDate}
+        minDate={startOfToday()}
+        excludeDateIntervals={blockedCheckIns}
+        dayClassName={(d) => (isBookedNight(d) ? "day-booked" : "")}
+        placeholderText="mm-dd-yyyy"
+        dateFormat="MM-dd-yyyy"
+        popperPlacement="bottom-start"
+        autoComplete="off"
+        ariaInvalid={errors.checkIn ? "true" : undefined}
+    />
+    {errors.checkIn && <span className="booking-field-error" role="alert">{errors.checkIn}</span>}
+</div>
 
-                                        <div className={`booking-field${errors.checkOut ? " has-error" : ""}`}>
-                                            <label htmlFor="check-out">Check out</label>
-                                            <input
-                                                id="check-out"
-                                                type="date"
-                                                min={minCheckOut}
-                                                value={checkOut}
-                                                aria-invalid={!!errors.checkOut}
-                                                onChange={(e) => setCheckOut(e.target.value)}
-                                            />
-                                            {errors.checkOut && <span className="booking-field-error" role="alert">{errors.checkOut}</span>}
-                                        </div>
+<div className={`booking-field${errors.checkOut ? " has-error" : ""}`}>
+    <label htmlFor="check-out">Check out</label>
+    <DatePicker
+        id="check-out"
+        selected={checkOutDate}
+        onChange={handleCheckOutChange}
+        selectsEnd
+        startDate={checkInDate}
+        endDate={checkOutDate}
+        minDate={addDays(checkInDate ?? startOfToday(), 1)}
+        maxDate={lastCheckOut}
+        excludeDateIntervals={blockedCheckOuts}
+        dayClassName={(d) => (isBookedNight(addDays(d, -1)) ? "day-booked" : "")}
+        placeholderText="mm-dd-yyyy"
+        dateFormat="MM-dd-yyyy"
+        popperPlacement="bottom-end"
+        autoComplete="off"
+        ariaInvalid={errors.checkOut ? "true" : undefined}
+    />
+    {errors.checkOut && <span className="booking-field-error" role="alert">{errors.checkOut}</span>}
+</div>
                                     </div>
 
                                     <div className="booking-field">
@@ -426,11 +490,11 @@ function RoomDetails() {
 
                                 {/* 3. Cost */}
                                 <div className="booking-price-summary">
-                                    {checking ? (
-                                        <p className="booking-price-hint" aria-live="polite">
-                                            Checking availability…
-                                        </p>
-                                    ) : unavailable ? (
+                                    {unavailable ? (
+        <p className="booking-price-hint booking-price-hint--error">
+            This room isn't available on those dates. Try different dates.
+        </p>
+    ) : pricing.nights > 0 ? (
                                         <p className="booking-price-hint booking-price-hint--error">
                                             This room isn't available on those dates. Try different dates.
                                         </p>
@@ -460,9 +524,9 @@ function RoomDetails() {
                                                 <strong>{peso(pricing.total)}</strong>
                                             </div>
                                         </>
-                                    ) : (
-                                        <p className="booking-price-hint">Pick your dates to see the total.</p>
-                                    )}
+                                   ) : (
+        <p className="booking-price-hint">Pick your dates to see the total.</p>
+    )}
                                 </div>
 
                                 {/* 4. Action */}

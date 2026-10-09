@@ -185,7 +185,7 @@ function Accommodation() {
                     <Reveal className='accommodation-content page-content'>
                         <div className='accommodation-text page-header hero-nudge'>
                             <h2>Siayanrock Is. Hometel</h2>
-                            <p>A cozy and welcoming stay offering comfortable accommodations and a true home-away-from-home in Batanes experience.</p>
+                            <p>A welcoming stay in Ivana, Batanes, offering comfortable accommodations and a true home-away-from-home experience.</p>
                             <ScrollHint targetId='accommodation-body' />
                         </div>
                     </Reveal>

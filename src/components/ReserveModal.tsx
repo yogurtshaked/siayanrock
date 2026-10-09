@@ -4,9 +4,15 @@ import '../index.css';
 const HOTEL_CONTACT = {
     whatsappNumber: "639672003129",
     messengerUsername: "453301817861917",
-    phoneDisplay: "+63 967 200 3129",
+    phoneDisplay: "+63 967 2003 129",
     phoneHref: "+639672003129",
     email: "siayanrockis.hometel@gmail.com",
+};
+
+const TOUR_CONTACT = {
+    ...HOTEL_CONTACT,
+    email: "mavienpoint@gmail.com",
+    messengerUsername: "453301817861917",   
 };
 
 interface ReserveModalProps {
@@ -20,8 +26,8 @@ interface ReserveModalProps {
     nights?: number;
     total?: number;
     // Tour inquiry (optional)
-    tourPackage?: string; 
-    tourDetail?: string;  
+    tourPackage?: string;
+    tourDetail?: string;
 }
 
 function formatDateLabel(dateStr: string): string {
@@ -77,15 +83,17 @@ function ReserveModal(props: ReserveModalProps) {
     const message = buildInquiryMessage(props);
     const encodedMessage = encodeURIComponent(message);
 
-    const whatsappHref = `https://wa.me/${HOTEL_CONTACT.whatsappNumber}?text=${encodedMessage}`;
-    const messengerHref = `https://m.me/${HOTEL_CONTACT.messengerUsername}?text=${encodedMessage}`;
-    const phoneHref = `tel:${HOTEL_CONTACT.phoneHref}`;
+    const contact = isTour ? TOUR_CONTACT : HOTEL_CONTACT;
+
     const emailSubject = isTour
         ? `Tour inquiry: ${tourPackage}`
         : roomName
             ? `Room inquiry: ${roomName} Room`
             : "Room inquiry";
-    const emailHref = `mailto:${HOTEL_CONTACT.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodedMessage}`;
+    const whatsappHref = `https://wa.me/${contact.whatsappNumber}?text=${encodedMessage}`;
+    const messengerHref = `https://m.me/${contact.messengerUsername}?text=${encodedMessage}`;
+    const phoneHref = `tel:${contact.phoneHref}`;
+    const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodedMessage}`;
 
     function handleOverlayClick() {
         onClose();
@@ -180,7 +188,7 @@ function ReserveModal(props: ReserveModalProps) {
                         </span>
                         <span className="reserve-modal-option-text">
                             <span className="reserve-modal-option-label">Message on Facebook</span>
-                            <span className="reserve-modal-option-sub">@{HOTEL_CONTACT.messengerUsername}</span>
+                            <span className="reserve-modal-option-sub">@{contact.messengerUsername}</span>
                         </span>
                         <ChevronRight size={16} strokeWidth={1.5} className="reserve-modal-option-chevron" />
                     </a>
@@ -191,7 +199,7 @@ function ReserveModal(props: ReserveModalProps) {
                         </span>
                         <span className="reserve-modal-option-text">
                             <span className="reserve-modal-option-label">Call or text</span>
-                            <span className="reserve-modal-option-sub">{HOTEL_CONTACT.phoneDisplay}</span>
+                            <span className="reserve-modal-option-sub">{contact.phoneDisplay}</span>
                         </span>
                         <ChevronRight size={16} strokeWidth={1.5} className="reserve-modal-option-chevron" />
                     </a>
@@ -202,7 +210,7 @@ function ReserveModal(props: ReserveModalProps) {
                         </span>
                         <span className="reserve-modal-option-text">
                             <span className="reserve-modal-option-label">Email inquiry</span>
-                            <span className="reserve-modal-option-sub">{HOTEL_CONTACT.email}</span>
+                            <span className="reserve-modal-option-sub">{contact.email}</span>
                         </span>
                         <ChevronRight size={16} strokeWidth={1.5} className="reserve-modal-option-chevron" />
                     </a>

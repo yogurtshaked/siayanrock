@@ -114,7 +114,7 @@ export default function AboutUs() {
     return (
         <div className="about-us" id='page'>
             <SEO
-                title="About Us | Siayanrock Hometel & Mavien Point Tours"
+                title="About Us | Siayanrock Hometel & Mavien Point Tour Services"
                 description="Meet Robert Gabas and Ofelia Gabas, the owners of Siayanrock Is. Hometel and Mavien Point Travel and Tours in Ivana, Batanes."
                 path="/about"
             />
@@ -125,7 +125,7 @@ export default function AboutUs() {
                         <p className="section-title">About Us</p>
 
                         <h2 className="about-us-h2">
-                            A home on the edge of the <em>Batanes</em> horizon.
+                            Where your <em>Batanes</em> adventure begins.
                         </h2>
 
                         <p className="about-us-lead">
@@ -159,7 +159,7 @@ export default function AboutUs() {
 
                     <div className="about-us-biz">
                         <p className="about-us-tag section-title">Explore</p>
-                        <h3 className="about-us-h3">Mavien Point Travel and Tours</h3>
+                        <h3 className="about-us-h3">Mavien Point Tour Services</h3>
                         <p className="section-description">
                             Our own travel agency, run by the same owners. Book your room and
                             your island tours together, guided by people who know Batanes
@@ -198,7 +198,7 @@ export default function AboutUs() {
                         <div className="about-us-viewdeck-shade" />
 
                         <div className="about-us-viewdeck-copy">
-                            <p className="about-us-viewdeck-tag section-title">Private Viewdeck</p>
+                            <p className="about-us-viewdeck-tag section-title">Our Private Viewdeck</p>
                             <h3 className="about-us-h3">Nakurang Viewdeck</h3>
                             <p className="section-description">
                                 A private viewdeck reserved for our guests, far from the crowds.

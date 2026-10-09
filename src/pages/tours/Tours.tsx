@@ -139,7 +139,7 @@ function Tours() {
 
         <section>
             <SEO
-                title="Batanes Tour Packages (3D2N, 4D3N, 5D4N) | Mavien Point Travel & Tours"
+                title="Batanes Tour Packages (3D2N, 4D3N, 5D4N) | Mavien Point Tour Services"
                 description="Explore Batanes with our tour packages. Inquire today."
                 path="/tours"
             />
@@ -147,8 +147,8 @@ function Tours() {
                 <div className='tours-hero-section relative flex min-h-[clamp(600px,100dvh,1000px)] flex-col items-start justify-end bg-[image:linear-gradient(to_top,rgba(0,0,0,0.8)_0%,rgba(28,28,28,0.4)_45%,rgba(102,102,102,0.3)_100%),url(/images/tours-bg.webp)] bg-cover bg-center bg-no-repeat px-[140px] py-[120px] text-white'>
                     <Reveal className='tours-content page-content'>
                         <div className='tours-text page-header'>
-                            <h2>Mavien Point Travel & Tour</h2>
-                            <p>Discover iconic tourist spots, rolling hills, stone houses, and coastal views through thoughtfully curated itineraries.</p>
+                            <h2>Mavien Point Tour Services</h2>
+                            <p>Discover the breathtaking beauty of Batanes with us, exploring beautiful landscapes, historic stone houses, and rich Ivatan culture.</p>
                             <ScrollHint targetId='tours-packages-body' />
                         </div>
                     </Reveal>

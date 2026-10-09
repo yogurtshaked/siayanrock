@@ -136,7 +136,7 @@ function Home() {
                 description="A hometel in Ivana, Batanes. Comfortable rooms, a private viewdeck, and Batanes tour packages with Mavien Point Travel & Tour."
                 path="/"
             />
-            <div className="hero-section relative flex min-h-[clamp(600px,100dvh,1000px)] items-center justify-center bg-[image:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('/images/hero-bg.webp')] bg-cover bg-center bg-no-repeat text-center text-white">
+            <div className="hero-section">
                 <div className="hero-content">
                     <h1>Discover Your <span className="hero-highlight">Perfect Batanes Stay</span> With Us!</h1>
 

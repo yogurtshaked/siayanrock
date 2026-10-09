@@ -11,7 +11,7 @@ export default function Preloader({ heroSrc }: { heroSrc: string }) {
         Promise.all([
             img.decode().catch(() => { }),
             document.fonts.ready,
-            new Promise((r) => setTimeout(r, 500)), // avoids a flash
+            new Promise((r) => setTimeout(r, 500)), 
         ]).then(() => setReady(true));
     }, [heroSrc]);
 

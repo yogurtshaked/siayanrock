@@ -4,7 +4,19 @@
 
 
 /* ====================== Hero Section ======================*/
-
+.hero-section {
+    background:
+        linear-gradient(rgba(0.6, 0.6, 0.6, 0.3), rgba(0.6, 0.6, 0.6, 0.3)),
+        url('/images/hero-bg.webp') center / 75% auto no-repeat;
+    background-size: cover;
+    min-height: clamp(600px, 100dvh, 1000px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+}
 .hero-content {
     display: flex;
     flex-direction: column;
@@ -16,7 +28,7 @@
     font-size: 72px;
     max-width: 562px;
     letter-spacing: -1%;
-    line-height: 75px;
+    line-height: 70px;
 }
 
 .hero-highlight {
@@ -31,7 +43,7 @@
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(26px);
     -webkit-backdrop-filter: blur(28px);
-    padding: 18px 24px 26px 24px;
+    padding: 14px 24px 24px 24px;
     border-radius: 6px;
 }
 

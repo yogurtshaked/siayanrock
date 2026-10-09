@@ -668,11 +668,20 @@
 }
 
 /* ---------- 2. Fields ---------- */
+/* unselectable days: past dates and booked dates are struck through, booked ones in red */
+.react-datepicker__day--disabled {
+    text-decoration: line-through;
+}
+
+.react-datepicker__day.day-booked {
+    background: #f6e4e0;
+    color: #b3412f;
+}
 .booking-fields {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .booking-fields-row {
