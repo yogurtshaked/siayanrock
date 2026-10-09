@@ -3,7 +3,7 @@ import "../../index.css";
 import { useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ChevronDown } from '@/components/animate-ui/icons/chevron-down';
@@ -41,7 +41,30 @@ type SearchErrors = {
     checkOut?: string;
     guests?: string;
 };
+
+const HERO_IMAGES = [
+    "/images/hero/hero-1.webp",
+    "/images/hero/hero-2.jpg",
+    "/images/hero/hero-3.JPG",
+]
+const SLIDE_MS = 10000
 function Home() {
+    const [heroIndex, setHeroIndex] = useState(0)
+    const [prevIndex, setPrevIndex] = useState<number | null>(null)
+
+    useEffect(() => {
+        // preload so photos don't pop in mid-fade
+        HERO_IMAGES.forEach((src) => { new Image().src = src })
+
+        const timer = setInterval(() => {
+            setHeroIndex((current) => {
+                setPrevIndex(current)
+                return (current + 1) % HERO_IMAGES.length
+            })
+        }, SLIDE_MS)
+
+        return () => clearInterval(timer)
+    }, [])
 
     const galleryImages = [
         {
@@ -136,7 +159,22 @@ function Home() {
                 description="A hometel in Ivana, Batanes. Comfortable rooms, a private viewdeck, and Batanes tour packages with Mavien Point Travel & Tour."
                 path="/"
             />
-            <div className="hero-section">
+            <div className="hero-section" id="hero">
+                <div className="hero-slides" aria-hidden="true">
+                    {HERO_IMAGES.map((src, i) => (
+                        <img
+                            key={src}
+                            src={src}
+                            alt=""
+                            className={
+                                "hero-slide" +
+                                (i === heroIndex ? " is-active" : "") +
+                                (i === prevIndex ? " is-prev" : "")
+                            }
+                        />
+                    ))}
+                </div>
+
                 <div className="hero-content">
                     <h1>Discover Your <span className="hero-highlight">Perfect Batanes Stay</span> With Us!</h1>
 
