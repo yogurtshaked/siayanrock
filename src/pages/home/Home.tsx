@@ -44,9 +44,9 @@ type SearchErrors = {
 
 const HERO_IMAGES = [
     "/images/hero/hero-1.webp",
-    "/images/hero/hero-2.jpg",
-    "/images/hero/hero-3.JPG",
-    "/images/hero/hero-4.JPG",
+    "/images/hero/hero-2.webp",
+    "/images/hero/hero-3.webp",
+    "/images/hero/hero-4.webp",
 ]
 const SLIDE_MS = 6000
 function Home() {
@@ -67,30 +67,32 @@ function Home() {
         return () => clearInterval(timer)
     }, [])
 
-    const galleryImages = [
+   const STORAGE_URL = `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/gallery`;
+
+const galleryImages = [
+    {
+        src: `${STORAGE_URL}/hometel/hometel-1.webp`,
+        alt: "Siayanrock Is. Hometel",
+        caption: "Siayanrock Is. Hometel",
+        description: "HOMETEL",
+        category: "hometel",
+    },
         {
-            src: "/images/gallery/hometel-1.webp",
-            alt: "Siayanrock Is. Hometel",
-            caption: "Siayanrock Is. Hometel",
-            description: "HOMETEL",
-            category: "hometel",
-        },
-        {
-            src: "/images/gallery/nakurang-1.webp",
+            src: `${STORAGE_URL}/nakurang/nakurang-1.webp`,
             alt: "Nakurang Viewdeck",
             caption: "Nakurang Viewdeck",
             description: "PRIVATE VIEWDECK",
             category: "nakurang",
         },
         {
-            src: "/images/gallery/tours-1.webp",
+            src: `${STORAGE_URL}/tours/tours-1.webp`,
             alt: "Mavien Point Travel & Tours",
             caption: "Chamantad Viewpoint",
             description: "TOURS",
             category: "tours",
         },
         {
-            src: "/images/gallery/guests-1.webp",
+            src: `${STORAGE_URL}/guests/guests-1.webp`,
             alt: "Our Guests",
             caption: "Our Guests",
             description: "GUESTS",

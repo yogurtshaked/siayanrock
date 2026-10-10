@@ -1,11 +1,9 @@
 import { createBrowserRouter, RouterProvider, Outlet, useLocation } from 'react-router-dom';
 
 import ScrollToTop from './lib/ScrollToTop';
-import { supabase } from './lib/supabaseClient';
 import { useState } from 'react';
 
 import Home from './pages/home/Home';
-import Accommodation from './pages/accommodation/Accommodation';
 
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
@@ -64,15 +62,20 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       {
         path: "/accommodation",
-        element: <Accommodation />,
-        loader: async () => {
-          const { data, error } = await supabase
-            .from('rooms')
-            .select('*')
-            .eq('is_active', true)
-            .order('room_number');
-          if (error) throw error;
-          return data;
+        lazy: async () => {
+          const [{ default: Component }, { supabase }] = await Promise.all([
+            import("./pages/accommodation/Accommodation"),
+            import("./lib/supabaseClient"),
+          ]);
+          return {
+            Component,
+            loader: async () => {
+              const { data, error } = await supabase
+                .from("rooms").select("*").eq("is_active", true).order("room_number");
+              if (error) throw error;
+              return data;
+            },
+          };
         },
       },
 

@@ -78,7 +78,7 @@ function Navbar() {
             <nav className={classes}>
                 <div className="navbar-content">
                     <div className="navbar-logo">
-                        <img src="/images/logo.svg" alt="Logo" className="logo-image" />
+                        <img src="/images/logo.svg" alt="Siayanrock Hometel logo" width={44} height={48} className="logo-image" />
                     </div>
 
                     {/* Desktop links */}
