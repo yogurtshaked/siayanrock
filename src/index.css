@@ -113,6 +113,9 @@ button {
   letter-spacing: 3%;
 }
 
+img[loading="lazy"] {
+  background-color: #e9e4d8; /* a soft tone from your palette */
+}
 /* =============== HOME BUTTONS =================== */
 .home-btn {
   display: flex;

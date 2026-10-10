@@ -5,22 +5,37 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/logo.svg" />
   <script>
-    (function () {
-      var map = {
-        "/": "/images/hero-bg.webp",
-        "/accommodation": "/images/accommodation-bg.webp",
-        "/tours": "/images/tours-bg.webp"
-      };
-      var src = map[location.pathname];
-      if (!src) return;
-      var l = document.createElement("link");
-      l.rel = "preload";
-      l.as = "image";
-      l.href = src;
-      l.setAttribute("fetchpriority", "high");
-      document.head.appendChild(l);
-    })();
-  </script>
+  (function () {
+    var path = location.pathname.replace(/\/$/, "") || "/";
+    var map = {
+      "/": [
+        "/images/hero/hero-1.webp",
+        "/images/hero/hero-2.webp",
+        "/images/hero/hero-3.webp",
+        "/images/hero/hero-4.webp"
+      ],
+      "/accommodation": ["/images/accommodation-bg.webp"],
+      "/tours": ["/images/tours-bg.webp"]
+    };
+    var list = map[path];
+    if (!list) return;
+
+    // 1. The first image blocks rendering priority: preload it now
+    var l = document.createElement("link");
+    l.rel = "preload";
+    l.as = "image";
+    l.href = list[0];
+    l.setAttribute("fetchpriority", "high");
+    document.head.appendChild(l);
+
+    // 2. The rest download after the page has loaded, so they're cached for the slideshow
+    window.addEventListener("load", function () {
+      list.slice(1).forEach(function (src) {
+        new Image().src = src;
+      });
+    });
+  })();
+</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Siayanrock Hometel | Hotel in Ivana, Batanes</title>
   <meta name="keywords" content="batanes hometel, batanes hotel, tours, tour packages">

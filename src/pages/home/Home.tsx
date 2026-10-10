@@ -46,8 +46,9 @@ const HERO_IMAGES = [
     "/images/hero/hero-1.webp",
     "/images/hero/hero-2.jpg",
     "/images/hero/hero-3.JPG",
+    "/images/hero/hero-4.JPG",
 ]
-const SLIDE_MS = 10000
+const SLIDE_MS = 6000
 function Home() {
     const [heroIndex, setHeroIndex] = useState(0)
     const [prevIndex, setPrevIndex] = useState<number | null>(null)

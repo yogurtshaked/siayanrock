@@ -119,8 +119,8 @@ function Accommodation() {
             const { data, error } = await supabase
                 .from('bookings')
                 .select('room_id')
-                .lt('check_in', search.checkOutStr)
-                .gt('check_out', search.checkInStr)
+                .lte('check_in', search.checkOutStr)      // was .lt
+                .gte('check_out', search.checkInStr)      // was .gt
                 .in('status', ['pending', 'confirmed']);
 
             if (cancelled) return;

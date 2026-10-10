@@ -15,59 +15,71 @@
     text-align: center;
     color: #ffffff;
     position: relative;
-    overflow: hidden;              /* stops the zoomed photos from widening the page */
+    overflow: hidden;
+    /* stops the zoomed photos from widening the page */
 }
 
 
 
 .hero-slides {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
 }
 
 /* optional dark overlay so the text stays readable */
 .hero-slides::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .hero-slide {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1);
-  transition: opacity 1.5s ease-in-out;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 1.5s ease-in-out;
 }
 
 .hero-slide.is-active {
-  opacity: 1;
+    opacity: 1;
 }
 
 /* the zoom runs on the current AND the previous photo, so the old one
    keeps its zoom while it fades out instead of snapping back */
 .hero-slide.is-active,
 .hero-slide.is-prev {
-  animation: hero-zoom 8s linear forwards;   /* SLIDE_MS + 1.5s fade */
+    animation: hero-zoom 7s linear forwards;
+    /* SLIDE_MS + 1.5s fade */
 }
 
 @keyframes hero-zoom {
-  from { transform: scale(1); }
-  to   { transform: scale(1.1); }
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
 }
 
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-slide.is-active,
-  .hero-slide.is-prev { animation: none; }
+
+    .hero-slide.is-active,
+    .hero-slide.is-prev {
+        animation: none;
+    }
 }
+
 .hero-content {
-    z-index: 1;                    /* no position: relative here */
+    z-index: 1;
+    /* no position: relative here */
     display: flex;
     flex-direction: column;
     justify-content: center;
