@@ -231,23 +231,114 @@ form {
     height: 100%;
     border: 0;
 }
-
 .inquire-status {
+    grid-column: 1 / -1;            /* full width: the form is a 2-column grid */
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid transparent;
+    border-left-width: 3px;
+    border-radius: 6px;
     font-size: 14px;
-    margin: 8px 0 16px;
+    line-height: 1.45;
+    animation: inquire-status-in 0.2s ease;
 }
 
-.inquire-status.success {
-    color: #2f6b3a;
+.inquire-status p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.inquire-status svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.inquire-status a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .inquire-status.error {
-    color: #b3412f;
+    background: #fdf1ee;
+    border-color: #f0cdc4;
+    border-left-color: #b3412f;
+    color: #8f2f20;
+}
+
+.inquire-status.success {
+    background: #eef7f0;
+    border-color: #c6e2cd;
+    border-left-color: #2f6b3a;
+    color: #24562e;
+}
+
+@keyframes inquire-status-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .inquire-status { animation: none; }
 }
 
 .submit-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+.phone-group {
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 8px;
+}
+
+/* looks like the other fields; the real <select> sits invisibly on top of it */
+.input-field .phone-country {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 28px 0 12px;
+    background: white;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #746228;
+    white-space: nowrap;
+    transition: border-color 0.2s;
+}
+
+.input-field .phone-country:focus-within {
+    border-color: var(--color-blue);
+}
+
+.input-field .phone-country select {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* dropdown arrow */
+.phone-country::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    border-right: 1.5px solid #9a9a9a;
+    border-bottom: 1.5px solid #9a9a9a;
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
 }
 
 /* ---------- Inquire page: laptops (≤1280px) ---------- */
