@@ -103,6 +103,13 @@ function RoomDetails() {
         })),
         [booked]
     )
+    const blockedCheckIns = useMemo(
+        () => booked.map((b) => ({
+            start: addDays(parseLocalDate(b.start)!, -1),
+            end: parseLocalDate(b.end)!,
+        })),
+        [booked]
+    )
 
     const isBookedDay = (d: Date) => {
         const iso = toLocalISO(d)
@@ -213,11 +220,11 @@ function RoomDetails() {
         let cancelled = false
 
         supabase
-            .from("bookings")
+            .from("room_booked_dates")                 // was "bookings"
             .select("check_in, check_out")
             .eq("room_id", room.id)
             .gte("check_out", todayISO)
-            .in("status", ["pending", "confirmed"])
+            // .in("status", ["pending", "confirmed"]) // remove this line unless the table has a status column
             .then(({ data, error }) => {
                 if (cancelled) return
                 if (error) {
@@ -447,9 +454,9 @@ function RoomDetails() {
                                                 startDate={checkInDate}
                                                 endDate={checkOutDate}
                                                 minDate={addDays(checkInDate ?? startOfToday(), 1)}
-                                                excludeDateIntervals={blockedDays}
-                                                maxDate={lastCheckOut}
+                                                excludeDateIntervals={blockedCheckIns}      // was blockedDays
                                                 dayClassName={(d) => (isBookedDay(d) ? "day-booked" : "")}
+                                                maxDate={lastCheckOut}
                                                 placeholderText="mm-dd-yyyy"
                                                 dateFormat="MM-dd-yyyy"
                                                 popperPlacement="bottom-end"

@@ -43,7 +43,7 @@ const SPOTS: Spot[] = [
     },
     {
         name: "Honesty Coffee Shop",
-        description: "A quaint coffee shop where you can enjoy a cup of coffee while taking in the serene surroundings.",
+        description: "A coffee shop where customers serve themselves, record what they take, and pay without a cashier",
         imagePath: "tours/tours-7.webp",
         distance: "650 meters",
         bikeTime: "[XX] min",
