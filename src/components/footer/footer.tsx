@@ -11,7 +11,7 @@ function Footer() {
             <div className="footer-content">
                 <div className="footer-logo">
                     <div className='footer-logo-text'>
-                        <img src="/images/logo.svg" alt="Logo" className="logo-image"/>
+                        <img src="/images/logo.svg" alt="Siayanrock Hometel logo" width={40} height={48} className="logo-image" />
                         <p className="footer-description">A cozy hometel on the edge of Batanes, built around comfort, quiet mornings, and open horizons.</p>
                     </div>
                     <div className="footer-socials">
