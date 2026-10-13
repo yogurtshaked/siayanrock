@@ -677,6 +677,7 @@
     background: #f6e4e0;
     color: #b3412f;
 }
+
 .booking-fields {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -759,6 +760,7 @@
     opacity: 0.55;
     cursor: not-allowed;
 }
+
 /* ---------- 3. Cost ---------- */
 .booking-price-summary {
     display: flex;
@@ -1324,7 +1326,7 @@
     }
 
     .amenity p {
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .room-price {
@@ -1367,23 +1369,27 @@
 
     .room-items {
         flex-wrap: wrap;
-        gap: 8px 18px;
+        gap: 8px 16px;
     }
 
     /* max-content columns can overflow a narrow card */
     .room-checklist {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-template-rows: none;
-        gap: 8px 12px;
+        gap: 6px 12px;
     }
 
-    /* price on top, buttons full width underneath */
     .room-price {
         flex-direction: column;
         align-items: stretch;
-        gap: 14px;
+        gap: 2px;
     }
-    
+
+    .room-buttons {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+    }
 
     .room-buttons button {
         flex: 1;
@@ -1522,7 +1528,7 @@
         min-height: 48px;
     }
 
-    
+
 
     /* ===== Lightbox ===== */
     .room-lightbox-overlay {
@@ -1599,6 +1605,7 @@
     .room-contents h3 {
         font-size: 28px;
     }
+
 
     .room-buttons {
         gap: 6px;

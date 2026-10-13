@@ -6,7 +6,7 @@ import ScrollHint from '@/components/Scrollhint';
 import { supabase } from '@/lib/supabaseClient';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { Bed, Users } from "lucide-react";
+import { Bed, Users, SquareDashed } from "lucide-react";
 import ReserveModal from '@/components/ReserveModal';
 import RoomSearchBar, { type RoomSearchValues } from '@/components/RoomSearch';
 import { parseLocalDate, nightsBetween } from '@/lib/searchDates';
@@ -251,6 +251,15 @@ function Accommodation() {
                                                             <Users size={16} />
                                                             <p>{room.max_guests} people</p>
                                                         </div>
+
+                                                        <div className="room-item">
+                                                            <SquareDashed size={20} strokeWidth={1.5} />
+                                                            <p>
+                                                                {room.room_size_sqm}{' '}
+                                                                {room.room_size_sqm === 1 ? 'sqm' : 'sqm'}
+                                                            </p>
+                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
 
